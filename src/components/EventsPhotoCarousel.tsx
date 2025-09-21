@@ -186,7 +186,7 @@ function EventsPhotoCarousel({setSelectedEvent}: { setSelectedEvent: (event: Cal
 
       <button
         className="absolute bottom-4 right-4 bg-[#ffffff0f] hover:bg-[#373737] text-sm text-white px-4 py-2 rounded-lg shadow-md flex items-center gap-2 transition-all"
-        onClick={() => window.open('https://calendar.google.com/calendar/u/r?cid=c_9d4bb8cc4eb0a947ef07bb5d2a2133404bbd2a186814274013f02d2709f213af@group.calendar.google.com', '_blank')}
+        onClick={() => window.open('https://calendar.google.com/calendar/embed?src=c_9d4bb8cc4eb0a947ef07bb5d2a2133404bbd2a186814274013f02d2709f213af%40group.calendar.google.com&ctz=America%2FPhoenix', '_blank')}
       >
         <Calendar size={16} />
         Add to Calendar
