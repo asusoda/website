@@ -125,27 +125,26 @@ function SponsorsMarquee() {
     generalmotors: "General Motors",
   };
 
-  const sponsorEntries: SponsorEntry[] = sponsors
-    .map((entry) => {
-      const name = entry.name as SponsorLogo;
-      const src = logoMap[name];
-      const Icon = iconMap[name];
-      const url = urlMap[name];
-      const label = labelMap[name];
+  const sponsorEntries = sponsors.reduce<SponsorEntry[]>((acc, entry) => {
+    const name = entry.name as SponsorLogo;
+    const src = logoMap[name];
+    const Icon = iconMap[name];
+    const url = urlMap[name];
+    const label = labelMap[name];
 
-      if (!src || !url || !label) {
-        return null;
-      }
+    if (!src || !url || !label) {
+      return acc;
+    }
 
-      return {
-        name,
-        src,
-        url,
-        label,
-        Icon,
-      };
-    })
-    .filter((entry): entry is SponsorEntry => entry !== null);
+    acc.push({
+      name,
+      src,
+      url,
+      label,
+      Icon,
+    });
+    return acc;
+  }, []);
 
   const duplicatedSponsors = [...sponsorEntries, ...sponsorEntries];
 
