@@ -435,6 +435,32 @@ body {
   }
 }
 
+/* --------- LEADERBOARD --------- */
+.podium-slide {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: podium-slide-in 0.6s ease-out forwards;
+}
+
+.podium-delay-1 {
+  animation-delay: 0s;
+}
+
+.podium-delay-2 {
+  animation-delay: 0.2s;
+}
+
+.podium-delay-3 {
+  animation-delay: 0.4s;
+}
+
+@keyframes podium-slide-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* --------- NAVIGATION  --------- */
 .navigation {
   @apply w-full fixed bg-black opacity-85 backdrop-blur-md z-20 max-md:py-0 py-1;
