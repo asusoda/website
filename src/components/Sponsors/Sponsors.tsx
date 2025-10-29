@@ -44,6 +44,7 @@ type SponsorEntry = {
   name: SponsorLogo;
   src: string;
   url: string;
+  label: string;
   Icon?: IconType;
 };
 
@@ -108,14 +109,31 @@ function SponsorsMarquee() {
     generalmotors: "https://www.gm.com/",
   };
 
+  const labelMap: Record<SponsorLogo, string> = {
+    amazon: "Amazon",
+    statefarm: "State Farm",
+    drivetime: "DriveTime",
+    deloitte: "Deloitte",
+    goldmansachs: "Goldman Sachs",
+    garmin: "Garmin",
+    starbucks: "Starbucks",
+    paypal: "PayPal",
+    godaddy: "GoDaddy",
+    americanexpress: "American Express",
+    axosoft: "Axosoft",
+    workiva: "Workiva",
+    generalmotors: "General Motors",
+  };
+
   const sponsorEntries: SponsorEntry[] = sponsors
     .map((entry) => {
       const name = entry.name as SponsorLogo;
       const src = logoMap[name];
       const Icon = iconMap[name];
       const url = urlMap[name];
+      const label = labelMap[name];
 
-      if (!src || !url) {
+      if (!src || !url || !label) {
         return null;
       }
 
@@ -123,6 +141,7 @@ function SponsorsMarquee() {
         name,
         src,
         url,
+        label,
         Icon,
       };
     })
@@ -189,7 +208,7 @@ function SponsorsMarquee() {
         }
       >
         <div className="sponsors-track">
-          {duplicatedSponsors.map(({ src, Icon, name, url }, index) => (
+          {duplicatedSponsors.map(({ src, Icon, name, url, label }, index) => (
             <a
               key={`${name}-${index}`}
               ref={(el) => {
@@ -197,8 +216,8 @@ function SponsorsMarquee() {
               }}
               href={url}
               target="_blank"
-              rel="noreferrer noopener"
-              aria-label={name}
+              rel="noopener noreferrer"
+              aria-label={label}
               className="flex h-full min-h-[120px] w-44 items-center justify-center px-8 py-6 opacity-70 transition-opacity duration-300 hover:opacity-100 focus-visible:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-soda-blue md:min-h-[160px] md:w-56"
             >
               {Icon ? (
@@ -208,7 +227,7 @@ function SponsorsMarquee() {
               ) : (
                 <img
                   src={src}
-                  alt={name}
+                  alt={label}
                   className="h-16 w-auto object-contain md:h-20"
                 />
               )}
