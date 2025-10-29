@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"; // Import Link
 import { Button } from "@/components/ui/button"; // Keep Button import for potential future use or consistency
 
 interface PointsDetails {
-  awarded_by: string;
   event: string;
   points: number;
   timestamp: string;
@@ -40,9 +39,6 @@ const Modal: React.FC<{
               <tr className="bg-zinc-800">
                 <th className="p-2 text-left border border-zinc-700">Event</th>
                 <th className="p-2 text-left border border-zinc-700">Points</th>
-                <th className="p-2 text-left border border-zinc-700">
-                  Awarded By
-                </th>
                 <th className="p-2 text-left border border-zinc-700">Date</th>
               </tr>
             </thead>
@@ -55,9 +51,6 @@ const Modal: React.FC<{
                   <td className="p-2 border border-zinc-700">{detail.event}</td>
                   <td className="p-2 border border-zinc-700">
                     {detail.points}
-                  </td>
-                  <td className="p-2 border border-zinc-700">
-                    {detail.awarded_by}
                   </td>
                   <td className="p-2 border border-zinc-700">
                     {new Date(detail.timestamp).toLocaleDateString()}

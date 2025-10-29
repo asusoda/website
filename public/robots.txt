@@ -1,4 +1,5 @@
-User-agent: *
-Disallow: /private
-Allow: /
+# robots.txt for thesoda.io
+# Allow search engines to crawl the entire site while keeping an option for future directives.
 
+User-agent: *
+Allow: /
