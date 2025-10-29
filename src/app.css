@@ -376,6 +376,58 @@ body {
   margin-right: calc(-50vw + 50%); /* Extend beyond right edge */
 }
 
+.sponsors-marquee {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(1.25rem, 3vw, 2.25rem);
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+}
+
+.sponsors-track {
+  display: flex;
+  align-items: center;
+  gap: clamp(2.5rem, 7vw, 4.5rem);
+  padding-inline: clamp(1.25rem, 3vw, 2.25rem);
+  width: max-content;
+  animation: sponsors-scroll var(--sponsors-duration, 22s) linear infinite;
+}
+
+.sponsors-marquee:hover .sponsors-track {
+  animation-play-state: paused;
+}
+
+.sponsors-marquee::before,
+.sponsors-marquee::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: clamp(1.5rem, 7vw, 4.5rem);
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sponsors-marquee::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(58, 100, 228, 0.75), rgba(58, 100, 228, 0));
+}
+
+.sponsors-marquee::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(202, 35, 82, 0.75), rgba(202, 35, 82, 0));
+}
+
+@keyframes sponsors-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 .marquee-effect-container {
   @apply py-6  max-md:px-4 pl-20 flex flex-row animate-marquee whitespace-nowrap gap-8;
   &:hover {

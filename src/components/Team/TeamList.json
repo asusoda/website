@@ -1,5 +1,5 @@
 {
-  "Admin": [
+  "Leadership": [
     {
       "name": "Nishant Dhongadi",
       "role": "President",
@@ -7,33 +7,15 @@
       "image": "/headshots/nishant.webp"
     }
   ],
-  "Admin, Operations": [
+  "Strategy": [
     {
-      "name": "Harshit Kumar",
-      "role": "Vice President, \nOperations",
-      "email": "hkumar43@asu.edu",
-      "image": "/headshots/harshit.webp"
-    },
-    {
-      "name": "Rayan Syed",
-      "role": "Event Coordinator",
-      "email": "rasyed@asu.edu",
-      "image": "/headshots/Rayan.jpg"
-    },
-    {
-      "name": "Johnnessa Barroquillo",
-      "role": "Event Coordinator,\nFlagship Events",
-      "email": "jbarroqu@asu.edu",
-      "image": "/headshots/johnnessa.webp"
-    },
-    {
-      "name": "Johnny Chau",
-      "role": "Event Coordinator,\nGeneral Body Meetings",
-      "email": "vchau3@asu.edu",
-      "image": "/headshots/johnny.webp"
+      "name": "Elizabeth Pardhe",
+      "role": "Vice President,\nStrategy",
+      "email": "epardhe@asu.edu",
+      "image": "/headshots/elizabeth.webp"
     }
   ],
-  "Admin, Finance": [
+  "Finance": [
     {
       "name": "Arleen Kaur Teerthy",
       "role": "Vice President, Finance",
@@ -47,12 +29,24 @@
       "image": "/headshots/shiv.webp"
     }
   ],
-  "Admin, Strategy": [
+  "Operations": [
     {
-      "name": "Elizabeth Pardhe",
-      "role": "Vice President,\nStrategy",
-      "email": "epardhe@asu.edu",
-      "image": "/headshots/elizabeth.webp"
+      "name": "Harshit Kumar",
+      "role": "Vice President, \nOperations",
+      "email": "hkumar43@asu.edu",
+      "image": "/headshots/harshit.webp"
+    },
+    {
+      "name": "Johnnessa Barroquillo",
+      "role": "Event Coordinator,\nFlagship Events",
+      "email": "jbarroqu@asu.edu",
+      "image": "/headshots/johnnessa.webp"
+    },
+    {
+      "name": "Johnny Chau",
+      "role": "Event Coordinator,\nGeneral Body Meetings",
+      "email": "vchau3@asu.edu",
+      "image": "/headshots/johnny.webp"
     }
   ],
   "Industry Relations": [
@@ -83,10 +77,10 @@
   ],
   "Technology": [
     {
-      "name": "Sri Ujjwal Reddy Beereddy",
+      "name": "Tanay Upreti",
       "role": "Director,\nTechnology",
-      "email": "sbeeredd@asu.edu",
-      "image": "/headshots/sri.webp"
+      "email": "tupreti@asu.edu",
+      "image": "/headshots/tanay.webp"
     },
     {
       "name": "Chelsea Lianne Gomez",
@@ -96,7 +90,7 @@
     },
     {
       "name": "Ben Juntilla",
-      "role": "Events Developer Lead",
+      "role": "Senior Techincal Organizer",
       "email": "cjuntill@asu.edu",
       "image": "/headshots/ben.webp"
     },
@@ -149,10 +143,10 @@
       "image": "/headshots/darsh.webp"
     }
   ],
-  "Development & Engagement": [
+  "Community": [
     {
       "name": "Shreya Bhandarkar",
-      "role": "Director,\nDevelopment & Engagement",
+      "role": "Director,\nCommunity",
       "email": "sbhand24@asu.edu",
       "image": "/headshots/shreya.webp"
     },
@@ -161,12 +155,6 @@
       "role": "Associate Director",
       "email": "hmahend4@asu.edu",
       "image": "/headshots/harini.webp"
-    },
-    {
-      "name": "Ishita Rajeev",
-      "role": "Community Officer",
-      "email": "irajeev@asu.edu",
-      "image": "/headshots/Ishita.JPG"
     },
     {
       "name": "Yug Thapar",
