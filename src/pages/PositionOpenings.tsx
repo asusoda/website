@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet-async";
 import { useState, useEffect } from "react";
-import RoundedButton from "../components/Button/RiArrowButton";
 import Slider from "react-infinite-logo-slider";
 import {
   FaMeta,
@@ -17,15 +16,21 @@ import {
   SiGodaddy,
   SiIntel,
   SiGoldmansachs,
+  SiCapitalone,
+  SiStatefarm,
+  SiLockheedmartin,
 } from "react-icons/si";
 import { IconContext } from "react-icons";
-import HandDrawnStar from "../components/ui/HandDrawnStar";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+
+const APPLICATION_FORM_URL =
+  "https://asusoda.notion.site/ebd/2a547e64246880a78aa5d6c360a37173";
+
 export default function Positions() {
   const [sliderWidth, setSliderWidth] = useState("150px");
   const [sliderDuration, setSliderDuration] = useState(15);
@@ -59,7 +64,7 @@ export default function Positions() {
     <div className="max-w-5xl mx-auto p-6 md:mt-14 shadow-md rounded-lg prose lg:prose-xl prose-invert">
       {/* Helmet for SEO */}
       <Helmet>
-        <title>Organizer Applications</title>
+        <title>Officer Applications</title>
         <meta
           name="description"
           content="Explore open officer positions at ASU Soda and apply for roles in administration, marketing, technology, and more."
@@ -70,14 +75,13 @@ export default function Positions() {
         />
       </Helmet>
 
-      <h1>Organizer Applications</h1>
+      <h1>Officer Applications</h1>
 
       <p>
         Thank you for your interest in joining the Software Developers
         Association!
       </p>
-      <p>Our organizers get jobs at companies like</p>
-      {/* todo: add cap one, state farm, lockheed */}
+      <p>Our Officers get jobs at companies like</p>
       <p>
         <IconContext.Provider
           value={{ size: "4rem", style: { verticalAlign: "middle" } }}
@@ -113,6 +117,15 @@ export default function Positions() {
               <SiGoldmansachs />
             </Slider.Slide>
             <Slider.Slide>
+              <SiCapitalone />
+            </Slider.Slide>
+            <Slider.Slide>
+              <SiStatefarm />
+            </Slider.Slide>
+            <Slider.Slide>
+              <SiLockheedmartin />
+            </Slider.Slide>
+            <Slider.Slide>
               <SiIntuit size="5rem" />
             </Slider.Slide>
             <Slider.Slide>
@@ -131,31 +144,22 @@ export default function Positions() {
       <h2>️️Application Instructions</h2>
 
       <p>
-        Our application process will be conducted through the Qruil platform.
+        Complete your organizer application via the SoDA Notion form embedded at
+        the bottom of this page or open it in a new tab for a dedicated
+        experience.
       </p>
 
       <p>
-        If you don't already have one, create an account with{" "}
-        <a href="https://qruil.com" target="_blank">
-          Qruil
+        Before you start, gather your resume, recent experience highlights, and
+        answers for questions like “What makes you a good fit for this role?”
+        so you can complete the form in one sitting.
+      </p>
+
+      <p>
+        Prefer a new tab?{" "}
+        <a href={APPLICATION_FORM_URL} target="_blank" rel="noopener noreferrer">
+          Open the application form directly.
         </a>
-        . You will then have to fill out your application details through the
-        "Application" tab found in the left sidebar on Qruil.
-      </p>
-
-      <p>
-        The only information we require is your Profile (Personal Information,
-        Contact), Work, Education, CV/Resume, and Questions ("What makes you a
-        good fit for this role?"). Note that Qruil may require you to fill out
-        additional information before applying.
-      </p>
-
-      <p>
-        Finally, locate one of our open positions in the{" "}
-        <a href="https://qruil.com/seeker/job-search" target="_blank">
-          Qruil search page
-        </a>{" "}
-        and apply through there.
       </p>
 
       <p>
@@ -174,7 +178,6 @@ export default function Positions() {
 
       <hr className="my-10 border-gray-600" />
 
-
       <h2>Open Positions by Team</h2>
 
       <Accordion type="single" collapsible defaultValue="admin" className="w-full">
@@ -189,14 +192,10 @@ export default function Positions() {
               <li>Oversee admin officers in carrying out budget/purchase requests</li>
               <li>Manage funding sources and financial accounts</li>
             </ul>
-            <div className="max-w-3xl flex justify-start mt-4">
-              <RoundedButton name="Details on Qruil" url={"https://qruil.com/job-detail/treasurer-1744186548095"} />
-            </div>
           </AccordionContent>
         </AccordionItem>
         
         <AccordionItem value="marketing">
-          {/* Add showStar prop, remove HandDrawnStar component
           <AccordionTrigger className="text-3xl font-semibold no-underline hover:no-underline py-4" showStar>
             Marketing
           </AccordionTrigger>
@@ -214,12 +213,6 @@ export default function Positions() {
                 provide images that complement design elements
               </li>
             </ul>
-            <div className="max-w-3xl flex justify-start mt-4">
-              <RoundedButton
-                name="Details on Qruil"
-                url="https://qruil.com/job-detail/marketing-or-photographer-1742971795749"
-              />
-            </div>
             <h3>Video Editor</h3>
             <ul className="mb-0">
               <li>
@@ -234,12 +227,6 @@ export default function Positions() {
                 branding
               </li>
             </ul>
-            <div className="max-w-3xl flex justify-start mt-4">
-              <RoundedButton
-                name="Details on Qruil"
-                url="https://qruil.com/job-detail/marketing-or-graphic-designer-1742971746962"
-              />
-            </div>
             <h3>Graphic Designer</h3>
             <ul className="mb-0">
               <li>
@@ -257,17 +244,10 @@ export default function Positions() {
                 and consistent
               </li>
             </ul>
-            <div className="max-w-3xl flex justify-start mt-4">
-              <RoundedButton
-                name="Details on Qruil"
-                url="https://qruil.com/job-detail/test-1742321001922"
-              />
-            </div>
-          </AccordionContent> */}
+          </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="industry-relations">
-          {/* Add showStar prop, remove HandDrawnStar component
           <AccordionTrigger className="text-3xl font-semibold no-underline hover:no-underline py-4" showStar>
             Industry Relations
           </AccordionTrigger>
@@ -282,17 +262,10 @@ export default function Positions() {
                 activities
               </li>
             </ul>
-            <div className="max-w-3xl flex justify-start mt-4">
-              <RoundedButton
-                name="Details on Qruil"
-                url="https://qruil.com/job-detail/industry-relations-officer-1743643231829"
-              />
-            </div>
-          </AccordionContent> */}
+          </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="development-engagement">
-          {/* Add showStar prop, remove HandDrawnStar component
           <AccordionTrigger className="text-3xl font-semibold no-underline hover:no-underline py-4" showStar>
             Development & Engagement
           </AccordionTrigger>
@@ -308,17 +281,10 @@ export default function Positions() {
                 atmosphere within the organization.
               </li>
             </ul>
-            <div className="max-w-3xl flex justify-start mt-4">
-              <RoundedButton
-                name="Details on Qruil"
-                url="https://qruil.com/job-detail/professional-development-and-community-engagement-specialist-(dande)-1742971838660"
-              />
-            </div>
-          </AccordionContent> */}
+          </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="technology">
-          {/* Add showStar prop, remove HandDrawnStar component
           <AccordionTrigger className="text-3xl font-semibold no-underline hover:no-underline py-4" showStar>
             Technology
           </AccordionTrigger>
@@ -359,16 +325,29 @@ export default function Positions() {
                 Web development, database management, and API integrations
               </li>
             </ul>
-            <div className="max-w-3xl flex justify-start mt-4">
-              <RoundedButton
-                name="Details on Qruil"
-                url="https://qruil.com/job-detail/technology-specialist-1742972015408"
-              />
-            </div>
-          </AccordionContent> */}
+          </AccordionContent>
         </AccordionItem>
         <div />
       </Accordion>
+
+      <hr className="my-10 border-gray-600" />
+
+      <div id="apply-form" className="my-10 space-y-4">
+        <h2>Apply Right Away</h2>
+        <p>
+          You can submit your organizer application without leaving this page
+          using the embedded form below.
+        </p>
+        <iframe
+          src={APPLICATION_FORM_URL}
+          width="100%"
+          height="600"
+          frameBorder="0"
+          allowFullScreen
+          title="SoDA Organizer Application Form"
+          className="w-full rounded-lg border border-gray-700"
+        />
+      </div>
     </div>
   );
 }
