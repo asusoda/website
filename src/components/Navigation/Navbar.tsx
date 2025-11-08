@@ -94,7 +94,7 @@ function NavbarSection() {
         </div>
       </div>
       {/* Conditionally render banner based on path */}
-      {location.pathname !== '/apply' && false && (
+      {location.pathname !== '/apply' && (
         <div className="bg-gray-900/75 text-white text-center p-2 w-full">
           Officer positions are now open!{' '}
           <Link to="/apply" className="font-bold underline hover:text-soda-red">

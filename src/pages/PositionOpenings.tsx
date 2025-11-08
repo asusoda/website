@@ -16,9 +16,9 @@ import {
   SiGodaddy,
   SiIntel,
   SiGoldmansachs,
-  SiCapitalone,
-  SiStatefarm,
-  SiLockheedmartin,
+  SiAmericanexpress,
+  SiWellsfargo,
+  SiFigma,
 } from "react-icons/si";
 import { IconContext } from "react-icons";
 import {
@@ -117,13 +117,13 @@ export default function Positions() {
               <SiGoldmansachs />
             </Slider.Slide>
             <Slider.Slide>
-              <SiCapitalone />
+              <SiAmericanexpress />
             </Slider.Slide>
             <Slider.Slide>
-              <SiStatefarm />
+              <SiWellsfargo />
             </Slider.Slide>
             <Slider.Slide>
-              <SiLockheedmartin />
+              <SiFigma />
             </Slider.Slide>
             <Slider.Slide>
               <SiIntuit size="5rem" />
