@@ -19,6 +19,10 @@ import {
   SiAmericanexpress,
   SiWellsfargo,
   SiFigma,
+  SiNotion,
+  SiGoogle,
+  SiDatabricks,
+  SiAirbnb,
 } from "react-icons/si";
 import { IconContext } from "react-icons";
 import {
@@ -102,10 +106,16 @@ export default function Positions() {
               <FaAmazon />
             </Slider.Slide>
             <Slider.Slide>
+              <SiGoogle />
+            </Slider.Slide>
+            <Slider.Slide>
               <FaMicrosoft />
             </Slider.Slide>
             <Slider.Slide>
               <FaDropbox />
+            </Slider.Slide>
+            <Slider.Slide>
+              <SiNotion />
             </Slider.Slide>
             <Slider.Slide>
               <FaSalesforce />
@@ -136,6 +146,12 @@ export default function Positions() {
             </Slider.Slide>
             <Slider.Slide>
               <SiGodaddy />
+            </Slider.Slide>
+            <Slider.Slide>
+              <SiDatabricks />
+            </Slider.Slide>
+            <Slider.Slide>
+              <SiAirbnb />
             </Slider.Slide>
           </Slider>
         </IconContext.Provider>
