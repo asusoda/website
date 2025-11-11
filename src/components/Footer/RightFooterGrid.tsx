@@ -7,7 +7,7 @@ type ResourceLink =
 const resources: ResourceLink[] = [
   { name: "Mentorship Program", source: "/mentorship" },
   { name: "SoDA PoP Program", source: "/sodapop" },
-  { name: "Organizer Applications", source: "/apply" },
+  { name: "Officer Applications", source: "/apply" },
   { name: "Leaderboard", source: "/leaderboard" },
   {
     name: "Constitution",

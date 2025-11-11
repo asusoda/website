@@ -160,15 +160,9 @@ export default function Positions() {
       <h2>️️Application Instructions</h2>
 
       <p>
-        Complete your organizer application via the SoDA Notion form embedded at
+        Complete your officer application via the SoDA Notion form embedded at
         the bottom of this page or open it in a new tab for a dedicated
         experience.
-      </p>
-
-      <p>
-        Before you start, gather your resume, recent experience highlights, and
-        answers for questions like “What makes you a good fit for this role?”
-        so you can complete the form in one sitting.
       </p>
 
       <p>
@@ -281,9 +275,9 @@ export default function Positions() {
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="development-engagement">
+        <AccordionItem value="community">
           <AccordionTrigger className="text-3xl font-semibold no-underline hover:no-underline py-4" showStar>
-            Development & Engagement
+            Community
           </AccordionTrigger>
           <AccordionContent className="prose lg:prose-xl prose-invert mt-[-2rem]">
             <ul className="mb-0">
@@ -305,7 +299,20 @@ export default function Positions() {
             Technology
           </AccordionTrigger>
           <AccordionContent className="prose lg:prose-xl prose-invert">
-            <h3>Workshop Content Developer</h3>
+            <h3>Software Team</h3>
+            <ul className="mb-0">
+              <li>
+                Internal software, tools, and automations
+              </li>
+              <li>
+                Web development, database management, and API integrations
+              </li>
+              <li>
+                Build and maintain systems that empower SoDA events and officer
+                operations
+              </li>
+            </ul>
+            <h3>Events Team</h3>
             <ul className="mb-0">
               <li>
                 Create comprehensive workshop content, including slides,
@@ -319,9 +326,6 @@ export default function Positions() {
                 Continuously update and improve workshop materials based on
                 feedback and advancements in the field
               </li>
-            </ul>
-            <h3>Special Events Organizer</h3>
-            <ul className="mb-0">
               <li>
                 Hackathon problem statement selection and judging panel
                 coordination
@@ -334,13 +338,6 @@ export default function Positions() {
                 coordination
               </li>
             </ul>
-            <h3>Internal Tools Developer</h3>
-            <ul className="mb-0">
-              <li>Internal software, tools, and automations</li>
-              <li>
-                Web development, database management, and API integrations
-              </li>
-            </ul>
           </AccordionContent>
         </AccordionItem>
         <div />
@@ -351,7 +348,7 @@ export default function Positions() {
       <div id="apply-form" className="my-10 space-y-4">
         <h2>Apply Right Away</h2>
         <p>
-          You can submit your organizer application without leaving this page
+          You can submit your officer application without leaving this page
           using the embedded form below.
         </p>
         <iframe
@@ -360,7 +357,7 @@ export default function Positions() {
           height="600"
           frameBorder="0"
           allowFullScreen
-          title="SoDA Organizer Application Form"
+          title="SoDA Officer Application Form"
           className="w-full rounded-lg border border-gray-700"
         />
       </div>
