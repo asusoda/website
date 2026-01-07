@@ -8,9 +8,9 @@ const markdownContent = `
 
 The Mentorship Program is designed to connect underclassmen with experienced upperclassmen to foster professional growth and development. This SoDA initiative aims to provide valuable guidance and support to students through a structured mentoring process.
 
-Sign up to be a mentor [here](https://forms.gle/zZpeEjPVgSVsdZx76).
+Sign up to be a mentor [here](https://forms.gle/xtks7VpbyLHcy2XY9).
 
-Sign up to be a mentee [here](https://forms.gle/3jbEaHMyMinDhbr36).
+Sign up to be a mentee [here](https://forms.gle/Feu2GAfWQmashLZm9).
 
 ## Responsibilities and Perks
 
