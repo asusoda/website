@@ -398,26 +398,7 @@ body {
   animation-play-state: paused;
 }
 
-.sponsors-marquee::before,
-.sponsors-marquee::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: clamp(1.5rem, 7vw, 4.5rem);
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
 
-.sponsors-marquee::before {
-  left: 0;
-  background: linear-gradient(90deg, rgba(58, 100, 228, 0.75), rgba(58, 100, 228, 0));
-}
-
-.sponsors-marquee::after {
-  right: 0;
-  background: linear-gradient(270deg, rgba(202, 35, 82, 0.75), rgba(202, 35, 82, 0));
-}
 
 @keyframes sponsors-scroll {
   0% {
