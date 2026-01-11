@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 const markdownContent = `
 # Mentorship Program
 
-The Mentorship Program is designed to connect underclassmen with experienced upperclassmen to foster professional growth and development. This SoDA initiative aims to provide valuable guidance and support to students through a structured mentoring process.
+The Mentorship Program is designed to connect underclassmen with experienced upperclassmen to foster professional growth and development. This SoDA initiative aims to provide valuable guidance and support to students through a structured mentoring process. Check out past mentee projects below!
 
 Sign up to be a mentor [here](https://forms.gle/xtks7VpbyLHcy2XY9).
 
@@ -63,6 +63,19 @@ If you successfully completed the program, you can re-apply, but because we want
 #### What if I'm unable to complete the program?
 
 Let us know! Please check our requirements and make sure you're able to commit to the program beforehand, but we understand that life happens. Just contact your mentor and the program directors and let them know you won't be able to complete it asap.
+
+
+
+## Past Mentee Projects
+
+- [AegisCheck Device Security Advisor](https://docs.google.com/presentation/d/10zfAyyPBSTMyYRJ8c3B1oJjxGdeSrIPUiN6ap1XQq3o/edit?usp=sharing)
+- [AI-Powered Career Pathway Recommender for Students](https://www.canva.com/design/DAG6gm_BJmk/4rSJlwC1V1we5ITQ2bXc7A/edit?utm_content=DAG6gm_BJmk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+- [Centsible](https://docs.google.com/presentation/d/1vI31THxieC1meoEArUugXvOTLyi6d9cRBjznbMDrcC4/edit?usp=sharing)
+- [ClarityRead](https://docs.google.com/presentation/d/1C-wiW3cu88dU725C3dWOcjnjr_rF5xb9ow5HEreYpc0/edit?usp=sharing)
+- [Culture Bites](https://docs.google.com/presentation/d/1TxgRJDfrUUf2I8zSrY04ovv0vOxr6t1QTHuXQpgwR4o/edit?usp=sharing)
+- [EcoPulse](https://docs.google.com/presentation/d/1JX5SuBtRrCotTTZYShOoAPpleHJkNHYmgDd0h0g_Dck/edit?usp=sharing)
+- [LED Strip Controller](https://drive.google.com/open?id=1Ao-3WdJbkPmUnTC1Pz0CJzkIUbpv1E0l)
+- [Waste Classifier App](https://docs.google.com/presentation/d/1LFWdR7HNzJbx5KHx3-zSLrZsTm78KtmLeneGlnGrUw4/edit?usp=sharing)
 `;
 
 export default function Mentorship() {
