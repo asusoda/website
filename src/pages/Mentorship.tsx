@@ -69,7 +69,7 @@ Let us know! Please check our requirements and make sure you're able to commit t
 ## Past Mentee Projects
 
 - [AegisCheck Device Security Advisor](https://docs.google.com/presentation/d/10zfAyyPBSTMyYRJ8c3B1oJjxGdeSrIPUiN6ap1XQq3o/edit?usp=sharing)
-- [AI-Powered Career Pathway Recommender for Students](https://www.canva.com/design/DAG6gm_BJmk/4rSJlwC1V1we5ITQ2bXc7A/edit?utm_content=DAG6gm_BJmk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+- [AI-Powered Career Pathway Recommender for Students](https://www.canva.com/design/DAG6gm_BJmk/XnDec7So2zNR9GiLKwTPIw/view?utm_content=DAG6gm_BJmk&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=had2c1a6c37)
 - [Centsible](https://docs.google.com/presentation/d/1vI31THxieC1meoEArUugXvOTLyi6d9cRBjznbMDrcC4/edit?usp=sharing)
 - [ClarityRead](https://docs.google.com/presentation/d/1C-wiW3cu88dU725C3dWOcjnjr_rF5xb9ow5HEreYpc0/edit?usp=sharing)
 - [Culture Bites](https://docs.google.com/presentation/d/1TxgRJDfrUUf2I8zSrY04ovv0vOxr6t1QTHuXQpgwR4o/edit?usp=sharing)
