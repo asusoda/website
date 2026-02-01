@@ -17,10 +17,25 @@ const ProductDetail: React.FC = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      if (!id) return;
+      // Validate route param before calling the API
+      if (!id) {
+        setProduct(null);
+        setError('Product not found');
+        setLoading(false);
+        return;
+      }
+
+      const numericId = Number(id);
+      if (!Number.isFinite(numericId)) {
+        setProduct(null);
+        setError('Product not found');
+        setLoading(false);
+        return;
+      }
+
       try {
         setLoading(true);
-        const data = await storefrontAPI.getProduct(parseInt(id));
+        const data = await storefrontAPI.getProduct(numericId);
         setProduct(data);
         setError(null);
       } catch (err) {

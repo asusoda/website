@@ -63,21 +63,24 @@ Complete e-commerce shop frontend for SoDA using the platform's storefront APIs.
 - Auto-redirect to account page
 
 #### Account Page
-- **Mock login system** (email-based, development only)
+- **Clerk-based authentication** (email, phone, or social login)
 - User profile display
 - **Points wallet** (sum of positive/negative points)
-- Order history with status
 - Points activity history
-- Logout functionality
+- Sign out functionality
 
-### 5. Authentication System (Mock)
+### 5. Authentication System (Clerk)
 **Current Implementation:**
-- Email-based mock login
-- Token stored in localStorage
-- User data cached in localStorage
-- Session persists across page reloads
+- Clerk provides secure authentication
+- Multiple sign-in methods supported (email, phone, social)
+- Session managed by Clerk
+- User profile accessible via Clerk hooks
+- Token integration for API calls (in progress)
 
-**Token Format:** `mock_token_{timestamp}`
+**Integration:**
+- ClerkProvider wraps the app
+- useUser hook provides user state
+- SignInButton/UserButton components handle UI
 
 **To Replace with OAuth:**
 1. Integrate Discord OAuth
@@ -141,14 +144,14 @@ VITE_API_URL=https://api.thesoda.io
 ### Development
 ```bash
 cd /home/ash/student_orgs/SoDA/website
-npm install --legacy-peer-deps
-npm run dev
+pnpm install
+pnpm run dev
 ```
 
 ### Production Build
 ```bash
-npm run build
-npm run preview
+pnpm run build
+pnpm run preview
 ```
 
 ## API Endpoints Used

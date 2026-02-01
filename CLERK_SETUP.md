@@ -18,7 +18,7 @@ VITE_CLERK_PUBLISHABLE_KEY=pk_test_your_key_here
 ```
 
 ## 4. Test the Integration
-1. Run `npm run dev`
+1. Run `pnpm run dev`
 2. Go to http://localhost:5173/shop
 3. Click "Sign In" in the navbar
 4. Sign up/Sign in with Clerk
@@ -34,5 +34,5 @@ VITE_CLERK_PUBLISHABLE_KEY=pk_test_your_key_here
 
 ## Next Steps
 - [ ] Add Clerk publishable key to production environment
-- [ ] Implement order checkout with authentication
+- [ ] Implement order checkout with Clerk authentication token
 - [ ] Add Clerk webhook to sync users to platform DB

@@ -35,13 +35,16 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.product.id === product.id);
       if (existingItem) {
-        return prevCart.map((item) =>
-          item.product.id === product.id
-            ? { ...item, quantity: item.quantity + quantity }
-            : item
-        );
+        return prevCart.map((item) => {
+          if (item.product.id !== product.id) {
+            return item;
+          }
+          const newQuantity = Math.min(item.quantity + quantity, product.stock);
+          return { ...item, quantity: newQuantity };
+        });
       }
-      return [...prevCart, { product, quantity }];
+      const initialQuantity = Math.min(quantity, product.stock);
+      return [...prevCart, { product, quantity: initialQuantity }];
     });
   };
 
