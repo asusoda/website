@@ -55,27 +55,7 @@ export interface PointsRecord {
   timestamp: string;
 }
 
-// Mock authentication token (replace with real OAuth later)
-let authToken: string | null = localStorage.getItem('shop_auth_token');
-let mockUser: User | null = JSON.parse(localStorage.getItem('shop_user') || 'null');
 
-export const setAuthToken = (token: string, user: User) => {
-  authToken = token;
-  mockUser = user;
-  localStorage.setItem('shop_auth_token', token);
-  localStorage.setItem('shop_user', JSON.stringify(user));
-};
-
-export const clearAuthToken = () => {
-  authToken = null;
-  mockUser = null;
-  localStorage.removeItem('shop_auth_token');
-  localStorage.removeItem('shop_user');
-};
-
-export const getAuthToken = () => authToken;
-export const getMockUser = () => mockUser;
-export const isAuthenticated = () => !!authToken;
 
 // API helper function
 async function apiRequest<T>(
@@ -92,10 +72,9 @@ async function apiRequest<T>(
     Object.assign(headers, fetchOptions.headers);
   }
 
-  // Use provided token (from Clerk) or fallback to mock token
-  const token = requestAuthToken || authToken;
-  if (token) {
-    headers['Authorization'] = `Bearer ${token}`;
+  // Use provided token (from Clerk)
+  if (requestAuthToken) {
+    headers['Authorization'] = `Bearer ${requestAuthToken}`;
   }
 
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
@@ -176,18 +155,3 @@ export const pointsAPI = {
     ),
 };
 
-// Mock login for development (replace with real OAuth)
-export const mockLogin = async (email: string) => {
-  // For now, just create a mock token and user
-  const mockToken = `mock_token_${Date.now()}`;
-  const mockUserData: User = {
-    id: Math.floor(Math.random() * 1000),
-    name: 'Test User',
-    email: email,
-    username: email.split('@')[0],
-    total_points: 0,
-  };
-  
-  setAuthToken(mockToken, mockUserData);
-  return mockUserData;
-};
