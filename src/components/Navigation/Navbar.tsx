@@ -10,6 +10,9 @@ import {
 import { Link, useLocation } from "react-router-dom";
 import { FiExternalLink } from "react-icons/fi";
 
+// Feature flags
+const SHOW_MENTORSHIP_BANNER = false;
+
 type NavItem = { name: string; id_href: string; icon?: "external" };
 
 function NavbarSection() {
@@ -94,8 +97,7 @@ function NavbarSection() {
         </div>
       </div>
       {/* Conditionally render banner based on path */}
-      {/* Banner disabled - Officer applications are closed */}
-      { false && location.pathname !== '/mentorship' && (
+      {SHOW_MENTORSHIP_BANNER && location.pathname !== '/mentorship' && (
         <div className="text-xl bg-gray-900/75 text-white text-center p-2 w-full">
           Mentorship applications are now open!{' '}
           <Link to="/mentorship" className="font-bold underline hover:text-soda-red">
