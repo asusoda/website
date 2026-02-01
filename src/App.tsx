@@ -2,19 +2,20 @@ import "@fontsource/space-grotesk";
 import "@fontsource/space-grotesk/700.css"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import NavbarSection from "./components/Navigation/Navbar";
 import Home from "./pages/Home";
 import Mentorship from "./pages/Mentorship";
 import PointsSystem from "./pages/PointsSystem";
-import Footer from "./components/Footer/Footer";
 import Leaderboard from "./pages/LeaderBoard";
 import Positions from "./pages/PositionOpenings";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 import { CartProvider } from "./lib/CartContext";
 
-// Shop components
+// Layout components
+import MainLayout from "./components/MainLayout";
 import ShopLayout from "./components/Shop/ShopLayout";
+
+// Shop components
 import ShopIndex from "./pages/Shop/ShopIndex";
 import ProductDetail from "./pages/Shop/ProductDetail";
 import Cart from "./pages/Shop/Cart";
@@ -37,49 +38,15 @@ function App() {
               <Route path="account" element={<Account />} />
             </Route>
 
-            {/* Main site routes - with navbar/footer */}
-            <Route path="/" element={
-              <>
-                <NavbarSection />
-                <Home />
-                <Footer />
-              </>
-            } />
-            <Route path="/mentorship" element={
-              <>
-                <NavbarSection />
-                <Mentorship />
-                <Footer />
-              </>
-            } />
-            <Route path="/sodapop" element={
-              <>
-                <NavbarSection />
-                <PointsSystem />
-                <Footer />
-              </>
-            } />
-            <Route path="/leaderboard" element={
-              <>
-                <NavbarSection />
-                <Leaderboard />
-                <Footer />
-              </>
-            } />
-            <Route path="/apply" element={
-              <>
-                <NavbarSection />
-                <Positions />
-                <Footer />
-              </>
-            } />
-            <Route path="*" element={
-              <>
-                <NavbarSection />
-                <NotFound />
-                <Footer />
-              </>
-            } />
+            {/* Main site routes - wrapped with navbar/footer via MainLayout */}
+            <Route element={<MainLayout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/mentorship" element={<Mentorship />} />
+              <Route path="/sodapop" element={<PointsSystem />} />
+              <Route path="/leaderboard" element={<Leaderboard />} />
+              <Route path="/apply" element={<Positions />} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
           </Routes>
         </Router>
       </CartProvider>
