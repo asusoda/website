@@ -158,7 +158,7 @@ export const pointsAPI = {
       organization: any;
       total_points: number;
       points_history: PointsRecord[];
-    }>(`/api/points/${ORG_PREFIX}/users/${userIdentifier}/points`),
+    }>(`/api/points/${ORG_PREFIX}/users/${encodeURIComponent(userIdentifier)}/points`),
 
   // Member login (creates or links account)
   memberLogin: (userData: {

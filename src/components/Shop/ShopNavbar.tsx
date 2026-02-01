@@ -53,6 +53,7 @@ const ShopNavbar: React.FC = () => {
             <Link
               to="/shop/cart"
               className="relative text-gray-300 hover:text-white transition-colors"
+              aria-label={`Cart (${getCartItemCount()} items)`}
             >
               <ShoppingCart size={24} />
               {getCartItemCount() > 0 && (

@@ -74,6 +74,7 @@ const Cart: React.FC = () => {
                     <button
                       onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
                       className="bg-zinc-800 hover:bg-zinc-700 p-2 rounded"
+                      aria-label="Decrease quantity"
                     >
                       <Minus size={16} />
                     </button>
@@ -82,6 +83,7 @@ const Cart: React.FC = () => {
                       onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
                       disabled={item.quantity >= item.product.stock}
                       className="bg-zinc-800 hover:bg-zinc-700 disabled:opacity-50 p-2 rounded"
+                      aria-label={`Increase quantity of ${item.product.name}`}
                     >
                       <Plus size={16} />
                     </button>
@@ -94,6 +96,7 @@ const Cart: React.FC = () => {
                   <button
                     onClick={() => removeFromCart(item.product.id)}
                     className="text-red-400 hover:text-red-300 p-2"
+                    aria-label={`Remove ${item.product.name} from cart`}
                   >
                     <Trash2 size={20} />
                   </button>

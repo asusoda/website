@@ -3,20 +3,16 @@ import { Helmet } from 'react-helmet-async';
 import { Package, Wallet, User as UserIcon, Loader2 } from 'lucide-react';
 import { useUser } from '@clerk/clerk-react';
 import ShopNavbar from '../../components/Shop/ShopNavbar';
+import { pointsAPI, PointsRecord } from '../../lib/api';
 
-interface UserPoints {
-  email: string;
+interface UserPointsData {
   total_points: number;
-  points_breakdown: Array<{
-    points: number;
-    event: string;
-    timestamp: string;
-  }>;
+  points_history: PointsRecord[];
 }
 
 const Account: React.FC = () => {
   const { isSignedIn, user, isLoaded } = useUser();
-  const [userPoints, setUserPoints] = useState<UserPoints | null>(null);
+  const [userPoints, setUserPoints] = useState<UserPointsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -40,35 +36,19 @@ const Account: React.FC = () => {
         
       }
 
-      const baseUrl = import.meta.env.VITE_API_URL || 'https://api.thesoda.io';
-      const pointsResponse = await fetch(
-        `${baseUrl}/api/storefront/soda/users/${encodeURIComponent(email)}/points`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-
-      if (pointsResponse.ok) {
-        const pointsData = await pointsResponse.json();
-        setUserPoints(pointsData);
-        setError(null);
-      } else {
-        const errorData = await pointsResponse.json();
-        setError(errorData.error || 'Failed to load points');
-      }
+      // Use the shared API client
+      const data = await pointsAPI.getUserPoints(email);
+      setUserPoints({
+        total_points: data.total_points,
+        points_history: data.points_history,
+      });
+      setError(null);
     } catch (err) {
       console.error('Failed to fetch user data:', err);
       setError(err instanceof Error ? err.message : 'Failed to load account data');
     } finally {
       setLoading(false);
     }
-  };
-
-  const calculateTotalPoints = () => {
-    if (!userPoints) return 0;
-    return userPoints.points_breakdown.reduce((sum, item) => sum + item.points, 0);
   };
 
   if (!isLoaded || loading) {
@@ -100,7 +80,7 @@ const Account: React.FC = () => {
     );
   }
 
-  const hasPoints = userPoints && userPoints.points_breakdown.length > 0;
+  const hasPoints = userPoints && userPoints.points_history.length > 0;
 
   return (
     <>
@@ -141,13 +121,13 @@ const Account: React.FC = () => {
                     <span className="text-gray-400">Available Points</span>
                   </div>
                   <div className="text-4xl font-bold text-blue-400 mb-4">
-                    {calculateTotalPoints()} pts
+                    {userPoints?.total_points || 0} pts
                   </div>
                   
                   {hasPoints && (
                     <div className="mt-4 space-y-2 max-h-48 overflow-y-auto">
                       <p className="text-sm text-gray-500 font-semibold">Recent Activity:</p>
-                      {userPoints.points_breakdown.slice(0, 5).map((item, index) => (
+                      {userPoints.points_history.slice(0, 5).map((item, index) => (
                         <div key={index} className="flex justify-between text-sm border-t border-zinc-800 pt-2">
                           <span className="text-gray-400 truncate">{item.event}</span>
                           <span className={item.points > 0 ? 'text-green-400' : 'text-red-400'}>
