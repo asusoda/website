@@ -80,23 +80,26 @@ export const isAuthenticated = () => !!authToken;
 // API helper function
 async function apiRequest<T>(
   endpoint: string,
-  options: RequestInit = {}
+  options: RequestInit & { authToken?: string } = {}
 ): Promise<T> {
+  const { authToken: requestAuthToken, ...fetchOptions } = options;
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
   };
 
   // Merge any existing headers
-  if (options.headers) {
-    Object.assign(headers, options.headers);
+  if (fetchOptions.headers) {
+    Object.assign(headers, fetchOptions.headers);
   }
 
-  if (authToken) {
-    headers['Authorization'] = `Bearer ${authToken}`;
+  // Use provided token (from Clerk) or fallback to mock token
+  const token = requestAuthToken || authToken;
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
   }
 
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    ...options,
+    ...fetchOptions,
     headers,
   });
 
@@ -125,19 +128,23 @@ export const storefrontAPI = {
     ),
 
   // Get user's orders (requires auth)
-  getOrders: () =>
-    apiRequest<Order[]>(`/api/storefront/${ORG_PREFIX}/members/orders`),
+  getOrders: (authToken?: string) =>
+    apiRequest<Order[]>(`/api/storefront/${ORG_PREFIX}/members/orders`, { authToken }),
 
   // Create order (requires auth)
-  createOrder: (orderData: {
-    total_amount: number;
-    items: { product_id: number; quantity: number; price: number }[];
-  }) =>
+  createOrder: (
+    orderData: {
+      total_amount: number;
+      items: { product_id: number; quantity: number; price: number }[];
+    },
+    authToken?: string
+  ) =>
     apiRequest<{ message: string; id: number; order: Order }>(
       `/api/storefront/${ORG_PREFIX}/members/orders`,
       {
         method: 'POST',
         body: JSON.stringify(orderData),
+        authToken,
       }
     ),
 };

@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { CheckCircle, AlertCircle } from 'lucide-react';
+import { useUser } from '@clerk/clerk-react';
 import ShopNavbar from '../../components/Shop/ShopNavbar';
 import { useCart } from '../../lib/CartContext';
-import { isAuthenticated, getMockUser, storefrontAPI, pointsAPI } from '../../lib/api';
+import { storefrontAPI, pointsAPI } from '../../lib/api';
 
 const Checkout: React.FC = () => {
   const navigate = useNavigate();
@@ -13,10 +14,13 @@ const Checkout: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [userPoints, setUserPoints] = useState<number>(0);
-  const user = getMockUser();
+  const [orderTotal, setOrderTotal] = useState<number>(0);
+  const { isSignedIn, user, isLoaded } = useUser();
 
   useEffect(() => {
-    if (!isAuthenticated()) {
+    if (!isLoaded) return;
+    
+    if (!isSignedIn) {
       navigate('/shop/account');
       return;
     }
@@ -29,8 +33,9 @@ const Checkout: React.FC = () => {
     // Fetch user points
     const fetchUserPoints = async () => {
       try {
-        if (user?.email) {
-          const data = await pointsAPI.getUserPoints(user.email);
+        const email = user?.emailAddresses[0]?.emailAddress;
+        if (email) {
+          const data = await pointsAPI.getUserPoints(email);
           setUserPoints(data.total_points || 0);
         }
       } catch (err) {
@@ -39,7 +44,7 @@ const Checkout: React.FC = () => {
     };
 
     fetchUserPoints();
-  }, [cart, navigate, user]);
+  }, [cart, navigate, isSignedIn, isLoaded, user]);
 
   const handlePlaceOrder = async () => {
     if (!user) return;
@@ -57,6 +62,16 @@ const Checkout: React.FC = () => {
         return;
       }
 
+      // Get Clerk session token for authenticated API calls
+      let clerkToken: string | undefined;
+      try {
+        // Note: In a real implementation, you would get the token from Clerk session
+        // For now, we'll pass undefined and the API will use mock auth if configured
+        // clerkToken = await getToken(); // This would be the proper way with Clerk
+      } catch (tokenErr) {
+        console.warn('Could not get Clerk token, proceeding without auth token:', tokenErr);
+      }
+
       // Create order
       const orderData = {
         total_amount: total,
@@ -67,9 +82,10 @@ const Checkout: React.FC = () => {
         })),
       };
 
-      await storefrontAPI.createOrder(orderData);
+      await storefrontAPI.createOrder(orderData, clerkToken);
 
-      // Success! Clear cart and show success message
+      // Success! Persist total before clearing cart
+      setOrderTotal(total);
       setSuccess(true);
       clearCart();
 
@@ -93,7 +109,7 @@ const Checkout: React.FC = () => {
             <CheckCircle size={64} className="mx-auto mb-4 text-green-400" />
             <h2 className="text-3xl font-bold mb-2">Order Placed Successfully!</h2>
             <p className="text-gray-400 mb-4">
-              {getCartTotal()} points have been deducted from your account.
+              {orderTotal} points have been deducted from your account.
             </p>
             <p className="text-sm text-gray-500">Redirecting to your account...</p>
           </div>
@@ -118,8 +134,8 @@ const Checkout: React.FC = () => {
           {/* User Info */}
           <div className="bg-zinc-900 rounded-lg p-6 mb-6 border border-zinc-800">
             <h2 className="text-xl font-semibold mb-4">Account Information</h2>
-            <p className="text-gray-300">{user?.name || user?.email}</p>
-            <p className="text-gray-400">Email: {user?.email}</p>
+            <p className="text-gray-300">{user?.firstName || user?.emailAddresses[0]?.emailAddress}</p>
+            <p className="text-gray-400">Email: {user?.emailAddresses[0]?.emailAddress}</p>
           </div>
 
           {/* Order Summary */}

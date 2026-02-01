@@ -40,8 +40,9 @@ const Account: React.FC = () => {
         
       }
 
+      const baseUrl = import.meta.env.VITE_API_URL || 'https://api.thesoda.io';
       const pointsResponse = await fetch(
-        `https://api.thesoda.io/api/storefront/soda/users/${encodeURIComponent(email)}/points`,
+        `${baseUrl}/api/storefront/soda/users/${encodeURIComponent(email)}/points`,
         {
           headers: {
             'Content-Type': 'application/json',

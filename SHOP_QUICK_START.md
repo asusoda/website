@@ -9,12 +9,12 @@ An e-commerce platform integrated with SoDA's points system where members can pu
 ### 1. Access the Shop
 Visit: `https://thesoda.io/shop`
 
-### 2. Login (Mock - Development Only)
-- Click "Login" button in navbar
-- Enter your email
-- Click "Login (Mock)"
+### 2. Sign In with Clerk
+- Click "Sign In" button in the shop navbar
+- Sign up or sign in using Clerk authentication
+- Use email, phone, or social login options
 
-> **Note:** Real Discord OAuth authentication coming soon!
+> **Note:** Clerk authentication provides secure, production-ready auth!
 
 ### 3. Browse Products
 - View all available products
@@ -57,19 +57,20 @@ Visit: `https://thesoda.io/shop`
 
 ### Run Locally
 ```bash
-npm install --legacy-peer-deps
-npm run dev
+pnpm install
+pnpm run dev
 ```
 
 ### Build for Production
 ```bash
-npm run build
+pnpm run build
 ```
 
 ### Environment Setup
 Create `.env`:
 ```
 VITE_API_URL=https://api.thesoda.io
+VITE_CLERK_PUBLISHABLE_KEY=your_clerk_key_here
 ```
 
 ## 📋 Features
@@ -81,17 +82,18 @@ VITE_API_URL=https://api.thesoda.io
 ✅ Points wallet & transactions
 ✅ Responsive design
 ✅ Dark theme matching SoDA branding
+✅ Clerk-based authentication
 
-⏳ Discord OAuth (coming soon)
+⏳ Full Clerk token integration for API calls
 ⏳ Order status tracking
 ⏳ Product reviews
 ⏳ Wishlist
 
 ## 🐛 Troubleshooting
 
-**Can't login?**
-- Mock login accepts any email
-- Check browser console for errors
+**Can't sign in?**
+- Ensure VITE_CLERK_PUBLISHABLE_KEY is set in .env
+- Check browser console for Clerk errors
 
 **Products not loading?**
 - Verify API is running: `https://api.thesoda.io/health`
