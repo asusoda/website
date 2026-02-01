@@ -74,7 +74,6 @@ const Checkout: React.FC = () => {
 
       // TODO: This endpoint requires authentication with a Clerk token
       // Current implementation will fail without proper auth token integration
-      // See: https://github.com/asusoda/website/issues/XX
       await storefrontAPI.createOrder(orderData);
 
       // Success! Persist total before clearing cart

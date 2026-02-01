@@ -74,7 +74,7 @@ const Cart: React.FC = () => {
                     <button
                       onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
                       className="bg-zinc-800 hover:bg-zinc-700 p-2 rounded"
-                      aria-label="Decrease quantity"
+                      aria-label={`Decrease quantity of ${item.product.name}`}
                     >
                       <Minus size={16} />
                     </button>
