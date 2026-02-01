@@ -32,8 +32,11 @@ const Account: React.FC = () => {
       const email = user?.emailAddresses[0]?.emailAddress;
       
       if (!email) {
-       throw new Error('No email found');
-        
+        console.error('No email address found for the signed-in user.');
+        setError(
+          'We could not find an email address associated with your account. Please contact support for assistance.'
+        );
+        return;
       }
 
       // Use the shared API client
