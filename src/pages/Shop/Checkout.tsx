@@ -58,7 +58,6 @@ const Checkout: React.FC = () => {
       // Check if user has enough points
       if (userPoints < total) {
         setError(`Insufficient points. You have ${userPoints} points but need ${total} points.`);
-        setLoading(false);
         return;
       }
 
