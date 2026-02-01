@@ -20,9 +20,9 @@ function NavbarSection() {
     { name: "About", id_href: "/#about" },
     { name: "Sponsors", id_href: "/#sponsors" },
     { name: "Team", id_href: "/#team" },
-    { name: "History", id_href: "/#history" },
     { name: "Leaderboard", id_href: "/leaderboard" },
     { name: "ASU CS Wiki", id_href: "https://wiki.thesoda.io", icon: "external" },
+    { name: "Shop", id_href: "/shop", icon: "external" },
   ];
 
   const handleLogoClick = () => {
@@ -95,7 +95,7 @@ function NavbarSection() {
       </div>
       {/* Conditionally render banner based on path */}
       {/* Banner disabled - Officer applications are closed */}
-      {location.pathname !== '/mentorship' && (
+      { false && location.pathname !== '/mentorship' && (
         <div className="text-xl bg-gray-900/75 text-white text-center p-2 w-full">
           Mentorship applications are now open!{' '}
           <Link to="/mentorship" className="font-bold underline hover:text-soda-red">
