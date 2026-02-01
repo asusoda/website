@@ -58,9 +58,13 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       return;
     }
     setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.product.id === productId ? { ...item, quantity } : item
-      )
+      prevCart.map((item) => {
+        if (item.product.id !== productId) {
+          return item;
+        }
+        const clampedQuantity = Math.min(quantity, item.product.stock);
+        return { ...item, quantity: clampedQuantity };
+      })
     );
   };
 

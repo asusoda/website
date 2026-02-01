@@ -72,8 +72,8 @@ const Checkout: React.FC = () => {
         })),
       };
 
-      // Note: Clerk token integration for API authentication is pending
-      // For now, the API will use mock authentication if configured
+      // TODO: This endpoint requires authentication with a Clerk token
+      // Current implementation will fail without proper auth token integration
       await storefrontAPI.createOrder(orderData);
 
       // Success! Persist total before clearing cart

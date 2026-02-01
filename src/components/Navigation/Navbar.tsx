@@ -22,7 +22,7 @@ function NavbarSection() {
     { name: "Team", id_href: "/#team" },
     { name: "Leaderboard", id_href: "/leaderboard" },
     { name: "ASU CS Wiki", id_href: "https://wiki.thesoda.io", icon: "external" },
-    { name: "Shop", id_href: "/shop", icon: "external" },
+    { name: "Shop", id_href: "/shop" },
   ];
 
   const handleLogoClick = () => {

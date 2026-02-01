@@ -13,7 +13,8 @@ import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 import { CartProvider } from "./lib/CartContext";
 
-// Shop pages
+// Shop components
+import ShopLayout from "./components/Shop/ShopLayout";
 import ShopIndex from "./pages/Shop/ShopIndex";
 import ProductDetail from "./pages/Shop/ProductDetail";
 import Cart from "./pages/Shop/Cart";
@@ -27,12 +28,14 @@ function App() {
         <Router>
           <ScrollToTop />
           <Routes>
-            {/* Shop routes - no navbar/footer */}
-            <Route path="/shop" element={<ShopIndex />} />
-            <Route path="/shop/product/:id" element={<ProductDetail />} />
-            <Route path="/shop/cart" element={<Cart />} />
-            <Route path="/shop/checkout" element={<Checkout />} />
-            <Route path="/shop/account" element={<Account />} />
+            {/* Shop routes - wrapped with ClerkProvider via ShopLayout */}
+            <Route path="/shop" element={<ShopLayout />}>
+              <Route index element={<ShopIndex />} />
+              <Route path="product/:id" element={<ProductDetail />} />
+              <Route path="cart" element={<Cart />} />
+              <Route path="checkout" element={<Checkout />} />
+              <Route path="account" element={<Account />} />
+            </Route>
 
             {/* Main site routes - with navbar/footer */}
             <Route path="/" element={
