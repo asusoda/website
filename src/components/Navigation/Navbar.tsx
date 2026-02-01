@@ -93,6 +93,17 @@ function NavbarSection() {
           </Button>
         </div>
       </div>
+      {/* Conditionally render banner based on path */}
+      {/* Banner disabled - Officer applications are closed */}
+      { false && location.pathname !== '/mentorship' && (
+        <div className="text-xl bg-gray-900/75 text-white text-center p-2 w-full">
+          Mentorship applications are now open!{' '}
+          <Link to="/mentorship" className="font-bold underline hover:text-soda-red">
+            Apply now.
+          </Link>
+        </div>
+      )}
+      {/* End Banner Section */}
     </nav>
   );
 }
