@@ -33,7 +33,7 @@ const Checkout: React.FC = () => {
     // Fetch user points
     const fetchUserPoints = async () => {
       try {
-        const email = user?.emailAddresses[0]?.emailAddress;
+        const email = user?.emailAddresses?.[0]?.emailAddress;
         if (email) {
           const data = await pointsAPI.getUserPoints(email);
           setUserPoints(data.total_points || 0);
@@ -62,16 +62,6 @@ const Checkout: React.FC = () => {
         return;
       }
 
-      // Get Clerk session token for authenticated API calls
-      let clerkToken: string | undefined;
-      try {
-        // Note: In a real implementation, you would get the token from Clerk session
-        // For now, we'll pass undefined and the API will use mock auth if configured
-        // clerkToken = await getToken(); // This would be the proper way with Clerk
-      } catch (tokenErr) {
-        console.warn('Could not get Clerk token, proceeding without auth token:', tokenErr);
-      }
-
       // Create order
       const orderData = {
         total_amount: total,
@@ -82,7 +72,9 @@ const Checkout: React.FC = () => {
         })),
       };
 
-      await storefrontAPI.createOrder(orderData, clerkToken);
+      // Note: Clerk token integration for API authentication is pending
+      // For now, the API will use mock authentication if configured
+      await storefrontAPI.createOrder(orderData);
 
       // Success! Persist total before clearing cart
       setOrderTotal(total);
@@ -134,8 +126,8 @@ const Checkout: React.FC = () => {
           {/* User Info */}
           <div className="bg-zinc-900 rounded-lg p-6 mb-6 border border-zinc-800">
             <h2 className="text-xl font-semibold mb-4">Account Information</h2>
-            <p className="text-gray-300">{user?.firstName || user?.emailAddresses[0]?.emailAddress}</p>
-            <p className="text-gray-400">Email: {user?.emailAddresses[0]?.emailAddress}</p>
+            <p className="text-gray-300">{user?.firstName || user?.emailAddresses?.[0]?.emailAddress}</p>
+            <p className="text-gray-400">Email: {user?.emailAddresses?.[0]?.emailAddress}</p>
           </div>
 
           {/* Order Summary */}
