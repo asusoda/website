@@ -80,18 +80,23 @@ async function apiRequest<T>(
   options: RequestInit & { authToken?: string } = {}
 ): Promise<T> {
   const { authToken: requestAuthToken, ...fetchOptions } = options;
-  const headers: Record<string, string> = {
+  
+  // Start with default headers; caller-provided headers will override these.
+  const headers = new Headers({
     'Content-Type': 'application/json',
-  };
+  });
 
-  // Merge any existing headers
+  // Merge any existing headers from fetchOptions, supporting all HeadersInit types
   if (fetchOptions.headers) {
-    Object.assign(headers, fetchOptions.headers);
+    const existingHeaders = new Headers(fetchOptions.headers);
+    existingHeaders.forEach((value, key) => {
+      headers.set(key, value);
+    });
   }
 
   // Use provided token (from Clerk)
   if (requestAuthToken) {
-    headers['Authorization'] = `Bearer ${requestAuthToken}`;
+    headers.set('Authorization', `Bearer ${requestAuthToken}`);
   }
 
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {

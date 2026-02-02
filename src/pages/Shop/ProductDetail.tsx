@@ -119,20 +119,21 @@ const ProductDetail: React.FC = () => {
                 </span>
               </p>
 
-              <div className="flex items-center space-x-4 mb-6">
-                <label className="text-gray-400">Quantity:</label>
-                <input
-                  type="number"
-                  min={product.stock === 0 ? 0 : 1}
-                  max={product.stock === 0 ? 0 : product.stock}
-                  value={quantity}
-                  onChange={(e) =>
-                    setQuantity(Math.max(1, Math.min(product.stock, parseInt(e.target.value) || 1)))
-                  }
-                  disabled={product.stock === 0}
-                  className="bg-zinc-800 text-white px-4 py-2 rounded w-20"
-                />
-              </div>
+              {product.stock > 0 && (
+                <div className="flex items-center space-x-4 mb-6">
+                  <label className="text-gray-400">Quantity:</label>
+                  <input
+                    type="number"
+                    min={1}
+                    max={product.stock}
+                    value={quantity}
+                    onChange={(e) =>
+                      setQuantity(Math.max(1, Math.min(product.stock, parseInt(e.target.value) || 1)))
+                    }
+                    className="bg-zinc-800 text-white px-4 py-2 rounded w-20"
+                  />
+                </div>
+              )}
 
               <button
                 onClick={handleAddToCart}
