@@ -27,9 +27,9 @@ const EmailDomainGuard: React.FC<{ children: React.ReactNode }> = ({ children })
 
   // If signed in, check email domain
   if (isSignedIn && user) {
-    const primaryEmail = user.emailAddresses?.[0]?.emailAddress;
+    const primaryEmail = user.primaryEmailAddress?.emailAddress;
     
-    if (primaryEmail && !primaryEmail.endsWith(ALLOWED_EMAIL_DOMAIN)) {
+    if (primaryEmail && !primaryEmail.toLowerCase().endsWith(ALLOWED_EMAIL_DOMAIN.toLowerCase())) {
       return (
         <div className="min-h-screen bg-black text-white flex items-center justify-center px-4">
           <div className="max-w-md text-center">
