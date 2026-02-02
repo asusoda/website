@@ -23,8 +23,21 @@ export const useCart = () => {
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [cart, setCart] = useState<CartItem[]>(() => {
-    const savedCart = localStorage.getItem('shop_cart');
-    return savedCart ? JSON.parse(savedCart) : [];
+    try {
+      const savedCart = localStorage.getItem('shop_cart');
+      if (!savedCart) {
+        return [];
+      }
+      const parsed = JSON.parse(savedCart);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      try {
+        localStorage.removeItem('shop_cart');
+      } catch {
+        // ignore storage errors
+      }
+      return [];
+    }
   });
 
   useEffect(() => {

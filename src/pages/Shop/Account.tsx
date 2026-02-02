@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Package, Wallet, User as UserIcon, Loader2 } from 'lucide-react';
 import { useUser, useAuth } from '@clerk/clerk-react';
 import ShopNavbar from '../../components/Shop/ShopNavbar';
-import { pointsAPI, storefrontAPI, PointsRecord, Order, APIError, ERROR_MESSAGES } from '../../lib/api';
+import { pointsAPI, storefrontAPI, PointsRecord, Order, OrderItem, APIError, ERROR_MESSAGES } from '../../lib/api';
 
 interface UserPointsData {
   total_points: number;
@@ -210,10 +210,10 @@ const Account: React.FC = () => {
                         </div>
                         {order.items && order.items.length > 0 && (
                           <div className="space-y-2 mt-3 pt-3 border-t border-zinc-800">
-                            {order.items.map((item: any, idx: number) => (
+                            {order.items.map((item: OrderItem, idx: number) => (
                               <div key={idx} className="flex justify-between text-sm">
                                 <span className="text-gray-400">{item.product?.name || 'Product'} x{item.quantity}</span>
-                                <span className="text-gray-300">{item.price} pts</span>
+                                <span className="text-gray-300">{item.price_at_time} pts</span>
                               </div>
                             ))}
                           </div>
