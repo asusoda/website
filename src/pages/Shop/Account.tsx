@@ -48,7 +48,16 @@ const Account: React.FC = () => {
       setError(null);
     } catch (err) {
       console.error('Failed to fetch user data:', err);
-      setError(err instanceof Error ? err.message : 'Failed to load account data');
+      
+      // Check if it's a 404 or user not found error
+      const errorMessage = err instanceof Error ? err.message : 'Failed to load account data';
+      if (errorMessage.includes('404') || errorMessage.includes('not found')) {
+        setError(
+          'No points record found for your account. Please ensure you are using your ASURITE email (e.g., asriv132@asu.edu) and not an email alias. If you continue to experience issues, contact support for assistance.'
+        );
+      } else {
+        setError(errorMessage);
+      }
     } finally {
       setLoading(false);
     }

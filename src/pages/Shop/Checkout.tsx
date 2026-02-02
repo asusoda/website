@@ -40,6 +40,17 @@ const Checkout: React.FC = () => {
         }
       } catch (err) {
         console.error('Failed to fetch user points:', err);
+        
+        // Check if it's a 404 or user not found error
+        const errorMessage = err instanceof Error ? err.message : '';
+        if (errorMessage.includes('404') || errorMessage.includes('not found')) {
+          setError(
+            'No points record found for your account. Please ensure you are using your ASURITE email (e.g., asriv132@asu.edu) and not an email alias. If you continue to experience issues, contact support for assistance.'
+          );
+        } else {
+          setError('Failed to load your points balance. Please try again or contact support.');
+        }
+        setUserPoints(0);
       }
     };
 
