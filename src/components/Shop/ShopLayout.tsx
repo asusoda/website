@@ -1,8 +1,66 @@
 import React from 'react';
-import { ClerkProvider } from '@clerk/clerk-react';
+import { ClerkProvider, useUser } from '@clerk/clerk-react';
 import { Outlet } from 'react-router-dom';
+import { AlertCircle } from 'lucide-react';
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+const ALLOWED_EMAIL_DOMAIN = '@asu.edu';
+
+/**
+ * EmailDomainGuard checks if the signed-in user has an @asu.edu email.
+ * Only renders children if the user has an ASU email or is not signed in yet.
+ */
+const EmailDomainGuard: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { isSignedIn, user, isLoaded } = useUser();
+
+  // Still loading user data
+  if (!isLoaded) {
+    return (
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+          <p className="text-gray-400">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // If signed in, check email domain
+  if (isSignedIn && user) {
+    const primaryEmail = user.primaryEmailAddress?.emailAddress;
+    
+    if (primaryEmail && !primaryEmail.toLowerCase().endsWith(ALLOWED_EMAIL_DOMAIN.toLowerCase())) {
+      return (
+        <div className="min-h-screen bg-black text-white flex items-center justify-center px-4">
+          <div className="max-w-md text-center">
+            <AlertCircle size={64} className="mx-auto mb-6 text-red-400" />
+            <h1 className="text-3xl font-bold mb-4">Access Restricted</h1>
+            <p className="text-gray-300 mb-4">
+              The SoDA Shop is only available to ASU students and members.
+            </p>
+            <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4 mb-6">
+              <p className="text-sm text-gray-400 mb-2">
+                You are currently signed in with:
+              </p>
+              <p className="text-white font-mono text-sm break-all">
+                {primaryEmail}
+              </p>
+            </div>
+            <p className="text-yellow-400 font-semibold mb-2">
+              Please sign up with your ASURITE email
+            </p>
+            <p className="text-sm text-gray-500">
+              Your ASURITE email ends with <span className="text-blue-400 font-mono">@asu.edu</span>
+            </p>
+          </div>
+        </div>
+      );
+    }
+  }
+
+  // User not signed in or has valid ASU email
+  return <>{children}</>;
+};
 
 /**
  * ShopLayout wraps all shop routes with ClerkProvider.
@@ -28,7 +86,9 @@ const ShopLayout: React.FC = () => {
 
   return (
     <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-      <Outlet />
+      <EmailDomainGuard>
+        <Outlet />
+      </EmailDomainGuard>
     </ClerkProvider>
   );
 };
