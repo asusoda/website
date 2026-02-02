@@ -151,16 +151,14 @@ export const storefrontAPI = {
 
 // Points API functions
 export const pointsAPI = {
-  // Get user points by email using Clerk authentication (requires auth)
+  // Get user wallet/points by email using Clerk authentication (requires auth)
   getUserPoints: (userEmail: string, authToken: string) =>
     apiRequest<{
-      user: User;
-      organization: any;
+      email: string;
       total_points: number;
-      points_history: PointsRecord[];
-    }>(`/api/points/${ORG_PREFIX}/public/users/points`, { 
-      method: 'POST',
-      body: JSON.stringify({ email: userEmail }),
+      points_breakdown: PointsRecord[];
+    }>(`/api/storefront/${ORG_PREFIX}/wallet/${encodeURIComponent(userEmail)}`, { 
+      method: 'GET',
       authToken 
     }),
 
