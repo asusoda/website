@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { CheckCircle, AlertCircle } from 'lucide-react';
-import { useUser } from '@clerk/clerk-react';
+import { useUser, useAuth } from '@clerk/clerk-react';
 import ShopNavbar from '../../components/Shop/ShopNavbar';
 import { useCart } from '../../lib/CartContext';
 import { storefrontAPI, pointsAPI, APIError, ERROR_MESSAGES } from '../../lib/api';
@@ -16,6 +16,7 @@ const Checkout: React.FC = () => {
   const [userPoints, setUserPoints] = useState<number>(0);
   const [orderTotal, setOrderTotal] = useState<number>(0);
   const { isSignedIn, user, isLoaded } = useUser();
+  const { getToken } = useAuth();
 
   useEffect(() => {
     if (!isLoaded) return;
@@ -34,8 +35,9 @@ const Checkout: React.FC = () => {
     const fetchUserPoints = async () => {
       try {
         const email = user?.emailAddresses?.[0]?.emailAddress;
-        if (email) {
-          const data = await pointsAPI.getUserPoints(email);
+        const token = await getToken();
+        if (email && token) {
+          const data = await pointsAPI.getUserPoints(email, token);
           setUserPoints(data.total_points || 0);
         }
       } catch (err) {
@@ -79,9 +81,14 @@ const Checkout: React.FC = () => {
         })),
       };
 
-      // TODO: This endpoint requires authentication with a Clerk token
-      // Current implementation will fail without proper auth token integration
-      await storefrontAPI.createOrder(orderData);
+      // Get Clerk auth token
+      const token = await getToken();
+      if (!token) {
+        setError('Authentication failed. Please sign in again.');
+        return;
+      }
+
+      await storefrontAPI.createOrder(orderData, token);
 
       // Success! Persist total before clearing cart
       setOrderTotal(total);

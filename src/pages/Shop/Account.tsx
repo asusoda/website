@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Package, Wallet, User as UserIcon, Loader2 } from 'lucide-react';
-import { useUser } from '@clerk/clerk-react';
+import { useUser, useAuth } from '@clerk/clerk-react';
 import ShopNavbar from '../../components/Shop/ShopNavbar';
 import { pointsAPI, PointsRecord, APIError, ERROR_MESSAGES } from '../../lib/api';
 
@@ -12,6 +12,7 @@ interface UserPointsData {
 
 const Account: React.FC = () => {
   const { isSignedIn, user, isLoaded } = useUser();
+  const { getToken } = useAuth();
   const [userPoints, setUserPoints] = useState<UserPointsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -39,8 +40,16 @@ const Account: React.FC = () => {
         return;
       }
 
-      // Use the shared API client
-      const data = await pointsAPI.getUserPoints(email);
+      // Get Clerk session token
+      const token = await getToken();
+      
+      if (!token) {
+        setError('Authentication failed. Please sign in again.');
+        return;
+      }
+
+      // Use the shared API client with Clerk token
+      const data = await pointsAPI.getUserPoints(email, token);
       setUserPoints({
         total_points: data.total_points,
         points_history: data.points_history,

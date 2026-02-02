@@ -128,7 +128,7 @@ export const storefrontAPI = {
     ),
 
   // Get user's orders (requires auth)
-  getOrders: (authToken?: string) =>
+  getOrders: (authToken: string) =>
     apiRequest<Order[]>(`/api/storefront/${ORG_PREFIX}/members/orders`, { authToken }),
 
   // Create order (requires auth)
@@ -137,7 +137,7 @@ export const storefrontAPI = {
       total_amount: number;
       items: { product_id: number; quantity: number; price: number }[];
     },
-    authToken?: string
+    authToken: string
   ) =>
     apiRequest<{ message: string; id: number; order: Order }>(
       `/api/storefront/${ORG_PREFIX}/members/orders`,
@@ -151,14 +151,18 @@ export const storefrontAPI = {
 
 // Points API functions
 export const pointsAPI = {
-  // Get user points by identifier
-  getUserPoints: (userIdentifier: string) =>
+  // Get user points by email using Clerk authentication (requires auth)
+  getUserPoints: (userEmail: string, authToken: string) =>
     apiRequest<{
       user: User;
       organization: any;
       total_points: number;
       points_history: PointsRecord[];
-    }>(`/api/points/${ORG_PREFIX}/users/${encodeURIComponent(userIdentifier)}/points`),
+    }>(`/api/points/${ORG_PREFIX}/public/users/points`, { 
+      method: 'POST',
+      body: JSON.stringify({ email: userEmail }),
+      authToken 
+    }),
 
   // Member login (creates or links account)
   memberLogin: (userData: {
