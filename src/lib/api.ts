@@ -129,7 +129,7 @@ export const storefrontAPI = {
 
   // Get user's orders (requires auth)
   getOrders: (authToken: string) =>
-    apiRequest<Order[]>(`/api/storefront/${ORG_PREFIX}/members/orders`, { authToken }),
+    apiRequest<Order[]>(`/api/storefront/${ORG_PREFIX}/orders`, { authToken }),
 
   // Create order (requires auth) - using Clerk auth
   createOrder: (

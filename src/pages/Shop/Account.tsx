@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Package, Wallet, User as UserIcon, Loader2 } from 'lucide-react';
 import { useUser, useAuth } from '@clerk/clerk-react';
 import ShopNavbar from '../../components/Shop/ShopNavbar';
-import { pointsAPI, PointsRecord, APIError, ERROR_MESSAGES } from '../../lib/api';
+import { pointsAPI, storefrontAPI, PointsRecord, Order, APIError, ERROR_MESSAGES } from '../../lib/api';
 
 interface UserPointsData {
   total_points: number;
@@ -14,6 +14,7 @@ const Account: React.FC = () => {
   const { isSignedIn, user, isLoaded } = useUser();
   const { getToken } = useAuth();
   const [userPoints, setUserPoints] = useState<UserPointsData | null>(null);
+  const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -49,11 +50,16 @@ const Account: React.FC = () => {
       }
 
       // Use the shared API client with Clerk token
-      const data = await pointsAPI.getUserPoints(email, token);
+      const [pointsData, ordersData] = await Promise.all([
+        pointsAPI.getUserPoints(email, token),
+        storefrontAPI.getOrders(token)
+      ]);
+      
       setUserPoints({
-        total_points: data.total_points,
-        points_breakdown: data.points_breakdown,
+        total_points: pointsData.total_points,
+        points_breakdown: pointsData.points_breakdown,
       });
+      setOrders(ordersData);
       setError(null);
     } catch (err) {
       console.error('Failed to fetch user data:', err);
@@ -166,13 +172,56 @@ const Account: React.FC = () => {
                   <h3 className="text-2xl font-semibold">Order History</h3>
                 </div>
 
-                <div className="text-center py-12">
-                  <Package size={64} className="mx-auto mb-4 text-gray-600" />
-                  <p className="text-gray-400">No orders yet</p>
-                  <p className="text-sm text-gray-500 mt-2">
-                    Start shopping to see your order history here
-                  </p>
-                </div>
+                {orders.length === 0 ? (
+                  <div className="text-center py-12">
+                    <Package size={64} className="mx-auto mb-4 text-gray-600" />
+                    <p className="text-gray-400">No orders yet</p>
+                    <p className="text-sm text-gray-500 mt-2">
+                      Start shopping to see your order history here
+                    </p>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    {orders.map((order) => (
+                      <div key={order.id} className="border border-zinc-800 rounded-lg p-4 hover:border-zinc-700 transition">
+                        <div className="flex justify-between items-start mb-3">
+                          <div>
+                            <p className="text-sm text-gray-500">Order #{order.id}</p>
+                            <p className="text-xs text-gray-600 mt-1">
+                              {new Date(order.created_at).toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit'
+                              })}
+                            </p>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-lg font-semibold text-blue-400">-{order.total_amount} pts</p>
+                            <span className={`text-xs px-2 py-1 rounded-full ${
+                              order.status === 'completed' ? 'bg-green-900/30 text-green-400' :
+                              order.status === 'pending' ? 'bg-yellow-900/30 text-yellow-400' :
+                              'bg-red-900/30 text-red-400'
+                            }`}>
+                              {order.status}
+                            </span>
+                          </div>
+                        </div>
+                        {order.items && order.items.length > 0 && (
+                          <div className="space-y-2 mt-3 pt-3 border-t border-zinc-800">
+                            {order.items.map((item: any, idx: number) => (
+                              <div key={idx} className="flex justify-between text-sm">
+                                <span className="text-gray-400">{item.product?.name || 'Product'} x{item.quantity}</span>
+                                <span className="text-gray-300">{item.price} pts</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </div>
