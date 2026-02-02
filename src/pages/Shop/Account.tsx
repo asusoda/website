@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Package, Wallet, User as UserIcon, Loader2 } from 'lucide-react';
 import { useUser } from '@clerk/clerk-react';
 import ShopNavbar from '../../components/Shop/ShopNavbar';
-import { pointsAPI, PointsRecord } from '../../lib/api';
+import { pointsAPI, PointsRecord, APIError, ERROR_MESSAGES } from '../../lib/api';
 
 interface UserPointsData {
   total_points: number;
@@ -50,13 +50,10 @@ const Account: React.FC = () => {
       console.error('Failed to fetch user data:', err);
       
       // Check if it's a 404 or user not found error
-      const errorMessage = err instanceof Error ? err.message : 'Failed to load account data';
-      if (errorMessage.includes('404') || errorMessage.includes('not found')) {
-        setError(
-          'No points record found for your account. Please ensure you are using your ASURITE email (e.g., asriv132@asu.edu) and not an email alias. If you continue to experience issues, contact support for assistance.'
-        );
+      if (err instanceof APIError && err.status === 404) {
+        setError(ERROR_MESSAGES.NO_POINTS_RECORD);
       } else {
-        setError(errorMessage);
+        setError(err instanceof Error ? err.message : 'Failed to load account data');
       }
     } finally {
       setLoading(false);
