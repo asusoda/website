@@ -7,7 +7,7 @@ import { pointsAPI, PointsRecord, APIError, ERROR_MESSAGES } from '../../lib/api
 
 interface UserPointsData {
   total_points: number;
-  points_history: PointsRecord[];
+  points_breakdown: PointsRecord[];
 }
 
 const Account: React.FC = () => {
@@ -52,7 +52,7 @@ const Account: React.FC = () => {
       const data = await pointsAPI.getUserPoints(email, token);
       setUserPoints({
         total_points: data.total_points,
-        points_history: data.points_history,
+        points_breakdown: data.points_breakdown,
       });
       setError(null);
     } catch (err) {
@@ -98,7 +98,7 @@ const Account: React.FC = () => {
     );
   }
 
-  const hasPoints = userPoints && userPoints.points_history.length > 0;
+  const hasPoints = userPoints && userPoints.points_breakdown.length > 0;
 
   return (
     <>
@@ -145,7 +145,7 @@ const Account: React.FC = () => {
                   {hasPoints && (
                     <div className="mt-4 space-y-2 max-h-48 overflow-y-auto">
                       <p className="text-sm text-gray-500 font-semibold">Recent Activity:</p>
-                      {userPoints.points_history.slice(0, 5).map((item, index) => (
+                      {userPoints.points_breakdown.slice(0, 5).map((item, index) => (
                         <div key={index} className="flex justify-between text-sm border-t border-zinc-800 pt-2">
                           <span className="text-gray-400 truncate">{item.event}</span>
                           <span className={item.points > 0 ? 'text-green-400' : 'text-red-400'}>

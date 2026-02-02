@@ -131,7 +131,7 @@ export const storefrontAPI = {
   getOrders: (authToken: string) =>
     apiRequest<Order[]>(`/api/storefront/${ORG_PREFIX}/members/orders`, { authToken }),
 
-  // Create order (requires auth)
+  // Create order (requires auth) - using Clerk auth
   createOrder: (
     orderData: {
       total_amount: number;
@@ -139,8 +139,8 @@ export const storefrontAPI = {
     },
     authToken: string
   ) =>
-    apiRequest<{ message: string; id: number; order: Order }>(
-      `/api/storefront/${ORG_PREFIX}/members/orders`,
+    apiRequest<{ message: string; id: number; points_deducted: number; order: Order }>(
+      `/api/storefront/${ORG_PREFIX}/checkout`,
       {
         method: 'POST',
         body: JSON.stringify(orderData),
