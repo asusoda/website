@@ -79,7 +79,7 @@ async function apiRequest<T>(
   endpoint: string,
   options: RequestInit & { authToken?: string } = {}
 ): Promise<T> {
-  const { authToken: requestAuthToken, ...fetchOptions } = options;
+  const { authToken: requestAuthToken, headers: optionHeaders, ...fetchOptions } = options;
   
   // Start with default headers; caller-provided headers will override these.
   const headers = new Headers({
@@ -87,8 +87,8 @@ async function apiRequest<T>(
   });
 
   // Merge any existing headers from fetchOptions, supporting all HeadersInit types
-  if (fetchOptions.headers) {
-    const existingHeaders = new Headers(fetchOptions.headers);
+  if (optionHeaders) {
+    const existingHeaders = new Headers(optionHeaders);
     existingHeaders.forEach((value, key) => {
       headers.set(key, value);
     });
