@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Package, Wallet, User as UserIcon, Loader2 } from 'lucide-react';
 import { useUser } from '@clerk/clerk-react';
 import ShopNavbar from '../../components/Shop/ShopNavbar';
-import { pointsAPI, PointsRecord } from '../../lib/api';
+import { pointsAPI, PointsRecord, APIError, ERROR_MESSAGES } from '../../lib/api';
 
 interface UserPointsData {
   total_points: number;
@@ -48,7 +48,13 @@ const Account: React.FC = () => {
       setError(null);
     } catch (err) {
       console.error('Failed to fetch user data:', err);
-      setError(err instanceof Error ? err.message : 'Failed to load account data');
+      
+      // Check if it's a 404 or user not found error
+      if (err instanceof APIError && err.status === 404) {
+        setError(ERROR_MESSAGES.NO_POINTS_RECORD);
+      } else {
+        setError(err instanceof Error ? err.message : 'Failed to load account data');
+      }
     } finally {
       setLoading(false);
     }

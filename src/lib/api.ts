@@ -2,6 +2,23 @@
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api.thesoda.io';
 const ORG_PREFIX = 'soda'; // Hardcoded to SoDA for now
 
+// Custom error class to preserve HTTP status
+export class APIError extends Error {
+  constructor(
+    message: string,
+    public status: number,
+    public endpoint: string
+  ) {
+    super(message);
+    this.name = 'APIError';
+  }
+}
+
+// Shared error messages
+export const ERROR_MESSAGES = {
+  NO_POINTS_RECORD: 'No points record found for your account. Please ensure you are using your ASURITE email (e.g., asriv132@asu.edu) and not an email alias. If you continue to experience issues, contact support for assistance.',
+};
+
 export interface Product {
   id: number;
   name: string;
@@ -84,7 +101,11 @@ async function apiRequest<T>(
 
   if (!response.ok) {
     const error = await response.json().catch(() => ({ error: 'Unknown error' }));
-    throw new Error(error.error || `HTTP ${response.status}`);
+    throw new APIError(
+      error.error || `HTTP ${response.status}`,
+      response.status,
+      endpoint
+    );
   }
 
   return response.json();
