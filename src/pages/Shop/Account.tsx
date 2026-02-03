@@ -49,27 +49,43 @@ const Account: React.FC = () => {
         return;
       }
 
-      // Use the shared API client with Clerk token
-      const [pointsData, ordersData] = await Promise.all([
+      // Use Promise.allSettled to handle APIs independently
+      const [pointsResult, ordersResult] = await Promise.allSettled([
         pointsAPI.getUserPoints(email, token),
-        storefrontAPI.getOrders(token)
+        storefrontAPI.getOrders(email, token)
       ]);
       
-      setUserPoints({
-        total_points: pointsData.total_points,
-        points_breakdown: pointsData.points_breakdown,
-      });
-      setOrders(ordersData);
-      setError(null);
-    } catch (err) {
-      console.error('Failed to fetch user data:', err);
-      
-      // Check if it's a 404 or user not found error
-      if (err instanceof APIError && err.status === 404) {
-        setError(ERROR_MESSAGES.NO_POINTS_RECORD);
+      // Handle points data
+      if (pointsResult.status === 'fulfilled') {
+        setUserPoints({
+          total_points: pointsResult.value.total_points,
+          points_breakdown: pointsResult.value.points_breakdown,
+        });
       } else {
-        setError(err instanceof Error ? err.message : 'Failed to load account data');
+        console.error('Failed to fetch points:', pointsResult.reason);
+        // Check if it's a 404 or user not found error
+        if (pointsResult.reason instanceof APIError && pointsResult.reason.status === 404) {
+          setError(ERROR_MESSAGES.NO_POINTS_RECORD);
+        } else {
+          setError(pointsResult.reason instanceof Error ? pointsResult.reason.message : 'Failed to load wallet data');
+        }
       }
+      
+      // Handle orders data independently
+      if (ordersResult.status === 'fulfilled') {
+        setOrders(ordersResult.value);
+      } else {
+        console.error('Failed to fetch orders:', ordersResult.reason);
+        // Don't set error for orders - just log it and show empty orders
+      }
+      
+      // Clear error if points loaded successfully
+      if (pointsResult.status === 'fulfilled') {
+        setError(null);
+      }
+    } catch (err) {
+      console.error('Unexpected error fetching user data:', err);
+      setError(err instanceof Error ? err.message : 'Failed to load account data');
     } finally {
       setLoading(false);
     }
