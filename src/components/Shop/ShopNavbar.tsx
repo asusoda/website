@@ -34,11 +34,11 @@ const ShopNavbar: React.FC = () => {
         }}
         transition={{ 
           width: {
-            duration: 3.5,
+            duration: 3,
             ease: [0.1, 0.8, 0.2, 1]
           }
         }}
-        className="relative transition-all bg-gradient-to-br from-zinc-900/40 via-zinc-800/30 to-zinc-900/40 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl shadow-black/50 px-6 py-3 overflow-hidden"
+        className="relative  bg-gradient-to-br from-zinc-900/40 via-zinc-800/30 to-zinc-900/40 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl shadow-black/50 px-6 py-3 overflow-hidden"
         style={{
           background: 'linear-gradient(135deg, rgba(24, 24, 27, 0.4) 0%, rgba(39, 39, 42, 0.3) 50%, rgba(24, 24, 27, 0.4) 100%)',
           boxShadow: '0 0 20px rgba(239, 68, 68, 0.08), 0 0 40px rgba(239, 68, 68, 0.05), 0 25px 50px -12px rgba(0, 0, 0, 0.5)',

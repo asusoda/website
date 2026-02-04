@@ -4,6 +4,7 @@ import { Package } from 'lucide-react';
 import ProductCarousel, { CarouselSlide } from '../../components/Shop/ProductCarousel';
 import { ProductCard } from '../../components/Shop/ProductCard';
 import { EmptyState } from '../../components/Shop/EmptyState';
+import { GlitchText } from '../../components/GlitchText';
 import { useProducts } from '../../hooks/useProducts';
 import { motion, useInView } from 'framer-motion';
 
@@ -45,12 +46,7 @@ const ShopIndex: React.FC = () => {
       subtitle: 'Exclusive',
       description: 'Get your hands on exclusive SoDA gear before it\'s gone',
     },
-    {
-      id: 'featured-3',
-      title: 'Member Favorites',
-      subtitle: 'Best Sellers',
-      description: 'Most loved items by the SoDA community',
-    },
+   
   ];
 
   return (
@@ -192,8 +188,12 @@ const ShopIndex: React.FC = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <h1 className="text-5xl font-bold mb-3 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-                SoDA Shop
+              <h1 className="text-5xl font-bold mb-3">
+                <GlitchText 
+                  text="SoDA Shop" 
+                  className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent"
+                  trigger={isInView}
+                />
               </h1>
               <p className="text-gray-400 text-lg">Browse our collection of exclusive merchandise</p>
             </motion.div>

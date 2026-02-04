@@ -39,13 +39,13 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
   return (
     <>
       {/* Video Background - extends behind navbar and through header */}
-      <div className="fixed top-0 left-0 right-0 min-h-screen pointer-events-none z-0">
+      <div className="fixed top-0 left-0 right-0 h-[90vw] pointer-events-none z-0">
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="w-full h-full object-cover opacity-40"
+          className="w-full h-full object-cover opacity-60"
           onLoadedData={() => setVideoLoaded(true)}
           style={{ opacity: videoLoaded ? 0.4 : 0, transition: 'opacity 0.3s ease-in' }}
         >
@@ -55,6 +55,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600/60 via-purple-500/30 to-red-600/60" />
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/60" />
+        <div className="absolute bottom-0 left-0 right-0 h-96 bg-gradient-to-t from-black via-black/70 to-transparent" />
       </div>
 
       {/* Carousel Content */}

@@ -29,6 +29,99 @@
   scrollbar-color: #ef4444 #000000;
 }
 
+/* Glitch Text Effect */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  2% {
+    transform: translate(-3px, 3px);
+  }
+  4% {
+    transform: translate(-3px, -3px);
+  }
+  6% {
+    transform: translate(3px, 3px);
+  }
+  8% {
+    transform: translate(3px, -3px);
+  }
+  10% {
+    transform: translate(-3px, 3px);
+  }
+  12% {
+    transform: translate(-3px, -3px);
+  }
+  14% {
+    transform: translate(3px, 3px);
+  }
+  16%, 100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes glitch-shadow-blue {
+  0%, 16%, 100% {
+    text-shadow: 0 0 transparent;
+  }
+  2% {
+    text-shadow: -5px 0 #3b82f6;
+  }
+  4% {
+    text-shadow: -3px 0 #3b82f6;
+  }
+  6% {
+    text-shadow: 5px 0 #3b82f6;
+  }
+  8% {
+    text-shadow: -5px 0 #3b82f6;
+  }
+  10% {
+    text-shadow: 4px 0 #3b82f6;
+  }
+  12% {
+    text-shadow: -4px 0 #3b82f6;
+  }
+  14% {
+    text-shadow: 3px 0 #3b82f6;
+  }
+}
+
+@keyframes glitch-shadow-red {
+  0%, 16%, 100% {
+    filter: drop-shadow(0 0 transparent);
+  }
+  2% {
+    filter: drop-shadow(5px 0 #ef4444);
+  }
+  4% {
+    filter: drop-shadow(3px 0 #ef4444);
+  }
+  6% {
+    filter: drop-shadow(-5px 0 #ef4444);
+  }
+  8% {
+    filter: drop-shadow(5px 0 #ef4444);
+  }
+  10% {
+    filter: drop-shadow(-4px 0 #ef4444);
+  }
+  12% {
+    filter: drop-shadow(4px 0 #ef4444);
+  }
+  14% {
+    filter: drop-shadow(-3px 0 #ef4444);
+  }
+}
+
+.glitch-text {
+  position: relative;
+  display: inline-block;
+  animation: glitch 0.8s ease-in-out, 
+             glitch-shadow-blue 0.8s ease-in-out,
+             glitch-shadow-red 0.8s ease-in-out;
+}
+
 /* Pixelated Gaming Border - Tetris Style */
 @keyframes gaming-border-pulse {
   0% {
