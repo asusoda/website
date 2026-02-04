@@ -303,7 +303,7 @@ const Account: React.FC = () => {
                             </p>
                           </div>
                           <div className="text-right">
-                            <p className="text-2xl font-bold text-red-400">-{order.total_amount}</p>
+                            <p className="text-2xl font-bold text-blue-400">-{order.total_amount}</p>
                             <p className="text-xs text-gray-500">points</p>
                           </div>
                         </div>
@@ -314,7 +314,7 @@ const Account: React.FC = () => {
                               <div key={itemIdx} className="flex justify-between items-center text-sm">
                                 <div className="flex items-center space-x-2 flex-1">
                                   <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                                  <span className="text-gray-300">{item.product?.name || 'Product'}</span>
+                                  <span className="text-gray-300">{item.product_name || item.product?.name || 'Product'}</span>
                                   <span className="text-gray-600">×{item.quantity}</span>
                                 </div>
                                 <span className="text-gray-400 font-medium">{item.price_at_time} pts</span>

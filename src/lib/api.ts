@@ -52,7 +52,8 @@ export interface OrderItem {
   product_id: number;
   quantity: number;
   price_at_time: number;
-  product?: Product;
+  product_name?: string; // API returns product_name instead of product object
+  product?: Product; // Keep for backward compatibility
 }
 
 export interface User {

@@ -34,8 +34,8 @@ const ShopNavbar: React.FC = () => {
         }}
         transition={{ 
           width: {
-            duration: 0.8,
-            ease: [0.22, 1, 0.36, 1]
+            duration: 3.5,
+            ease: [0.1, 0.8, 0.2, 1]
           }
         }}
         className="relative transition-all bg-gradient-to-br from-zinc-900/40 via-zinc-800/30 to-zinc-900/40 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl shadow-black/50 px-6 py-3 overflow-hidden"
