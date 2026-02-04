@@ -12,6 +12,20 @@
   animation: scroll-horizontal 40s linear infinite;
 }
 
+/* Horizontal scrolling text animation - reversed */
+@keyframes scroll-horizontal-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.scroll-horizontal-reverse {
+  animation: scroll-horizontal-reverse 40s linear infinite;
+}
+
 /* Vertical scrolling text animation */
 @keyframes scroll-vertical {
   0% {

@@ -41,7 +41,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
 
         <div className="p-5">
-          <h3 className="text-xl font-bold mb-3 group-hover:text-red-500 transition-colors line-clamp-1">
+          <h3 className="text-xl font-bold mb-3 transition-colors line-clamp-1">
             {product.name}
           </h3>
           <div className="flex items-baseline space-x-2">

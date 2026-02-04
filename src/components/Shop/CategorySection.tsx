@@ -1,0 +1,145 @@
+import React, { useRef } from 'react';
+import { Maximize2 } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
+import { ProductCard } from './ProductCard';
+import { Product } from '../../lib/api';
+
+interface CategorySectionProps {
+  title: string;
+  description: string;
+  color: string;
+  products: Product[];
+  orientation?: 'horizontal' | 'vertical';
+  animationDirection?: 'left-to-right' | 'right-to-left' | 'bottom-to-top';
+  minHeight?: string;
+  onExpand: () => void;
+}
+
+export const CategorySection: React.FC<CategorySectionProps> = ({
+  title,
+  description,
+  color,
+  products,
+  orientation = 'horizontal',
+  animationDirection = 'right-to-left',
+  minHeight = '250px',
+  onExpand,
+}) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  if (products.length === 0) return null;
+
+  const getScrollClass = () => {
+    switch (animationDirection) {
+      case 'left-to-right':
+        return 'scroll-horizontal-reverse';
+      case 'bottom-to-top':
+        return 'scroll-vertical';
+      default:
+        return 'scroll-horizontal';
+    }
+  };
+
+  const getTextClass = () => {
+    return orientation === 'vertical' 
+      ? 'text-[18rem] font-black text-white uppercase [writing-mode:vertical-lr] rotate-180'
+      : 'text-[24rem] font-black text-white px-8 italic uppercase';
+  };
+
+  const getAnimationVariants = () => {
+    if (orientation === 'vertical') {
+      return {
+        hidden: { scaleY: 0, originY: 0 },
+        visible: { 
+          scaleY: 1,
+          originY: 0,
+          transition: { 
+            duration: 0.6, 
+            ease: [0.25, 0.1, 0.25, 1]
+          }
+        }
+      };
+    } else {
+      return {
+        hidden: { scaleX: 0, originX: 0 },
+        visible: { 
+          scaleX: 1,
+          originX: 0,
+          transition: { 
+            duration: 0.6, 
+            ease: [0.25, 0.1, 0.25, 1]
+          }
+        }
+      };
+    }
+  };
+
+  const getShadowColor = () => {
+    return color.includes('blue') 
+      ? 'rgba(59, 130, 246, 0.6)' 
+      : 'rgba(239, 68, 68, 0.6)';
+  };
+
+  return (
+    <motion.div 
+      ref={ref}
+      className="relative group overflow-hidden rounded-[3rem] md:rounded-[3rem] rounded-[2rem] cursor-pointer" 
+      style={{ 
+        minHeight: orientation === 'vertical' ? minHeight : '160px',
+        boxShadow: `0 0 25px 6px ${getShadowColor()}, 0 0 40px 10px ${getShadowColor().replace('0.6', '0.15')}`
+      }}
+      onClick={onExpand}
+      variants={getAnimationVariants()}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+    >
+      {/* Background Blob */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${color} transition-all duration-500 ease-in-out group-hover:brightness-110`}></div>
+      
+      {/* Background Title - Fades in after section expands */}
+      <motion.div 
+        className={`absolute inset-0 flex ${orientation === 'vertical' ? 'flex-col justify-center' : 'items-center'} overflow-hidden pointer-events-none opacity-30 group-hover:opacity-10 transition-opacity duration-500 ease-in-out`}
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 0.3 } : { opacity: 0 }}
+        transition={{ delay: 0.6, duration: 0.5 }}
+      >
+        <div className={`${getScrollClass()} whitespace-nowrap flex ${orientation === 'vertical' ? 'flex-col' : ''}`}>
+          <h2 className={getTextClass()}>
+            {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} 
+          </h2>
+          <h2 className={getTextClass()}>
+            {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} 
+          </h2>
+        </div>
+      </motion.div>
+
+      {/* Expand Button */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          onExpand();
+        }}
+        className="absolute top-4 right-4 md:top-6 md:right-6 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-1.5 md:p-2"
+        aria-label={`Expand ${title} section`}
+      >
+        <Maximize2 className="w-3 h-3 md:w-4 md:h-4 text-white" />
+      </button>
+
+      {/* Hover View - Product Cards */}
+      <div className="relative z-10 p-4 md:p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out pointer-events-none group-hover:pointer-events-auto">
+        <div className={`grid gap-3 md:gap-4 pt-6 md:pt-8 ${
+          orientation === 'vertical' 
+            ? 'grid-cols-1' 
+            : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3'
+        }`}>
+          {products.map((product) => (
+            <div key={product.id} className="scale-90" onClick={(e) => e.stopPropagation()}>
+              <ProductCard product={product} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+};
