@@ -166,7 +166,7 @@ const Account: React.FC = () => {
               className="lg:col-span-1 space-y-6"
             >
               {/* User Profile Card */}
-              <div className="bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-xl">
+              <div className="bg-zinc-900/90 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-xl">
                 <div className="flex items-center space-x-4 mb-6">
                   <div className="w-16 h-16 bg-gradient-to-br from-red-500 via-red-600 to-red-700 rounded-full flex items-center justify-center shadow-lg shadow-red-500/30">
                     <UserIcon size={28} className="text-white" />
@@ -181,7 +181,7 @@ const Account: React.FC = () => {
               </div>
 
               {/* Points Wallet Card */}
-              <div className="bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-xl overflow-hidden relative">
+              <div className="bg-zinc-900/90 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-xl overflow-hidden relative">
                 {/* Decorative elements */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl"></div>
                 <div className="absolute bottom-0 left-0 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl"></div>
@@ -239,7 +239,7 @@ const Account: React.FC = () => {
               transition={{ delay: 0.2 }}
               className="lg:col-span-2"
             >
-              <div className="bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-xl">
+              <div className="bg-zinc-900/90 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-xl">
                 <div className="flex items-center space-x-3 mb-6">
                   <div className="p-2 bg-blue-500/10 rounded-lg">
                     <Package size={24} className="text-blue-400" />

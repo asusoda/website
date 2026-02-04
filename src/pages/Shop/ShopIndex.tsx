@@ -255,7 +255,9 @@ const ShopIndex: React.FC = () => {
             </motion.div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {products.map((product, idx) => (
+              {products.map((product, idx) => {
+                const randomDelay = Math.random() * 2;
+                return (
                 <motion.div
                   key={product.id}
                   initial={{ opacity: 0, y: 30 }}
@@ -265,7 +267,11 @@ const ShopIndex: React.FC = () => {
                     duration: 0.5,
                     ease: [0.22, 1, 0.36, 1]
                   }}
-                  className="bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 backdrop-blur-xl rounded-xl overflow-hidden border border-white/10 transition-all duration-300 shadow-xl hover:shadow-red-500/20 group cursor-pointer"
+                  className="bg-zinc-900/90 backdrop-blur-xl rounded-xl overflow-hidden transition-all duration-300 shadow-xl hover:shadow-red-500/20 group cursor-pointer border border-zinc-800"
+                  style={{
+                    ['--animation-delay' as any]: `${randomDelay}s`,
+                    animationDelay: `${randomDelay}s`
+                  }}
                 >
                   <Link to={`/shop/product/${product.id}`} className="block">
                     <div className="aspect-square bg-zinc-800/50 relative overflow-hidden">
@@ -301,7 +307,8 @@ const ShopIndex: React.FC = () => {
                     </div>
                   </Link>
                 </motion.div>
-              ))}
+                );
+              })}
             </div>
           )}
           </div>

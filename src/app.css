@@ -4,6 +4,87 @@
 @custom-variant dark (&:is(.dark *));
 @plugin "@tailwindcss/typography";
 
+/* Pixelated Gaming Border - Tetris Style */
+@keyframes gaming-border-pulse {
+  0% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  10% {
+    opacity: 1;
+    filter: brightness(1.5);
+  }
+  20% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  30% {
+    opacity: 1;
+    filter: brightness(1.5);
+  }
+  40%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+}
+
+.gaming-border {
+  position: relative;
+}
+
+.gaming-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 3px;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      #3b82f6 0px,
+      #3b82f6 6px,
+      #6366f1 6px,
+      #6366f1 12px,
+      #a855f7 12px,
+      #a855f7 18px,
+      #ec4899 18px,
+      #ec4899 24px,
+      #ef4444 24px,
+      #ef4444 30px
+    );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  opacity: 1;
+}
+
+.gaming-border-animated::before {
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      #3b82f6 0px,
+      #3b82f6 8px,
+      #6366f1 8px,
+      #6366f1 16px,
+      #a855f7 16px,
+      #a855f7 24px,
+      #ec4899 24px,
+      #ec4899 32px,
+      #ef4444 32px,
+      #ef4444 40px
+    );
+  animation: gaming-border-pulse 2s ease-in-out infinite;
+}
+
 @theme {
   /* Basic colors */
   --color-soda-red: #CA2352;

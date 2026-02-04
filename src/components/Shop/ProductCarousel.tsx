@@ -48,6 +48,8 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
         >
           <source src={videoUrl} type="video/mp4" />
         </video>
+        {/* Colored overlay - red and blue gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/60 via-purple-500/30 to-red-600/60" />
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/60" />
         {/* Strong fade to black at bottom - positioned lower */}

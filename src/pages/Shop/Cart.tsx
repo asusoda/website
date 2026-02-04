@@ -81,13 +81,15 @@ const Cart: React.FC = () => {
           <div className="grid lg:grid-cols-3 gap-6">
             {/* Cart Items */}
             <div className="lg:col-span-2 space-y-4">
-              {cart.map((item, idx) => (
+              {cart.map((item, idx) => {
+                const randomDelay = Math.random() * 2;
+                return (
                 <motion.div
                   key={item.product.id}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.05 }}
-                  className="bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 backdrop-blur-xl rounded-xl p-5 flex items-center space-x-4 border border-white/10 hover:border-white/20 transition-all shadow-xl"
+                  className="bg-zinc-900/90 backdrop-blur-xl rounded-xl p-5 flex items-center space-x-4 border border-white/10 transition-all shadow-xl"
                 >
                   <div className="w-24 h-24 bg-zinc-800/50 rounded-lg flex-shrink-0 overflow-hidden">
                     {item.product.image_url ? (
@@ -141,7 +143,8 @@ const Cart: React.FC = () => {
                     <Trash2 size={20} />
                   </button>
                 </motion.div>
-              ))}
+                );
+              })}
 
               <button
                 onClick={clearCart}
@@ -158,7 +161,7 @@ const Cart: React.FC = () => {
               transition={{ delay: 0.2 }}
               className="lg:col-span-1"
             >
-              <div className="bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 backdrop-blur-xl rounded-2xl p-6 border border-white/10 sticky top-32 shadow-xl">
+              <div className="bg-zinc-900/90 backdrop-blur-xl rounded-2xl p-6 border border-white/10 sticky top-32 shadow-xl">
                 <h2 className="text-2xl font-bold mb-6">Order Summary</h2>
                 <div className="space-y-3 mb-6">
                   <div className="flex justify-between text-gray-400">
