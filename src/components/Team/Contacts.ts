@@ -8,4 +8,3 @@ export type TeamMember = {
 export type Teams = {
   [team: string]: TeamMember[];
 };
-

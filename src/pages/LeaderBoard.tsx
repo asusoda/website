@@ -53,9 +53,7 @@ const Modal: React.FC<{
                   className="hover:bg-soda-blue/5 transition-colors"
                 >
                   <td className="p-2 border border-zinc-700">{detail.event}</td>
-                  <td className="p-2 border border-zinc-700">
-                    {detail.points}
-                  </td>
+                  <td className="p-2 border border-zinc-700">{detail.points}</td>
                   <td className="p-2 border border-zinc-700">
                     {new Date(detail.timestamp).toLocaleDateString()}
                   </td>
@@ -76,17 +74,13 @@ const Modal: React.FC<{
 };
 
 const Leaderboard: React.FC = () => {
-  const [leaderboardData, setLeaderboardData] = useState<LeaderboardEntry[]>(
-    [],
-  );
+  const [leaderboardData, setLeaderboardData] = useState<LeaderboardEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedEntry, setSelectedEntry] = useState<LeaderboardEntry | null>(
-    null,
-  );
+  const [selectedEntry, setSelectedEntry] = useState<LeaderboardEntry | null>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -97,13 +91,10 @@ const Leaderboard: React.FC = () => {
       try {
         const response = await fetch(FALLBACK_URL);
         if (!response.ok) {
-          throw new Error(
-            `Fallback leaderboard request failed (${response.status})`,
-          );
+          throw new Error(`Fallback leaderboard request failed (${response.status})`);
         }
 
-        const fallbackData =
-          (await response.json()) as LeaderboardEntry[];
+        const fallbackData = (await response.json()) as LeaderboardEntry[];
 
         if (isMounted) {
           setLeaderboardData(fallbackData);
@@ -119,9 +110,7 @@ const Leaderboard: React.FC = () => {
 
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "https://api.thesoda.io/api/points/soda/leaderboard",
-        );
+        const response = await fetch("https://api.thesoda.io/api/points/soda/leaderboard");
         if (!response.ok) {
           throw new Error(`Network response was not ok (${response.status})`);
         }
@@ -154,7 +143,7 @@ const Leaderboard: React.FC = () => {
   }, [searchTerm]);
 
   const filteredData = leaderboardData.filter((entry) =>
-    entry.name.toLowerCase().includes(searchTerm.toLowerCase()),
+    entry.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const sortedData = useMemo(() => {
@@ -175,26 +164,17 @@ const Leaderboard: React.FC = () => {
   }, [sortedData]);
 
   useEffect(() => {
-    const computedTotalPages = Math.max(
-      1,
-      Math.ceil(remainderEntries.length / ITEMS_PER_PAGE),
-    );
+    const computedTotalPages = Math.max(1, Math.ceil(remainderEntries.length / ITEMS_PER_PAGE));
     setCurrentPage((prev) => Math.min(prev, computedTotalPages));
   }, [remainderEntries.length]);
 
   const totalPages =
-    remainderEntries.length > 0
-      ? Math.ceil(remainderEntries.length / ITEMS_PER_PAGE)
-      : 1;
+    remainderEntries.length > 0 ? Math.ceil(remainderEntries.length / ITEMS_PER_PAGE) : 1;
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const currentItems = remainderEntries.slice(
-    startIndex,
-    startIndex + ITEMS_PER_PAGE,
-  );
+  const currentItems = remainderEntries.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   const handlePrevious = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
-  const handleNext = () =>
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  const handleNext = () => setCurrentPage((prev) => Math.min(prev + 1, totalPages));
 
   const podiumLayout = useMemo(() => {
     const placements = podiumEntries.map((entry, index) => ({
@@ -241,9 +221,7 @@ const Leaderboard: React.FC = () => {
         />
       </Helmet>
 
-      <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">
-        Leaderboard
-      </h1>
+      <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Leaderboard</h1>
 
       {error && (
         <div className="mb-4 w-full rounded-lg border border-red-500/40 bg-red-500/10 px-4 py-2 text-red-200">
@@ -259,9 +237,7 @@ const Leaderboard: React.FC = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="border border-zinc-700 bg-zinc-800 py-1.5 px-2 rounded w-full sm:w-64 text-white placeholder-zinc-400 focus:outline-none focus:border-soda-blue/50"
         />
-        <p className="text-zinc-500 mt-2 sm:mt-0">
-          Click any row for point details
-        </p>
+        <p className="text-zinc-500 mt-2 sm:mt-0">Click any row for point details</p>
       </div>
 
       {loading ? (
@@ -272,9 +248,7 @@ const Leaderboard: React.FC = () => {
         <>
           {podiumLayout.length > 0 && (
             <section className="mt-8 flex w-full flex-col items-center">
-              <h2 className="text-xl font-semibold text-soda-gray tracking-wide">
-                Top Performers
-              </h2>
+              <h2 className="text-xl font-semibold text-soda-gray tracking-wide">Top Performers</h2>
               <div className="mt-6 flex w-full max-w-4xl items-end justify-center gap-2 sm:gap-4 md:gap-6">
                 {podiumLayout.map(({ entry, place }) => (
                   <div
@@ -294,9 +268,7 @@ const Leaderboard: React.FC = () => {
                         }}
                         className="group rounded-2xl bg-gradient-to-br from-[#3F3F46] to-[#52525B] px-6 py-4 text-center shadow-xl ring-1 ring-zinc-500/40 transition-transform duration-200 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-soda-blue"
                       >
-                        <p className="text-lg font-semibold text-white">
-                          {entry.name}
-                        </p>
+                        <p className="text-lg font-semibold text-white">{entry.name}</p>
                         <p className="text-sm font-medium text-white/80">
                           {entry.total_points} pts
                         </p>
@@ -305,9 +277,7 @@ const Leaderboard: React.FC = () => {
                       <div
                         className={`w-28 md:w-32 rounded-t-2xl bg-gradient-to-t ${standGradient} shadow-[0_0_25px_rgba(58,100,228,0.35)]`}
                       >
-                        <div
-                          className={`rounded-t-2xl ${standHeights[place] ?? "h-28"}`}
-                        />
+                        <div className={`rounded-t-2xl ${standHeights[place] ?? "h-28"}`} />
                       </div>
                     </div>
                   </div>
@@ -318,14 +288,11 @@ const Leaderboard: React.FC = () => {
 
           <p className="text-zinc-300 text-center px-2 mb-4 mt-8">
             This leaderboard tracks points earned through the{" "}
-            <Link
-              to="/distinguishedMembers"
-              className="text-soda-blue hover:underline"
-            >
+            <Link to="/distinguishedMembers" className="text-soda-blue hover:underline">
               Distinguished Members Program
             </Link>
-            , recognizing active participation in SoDA meetings, workshops, and
-            community engagement.
+            , recognizing active participation in SoDA meetings, workshops, and community
+            engagement.
           </p>
 
           {remainderEntries.length > 0 && (
@@ -344,8 +311,7 @@ const Leaderboard: React.FC = () => {
                   </thead>
                   <tbody>
                     {currentItems.map((entry, index) => {
-                      const overallRank =
-                        podiumEntries.length + startIndex + index + 1;
+                      const overallRank = podiumEntries.length + startIndex + index + 1;
                       return (
                         <tr
                           key={entry.identifier ?? `${entry.name}-${overallRank}`}

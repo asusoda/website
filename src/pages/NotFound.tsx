@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button'; // Assuming you have a Button component
+import React from "react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button"; // Assuming you have a Button component
 
 const NotFound: React.FC = () => {
   return (
@@ -13,8 +13,8 @@ const NotFound: React.FC = () => {
         className="w-64 h-auto my-8 mx-auto" // Added margin top/bottom and centered
       />
       <p className="text-lg mb-8">
-        The page you are looking for might have been removed, had its name changed,
-        or is temporarily unavailable.
+        The page you are looking for might have been removed, had its name changed, or is
+        temporarily unavailable.
       </p>
       <Button asChild>
         <Link to="/">Go Back Home</Link>

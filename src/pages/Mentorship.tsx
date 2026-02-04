@@ -84,15 +84,18 @@ export default function Mentorship() {
       {/* Helmet for SEO */}
       <Helmet>
         <title>Mentorship Program</title>
-        <meta name="description" content="Learn about the ASU Soda Mentorship Program, designed to connect students with experienced mentors for professional growth." />
-        <meta name="keywords" content="Mentorship Program, ASU Soda, Mentorship, Professional Growth, Student Mentorship, Mentorship Program Details, Computer science, CS Club" />
+        <meta
+          name="description"
+          content="Learn about the ASU Soda Mentorship Program, designed to connect students with experienced mentors for professional growth."
+        />
+        <meta
+          name="keywords"
+          content="Mentorship Program, ASU Soda, Mentorship, Professional Growth, Student Mentorship, Mentorship Program Details, Computer science, CS Club"
+        />
       </Helmet>
 
       <div className="prose lg:prose-xl prose-invert">
-        <ReactMarkdown
-          children={markdownContent}
-          remarkPlugins={[remarkGfm]}
-        />
+        <ReactMarkdown children={markdownContent} remarkPlugins={[remarkGfm]} />
       </div>
     </div> // Add the missing closing tag for the main container div
   );

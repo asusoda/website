@@ -5,8 +5,7 @@ const dollarFormatter = new Intl.NumberFormat("US", {
   style: "currency",
   currency: "USD",
 });
-const teams = Object.fromEntries(Object.entries(teamsData).slice(0, -1));  // Assuming advisors is last entry
-const advisors = teamsData["Advisors"];
+const teams = Object.fromEntries(Object.entries(teamsData).slice(0, -1)); // Assuming advisors is last entry
 
 const statistics = [
   {
@@ -41,7 +40,7 @@ const statistics = [
     }, 0),
     steps: 2,
     formatter: (x: number) => <>{x}</>,
-  }
+  },
 ];
 
 export default function Statistics() {
@@ -50,11 +49,7 @@ export default function Statistics() {
       {statistics.map(({ key, label, value, steps, formatter }) => (
         <div key={key} className="stat-container">
           <div className="stat-value">
-            <AnimatedNumber
-              number={value}
-              steps={steps}
-              formatter={formatter}
-            />
+            <AnimatedNumber number={value} steps={steps} formatter={formatter} />
           </div>
           <div className="stat-label">{label}</div>
         </div>

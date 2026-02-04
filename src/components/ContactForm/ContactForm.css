@@ -1,87 +1,88 @@
 .contact-form {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 768px; 
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 768px;
 }
 
 @media (min-width: 1024px) {
-    .contact-form {
-        padding-top: 4rem;
-        padding-bottom: 4rem;
-    }
+  .contact-form {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
 }
 
 .contact-form #title {
-    font-size: 2em;
-    text-align: center;
-    padding: 5vw;
-  }
-  
-
-.form-content { /* styling content */
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for better appearance */
-    background-color: white;
-    color: black;
+  font-size: 2em;
+  text-align: center;
+  padding: 5vw;
 }
 
-.card-content { /* ordering content */
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 40px;
+.form-content {
+  /* styling content */
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for better appearance */
+  background-color: white;
+  color: black;
 }
 
-.input-content{
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    align-items: flex-start;
-    width: 100%;
+.card-content {
+  /* ordering content */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px;
 }
 
-.input-box, .text-box{
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm */
-    background-color: #f9fafb; /* bg-gray-50 */
-    border: 1px solid #d1d5db; /* border and border-gray-300 */
-    color: #111827; /* text-gray-900 */
-    font-size: 0.875rem; /* text-sm */
-    border-radius: 4px; /* rounded-lg */
-    display: block; /* block */
-    width: 100%; /* w-full */
-    padding: 0.625rem; /* p-2.5 */
-        
+.input-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.input-box,
+.text-box {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm */
+  background-color: #f9fafb; /* bg-gray-50 */
+  border: 1px solid #d1d5db; /* border and border-gray-300 */
+  color: #111827; /* text-gray-900 */
+  font-size: 0.875rem; /* text-sm */
+  border-radius: 4px; /* rounded-lg */
+  display: block; /* block */
+  width: 100%; /* w-full */
+  padding: 0.625rem; /* p-2.5 */
 }
 
 .text-box {
-    min-height: 150px; /* Set your desired minimum height */
+  min-height: 150px; /* Set your desired minimum height */
 }
 
-.button-content{
-    align-items: flex-start;
-    width: 100%;
+.button-content {
+  align-items: flex-start;
+  width: 100%;
 }
 
 /* Card button */
 .button {
-    background-color: var(--soda-red-550);
-    color: white;
-    border: none; /* Remove default border */
-    border-radius: 25px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer; /* Change cursor to pointer on hover */
-    display: flex;
-    align-items: center;
-    transition: background-color 0.6s ease; /* Add transition for smooth background color change */
-    margin-top: 10px;
+  background-color: var(--soda-red-550);
+  color: white;
+  border: none; /* Remove default border */
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer; /* Change cursor to pointer on hover */
+  display: flex;
+  align-items: center;
+  transition: background-color 0.6s ease; /* Add transition for smooth background color change */
+  margin-top: 10px;
 }
 
 .button:hover {
-    background-color: darkred; /* Change background color on hover */
+  background-color: darkred; /* Change background color on hover */
 }

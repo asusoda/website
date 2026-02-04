@@ -12,11 +12,7 @@ interface CalendarEvent {
   end: string;
   url?: string;
 }
-function Hero({
-  setSelectedEvent,
-}: {
-  setSelectedEvent: (event: CalendarEvent | null) => void;
-}) {
+function Hero({ setSelectedEvent }: { setSelectedEvent: (event: CalendarEvent | null) => void }) {
   return (
     <main className="min-h-screen md:justify-center items-center flex flex-col relative">
       <Stars className="hidden md:block -z-50 md:absolute top-0 right-0 w-full h-full h-1/3 z-0 pointer-events-none" />
@@ -33,8 +29,7 @@ function Hero({
           </div>
         </summary>
         <div className="flex flex-col w-full md:max-w-2xl h-full px-6">
-        <EventsPhotoCarousel setSelectedEvent={setSelectedEvent} />
-
+          <EventsPhotoCarousel setSelectedEvent={setSelectedEvent} />
         </div>
       </section>
     </main>

@@ -11,8 +11,7 @@ const resources: ResourceLink[] = [
   { name: "Leaderboard", source: "/leaderboard" },
   {
     name: "Constitution",
-    source:
-      "https://docs.google.com/document/d/1VZmeN7BdD3D1mjQtc5td02BwbOCKrsivLQeMkF-y_1g/edit",
+    source: "https://docs.google.com/document/d/1VZmeN7BdD3D1mjQtc5td02BwbOCKrsivLQeMkF-y_1g/edit",
     external: true,
   },
 ];
@@ -24,21 +23,12 @@ export default function RightFooterGrid() {
         <h5 className="text-soda-white text-md">Resources</h5>
         {resources.map((el, i) =>
           el.external ? (
-            <a
-              href={el.source}
-              key={i}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <p className="text-soda-gray text-[16px] hover:text-soda-white">
-                {el.name}
-              </p>
+            <a href={el.source} key={i} target="_blank" rel="noopener noreferrer">
+              <p className="text-soda-gray text-[16px] hover:text-soda-white">{el.name}</p>
             </a>
           ) : (
             <Link to={el.source} key={i}>
-              <p className="text-soda-gray text-[16px] hover:text-soda-white">
-                {el.name}
-              </p>
+              <p className="text-soda-gray text-[16px] hover:text-soda-white">{el.name}</p>
             </Link>
           )
         )}

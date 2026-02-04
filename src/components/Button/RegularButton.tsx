@@ -1,5 +1,3 @@
-import PropTypes from "prop-types";
-
 type RegularButtonTypes = {
   name: string;
 };

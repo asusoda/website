@@ -14,21 +14,8 @@ interface IndividualBlogProps {
   height: number;
 }
 
-const getColorFromString = (str: string) => {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    hash = str.charCodeAt(i) + ((hash << 5) - hash);
-  }
-
-  // Generate HSL color with fixed saturation and lightness for better readability
-  const h = Math.abs(hash % 360);
-  // Using lightness of 85% for light backgrounds
-  return `hsl(${h}, 70%, 85%)`;
-};
-
 const IndividualBlog: React.FC<IndividualBlogProps> = ({
   imageURL,
-  tag,
   title,
   summary,
   link,
@@ -39,20 +26,30 @@ const IndividualBlog: React.FC<IndividualBlogProps> = ({
   const hasLink = link && link.trim() !== "";
 
   // Base classes for the card content
-  const cardBaseClasses = "bg-neutral-900 border-gray-600 rounded-lg p-6 max-w-md h-full overflow-hidden text-white relative flex flex-col";
+  const cardBaseClasses =
+    "bg-neutral-900 border-gray-600 rounded-lg p-6 max-w-md h-full overflow-hidden text-white relative flex flex-col";
   // Classes added only when there is a link for hover effects triggered by the parent Link's group class
-  const cardLinkClasses = hasLink ? "transition transform group-hover:scale-105 group-hover:shadow-lg" : "";
+  const cardLinkClasses = hasLink
+    ? "transition transform group-hover:scale-105 group-hover:shadow-lg"
+    : "";
 
   const cardContent = (
     <div className={`${cardBaseClasses} ${cardLinkClasses}`}>
-      <img src={imageURL} alt={alt} width={width} height={height} className="w-full h-48 object-cover rounded-t-lg mb-4" /> {/* Added mb-4 for spacing */}
+      <img
+        src={imageURL}
+        alt={alt}
+        width={width}
+        height={height}
+        className="w-full h-48 object-cover rounded-t-lg mb-4"
+      />{" "}
+      {/* Added mb-4 for spacing */}
       {/* Tag rendering commented out */}
       <h2 className="text-2xl font-bold my-3">{title}</h2>
-      <Markdown className="text-gray-200 mt-2 text-sm flex-grow">
-        {summary}
-      </Markdown>
+      <Markdown className="text-gray-200 mt-2 text-sm flex-grow">{summary}</Markdown>
       {hasLink && (
-        <div className="mt-auto pt-4 flex items-center text-blue-400 group-hover:text-blue-300 self-start"> {/* Pushed to bottom, aligned left */}
+        <div className="mt-auto pt-4 flex items-center text-blue-400 group-hover:text-blue-300 self-start">
+          {" "}
+          {/* Pushed to bottom, aligned left */}
           <span>Learn more</span>
           <ArrowRight className="ml-1 h-4 w-4" />
         </div>
@@ -70,11 +67,15 @@ const IndividualBlog: React.FC<IndividualBlogProps> = ({
   return (
     <>
       {hasLink ? (
-        <Link to={link} className="group block h-full"> {/* Add group class here */}
+        <Link to={link} className="group block h-full">
+          {" "}
+          {/* Add group class here */}
           {cardContent}
         </Link>
       ) : (
-        <div className="block h-full"> {/* No group class needed here */}
+        <div className="block h-full">
+          {" "}
+          {/* No group class needed here */}
           {cardContent}
         </div>
       )}
@@ -107,7 +108,7 @@ export default function Blog() {
           width={5510}
           height={2904}
         />
-       <IndividualBlog
+        <IndividualBlog
           imageURL="/events/microsoft.webp"
           tag={["mentorship", "community development"]}
           title="Mentorship Program"

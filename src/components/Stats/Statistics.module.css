@@ -1,7 +1,7 @@
 /* Statistics.module.css */
 .statistics {
   /* Your styles specific to the Statistics component */
-  @apply   flex flex-row gap-5 p-5 my-5 justify-center flex-wrap rounded-full font-extrabold;
+  @apply flex flex-row gap-5 p-5 my-5 justify-center flex-wrap rounded-full font-extrabold;
 }
 
 /* Additional styles for Statistic.Value and Statistic.Label can also be scoped here */
