@@ -30,11 +30,11 @@ const ShopNavbar: React.FC = () => {
           width: "60px", 
         }}
         animate={{ 
-          width: isExpanded ? "min(92vw, 80rem)" : "60px", 
+          width: isExpanded ? "min(60vw, 80rem)" : "60px", 
         }}
         transition={{ 
           width: {
-            duration: 3,
+            duration: 1.5,
             ease: [0.1, 0.8, 0.2, 1]
           }
         }}

@@ -1,0 +1,27 @@
+/* Horizontal scrolling text animation */
+@keyframes scroll-horizontal {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.scroll-horizontal {
+  animation: scroll-horizontal 40s linear infinite;
+}
+
+/* Vertical scrolling text animation */
+@keyframes scroll-vertical {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.scroll-vertical {
+  animation: scroll-vertical 40s linear infinite;
+}

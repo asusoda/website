@@ -1,17 +1,27 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Package } from 'lucide-react';
+import { Package, Maximize2, X } from 'lucide-react';
 import ProductCarousel, { CarouselSlide } from '../../components/Shop/ProductCarousel';
 import { ProductCard } from '../../components/Shop/ProductCard';
 import { EmptyState } from '../../components/Shop/EmptyState';
 import { GlitchText } from '../../components/GlitchText';
 import { useProducts } from '../../hooks/useProducts';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
+import './styles/scrolling-text.css';
+import { Product } from '../../types/product';
+
+interface CategoryPopupData {
+  name: string;
+  description: string;
+  color: string;
+  products: Product[];
+}
 
 const ShopIndex: React.FC = () => {
   const { products, loading, error } = useProducts();
   const productsRef = useRef(null);
   const isInView = useInView(productsRef, { once: true, amount: 0.1, margin: "0px 0px -100px 0px" });
+  const [popupData, setPopupData] = useState<CategoryPopupData | null>(null);
 
   if (error) {
     return (
@@ -207,14 +217,283 @@ const ShopIndex: React.FC = () => {
               glowColor="bg-red-500/10"
             />
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {products.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
+            <>
+              {/* All Products Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-20">
+                {products.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+
+              {/* Category Sections with Creative Layout */}
+              {(() => {
+                const bottleProducts = products.filter(p => p.name.toLowerCase().includes('bottle') || p.name.toLowerCase().includes('flask') || p.name.toLowerCase().includes('hydro'));
+                const hoodieProducts = products.filter(p => p.name.toLowerCase().includes('hoodie') || p.name.toLowerCase().includes('hoodies'));
+                const tshirtProducts = products.filter(p => p.name.toLowerCase().includes('tshirt') || p.name.toLowerCase().includes('t-shirt') || p.name.toLowerCase().includes('shirt'));
+                const stickerProducts = products.filter(p => p.name.toLowerCase().includes('sticker') || p.name.toLowerCase().includes('decal'));
+                
+                // Calculate approximate heights needed
+                const leftSectionCount = [hoodieProducts, tshirtProducts, stickerProducts].filter(arr => arr.length > 0).length;
+                const leftSectionTotalHeight = leftSectionCount * 350 + (leftSectionCount - 1) * 32; // 350px per section + 32px gap
+                const bottleHeight = Math.max(1000, leftSectionTotalHeight);
+                const hasBottles = bottleProducts.length > 0;
+                
+                // Determine if bottles section should overlap with certain left sections
+                const shouldShowBottlesColumn = hasBottles && bottleHeight >= 700;
+                
+                return (
+                  <div className={shouldShowBottlesColumn ? "flex gap-8" : "w-full"}>
+                    {/* Left Column - Hoodies, T-Shirts, Stickers */}
+                    <div className={shouldShowBottlesColumn ? "flex-1 space-y-8" : "w-full space-y-8"}>
+                  {/* Hoodies Section */}
+                  {(() => {
+                    if (hoodieProducts.length === 0) return null;
+                    
+                    return (
+                      <div className="relative group overflow-hidden rounded-[3rem]" style={{ minHeight: '250px' }}>
+                        {/* Background Blob */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-red-600/80 via-red-700/70 to-red-800/60 transition-all duration-500 ease-in-out group-hover:from-red-600/90 group-hover:via-red-700/80 group-hover:to-red-800/70"></div>
+                        
+                        {/* Background Title - Always Visible */}
+                        <div className="absolute inset-0 flex items-center overflow-hidden pointer-events-none opacity-30 group-hover:opacity-10 transition-opacity duration-500 ease-in-out">
+                          <div className="scroll-horizontal whitespace-nowrap flex">
+                            <h2 className="text-[24rem] font-black text-white px-8 italic uppercase">
+                              HOODIES HOODIES HOODIES HOODIES HOODIES HOODIES 
+                            </h2>
+                            <h2 className="text-[24rem] font-black text-white px-8 italic uppercase">
+                              HOODIES HOODIES HOODIES HOODIES HOODIES HOODIES 
+                            </h2>
+                          </div>
+                        </div>
+
+                        {/* Expand Button */}
+                        <button
+                          onClick={() => setPopupData({
+                            name: 'Hoodies',
+                            description: 'Stay warm and stylish with our premium SoDA hoodies. Perfect for coding sessions and casual wear.',
+                            color: 'from-red-600/80 via-red-700/70 to-red-800/60',
+                            products: hoodieProducts
+                          })}
+                          className="absolute top-6 right-6 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3"
+                        >
+                          <Maximize2 className="w-6 h-6 text-white" />
+                        </button>
+
+                        {/* Hover View - Product Cards */}
+                        <div className="relative z-10 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
+                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 pt-8">
+                            {hoodieProducts.map((product) => (
+                              <div key={product.id}>
+                                <ProductCard product={product} />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })()}
+
+                  {/* T-Shirts Section */}
+                  {(() => {
+                    if (tshirtProducts.length === 0) return null;
+                    
+                    return (
+                      <div className="relative group overflow-hidden rounded-[3rem]" style={{ minHeight: '250px' }}>
+                        {/* Background Blob */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/80 via-blue-700/70 to-blue-800/60 transition-all duration-500 ease-in-out group-hover:from-blue-600/90 group-hover:via-blue-700/80 group-hover:to-blue-800/70"></div>
+                        
+                        {/* Background Title - Always Visible */}
+                        <div className="absolute inset-0 flex items-center overflow-hidden pointer-events-none opacity-30 group-hover:opacity-10 transition-opacity duration-500 ease-in-out">
+                          <div className="scroll-horizontal whitespace-nowrap flex">
+                            <h2 className="text-[24rem] font-black text-white px-8 italic uppercase">
+                              T-SHIRTS T-SHIRTS T-SHIRTS T-SHIRTS T-SHIRTS T-SHIRTS 
+                            </h2>
+                            <h2 className="text-[24rem] font-black text-white px-8 italic uppercase">
+                              T-SHIRTS T-SHIRTS T-SHIRTS T-SHIRTS T-SHIRTS T-SHIRTS 
+                            </h2>
+                          </div>
+                        </div>
+
+                        {/* Expand Button */}
+                        <button
+                          onClick={() => setPopupData({
+                            name: 'T-Shirts',
+                            description: 'Express your love for coding with our comfortable and stylish SoDA t-shirts.',
+                            color: 'from-blue-600/80 via-blue-700/70 to-blue-800/60',
+                            products: tshirtProducts
+                          })}
+                          className="absolute top-6 right-6 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3"
+                        >
+                          <Maximize2 className="w-6 h-6 text-white" />
+                        </button>
+
+                        {/* Hover View - Product Cards */}
+                        <div className="relative z-10 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
+                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 pt-8">
+                            {tshirtProducts.map((product) => (
+                              <div key={product.id}>
+                                <ProductCard product={product} />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })()}
+
+                  {/* Stickers Section */}
+                  {(() => {
+                    if (stickerProducts.length === 0) return null;
+                    
+                    return (
+                      <div className="relative group overflow-hidden rounded-[3rem]" style={{ minHeight: '250px' }}>
+                        {/* Background Blob */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-red-500/80 via-red-600/70 to-red-700/60 transition-all duration-500 ease-in-out group-hover:from-red-500/90 group-hover:via-red-600/80 group-hover:to-red-700/70"></div>
+                        
+                        {/* Background Title - Always Visible */}
+                        <div className="absolute inset-0 flex items-center overflow-hidden pointer-events-none opacity-30 group-hover:opacity-10 transition-opacity duration-500 ease-in-out">
+                          <div className="scroll-horizontal whitespace-nowrap flex">
+                            <h2 className="text-[24rem] font-black text-white px-8 italic uppercase">
+                              STICKERS STICKERS STICKERS STICKERS STICKERS STICKERS 
+                            </h2>
+                            <h2 className="text-[24rem] font-black text-white px-8 italic uppercase">
+                              STICKERS STICKERS STICKERS STICKERS STICKERS STICKERS 
+                            </h2>
+                          </div>
+                        </div>
+
+                        {/* Expand Button */}
+                        <button
+                          onClick={() => setPopupData({
+                            name: 'Stickers',
+                            description: 'Customize your laptop, notebook, or water bottle with our fun SoDA sticker packs.',
+                            color: 'from-red-500/80 via-red-600/70 to-red-700/60',
+                            products: stickerProducts
+                          })}
+                          className="absolute top-6 right-6 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3"
+                        >
+                          <Maximize2 className="w-6 h-6 text-white" />
+                        </button>
+
+                        {/* Hover View - Product Cards */}
+                        <div className="relative z-10 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
+                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 pt-8">
+                            {stickerProducts.map((product) => (
+                              <div key={product.id}>
+                                <ProductCard product={product} />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })()}
+                </div>
+
+                {/* Right Column - Water Bottles (Vertical Full Height) */}
+                {shouldShowBottlesColumn && (() => {
+                  if (bottleProducts.length === 0) return null;
+                  
+                  return (
+                    <div className="w-64 shrink-0 group">
+                      <div className="relative overflow-hidden rounded-[3rem]" style={{ minHeight: `${bottleHeight}px` }}>
+                        {/* Background Blob */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/80 via-blue-600/70 to-blue-700/60 transition-all duration-500 ease-in-out group-hover:from-blue-500/90 group-hover:via-blue-600/80 group-hover:to-blue-700/70"></div>
+                        
+                        {/* Background Title - Always Visible (Vertical) */}
+                        <div className="absolute inset-0 flex justify-center overflow-hidden pointer-events-none opacity-30 group-hover:opacity-10 transition-opacity duration-500 ease-in-out">
+                          <div className="scroll-vertical whitespace-nowrap">
+                            <h2 className="text-9xl font-black text-white py-8 transform rotate-180 italic uppercase" style={{ writingMode: 'vertical-rl' }}>
+                              WATER BOTTLES WATER BOTTLES WATER BOTTLES WATER BOTTLES WATER BOTTLES 
+                            </h2>
+                            <h2 className="text-9xl font-black text-white py-8 transform rotate-180 italic uppercase" style={{ writingMode: 'vertical-rl' }}>
+                              WATER BOTTLES WATER BOTTLES WATER BOTTLES WATER BOTTLES WATER BOTTLES 
+                            </h2>
+                          </div>
+                        </div>
+
+                        {/* Expand Button */}
+                        <button
+                          onClick={() => setPopupData({
+                            name: 'Water Bottles',
+                            description: 'Stay hydrated in style with our premium SoDA water bottles. Perfect for the gym, office, or coding marathons.',
+                            color: 'from-blue-500/80 via-blue-600/70 to-blue-700/60',
+                            products: bottleProducts
+                          })}
+                          className="absolute top-6 right-6 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3"
+                        >
+                          <Maximize2 className="w-6 h-6 text-white" />
+                        </button>
+
+                        {/* Hover View - Product Cards */}
+                        <div className="relative z-10 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
+                          <div className="flex flex-col gap-6 pt-8">
+                            {bottleProducts.map((product) => (
+                              <div key={product.id}>
+                                <ProductCard product={product} />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })()}
+                </div>
+              );
+            })()}
+            </>
           )}
           </div>
         </div>
+
+        {/* Category Popup Modal */}
+        <AnimatePresence>
+          {popupData && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
+              onClick={() => setPopupData(null)}
+            >
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className={`relative w-full max-w-7xl h-[85vh] overflow-y-auto rounded-[3rem] bg-gradient-to-br ${popupData.color} p-8`}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Close Button */}
+                <button
+                  onClick={() => setPopupData(null)}
+                  className="absolute top-6 right-6 z-30 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 transition-colors duration-200"
+                >
+                  <X className="w-6 h-6 text-white" />
+                </button>
+
+                {/* Header */}
+                <div className="mb-8 text-center">
+                  <h2 className="text-6xl font-black text-white mb-4 uppercase">
+                    {popupData.name}
+                  </h2>
+                  <p className="text-xl text-white/90">
+                    {popupData.description}
+                  </p>
+                </div>
+
+                {/* Products Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {popupData.products.map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </>
   );
