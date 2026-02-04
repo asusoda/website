@@ -1,96 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Package, Wallet, User as UserIcon, ShoppingBag, Calendar, TrendingUp } from 'lucide-react';
-import { useUser, useAuth } from '@clerk/clerk-react';
-import { pointsAPI, storefrontAPI, PointsRecord, Order, OrderItem, APIError, ERROR_MESSAGES } from '../../lib/api';
+import { Package, Wallet, User as UserIcon, ShoppingBag, TrendingUp, Calendar } from 'lucide-react';
+import { useUser } from '@clerk/clerk-react';
+import { OrderCard } from '../../components/Shop/OrderCard';
+import { EmptyState } from '../../components/Shop/EmptyState';
+import { useUserPoints } from '../../hooks/useUserPoints';
+import { useUserOrders } from '../../hooks/useUserOrders';
 import { motion } from 'framer-motion';
 import LoadingSpinner from '../../components/LoadingSpinner';
 
-interface UserPointsData {
-  total_points: number;
-  points_breakdown: PointsRecord[];
-}
-
 const Account: React.FC = () => {
   const { isSignedIn, user, isLoaded } = useUser();
-  const { getToken } = useAuth();
-  const [userPoints, setUserPoints] = useState<UserPointsData | null>(null);
-  const [orders, setOrders] = useState<Order[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { userPoints, loading: pointsLoading, error: pointsError } = useUserPoints();
+  const { orders, loading: ordersLoading, error: ordersError } = useUserOrders();
 
-  useEffect(() => {
-    if (!isLoaded) return;
-    if (!isSignedIn) {
-      setLoading(false);
-      return;
-    }
-
-    fetchUserData();
-  }, [isSignedIn, isLoaded, user]);
-
-  const fetchUserData = async () => {
-    try {
-      setLoading(true);
-      const email = user?.emailAddresses[0]?.emailAddress;
-      
-      if (!email) {
-        console.error('No email address found for the signed-in user.');
-        setError(
-          'We could not find an email address associated with your account. Please contact support for assistance.'
-        );
-        return;
-      }
-
-      // Get Clerk session token
-      const token = await getToken();
-      
-      if (!token) {
-        setError('Authentication failed. Please sign in again.');
-        return;
-      }
-
-      // Use Promise.allSettled to handle APIs independently
-      const [pointsResult, ordersResult] = await Promise.allSettled([
-        pointsAPI.getUserPoints(email, token),
-        storefrontAPI.getOrders(email, token)
-      ]);
-      
-      // Handle points data
-      if (pointsResult.status === 'fulfilled') {
-        setUserPoints({
-          total_points: pointsResult.value.total_points,
-          points_breakdown: pointsResult.value.points_breakdown,
-        });
-      } else {
-        console.error('Failed to fetch points:', pointsResult.reason);
-        // Check if it's a 404 or user not found error
-        if (pointsResult.reason instanceof APIError && pointsResult.reason.status === 404) {
-          setError(ERROR_MESSAGES.NO_POINTS_RECORD);
-        } else {
-          setError(pointsResult.reason instanceof Error ? pointsResult.reason.message : 'Failed to load wallet data');
-        }
-      }
-      
-      // Handle orders data independently
-      if (ordersResult.status === 'fulfilled') {
-        setOrders(ordersResult.value);
-      } else {
-        console.error('Failed to fetch orders:', ordersResult.reason);
-        // Don't set error for orders - just log it and show empty orders
-      }
-      
-      // Clear error if points loaded successfully
-      if (pointsResult.status === 'fulfilled') {
-        setError(null);
-      }
-    } catch (err) {
-      console.error('Unexpected error fetching user data:', err);
-      setError(err instanceof Error ? err.message : 'Failed to load account data');
-    } finally {
-      setLoading(false);
-    }
-  };
+  const loading = pointsLoading || ordersLoading;
+  const error = pointsError || ordersError;
 
   if (!isLoaded || loading) {
     return (
@@ -272,57 +197,7 @@ const Account: React.FC = () => {
                 ) : (
                   <div className="space-y-3 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
                     {orders.map((order, idx) => (
-                      <motion.div 
-                        key={order.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: idx * 0.05 }}
-                        className="bg-black/30 border border-white/5 rounded-xl p-5 hover:border-white/10 hover:bg-black/40 transition-all duration-200"
-                      >
-                        <div className="flex justify-between items-start mb-3">
-                          <div className="flex-1">
-                            <div className="flex items-center space-x-3 mb-2">
-                              <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                                order.status === 'completed' ? 'bg-green-500/20 text-green-400 border border-green-500/30' :
-                                order.status === 'pending' ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' :
-                                'bg-red-500/20 text-red-400 border border-red-500/30'
-                              }`}>
-                                {order.status.toUpperCase()}
-                              </span>
-                              <p className="text-sm text-gray-500">Order #{order.id}</p>
-                            </div>
-                            <p className="text-xs text-gray-600 flex items-center">
-                              <Calendar size={12} className="mr-1" />
-                              {new Date(order.created_at).toLocaleDateString('en-US', {
-                                year: 'numeric',
-                                month: 'short',
-                                day: 'numeric',
-                                hour: '2-digit',
-                                minute: '2-digit'
-                              })}
-                            </p>
-                          </div>
-                          <div className="text-right">
-                            <p className="text-2xl font-bold text-blue-400">-{order.total_amount}</p>
-                            <p className="text-xs text-gray-500">points</p>
-                          </div>
-                        </div>
-                        
-                        {order.items && order.items.length > 0 && (
-                          <div className="mt-4 pt-4 border-t border-white/5 space-y-2">
-                            {order.items.map((item: OrderItem, itemIdx: number) => (
-                              <div key={itemIdx} className="flex justify-between items-center text-sm">
-                                <div className="flex items-center space-x-2 flex-1">
-                                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                                  <span className="text-gray-300">{item.product_name || item.product?.name || 'Product'}</span>
-                                  <span className="text-gray-600">×{item.quantity}</span>
-                                </div>
-                                <span className="text-gray-400 font-medium">{item.price_at_time} pts</span>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </motion.div>
+                      <OrderCard key={order.id} order={order} index={idx} />
                     ))}
                   </div>
                 )}

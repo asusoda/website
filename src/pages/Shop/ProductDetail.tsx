@@ -90,12 +90,24 @@ const ProductDetail: React.FC = () => {
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-zinc-900 rounded-lg overflow-hidden aspect-square">
               {product.image_url ? (
-                <img src={product.image_url} alt={product.name} className="w-full h-full object-cover" />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <Package size={128} className="text-gray-600" />
-                </div>
-              )}
+                <img 
+                  src={product.image_url} 
+                  alt={product.name} 
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    const fallback = e.currentTarget.nextElementSibling;
+                    if (fallback) fallback.classList.remove('hidden');
+                  }}
+                />
+              ) : null}
+              <div className={`w-full h-full flex items-center justify-center ${product.image_url ? 'hidden' : ''}`}>
+                <img 
+                  src="/teddy-laptop.webp" 
+                  alt={product.name}
+                  className="w-full h-full object-cover opacity-60"
+                />
+              </div>
             </div>
 
             <div>
