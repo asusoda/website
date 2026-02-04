@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 interface PointsDetails {
   awarded_by?: string;
@@ -265,7 +266,9 @@ const Leaderboard: React.FC = () => {
       </div>
 
       {loading ? (
-        <div className="mt-10 text-zinc-400">Loading leaderboard…</div>
+        <div className="mt-10 flex justify-center">
+          <LoadingSpinner />
+        </div>
       ) : sortedData.length === 0 ? (
         <div className="mt-10 text-zinc-400">No members found.</div>
       ) : (

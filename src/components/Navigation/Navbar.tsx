@@ -25,7 +25,8 @@ function NavbarSection() {
     { name: "Team", id_href: "/#team" },
     { name: "Leaderboard", id_href: "/leaderboard" },
     { name: "ASU CS Wiki", id_href: "https://wiki.thesoda.io", icon: "external" },
-    { name: "Shop", id_href: "/shop" },
+    // intended because shop has different navbar and style of the website 
+    { name: "Shop", id_href: "/shop", icon: "external" },
   ];
 
   const handleLogoClick = () => {

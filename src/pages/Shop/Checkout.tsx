@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { CheckCircle, AlertCircle } from 'lucide-react';
 import { useUser, useAuth } from '@clerk/clerk-react';
-import ShopNavbar from '../../components/Shop/ShopNavbar';
 import { useCart } from '../../lib/CartContext';
 import { storefrontAPI, pointsAPI, APIError, ERROR_MESSAGES } from '../../lib/api';
 
@@ -109,8 +108,7 @@ const Checkout: React.FC = () => {
   if (success) {
     return (
       <>
-        <ShopNavbar />
-        <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        <div className="min-h-screen bg-black text-white flex items-center justify-center pt-24">
           <div className="text-center">
             <CheckCircle size={64} className="mx-auto mb-4 text-green-400" />
             <h2 className="text-3xl font-bold mb-2">Order Placed Successfully!</h2>
@@ -132,9 +130,26 @@ const Checkout: React.FC = () => {
       <Helmet>
         <title>Checkout - SoDA Shop</title>
       </Helmet>
-      <ShopNavbar />
-      <div className="min-h-screen bg-black text-white">
-        <div className="container mx-auto px-4 py-8 max-w-2xl">
+      <div className="min-h-screen bg-black text-white pt-24 relative overflow-hidden">
+        {/* Teddy image in bottom left background */}
+        <div className="fixed bottom-0 left-0 w-48 md:w-64 lg:w-80 opacity-15 pointer-events-none z-0">
+          <img 
+            src="/teddy-laptop.webp" 
+            alt="Teddy bear decoration" 
+            className="w-full h-auto"
+          />
+        </div>
+        
+        {/* Soda can image in bottom right background */}
+        <div className="fixed bottom-0 right-0 w-48 md:w-64 lg:w-80 opacity-15 pointer-events-none z-0">
+          <img 
+            src="/soda-can.webp" 
+            alt="Soda can decoration" 
+            className="w-full h-auto"
+          />
+        </div>
+        
+        <div className="container mx-auto px-4 py-8 max-w-2xl relative z-10">
           <h1 className="text-4xl font-bold mb-8">Checkout</h1>
 
           {/* User Info */}
@@ -190,7 +205,7 @@ const Checkout: React.FC = () => {
           <button
             onClick={handlePlaceOrder}
             disabled={loading || !hasEnoughPoints}
-            className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white py-4 rounded-lg font-semibold text-lg"
+            className="w-full bg-red-500/10 backdrop-blur-xl border border-red-400/20 hover:bg-red-500/20 hover:border-red-400/40 disabled:bg-gray-600/10 disabled:border-gray-500/20 disabled:cursor-not-allowed text-white py-4 rounded-lg font-semibold text-lg transition-all duration-200"
           >
             {loading ? 'Processing...' : !hasEnoughPoints ? 'Insufficient Points' : 'Place Order'}
           </button>

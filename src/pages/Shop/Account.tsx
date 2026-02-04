@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Package, Wallet, User as UserIcon, Loader2 } from 'lucide-react';
+import { Package, Wallet, User as UserIcon, ShoppingBag, Calendar, TrendingUp } from 'lucide-react';
 import { useUser, useAuth } from '@clerk/clerk-react';
-import ShopNavbar from '../../components/Shop/ShopNavbar';
 import { pointsAPI, storefrontAPI, PointsRecord, Order, OrderItem, APIError, ERROR_MESSAGES } from '../../lib/api';
+import { motion } from 'framer-motion';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 interface UserPointsData {
   total_points: number;
@@ -94,12 +95,8 @@ const Account: React.FC = () => {
   if (!isLoaded || loading) {
     return (
       <>
-        <ShopNavbar />
-        <div className="min-h-screen bg-black text-white flex items-center justify-center">
-          <div className="text-center">
-            <Loader2 className="animate-spin mx-auto mb-4" size={48} />
-            <p>Loading your account...</p>
-          </div>
+        <div className="min-h-screen bg-black text-white flex items-center justify-center pt-24">
+          <LoadingSpinner />
         </div>
       </>
     );
@@ -108,8 +105,7 @@ const Account: React.FC = () => {
   if (!isSignedIn) {
     return (
       <>
-        <ShopNavbar />
-        <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        <div className="min-h-screen bg-black text-white flex items-center justify-center pt-24">
           <div className="text-center">
             <UserIcon size={64} className="mx-auto mb-4 text-gray-600" />
             <h2 className="text-2xl font-bold mb-2">Sign In Required</h2>
@@ -127,86 +123,179 @@ const Account: React.FC = () => {
       <Helmet>
         <title>My Account - SoDA Shop</title>
       </Helmet>
-      <ShopNavbar />
-      <div className="min-h-screen bg-black text-white">
-        <div className="container mx-auto px-4 py-8">
-          <h1 className="text-4xl font-bold mb-8">My Account</h1>
+      <div className="min-h-screen bg-black text-white pt-32 relative overflow-hidden">
+        {/* Teddy image in bottom right background */}
+        <div className="fixed bottom-0 right-0 w-64 md:w-80 lg:w-96 opacity-20 pointer-events-none z-0">
+          <img 
+            src="/teddy-laptop.webp" 
+            alt="Teddy bear decoration" 
+            className="w-full h-auto"
+          />
+        </div>
+        
+        <div className="container mx-auto px-4 py-8 max-w-7xl relative z-10">
+          {/* Header Section */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-12"
+          >
+            <h1 className="text-5xl font-bold mb-2 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+              My Account
+            </h1>
+            <p className="text-gray-400">Manage your points and view order history</p>
+          </motion.div>
 
           {error && (
-            <div className="bg-red-900/20 border border-red-500 rounded-lg p-4 mb-6">
-              <p className="text-red-300">{error}</p>
-            </div>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="bg-red-500/10 backdrop-blur-sm border border-red-500/30 rounded-xl p-4 mb-8"
+            >
+              <p className="text-red-400">{error}</p>
+            </motion.div>
           )}
 
-          <div className="grid lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-1">
-              <div className="bg-zinc-900 rounded-lg p-6 border border-zinc-800 mb-6">
-                <div className="flex items-center space-x-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                    <UserIcon size={32} className="text-white" />
+          <div className="grid lg:grid-cols-3 gap-6">
+            {/* Left Sidebar - User Info & Points */}
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 }}
+              className="lg:col-span-1 space-y-6"
+            >
+              {/* User Profile Card */}
+              <div className="bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-xl">
+                <div className="flex items-center space-x-4 mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-red-500 via-red-600 to-red-700 rounded-full flex items-center justify-center shadow-lg shadow-red-500/30">
+                    <UserIcon size={28} className="text-white" />
                   </div>
-                  <div>
-                    <h2 className="text-2xl font-bold">
+                  <div className="flex-1">
+                    <h2 className="text-xl font-bold">
                       {user.firstName || 'Member'}
                     </h2>
-                    <p className="text-gray-400 text-sm">{user.emailAddresses[0]?.emailAddress}</p>
+                    <p className="text-gray-400 text-sm truncate">{user.emailAddresses[0]?.emailAddress}</p>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-zinc-900 rounded-lg p-6 border border-zinc-800">
-                <div className="bg-black/50 rounded-lg p-4 border border-blue-500/30">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <Wallet className="text-blue-400" size={24} />
-                    <span className="text-gray-400">Available Points</span>
+              {/* Points Wallet Card */}
+              <div className="bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-xl overflow-hidden relative">
+                {/* Decorative elements */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 left-0 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl"></div>
+                
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-2">
+                      <Wallet className="text-blue-400" size={20} />
+                      <span className="text-gray-400 text-sm font-medium">Points Balance</span>
+                    </div>
+                    <TrendingUp className="text-green-400" size={18} />
                   </div>
-                  <div className="text-4xl font-bold text-blue-400 mb-4">
-                    {userPoints?.total_points || 0} pts
+                  
+                  <div className="mb-6">
+                    <div className="text-5xl font-bold bg-gradient-to-r from-blue-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+                      {userPoints?.total_points || 0}
+                    </div>
+                    <p className="text-gray-500 text-sm mt-1">points available</p>
                   </div>
                   
                   {hasPoints && (
-                    <div className="mt-4 space-y-2 max-h-48 overflow-y-auto">
-                      <p className="text-sm text-gray-500 font-semibold">Recent Activity:</p>
-                      {userPoints.points_breakdown.slice(0, 5).map((item, index) => (
-                        <div key={index} className="flex justify-between text-sm border-t border-zinc-800 pt-2">
-                          <span className="text-gray-400 truncate">{item.event}</span>
-                          <span className={item.points > 0 ? 'text-green-400' : 'text-red-400'}>
-                            {item.points > 0 ? '+' : ''}{item.points} pts
-                          </span>
-                        </div>
-                      ))}
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider">Recent Activity</p>
+                        <Calendar size={14} className="text-gray-600" />
+                      </div>
+                      <div className="space-y-2 max-h-56 overflow-y-auto pr-2 custom-scrollbar">
+                        {userPoints.points_breakdown.slice(0, 8).map((item, index) => (
+                          <motion.div 
+                            key={index}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.05 }}
+                            className="flex justify-between items-center bg-black/30 rounded-lg p-3 border border-white/5 hover:border-white/10 transition-colors"
+                          >
+                            <span className="text-gray-300 text-sm truncate flex-1 mr-2">{item.event}</span>
+                            <span className={`font-semibold text-sm whitespace-nowrap ${
+                              item.points > 0 ? 'text-green-400' : 'text-red-400'
+                            }`}>
+                              {item.points > 0 ? '+' : ''}{item.points}
+                            </span>
+                          </motion.div>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="lg:col-span-2">
-              <div className="bg-zinc-900 rounded-lg p-6 border border-zinc-800">
+            {/* Right Content - Order History */}
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 }}
+              className="lg:col-span-2"
+            >
+              <div className="bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-xl">
                 <div className="flex items-center space-x-3 mb-6">
-                  <Package size={24} className="text-blue-400" />
-                  <h3 className="text-2xl font-semibold">Order History</h3>
+                  <div className="p-2 bg-blue-500/10 rounded-lg">
+                    <Package size={24} className="text-blue-400" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold">Order History</h3>
+                    <p className="text-gray-500 text-sm">{orders.length} total orders</p>
+                  </div>
                 </div>
 
                 {orders.length === 0 ? (
-                  <div className="text-center py-12">
-                    <Package size={64} className="mx-auto mb-4 text-gray-600" />
-                    <p className="text-gray-400">No orders yet</p>
-                    <p className="text-sm text-gray-500 mt-2">
+                  <div className="text-center py-16">
+                    <div className="mb-6 relative">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-32 h-32 bg-blue-500/10 rounded-full blur-2xl"></div>
+                      </div>
+                      <ShoppingBag size={72} className="mx-auto text-gray-700 relative z-10" />
+                    </div>
+                    <h4 className="text-xl font-semibold mb-2 text-gray-300">No orders yet</h4>
+                    <p className="text-gray-500 mb-6">
                       Start shopping to see your order history here
                     </p>
+                    <a 
+                      href="/shop"
+                      className="inline-block bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-blue-500/20 hover:border-blue-400/40 text-white px-6 py-3 rounded-lg transition-all duration-200 font-medium shadow-lg shadow-blue-500/5"
+                    >
+                      Browse Products
+                    </a>
                   </div>
                 ) : (
-                  <div className="space-y-4">
-                    {orders.map((order) => (
-                      <div key={order.id} className="border border-zinc-800 rounded-lg p-4 hover:border-zinc-700 transition">
+                  <div className="space-y-3 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
+                    {orders.map((order, idx) => (
+                      <motion.div 
+                        key={order.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: idx * 0.05 }}
+                        className="bg-black/30 border border-white/5 rounded-xl p-5 hover:border-white/10 hover:bg-black/40 transition-all duration-200"
+                      >
                         <div className="flex justify-between items-start mb-3">
-                          <div>
-                            <p className="text-sm text-gray-500">Order #{order.id}</p>
-                            <p className="text-xs text-gray-600 mt-1">
+                          <div className="flex-1">
+                            <div className="flex items-center space-x-3 mb-2">
+                              <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                                order.status === 'completed' ? 'bg-green-500/20 text-green-400 border border-green-500/30' :
+                                order.status === 'pending' ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' :
+                                'bg-red-500/20 text-red-400 border border-red-500/30'
+                              }`}>
+                                {order.status.toUpperCase()}
+                              </span>
+                              <p className="text-sm text-gray-500">Order #{order.id}</p>
+                            </div>
+                            <p className="text-xs text-gray-600 flex items-center">
+                              <Calendar size={12} className="mr-1" />
                               {new Date(order.created_at).toLocaleDateString('en-US', {
                                 year: 'numeric',
-                                month: 'long',
+                                month: 'short',
                                 day: 'numeric',
                                 hour: '2-digit',
                                 minute: '2-digit'
@@ -214,35 +303,51 @@ const Account: React.FC = () => {
                             </p>
                           </div>
                           <div className="text-right">
-                            <p className="text-lg font-semibold text-blue-400">-{order.total_amount} pts</p>
-                            <span className={`text-xs px-2 py-1 rounded-full ${
-                              order.status === 'completed' ? 'bg-green-900/30 text-green-400' :
-                              order.status === 'pending' ? 'bg-yellow-900/30 text-yellow-400' :
-                              'bg-red-900/30 text-red-400'
-                            }`}>
-                              {order.status}
-                            </span>
+                            <p className="text-2xl font-bold text-red-400">-{order.total_amount}</p>
+                            <p className="text-xs text-gray-500">points</p>
                           </div>
                         </div>
+                        
                         {order.items && order.items.length > 0 && (
-                          <div className="space-y-2 mt-3 pt-3 border-t border-zinc-800">
-                            {order.items.map((item: OrderItem, idx: number) => (
-                              <div key={idx} className="flex justify-between text-sm">
-                                <span className="text-gray-400">{item.product?.name || 'Product'} x{item.quantity}</span>
-                                <span className="text-gray-300">{item.price_at_time} pts</span>
+                          <div className="mt-4 pt-4 border-t border-white/5 space-y-2">
+                            {order.items.map((item: OrderItem, itemIdx: number) => (
+                              <div key={itemIdx} className="flex justify-between items-center text-sm">
+                                <div className="flex items-center space-x-2 flex-1">
+                                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                                  <span className="text-gray-300">{item.product?.name || 'Product'}</span>
+                                  <span className="text-gray-600">×{item.quantity}</span>
+                                </div>
+                                <span className="text-gray-400 font-medium">{item.price_at_time} pts</span>
                               </div>
                             ))}
                           </div>
                         )}
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
                 )}
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
+      
+      <style>{`
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: rgba(255, 255, 255, 0.2);
+        }
+      `}</style>
     </>
   );
 };

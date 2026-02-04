@@ -2,6 +2,8 @@ import React from 'react';
 import { ClerkProvider, useUser } from '@clerk/clerk-react';
 import { Outlet } from 'react-router-dom';
 import { AlertCircle } from 'lucide-react';
+import ShopNavbar from './ShopNavbar';
+import LoadingSpinner from '../LoadingSpinner';
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 const ALLOWED_EMAIL_DOMAIN = '@asu.edu';
@@ -17,10 +19,7 @@ const EmailDomainGuard: React.FC<{ children: React.ReactNode }> = ({ children })
   if (!isLoaded) {
     return (
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-          <p className="text-gray-400">Loading...</p>
-        </div>
+        <LoadingSpinner />
       </div>
     );
   }
@@ -87,6 +86,7 @@ const ShopLayout: React.FC = () => {
   return (
     <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
       <EmailDomainGuard>
+        <ShopNavbar />
         <Outlet />
       </EmailDomainGuard>
     </ClerkProvider>

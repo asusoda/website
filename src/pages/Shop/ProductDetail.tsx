@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ShoppingCart, ArrowLeft, Package } from 'lucide-react';
-import ShopNavbar from '../../components/Shop/ShopNavbar';
+import { ShoppingCart, Package } from 'lucide-react';
 import { storefrontAPI, Product } from '../../lib/api';
 import { useCart } from '../../lib/CartContext';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -58,9 +58,8 @@ const ProductDetail: React.FC = () => {
   if (loading) {
     return (
       <>
-        <ShopNavbar />
         <div className="min-h-screen bg-black text-white flex items-center justify-center">
-          <Package className="animate-spin" size={48} />
+          <LoadingSpinner />
         </div>
       </>
     );
@@ -69,11 +68,10 @@ const ProductDetail: React.FC = () => {
   if (error || !product) {
     return (
       <>
-        <ShopNavbar />
         <div className="min-h-screen bg-black text-white flex items-center justify-center">
           <div className="text-center">
             <p className="text-red-400 mb-4">{error || 'Product not found'}</p>
-            <button onClick={() => navigate('/shop')} className="bg-blue-600 px-4 py-2 rounded">
+            <button onClick={() => navigate('/shop')} className="bg-red-500/10 backdrop-blur-xl border border-red-400/20 hover:bg-red-500/20 hover:border-red-400/40 text-white px-4 py-2 rounded">
               Back to Shop
             </button>
           </div>
@@ -87,17 +85,8 @@ const ProductDetail: React.FC = () => {
       <Helmet>
         <title>{product.name} - SoDA Shop</title>
       </Helmet>
-      <ShopNavbar />
-      <div className="min-h-screen bg-black text-white">
+      <div className="min-h-screen bg-black text-white pt-32">
         <div className="container mx-auto px-4 py-8">
-          <button
-            onClick={() => navigate('/shop')}
-            className="flex items-center space-x-2 text-gray-400 hover:text-white mb-6"
-          >
-            <ArrowLeft size={20} />
-            <span>Back to Shop</span>
-          </button>
-
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-zinc-900 rounded-lg overflow-hidden aspect-square">
               {product.image_url ? (
@@ -138,7 +127,7 @@ const ProductDetail: React.FC = () => {
               <button
                 onClick={handleAddToCart}
                 disabled={product.stock === 0}
-                className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white px-8 py-3 rounded-lg flex items-center space-x-2 text-lg"
+                className="bg-red-500/10 backdrop-blur-xl border border-red-400/20 hover:bg-red-500/20 hover:border-red-400/40 disabled:bg-gray-600/10 disabled:border-gray-500/20 text-white px-8 py-3 rounded-lg flex items-center space-x-2 text-lg transition-all duration-200"
               >
                 <ShoppingCart size={24} />
                 <span>{product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}</span>
