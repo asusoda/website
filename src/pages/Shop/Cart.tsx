@@ -40,7 +40,7 @@ const Cart: React.FC = () => {
             <p className="text-gray-400 mb-8">Start shopping to add items to your cart</p>
             <Link
               to="/shop"
-              className="inline-flex items-center space-x-2 bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-red-500/20 hover:border-red-400/40 text-white px-8 py-3 rounded-lg transition-all duration-200 font-medium shadow-lg"
+              className="inline-flex items-center space-x-2 bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-blue-500/20 hover:border-blue-400/40 text-white font-semibold px-10 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/10 text-lg"
             >
               <span>Browse Products</span>
               <ArrowRight size={18} />
@@ -176,7 +176,7 @@ const Cart: React.FC = () => {
                 </div>
                 <button
                   onClick={() => navigate('/shop/checkout')}
-                  className="w-full bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-red-500/20 hover:border-red-400/40 text-white py-4 rounded-xl font-semibold text-lg transition-all duration-200 shadow-lg hover:shadow-red-500/10 mb-4"
+                  className="w-full bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-blue-500/20 hover:border-blue-400/40 text-white font-semibold py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/10 text-lg mb-4"
                 >
                   Proceed to Checkout
                 </button>

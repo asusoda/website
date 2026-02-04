@@ -71,7 +71,7 @@ const ProductDetail: React.FC = () => {
         <div className="min-h-screen bg-black text-white flex items-center justify-center">
           <div className="text-center">
             <p className="text-red-400 mb-4">{error || 'Product not found'}</p>
-            <button onClick={() => navigate('/shop')} className="bg-red-500/10 backdrop-blur-xl border border-red-400/20 hover:bg-red-500/20 hover:border-red-400/40 text-white px-4 py-2 rounded">
+            <button onClick={() => navigate('/shop')} className="bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-blue-500/20 hover:border-blue-400/40 text-white font-semibold px-10 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/10 text-lg">
               Back to Shop
             </button>
           </div>
@@ -127,7 +127,7 @@ const ProductDetail: React.FC = () => {
               <button
                 onClick={handleAddToCart}
                 disabled={product.stock === 0}
-                className="bg-red-500/10 backdrop-blur-xl border border-red-400/20 hover:bg-red-500/20 hover:border-red-400/40 disabled:bg-gray-600/10 disabled:border-gray-500/20 text-white px-8 py-3 rounded-lg flex items-center space-x-2 text-lg transition-all duration-200"
+                className="bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-blue-500/20 hover:border-blue-400/40 disabled:bg-gray-600/10 disabled:border-gray-500/20 disabled:cursor-not-allowed disabled:hover:scale-100 text-white font-semibold px-10 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/10 text-lg flex items-center justify-center space-x-2"
               >
                 <ShoppingCart size={24} />
                 <span>{product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}</span>

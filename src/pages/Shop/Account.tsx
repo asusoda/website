@@ -264,7 +264,7 @@ const Account: React.FC = () => {
                     </p>
                     <a 
                       href="/shop"
-                      className="inline-block bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-blue-500/20 hover:border-blue-400/40 text-white px-6 py-3 rounded-lg transition-all duration-200 font-medium shadow-lg shadow-blue-500/5"
+                      className="inline-block bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-blue-500/20 hover:border-blue-400/40 text-white font-semibold px-10 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/10 text-lg"
                     >
                       Browse Products
                     </a>

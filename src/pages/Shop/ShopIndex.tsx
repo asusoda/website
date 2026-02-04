@@ -53,7 +53,7 @@ const ShopIndex: React.FC = () => {
             <p className="text-red-400 mb-6 text-lg">Error: {error}</p>
             <button
               onClick={() => window.location.reload()}
-              className="bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-red-500/20 hover:border-red-400/40 text-white px-6 py-3 rounded-lg transition-all duration-200 font-medium"
+              className="bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-blue-500/20 hover:border-blue-400/40 text-white font-semibold px-10 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/10 text-lg"
             >
               Retry
             </button>
@@ -299,7 +299,7 @@ const ShopIndex: React.FC = () => {
                         {product.name}
                       </h3>
                       <div className="flex items-baseline space-x-2">
-                        <span className="text-3xl font-bold text-red-400">
+                        <span className="text-3xl font-bold text-blue-400">
                           {product.price}
                         </span>
                         <span className="text-gray-500 text-sm">points</span>

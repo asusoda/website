@@ -205,7 +205,7 @@ const Checkout: React.FC = () => {
           <button
             onClick={handlePlaceOrder}
             disabled={loading || !hasEnoughPoints}
-            className="w-full bg-red-500/10 backdrop-blur-xl border border-red-400/20 hover:bg-red-500/20 hover:border-red-400/40 disabled:bg-gray-600/10 disabled:border-gray-500/20 disabled:cursor-not-allowed text-white py-4 rounded-lg font-semibold text-lg transition-all duration-200"
+            className="w-full bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-blue-500/20 hover:border-blue-400/40 disabled:bg-gray-600/10 disabled:border-gray-500/20 disabled:cursor-not-allowed disabled:hover:scale-100 text-white font-semibold py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/10 text-lg"
           >
             {loading ? 'Processing...' : !hasEnoughPoints ? 'Insufficient Points' : 'Place Order'}
           </button>
