@@ -256,22 +256,10 @@ const ShopIndex: React.FC = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {products.map((product, idx) => {
-                const randomDelay = Math.random() * 2;
                 return (
-                <motion.div
+                <div
                   key={product.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                  transition={{ 
-                    delay: isInView ? idx * 0.05 : 0,
-                    duration: 0.5,
-                    ease: [0.22, 1, 0.36, 1]
-                  }}
                   className="bg-zinc-900/90 backdrop-blur-xl rounded-xl overflow-hidden transition-all duration-300 shadow-xl hover:shadow-red-500/20 group cursor-pointer border border-zinc-800"
-                  style={{
-                    ['--animation-delay' as any]: `${randomDelay}s`,
-                    animationDelay: `${randomDelay}s`
-                  }}
                 >
                   <Link to={`/shop/product/${product.id}`} className="block">
                     <div className="aspect-square bg-zinc-800/50 relative overflow-hidden">
@@ -314,7 +302,7 @@ const ShopIndex: React.FC = () => {
                       </div>
                     </div>
                   </Link>
-                </motion.div>
+                </div>
                 );
               })}
             </div>

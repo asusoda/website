@@ -20,6 +20,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
   videoUrl = 'https://framerusercontent.com/assets/sRXQsZpCuTpukMUfotGcRUuvg.mp4', // Default video
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
     if (slides.length <= 1) return;
@@ -44,7 +45,9 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
           loop
           muted
           playsInline
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover opacity-40"
+          onLoadedData={() => setVideoLoaded(true)}
+          style={{ opacity: videoLoaded ? 0.4 : 0, transition: 'opacity 0.3s ease-in' }}
         >
           <source src={videoUrl} type="video/mp4" />
         </video>
