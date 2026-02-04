@@ -258,14 +258,14 @@ const ShopIndex: React.FC = () => {
               {products.map((product, idx) => (
                 <motion.div
                   key={product.id}
-                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                  animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.95 }}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                   transition={{ 
                     delay: isInView ? idx * 0.05 : 0,
                     duration: 0.5,
                     ease: [0.22, 1, 0.36, 1]
                   }}
-                  className="bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 backdrop-blur-xl rounded-xl overflow-hidden border border-white/10 hover:border-red-500 transition-all duration-300 shadow-xl hover:shadow-red-500/20 group cursor-pointer"
+                  className="bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 backdrop-blur-xl rounded-xl overflow-hidden border border-white/10 transition-all duration-300 shadow-xl hover:shadow-red-500/20 group cursor-pointer"
                 >
                   <Link to={`/shop/product/${product.id}`} className="block">
                     <div className="aspect-square bg-zinc-800/50 relative overflow-hidden">
