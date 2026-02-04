@@ -107,7 +107,7 @@ const Cart: React.FC = () => {
 
                   <div className="flex-1 min-w-0">
                     <h3 className="text-lg font-bold mb-1 truncate">{item.product.name}</h3>
-                    <p className="text-red-400 font-semibold">{item.product.price} pts each</p>
+                    <p className="text-blue-400 font-semibold">{item.product.price} pts each</p>
                   </div>
 
                   <div className="flex items-center space-x-2 bg-black/30 rounded-lg p-2">
@@ -131,7 +131,7 @@ const Cart: React.FC = () => {
 
                   <div className="text-right">
                     <p className="text-sm text-gray-500 mb-1">Subtotal</p>
-                    <p className="text-xl font-bold text-red-400">{item.product.price * item.quantity}</p>
+                    <p className="text-xl font-bold text-blue-400">{item.product.price * item.quantity}</p>
                     <p className="text-xs text-gray-500">pts</p>
                   </div>
 
@@ -170,7 +170,7 @@ const Cart: React.FC = () => {
                   </div>
                   <div className="flex justify-between text-2xl font-bold border-t border-white/10 pt-4">
                     <span>Total</span>
-                    <span className="text-red-400">{getCartTotal()}</span>
+                    <span className="text-blue-400">{getCartTotal()}</span>
                   </div>
                   <p className="text-xs text-gray-500 text-right">points</p>
                 </div>

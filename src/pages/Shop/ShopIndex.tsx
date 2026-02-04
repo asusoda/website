@@ -280,12 +280,20 @@ const ShopIndex: React.FC = () => {
                           src={product.image_url}
                           alt={product.name}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                            const fallback = e.currentTarget.nextElementSibling;
+                            if (fallback) fallback.classList.remove('hidden');
+                          }}
                         />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center">
-                          <Package size={64} className="text-gray-600" />
-                        </div>
-                      )}
+                      ) : null}
+                      <div className={`w-full h-full flex items-center justify-center ${product.image_url ? 'hidden' : ''}`}>
+                        <img 
+                          src="/teddy-laptop.webp" 
+                          alt={product.name}
+                          className="w-full h-full object-cover opacity-60"
+                        />
+                      </div>
                       {product.stock < 10 && (
                         <div className="absolute top-3 right-3 bg-red-500 text-white text-xs px-3 py-1 rounded-full font-semibold shadow-lg">
                           Only {product.stock} left
