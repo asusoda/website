@@ -8,10 +8,6 @@ import { IoLogoFreebsdDevil } from "react-icons/io";
 //Edit any changes to the SoDA URLs here
 //Icons can be found at: https://react-icons.github.io/react-icons/
 const socialMediaLinks = [
-  // {
-  //   href: "https://thesoda.io/",
-  //   icon: <CgWebsite className="hover:text-soda-red" />,
-  // },
   {
     href: "https://sundevilcentral.eoss.asu.edu/feeds?type=club&type_id=35661&tab=about",
     icon: <IoLogoFreebsdDevil className="hover:text-gray-300" />,

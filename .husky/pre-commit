@@ -1,3 +1,4 @@
+#!/usr/bin/env sh
 pnpm run lint
 pnpm run format:check
 pnpm run test
