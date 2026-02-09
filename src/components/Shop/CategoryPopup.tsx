@@ -65,7 +65,7 @@ export const CategoryPopup: React.FC<CategoryPopupProps> = ({
               <div className="flex-1 overflow-y-auto p-3 md:p-4 lg:p-6">
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-3 lg:gap-4">
                   {products.map((product) => (
-                    <div key={product.id} className="transform scale-75 sm:scale-85 md:scale-90 lg:scale-95 xl:scale-100">
+                    <div key={product.id} className="transform scale-75 sm:scale-[0.85] md:scale-90 lg:scale-95 xl:scale-100">
                       <ProductCard product={product} />
                     </div>
                   ))}
