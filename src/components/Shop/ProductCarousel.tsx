@@ -45,7 +45,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
           loop
           muted
           playsInline
-          className="w-full h-full object-cover opacity-60"
+          className="w-full h-full object-cover"
           onLoadedData={() => setVideoLoaded(true)}
           style={{ opacity: videoLoaded ? 0.4 : 0, transition: 'opacity 0.3s ease-in' }}
         >

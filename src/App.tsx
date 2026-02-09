@@ -25,31 +25,37 @@ import Account from "./pages/Shop/Account";
 function App() {
   return (
     <HelmetProvider>
-      <CartProvider>
-        <Router>
-          <ScrollToTop />
-          <Routes>
-            {/* Shop routes - wrapped with ClerkProvider via ShopLayout */}
-            <Route path="/shop" element={<ShopLayout />}>
-              <Route index element={<ShopIndex />} />
-              <Route path="product/:id" element={<ProductDetail />} />
-              <Route path="cart" element={<Cart />} />
-              <Route path="checkout" element={<Checkout />} />
-              <Route path="account" element={<Account />} />
-            </Route>
+      <Router>
+        <ScrollToTop />
+        <Routes>
+          {/* Shop routes - wrapped with ClerkProvider and CartProvider via ShopLayout */}
+          <Route
+            path="/shop"
+            element={
+              <CartProvider>
+                <ShopLayout />
+              </CartProvider>
+            }
+          >
+            <Route index element={<ShopIndex />} />
+            <Route path="product/:id" element={<ProductDetail />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="checkout" element={<Checkout />} />
+            <Route path="account" element={<Account />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
 
-            {/* Main site routes - wrapped with navbar/footer via MainLayout */}
-            <Route element={<MainLayout />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/mentorship" element={<Mentorship />} />
-              <Route path="/sodapop" element={<PointsSystem />} />
-              <Route path="/leaderboard" element={<Leaderboard />} />
-              <Route path="/apply" element={<Positions />} />
-              <Route path="*" element={<NotFound />} />
-            </Route>
-          </Routes>
-        </Router>
-      </CartProvider>
+          {/* Main site routes - wrapped with navbar/footer via MainLayout */}
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/mentorship" element={<Mentorship />} />
+            <Route path="/sodapop" element={<PointsSystem />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
+            <Route path="/apply" element={<Positions />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </Router>
     </HelmetProvider>
   );
 }

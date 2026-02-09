@@ -42,7 +42,7 @@ const EmailDomainGuard: React.FC<{ children: React.ReactNode }> = ({ children })
                 You are currently signed in with:
               </p>
               <p className="text-white font-mono text-sm break-all">
-                {primaryEmail}
+                {primaryEmail.toLowerCase()}
               </p>
             </div>
             <p className="text-yellow-400 font-semibold mb-2">

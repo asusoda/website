@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Package } from 'lucide-react';
 import { Product } from '../../../lib/api';
@@ -9,29 +9,31 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const [hasImageError, setHasImageError] = useState(false);
+  const hasValidImage = !!product.image_url && !hasImageError;
+
   return (
     <div className="bg-zinc-900/90 backdrop-blur-xl rounded-lg md:rounded-xl overflow-hidden transition-all duration-300 shadow-xl hover:shadow-red-500/20 group cursor-pointer border border-zinc-800">
       <Link to={`/shop/product/${product.id}`} className="block">
         <div className="aspect-square bg-zinc-800/50 relative overflow-hidden">
-          {product.image_url ? (
+          {hasValidImage ? (
             <img
               src={product.image_url}
               alt={product.name}
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-                const fallback = e.currentTarget.nextElementSibling;
-                if (fallback) fallback.classList.remove('hidden');
+              onError={() => {
+                setHasImageError(true);
               }}
             />
-          ) : null}
-          <div className={`w-full h-full flex items-center justify-center ${product.image_url ? 'hidden' : ''}`}>
-            <img 
-              src={FALLBACK_IMAGES.product}
-              alt={product.name}
-              className="w-full h-full object-cover opacity-60"
-            />
-          </div>
+          ) : (
+            <div className="w-full h-full flex items-center justify-center">
+              <img 
+                src={FALLBACK_IMAGES.product}
+                alt={product.name}
+                className="w-full h-full object-cover opacity-60"
+              />
+            </div>
+          )}
           {product.stock < 10 && (
             <div className="absolute top-2 right-2 md:top-3 md:right-3 bg-red-500 text-white text-xs px-2 py-0.5 md:px-3 md:py-1 rounded-full font-semibold shadow-lg">
               Only {product.stock} left

@@ -59,11 +59,17 @@ export const CategoryLayout: React.FC<CategoryLayoutProps> = ({ products }) => {
   // Filter products by category
   const categorizedProducts = categories.map(category => ({
     ...category,
-    products: products.filter(p => 
-      category.keywords.some(keyword => 
-        p.name.toLowerCase().includes(keyword.toLowerCase())
-      )
-    ),
+    products: products.filter(p => {
+      const productNameLower = p.name.toLowerCase();
+      return category.keywords.some(keyword => {
+        const keywordLower = keyword.toLowerCase();
+        // Escape special regex characters to avoid unexpected behavior
+        const escapedKeyword = keywordLower.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        // Use word boundaries to avoid false positives
+        const regex = new RegExp(`\\b${escapedKeyword}\\b`, 'i');
+        return regex.test(productNameLower);
+      });
+    }),
   }));
 
   // Separate vertical and horizontal categories

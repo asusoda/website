@@ -67,6 +67,7 @@ const Checkout: React.FC = () => {
       // Check if user has enough points
       if (userPoints < total) {
         setError(`Insufficient points. You have ${userPoints} points but need ${total} points.`);
+        setLoading(false);
         return;
       }
 
@@ -82,8 +83,9 @@ const Checkout: React.FC = () => {
 
       // Get Clerk auth token
       const token = await getToken();
-      if (!token) {
+      if (!token || token.trim() === '') {
         setError('Authentication failed. Please sign in again.');
+        setLoading(false);
         return;
       }
 
@@ -99,7 +101,18 @@ const Checkout: React.FC = () => {
         navigate('/shop/account');
       }, 2000);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to place order');
+      // Check if it's an APIError with specific status code
+      if (err instanceof APIError) {
+        if (err.status === 404) {
+          setError(ERROR_MESSAGES.NO_POINTS_RECORD);
+        } else if (err.status === 409) {
+          setError('Order could not be processed. This might be a duplicate order.');
+        } else {
+          setError(err.message || 'Failed to place order');
+        }
+      } else {
+        setError(err instanceof Error ? err.message : 'Failed to place order');
+      }
     } finally {
       setLoading(false);
     }
@@ -124,6 +137,12 @@ const Checkout: React.FC = () => {
 
   const total = getCartTotal();
   const hasEnoughPoints = userPoints >= total;
+
+  const getButtonText = () => {
+    if (loading) return 'Processing...';
+    if (!hasEnoughPoints) return 'Insufficient Points';
+    return 'Place Order';
+  };
 
   return (
     <>
@@ -188,7 +207,7 @@ const Checkout: React.FC = () => {
             <div className="flex justify-between items-center mt-2">
               <span className="text-gray-300">After Purchase:</span>
               <span className={`text-xl font-bold ${hasEnoughPoints ? 'text-green-400' : 'text-red-400'}`}>
-                {userPoints - total} pts
+                {hasEnoughPoints ? userPoints - total : 0} pts
               </span>
             </div>
           </div>
@@ -207,7 +226,7 @@ const Checkout: React.FC = () => {
             disabled={loading || !hasEnoughPoints}
             className="w-full bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-blue-500/20 hover:border-blue-400/40 disabled:bg-gray-600/10 disabled:border-gray-500/20 disabled:cursor-not-allowed disabled:hover:scale-100 text-white font-semibold py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/10 text-lg"
           >
-            {loading ? 'Processing...' : !hasEnoughPoints ? 'Insufficient Points' : 'Place Order'}
+            {getButtonText()}
           </button>
 
           {!hasEnoughPoints && (

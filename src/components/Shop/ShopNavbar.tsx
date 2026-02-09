@@ -30,7 +30,8 @@ const ShopNavbar: React.FC = () => {
           width: "60px", 
         }}
         animate={{ 
-          width: isExpanded ? "min(calc(100vw - 2rem), 80rem)" : "60px", 
+          width: isExpanded ? "min(calc(100vw - 2rem), 80rem)" : "60px",
+          minWidth: isExpanded ? "320px" : "60px",
         }}
         transition={{ 
           width: {
@@ -62,7 +63,7 @@ const ShopNavbar: React.FC = () => {
                 className="h-6 md:h-7 w-auto"
               />
             </Link>
-            <Link to="/shop" className="text-white font-semibold text-base md:text-lg px-2 md:px-3 py-1 rounded sports-hover bg-clip-text text-transparent">
+            <Link to="/shop" className="text-white font-semibold text-base md:text-lg px-2 md:px-3 py-1 rounded sports-hover">
               Shop
             </Link>
           </div>
