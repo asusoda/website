@@ -32,6 +32,11 @@ export const OrderCard: React.FC<OrderCardProps> = ({ order, index = 0 }) => {
             <Calendar size={12} className="mr-1" />
             {formatDateTime(order.created_at)}
           </p>
+          {order.message && (
+            <p className="text-xs text-gray-400 mt-2 italic">
+              {order.message}
+            </p>
+          )}
         </div>
         <div className="text-right">
           <p className="text-2xl font-bold text-blue-400">-{order.total_amount}</p>
