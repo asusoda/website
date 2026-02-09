@@ -82,7 +82,6 @@ const Cart: React.FC = () => {
             {/* Cart Items */}
             <div className="lg:col-span-2 space-y-4">
               {cart.map((item, idx) => {
-                const randomDelay = Math.random() * 2;
                 return (
                 <motion.div
                   key={item.product.id}

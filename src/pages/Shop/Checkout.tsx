@@ -53,7 +53,7 @@ const Checkout: React.FC = () => {
     };
 
     fetchUserPoints();
-  }, [cart, navigate, isSignedIn, isLoaded, user]);
+  }, [cart, navigate, isSignedIn, isLoaded, user, getToken]);
 
   const handlePlaceOrder = async () => {
     if (!user) return;

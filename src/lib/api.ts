@@ -128,9 +128,10 @@ export const storefrontAPI = {
     apiRequest<Product>(`/api/storefront/${ORG_PREFIX}/products/${id}`),
 
   // Get member store (requires auth)
-  getMemberStore: () =>
+  getMemberStore: (authToken?: string) =>
     apiRequest<{ products: Product[]; user_info: any; organization: any }>(
-      `/api/storefront/${ORG_PREFIX}/members/store`
+      `/api/storefront/${ORG_PREFIX}/members/store`,
+      authToken ? { authToken } : {}
     ),
 
   // Get user's orders (requires auth)
