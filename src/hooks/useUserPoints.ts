@@ -51,7 +51,7 @@ export const useUserPoints = () => {
 
   useEffect(() => {
     fetchPoints();
-  }, [isSignedIn, user]);
+  }, [isSignedIn, user, getToken]);
 
   return { userPoints, loading, error, refetch: fetchPoints };
 };
