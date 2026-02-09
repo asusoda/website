@@ -7,6 +7,7 @@ import { GlitchText } from '../../components/GlitchText';
 import { CategoryLayout } from '../../components/Shop/CategoryLayout';
 import { useProducts } from '../../hooks/useProducts';
 import { motion, useInView } from 'framer-motion';
+import LoadingSpinner from '../../components/LoadingSpinner';
 import './styles/scrolling-text.css';
 
 const ShopIndex: React.FC = () => {
@@ -65,7 +66,14 @@ const ShopIndex: React.FC = () => {
           
           {/* Scroll indicator */}
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
-            <svg className="w-8 h-8 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg 
+              className="w-8 h-8 text-white/60" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+              aria-label="Scroll down"
+              role="img"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </div>
@@ -93,7 +101,11 @@ const ShopIndex: React.FC = () => {
             </motion.div>
 
             {/* Products Grid */}
-            {products.length === 0 ? (
+            {loading ? (
+              <div className="flex items-center justify-center py-20">
+                <LoadingSpinner />
+              </div>
+            ) : products.length === 0 ? (
               <EmptyState
                 icon={Package}
                 title="No products available"

@@ -84,7 +84,7 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
   return (
     <motion.div 
       ref={ref}
-      className="relative group overflow-hidden rounded-xl md:rounded-3xl lg:rounded-[3rem] cursor-pointer" 
+      className="relative group overflow-hidden rounded-[2rem] md:rounded-[3rem] cursor-pointer" 
       style={{ 
         minHeight: orientation === 'vertical' ? minHeight : '140px',
         boxShadow: `0 0 25px 6px ${getShadowColor()}, 0 0 40px 10px ${getShadowColor().replace('0.6', '0.15')}`

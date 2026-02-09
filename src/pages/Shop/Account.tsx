@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Package, Wallet, User as UserIcon, ShoppingBag, TrendingUp, Calendar } from 'lucide-react';
 import { useUser } from '@clerk/clerk-react';
 import { OrderCard } from '../../components/Shop/OrderCard';
-import { EmptyState } from '../../components/Shop/EmptyState';
+
 import { useUserPoints } from '../../hooks/useUserPoints';
 import { useUserOrders } from '../../hooks/useUserOrders';
 import { motion } from 'framer-motion';

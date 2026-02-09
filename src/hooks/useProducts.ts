@@ -10,7 +10,7 @@ export const useProducts = () => {
     try {
       setLoading(true);
       const data = await storefrontAPI.getProducts();
-      setProducts(data.filter((p) => p.stock > 0));
+      setProducts(data);
       setError(null);
     } catch (err) {
       console.error('Failed to fetch products:', err);

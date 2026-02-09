@@ -81,8 +81,7 @@ const Cart: React.FC = () => {
           <div className="grid lg:grid-cols-3 gap-6">
             {/* Cart Items */}
             <div className="lg:col-span-2 space-y-4">
-              {cart.map((item, idx) => {
-                return (
+              {cart.map((item, idx) => (
                 <motion.div
                   key={item.product.id}
                   initial={{ opacity: 0, x: -20 }}

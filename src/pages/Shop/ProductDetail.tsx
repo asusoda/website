@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ShoppingCart, Package } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import { storefrontAPI, Product } from '../../lib/api';
 import { useCart } from '../../lib/CartContext';
 import LoadingSpinner from '../../components/LoadingSpinner';
@@ -13,6 +13,7 @@ const ProductDetail: React.FC = () => {
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [hasImageError, setHasImageError] = useState(false);
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -26,7 +27,7 @@ const ProductDetail: React.FC = () => {
       }
 
       const numericId = Number(id);
-      if (!Number.isFinite(numericId)) {
+      if (!Number.isInteger(numericId) || numericId <= 0) {
         setProduct(null);
         setError('Product not found');
         setLoading(false);
@@ -89,25 +90,24 @@ const ProductDetail: React.FC = () => {
         <div className="container mx-auto px-4 py-8">
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-zinc-900 rounded-lg overflow-hidden aspect-square">
-              {product.image_url ? (
+              {product.image_url && !hasImageError ? (
                 <img 
                   src={product.image_url} 
                   alt={product.name} 
                   className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                    const fallback = e.currentTarget.nextElementSibling;
-                    if (fallback) fallback.classList.remove('hidden');
+                  onError={() => {
+                    setHasImageError(true);
                   }}
                 />
-              ) : null}
-              <div className={`w-full h-full flex items-center justify-center ${product.image_url ? 'hidden' : ''}`}>
-                <img 
-                  src="/teddy-laptop.webp" 
-                  alt={product.name}
-                  className="w-full h-full object-cover opacity-60"
-                />
-              </div>
+              ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                  <img 
+                    src="/teddy-laptop.webp" 
+                    alt={product.name}
+                    className="w-full h-full object-cover opacity-60"
+                  />
+                </div>
+              )}
             </div>
 
             <div>

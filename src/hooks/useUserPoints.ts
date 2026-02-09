@@ -22,6 +22,8 @@ export const useUserPoints = () => {
   const fetchPoints = async () => {
     if (!isSignedIn || !user?.emailAddresses?.[0]?.emailAddress) {
       setLoading(false);
+      setUserPoints(null);
+      setError(null);
       return;
     }
 
@@ -44,6 +46,7 @@ export const useUserPoints = () => {
       } else {
         setError(err instanceof Error ? err.message : 'Failed to load points balance');
       }
+      setUserPoints(null);
     } finally {
       setLoading(false);
     }

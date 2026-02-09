@@ -1,6 +1,6 @@
 // API configuration and helper functions
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api.thesoda.io';
-const ORG_PREFIX = 'soda'; // Hardcoded to SoDA for now
+const ORG_PREFIX = import.meta.env.VITE_ORG_PREFIX || 'soda'; // Default to SoDA, configurable via env
 
 // Custom error class to preserve HTTP status
 export class APIError extends Error {
@@ -16,7 +16,7 @@ export class APIError extends Error {
 
 // Shared error messages
 export const ERROR_MESSAGES = {
-  NO_POINTS_RECORD: 'No points record found for your account. Please ensure you are using your ASURITE email (e.g., asriv132@asu.edu) and not an email alias. If you continue to experience issues, contact support for assistance.',
+  NO_POINTS_RECORD: 'No points record found for your account. Please ensure you are using your ASU email address ending in @asu.edu (e.g., asriv132@asu.edu) and not an email alias. If you continue to experience issues, contact support for assistance.',
 };
 
 export interface Product {
