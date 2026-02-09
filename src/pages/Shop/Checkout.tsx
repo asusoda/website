@@ -83,7 +83,7 @@ const Checkout: React.FC = () => {
 
       // Get Clerk auth token
       const token = await getToken();
-      if (!token) {
+      if (!token || token.trim() === '') {
         setError('Authentication failed. Please sign in again.');
         setLoading(false);
         return;

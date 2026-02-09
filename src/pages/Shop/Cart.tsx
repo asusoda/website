@@ -141,8 +141,7 @@ const Cart: React.FC = () => {
                     <Trash2 size={20} />
                   </button>
                 </motion.div>
-                );
-              })}
+              ))}
 
               <button
                 onClick={clearCart}
