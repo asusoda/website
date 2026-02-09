@@ -63,7 +63,7 @@ const ShopNavbar: React.FC = () => {
                 className="h-6 md:h-7 w-auto"
               />
             </Link>
-            <Link to="/shop" className="text-white font-semibold text-base md:text-lg px-2 md:px-3 py-1 rounded sports-hover">
+            <Link to="/shop" className="text-white font-semibold text-base md:text-lg px-2 md:px-3 py-1 rounded hover:bg-white/10 transition-colors">
               Shop
             </Link>
           </div>
@@ -72,14 +72,14 @@ const ShopNavbar: React.FC = () => {
           <div className="hidden lg:flex items-center space-x-1 absolute left-1/2 -translate-x-1/2">
             <Link
               to="/shop"
-              className="px-4 py-2 rounded sports-hover bg-clip-text text-transparent font-medium"
+              className="px-4 py-2 rounded hover:bg-white/10 transition-colors bg-clip-text text-transparent font-medium"
             >
               Products
             </Link>
             {isSignedIn && (
               <Link
                 to="/shop/account"
-                className="px-4 py-2 rounded sports-hover bg-clip-text text-transparent font-medium"
+                className="px-4 py-2 rounded hover:bg-white/10 transition-colors bg-clip-text text-transparent font-medium"
               >
                 My Orders
               </Link>
@@ -91,7 +91,7 @@ const ShopNavbar: React.FC = () => {
             {/* Cart */}
             <Link
               to="/shop/cart"
-              className="relative p-1.5 md:p-2 rounded sports-hover inline-block"
+              className="relative p-1.5 md:p-2 rounded hover:bg-white/10 transition-colors inline-block"
               aria-label={`Cart (${getCartItemCount()} items)`}
             >
               <ShoppingCart size={20} className="text-white md:w-[22px] md:h-[22px]" />
@@ -107,7 +107,7 @@ const ShopNavbar: React.FC = () => {
               <div className="flex items-center space-x-1 md:space-x-2">
                 <Link
                   to="/shop/account"
-                  className="flex items-center space-x-1 md:space-x-2 px-2 md:px-3 py-2 rounded sports-hover"
+                  className="flex items-center space-x-1 md:space-x-2 px-2 md:px-3 py-2 rounded hover:bg-white/10 transition-colors"
                 >
                   <User size={18} className="text-white md:w-5 md:h-5" />
                   <span className="hidden xl:block text-sm text-white">
@@ -116,7 +116,7 @@ const ShopNavbar: React.FC = () => {
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="p-1.5 md:p-2 rounded sports-hover"
+                  className="p-1.5 md:p-2 rounded hover:bg-white/10 transition-colors"
                   title="Logout"
                 >
                   <LogOut size={16} className="text-white md:w-[18px] md:h-[18px]" />
@@ -124,7 +124,7 @@ const ShopNavbar: React.FC = () => {
               </div>
             ) : (
               <SignInButton mode="modal">
-                <button className="bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 text-white px-3 md:px-5 py-1.5 md:py-2 rounded-lg font-medium text-xs md:text-sm shadow-lg shadow-blue-500/5 sports-hover">
+                <button className="bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 text-white px-3 md:px-5 py-1.5 md:py-2 rounded-lg font-medium text-xs md:text-sm shadow-lg shadow-blue-500/5 hover:bg-blue-500/20 hover:border-blue-400/30 transition-colors">
                   Sign In
                 </button>
               </SignInButton>

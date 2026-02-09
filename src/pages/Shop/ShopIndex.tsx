@@ -12,7 +12,7 @@ import './styles/scrolling-text.css';
 
 const ShopIndex: React.FC = () => {
   const { products, loading, error } = useProducts();
-  const productsRef = useRef<HTMLDivElement | null>(null);
+  const productsRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(productsRef, { once: true, amount: 0.1, margin: "0px 0px -100px 0px" });
 
   if (error) {

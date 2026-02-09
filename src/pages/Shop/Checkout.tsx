@@ -55,6 +55,22 @@ const Checkout: React.FC = () => {
     fetchUserPoints();
   }, [cart, navigate, isSignedIn, isLoaded, user, getToken]);
 
+  // Render-time guard: prevent rendering checkout UI before auth check
+  if (!isLoaded) {
+    return (
+      <div className="min-h-screen bg-black text-white flex items-center justify-center pt-24">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mx-auto mb-4"></div>
+          <p className="text-gray-400">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isSignedIn || cart.length === 0) {
+    return null; // Will redirect via useEffect
+  }
+
   const handlePlaceOrder = async () => {
     if (!user) return;
 
