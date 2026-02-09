@@ -97,12 +97,9 @@ const Checkout: React.FC = () => {
       clearCart();
 
       // Redirect to account page after 2 seconds
-      const timeoutId = setTimeout(() => {
+      setTimeout(() => {
         navigate('/shop/account');
       }, 2000);
-
-      // Cleanup function is not needed here as navigation will unmount the component
-      return () => clearTimeout(timeoutId);
     } catch (err) {
       // Check if it's an APIError with specific status code
       if (err instanceof APIError) {
@@ -140,6 +137,12 @@ const Checkout: React.FC = () => {
 
   const total = getCartTotal();
   const hasEnoughPoints = userPoints >= total;
+
+  const getButtonText = () => {
+    if (loading) return 'Processing...';
+    if (!hasEnoughPoints) return 'Insufficient Points';
+    return 'Place Order';
+  };
 
   return (
     <>
@@ -223,7 +226,7 @@ const Checkout: React.FC = () => {
             disabled={loading || !hasEnoughPoints}
             className="w-full bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-blue-500/20 hover:border-blue-400/40 disabled:bg-gray-600/10 disabled:border-gray-500/20 disabled:cursor-not-allowed disabled:hover:scale-100 text-white font-semibold py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/10 text-lg"
           >
-            {loading ? 'Processing...' : hasEnoughPoints ? 'Place Order' : 'Insufficient Points'}
+            {getButtonText()}
           </button>
 
           {!hasEnoughPoints && (

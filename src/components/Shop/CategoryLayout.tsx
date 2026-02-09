@@ -63,8 +63,10 @@ export const CategoryLayout: React.FC<CategoryLayoutProps> = ({ products }) => {
       const productNameLower = p.name.toLowerCase();
       return category.keywords.some(keyword => {
         const keywordLower = keyword.toLowerCase();
+        // Escape special regex characters to avoid unexpected behavior
+        const escapedKeyword = keywordLower.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         // Use word boundaries to avoid false positives
-        const regex = new RegExp(`\\b${keywordLower}\\b`, 'i');
+        const regex = new RegExp(`\\b${escapedKeyword}\\b`, 'i');
         return regex.test(productNameLower);
       });
     }),
