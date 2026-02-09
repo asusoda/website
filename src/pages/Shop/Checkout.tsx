@@ -35,10 +35,22 @@ const Checkout: React.FC = () => {
       try {
         const email = user?.emailAddresses?.[0]?.emailAddress;
         const token = await getToken();
-        if (email && token) {
-          const data = await pointsAPI.getUserPoints(email, token);
-          setUserPoints(data.total_points || 0);
+
+        // Treat missing email or token as an explicit error state
+        if (!email) {
+          setError('Unable to determine your account email. Please sign out and sign back in.');
+          setUserPoints(0);
+          return;
         }
+
+        if (!token) {
+          setError('Unable to verify your session. Please refresh the page or sign in again.');
+          setUserPoints(0);
+          return;
+        }
+
+        const data = await pointsAPI.getUserPoints(email, token);
+        setUserPoints(data.total_points || 0);
       } catch (err) {
         console.error('Failed to fetch user points:', err);
         
