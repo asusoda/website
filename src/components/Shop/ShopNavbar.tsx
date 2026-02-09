@@ -72,14 +72,14 @@ const ShopNavbar: React.FC = () => {
           <div className="hidden lg:flex items-center space-x-1 absolute left-1/2 -translate-x-1/2">
             <Link
               to="/shop"
-              className="px-4 py-2 rounded hover:bg-white/10 transition-colors bg-clip-text text-transparent font-medium"
+              className="px-4 py-2 rounded hover:bg-white/10 transition-colors text-white font-medium"
             >
               Products
             </Link>
             {isSignedIn && (
               <Link
                 to="/shop/account"
-                className="px-4 py-2 rounded hover:bg-white/10 transition-colors bg-clip-text text-transparent font-medium"
+                className="px-4 py-2 rounded hover:bg-white/10 transition-colors text-white font-medium"
               >
                 My Orders
               </Link>
