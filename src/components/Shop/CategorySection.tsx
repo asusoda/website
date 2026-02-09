@@ -25,7 +25,7 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
   minHeight = '250px',
   onExpand,
 }) => {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   if (products.length === 0) return null;
