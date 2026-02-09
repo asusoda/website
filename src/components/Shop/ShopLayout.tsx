@@ -27,8 +27,29 @@ const EmailDomainGuard: React.FC<{ children: React.ReactNode }> = ({ children })
   // If signed in, check email domain
   if (isSignedIn && user) {
     const primaryEmail = user.primaryEmailAddress?.emailAddress;
-    
-    if (primaryEmail && !primaryEmail.toLowerCase().endsWith(ALLOWED_EMAIL_DOMAIN.toLowerCase())) {
+    const allowedDomain = ALLOWED_EMAIL_DOMAIN.toLowerCase();
+
+    // Fail closed: if we cannot determine a primary email, do not allow access
+    if (!primaryEmail) {
+      return (
+        <div className="min-h-screen bg-black text-white flex items-center justify-center px-4">
+          <div className="max-w-md text-center">
+            <AlertCircle size={64} className="mx-auto mb-6 text-red-400" />
+            <h1 className="text-3xl font-bold mb-4">Access Restricted</h1>
+            <p className="text-gray-300 mb-4">
+              The SoDA Shop is only available to ASU students and members with a valid ASURITE email.
+            </p>
+            <p className="text-sm text-gray-400 mb-6">
+              We could not determine a primary email address for your account. Please ensure your
+              account has an <span className="text-blue-400 font-mono">@asu.edu</span> email associated
+              as the primary email and try again.
+            </p>
+          </div>
+        </div>
+      );
+    }
+
+    if (!primaryEmail.toLowerCase().endsWith(allowedDomain)) {
       return (
         <div className="min-h-screen bg-black text-white flex items-center justify-center px-4">
           <div className="max-w-md text-center">
