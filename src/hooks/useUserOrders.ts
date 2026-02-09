@@ -36,7 +36,7 @@ export const useUserOrders = () => {
 
   useEffect(() => {
     fetchOrders();
-  }, [isSignedIn, user]);
+  }, [isSignedIn, user, getToken]);
 
   return { orders, loading, error, refetch: fetchOrders };
 };
