@@ -25,7 +25,6 @@ function NavbarSection() {
     { name: "Team", id_href: "/#team" },
     { name: "Leaderboard", id_href: "/leaderboard" },
     { name: "ASU CS Wiki", id_href: "https://wiki.thesoda.io", icon: "external" },
-    // Shop uses a different navbar and page styling but is still part of this site
     { name: "Shop", id_href: "/shop" },
   ];
 
