@@ -11,6 +11,8 @@ export const useUserOrders = () => {
 
   const fetchOrders = async () => {
     if (!isSignedIn || !user?.emailAddresses?.[0]?.emailAddress) {
+      setOrders([]);
+      setError(null);
       setLoading(false);
       return;
     }
