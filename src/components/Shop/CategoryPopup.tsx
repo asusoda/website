@@ -41,20 +41,20 @@ export const CategoryPopup: React.FC<CategoryPopupProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="fixed inset-4 md:inset-8 lg:inset-20 xl:inset-24 z-50 overflow-hidden rounded-3xl md:rounded-[3rem]"
+            className="fixed inset-x-4 top-20 bottom-4 sm:inset-x-6 sm:top-24 sm:bottom-6 md:inset-x-8 md:top-24 md:bottom-8 lg:inset-x-16 lg:top-28 lg:bottom-12 xl:inset-x-20 xl:top-28 xl:bottom-16 z-50 overflow-hidden rounded-2xl md:rounded-3xl lg:rounded-[3rem]"
           >
             <div className={`absolute inset-0 bg-gradient-to-br ${color}`}></div>
             
             <div className="relative h-full flex flex-col">
               {/* Header */}
-              <div className="flex items-center justify-between p-6 md:p-8 border-b border-white/20">
-                <div className="text-center flex-1">
-                  <h2 className="text-3xl md:text-5xl font-bold text-white mb-2">{name}</h2>
-                  <p className="text-white/80 text-base md:text-lg max-w-2xl mx-auto">{description}</p>
+              <div className="flex items-start justify-between p-4 md:p-6 lg:p-8 border-b border-white/20">
+                <div className="text-left flex-1 pr-2">
+                  <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-1 md:mb-2">{name}</h2>
+                  <p className="text-white/80 text-sm md:text-base lg:text-lg max-w-2xl">{description}</p>
                 </div>
                 <button
                   onClick={onClose}
-                  className="ml-4 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-2 md:p-3 transition-colors"
+                  className="flex-shrink-0 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-2 md:p-3 transition-colors"
                   aria-label="Close popup"
                 >
                   <X className="w-5 h-5 md:w-6 md:h-6 text-white" />
@@ -62,10 +62,12 @@ export const CategoryPopup: React.FC<CategoryPopupProps> = ({
               </div>
               
               {/* Products Grid */}
-              <div className="flex-1 overflow-y-auto p-6 md:p-8">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+              <div className="flex-1 overflow-y-auto p-3 md:p-4 lg:p-6">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-3 lg:gap-4">
                   {products.map((product) => (
-                    <ProductCard key={product.id} product={product} />
+                    <div key={product.id} className="transform scale-75 sm:scale-85 md:scale-90 lg:scale-95 xl:scale-100">
+                      <ProductCard product={product} />
+                    </div>
                   ))}
                 </div>
               </div>

@@ -74,7 +74,7 @@ const ShopIndex: React.FC = () => {
 
         {/* Products Section - Full Screen Snap */}
         <div className="snap-section bg-black relative z-20 overflow-y-auto">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 md:pt-32 pb-8" ref={productsRef}>
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-20 md:pt-32 pb-8" ref={productsRef}>
             {/* Header */}
             <motion.div 
               id="products" 
@@ -83,14 +83,14 @@ const ShopIndex: React.FC = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <h1 className="text-4xl md:text-5xl font-bold mb-3">
+              <h1 className="text-3xl md:text-5xl font-bold mb-2 md:mb-3">
                 <GlitchText 
                   text="SoDA Shop" 
                   className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent"
                   trigger={isInView}
                 />
               </h1>
-              <p className="text-gray-400 text-base md:text-lg">Browse our collection of exclusive merchandise</p>
+              <p className="text-gray-400 text-sm md:text-lg">Browse our collection of exclusive merchandise</p>
             </motion.div>
 
             {/* Products Grid */}

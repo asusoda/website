@@ -78,9 +78,9 @@ export const CategoryLayout: React.FC<CategoryLayoutProps> = ({ products }) => {
 
   return (
     <>
-      <div className={`${shouldShowBottlesColumn ? 'flex flex-col lg:flex-row gap-6 md:gap-10' : 'w-full'} max-w-6xl mx-auto`}>
+      <div className={`${shouldShowBottlesColumn ? 'flex flex-col lg:flex-row gap-10 md:gap-12 lg:gap-14' : 'w-full'} max-w-6xl mx-auto`}>
         {/* Left/Main Column - Horizontal sections */}
-        <div className={`${shouldShowBottlesColumn ? 'flex-1 space-y-6 md:space-y-10' : 'w-full space-y-6 md:space-y-10'}`}>
+        <div className={`${shouldShowBottlesColumn ? 'flex-1 space-y-10 md:space-y-12 lg:space-y-14' : 'w-full space-y-10 md:space-y-12 lg:space-y-14'}`}>
           {horizontalCategories.map((category) => (
             <CategorySection
               key={category.name}
@@ -123,7 +123,7 @@ export const CategoryLayout: React.FC<CategoryLayoutProps> = ({ products }) => {
         ))}
 
         {/* Mobile version of vertical sections */}
-        <div className="lg:hidden space-y-6 md:space-y-10">
+        <div className="lg:hidden space-y-10 md:space-y-12">
           {verticalCategories.map((category) => (
             <CategorySection
               key={`${category.name}-mobile`}

@@ -39,7 +39,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
   return (
     <>
       {/* Video Background - extends behind navbar and through header */}
-      <div className="fixed top-0 left-0 right-0 h-[90vw] pointer-events-none z-0">
+      <div className="fixed top-0 left-0 right-0 h-[100vh] md:h-[90vw] pointer-events-none z-0">
         <video
           autoPlay
           loop
@@ -59,10 +59,10 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
       </div>
 
       {/* Carousel Content */}
-      <div className="relative w-full h-[400px] md:h-[500px] z-10 pt-32">
+      <div className="relative w-full h-[350px] md:h-[450px] lg:h-[500px] z-10 pt-24 md:pt-32">
         {/* Animated Text Content */}
         <div className="relative z-10 h-full flex items-center">
-          <div className="container mx-auto px-8 md:px-16">
+          <div className="container mx-auto px-4 md:px-8 lg:px-16">
             <div className="max-w-3xl">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -74,7 +74,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
                 >
                   {currentSlide.subtitle && (
                     <motion.p 
-                      className="text-blue-400 font-semibold text-sm md:text-base uppercase tracking-wider mb-3"
+                      className="text-blue-400 font-semibold text-xs md:text-sm lg:text-base uppercase tracking-wider mb-2 md:mb-3"
                       initial={{ opacity: 0, x: -40 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
@@ -83,7 +83,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
                     </motion.p>
                   )}
                   <motion.h2 
-                    className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-3 leading-tight"
+                    className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-bold text-white mb-2 md:mb-3 leading-tight"
                     initial={{ opacity: 0, x: -50, rotateX: -15 }}
                     animate={{ opacity: 1, x: 0, rotateX: 0 }}
                     transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
@@ -92,7 +92,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
                   </motion.h2>
                   {currentSlide.description && (
                     <motion.p 
-                      className="text-gray-300 text-lg md:text-2xl mb-10 max-w-2xl"
+                      className="text-gray-300 text-sm md:text-lg lg:text-2xl mb-6 md:mb-10 max-w-2xl"
                       initial={{ opacity: 0, x: -40 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
@@ -106,7 +106,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
             {/* Static CTA Button */}
             <a
               href="#products"
-              className="inline-block bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-blue-500/20 hover:border-blue-400/40 text-white font-semibold px-10 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/10 text-lg"
+              className="inline-block bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-blue-500/20 hover:border-blue-400/40 text-white font-semibold px-6 py-3 md:px-10 md:py-4 rounded-lg md:rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/10 text-sm md:text-base lg:text-lg"
             >
               Shop Now
             </a>

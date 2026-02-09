@@ -84,9 +84,9 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
   return (
     <motion.div 
       ref={ref}
-      className="relative group overflow-hidden rounded-[3rem] md:rounded-[3rem] rounded-[2rem] cursor-pointer" 
+      className="relative group overflow-hidden rounded-xl md:rounded-3xl lg:rounded-[3rem] cursor-pointer" 
       style={{ 
-        minHeight: orientation === 'vertical' ? minHeight : '160px',
+        minHeight: orientation === 'vertical' ? minHeight : '140px',
         boxShadow: `0 0 25px 6px ${getShadowColor()}, 0 0 40px 10px ${getShadowColor().replace('0.6', '0.15')}`
       }}
       onClick={onExpand}
@@ -114,27 +114,27 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
         </div>
       </motion.div>
 
-      {/* Expand Button */}
+      {/* Expand Button - Visible on mobile, hover on desktop */}
       <button
         onClick={(e) => {
           e.stopPropagation();
           onExpand();
         }}
-        className="absolute top-4 right-4 md:top-6 md:right-6 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-1.5 md:p-2"
+        className="absolute top-3 right-3 md:top-4 md:right-4 lg:top-6 lg:right-6 z-20 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-2"
         aria-label={`Expand ${title} section`}
       >
-        <Maximize2 className="w-3 h-3 md:w-4 md:h-4 text-white" />
+        <Maximize2 className="w-4 h-4 md:w-5 md:h-5 text-white" />
       </button>
 
-      {/* Hover View - Product Cards */}
-      <div className="relative z-10 p-4 md:p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out pointer-events-none group-hover:pointer-events-auto">
-        <div className={`grid gap-3 md:gap-4 pt-6 md:pt-8 ${
+      {/* Product Cards - Always visible on mobile, hover on desktop */}
+      <div className="relative z-10 p-3 md:p-4 lg:p-6 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 ease-in-out md:pointer-events-none md:group-hover:pointer-events-auto">
+        <div className={`grid gap-2 md:gap-3 lg:gap-4 pt-4 md:pt-6 lg:pt-8 ${
           orientation === 'vertical' 
             ? 'grid-cols-1' 
-            : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3'
+            : 'grid-cols-2 lg:grid-cols-3'
         }`}>
-          {products.map((product) => (
-            <div key={product.id} className="scale-90" onClick={(e) => e.stopPropagation()}>
+          {products.slice(0, orientation === 'vertical' ? 3 : 6).map((product) => (
+            <div key={product.id} className="md:scale-90" onClick={(e) => e.stopPropagation()}>
               <ProductCard product={product} />
             </div>
           ))}
