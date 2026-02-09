@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Package } from 'lucide-react';
 import ProductCarousel, { CarouselSlide } from '../../components/Shop/ProductCarousel';
-import { ProductCard } from '../../components/Shop/ProductCard';
 import { EmptyState } from '../../components/Shop/EmptyState';
 import { GlitchText } from '../../components/GlitchText';
 import { CategoryLayout } from '../../components/Shop/CategoryLayout';
