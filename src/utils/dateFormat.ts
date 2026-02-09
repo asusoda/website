@@ -41,8 +41,18 @@ export const formatRelativeTime = (dateString: string) => {
   const now = new Date();
   const diffMs = now.getTime() - date.getTime();
   
-  // Handle future dates
+  // Handle future dates explicitly
   if (diffMs < 0) {
+    const absDiffMs = Math.abs(diffMs);
+    const futureMins = Math.floor(absDiffMs / 60000);
+    const futureHours = Math.floor(absDiffMs / 3600000);
+    const futureDays = Math.floor(absDiffMs / 86400000);
+    
+    if (futureMins < 1) return 'in less than a minute';
+    if (futureMins < 60) return `in ${futureMins} minute${futureMins > 1 ? 's' : ''}`;
+    if (futureHours < 24) return `in ${futureHours} hour${futureHours > 1 ? 's' : ''}`;
+    if (futureDays < 7) return `in ${futureDays} day${futureDays > 1 ? 's' : ''}`;
+    
     return formatDate(dateString);
   }
   
