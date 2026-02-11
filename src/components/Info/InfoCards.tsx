@@ -16,9 +16,7 @@ class InfoCards extends Component {
             <div key={id} className="Card rounded-card">
               <div className="card-content">
                 <div className="card-header">{title}</div>
-                <div className="card-description">
-                  {content.map((element) => element)}
-                </div>
+                <div className="card-description">{content.map((element) => element)}</div>
                 <br />
                 <button className="card-button">{button}</button>
               </div>

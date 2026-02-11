@@ -1,7 +1,7 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import NavbarSection from './Navigation/Navbar';
-import Footer from './Footer/Footer';
+import React from "react";
+import { Outlet } from "react-router-dom";
+import NavbarSection from "./Navigation/Navbar";
+import Footer from "./Footer/Footer";
 
 /**
  * MainLayout wraps all main site routes with the navbar and footer.

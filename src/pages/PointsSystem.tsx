@@ -45,15 +45,18 @@ export default function PointsSystem() {
       {/* Helmet for SEO */}
       <Helmet>
         <title>SoDA PoP</title>
-        <meta name="description" content="Explore ASU Soda's Distinguished Members Program, designed to reward active members with perks, career growth, and exclusive opportunities." />
-        <meta name="keywords" content="Distinguished Members Program, ASU Soda, Points System, Active Participation, Member Rewards, Member Perks, Member Benefits, computer science, CS, software development" />
+        <meta
+          name="description"
+          content="Explore ASU Soda's Distinguished Members Program, designed to reward active members with perks, career growth, and exclusive opportunities."
+        />
+        <meta
+          name="keywords"
+          content="Distinguished Members Program, ASU Soda, Points System, Active Participation, Member Rewards, Member Perks, Member Benefits, computer science, CS, software development"
+        />
       </Helmet>
 
       <div className="prose lg:prose-xl prose-invert prose-th:border prose-td:border prose-th:border-neutral-300 prose-td:border-neutral-300 prose-th:p-2 prose-td:p-2">
-        <ReactMarkdown
-          children={markdownContent}
-          remarkPlugins={[remarkGfm]}
-        />
+        <ReactMarkdown children={markdownContent} remarkPlugins={[remarkGfm]} />
       </div>
     </div> // Add the missing closing tag for the main container div
   );

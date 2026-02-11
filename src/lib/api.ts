@@ -1,6 +1,6 @@
 // API configuration and helper functions
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api.thesoda.io';
-const ORG_PREFIX = import.meta.env.VITE_ORG_PREFIX || 'soda'; // Default to SoDA, configurable via env
+const API_BASE_URL = import.meta.env.VITE_API_URL || "https://api.thesoda.io";
+const ORG_PREFIX = import.meta.env.VITE_ORG_PREFIX || "soda"; // Default to SoDA, configurable via env
 
 // Custom error class to preserve HTTP status
 export class APIError extends Error {
@@ -10,13 +10,14 @@ export class APIError extends Error {
     public endpoint: string
   ) {
     super(message);
-    this.name = 'APIError';
+    this.name = "APIError";
   }
 }
 
 // Shared error messages
 export const ERROR_MESSAGES = {
-  NO_POINTS_RECORD: 'No points record found for your account. Please ensure you are using your ASU email address ending in @asu.edu (e.g., asriv132@asu.edu) and not an email alias. If you continue to experience issues, contact support for assistance.',
+  NO_POINTS_RECORD:
+    "No points record found for your account. Please ensure you are using your ASU email address ending in @asu.edu (e.g., asriv132@asu.edu) and not an email alias. If you continue to experience issues, contact support for assistance.",
 };
 
 export interface Product {
@@ -74,18 +75,16 @@ export interface PointsRecord {
   timestamp: string;
 }
 
-
-
 // API helper function
 async function apiRequest<T>(
   endpoint: string,
   options: RequestInit & { authToken?: string } = {}
 ): Promise<T> {
   const { authToken: requestAuthToken, headers: optionHeaders, ...fetchOptions } = options;
-  
+
   // Start with default headers; caller-provided headers will override these.
   const headers = new Headers({
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   });
 
   // Merge any existing headers from fetchOptions, supporting all HeadersInit types
@@ -98,7 +97,7 @@ async function apiRequest<T>(
 
   // Use provided token (from Clerk)
   if (requestAuthToken) {
-    headers.set('Authorization', `Bearer ${requestAuthToken}`);
+    headers.set("Authorization", `Bearer ${requestAuthToken}`);
   }
 
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
@@ -107,12 +106,8 @@ async function apiRequest<T>(
   });
 
   if (!response.ok) {
-    const error = await response.json().catch(() => ({ error: 'Unknown error' }));
-    throw new APIError(
-      error.error || `HTTP ${response.status}`,
-      response.status,
-      endpoint
-    );
+    const error = await response.json().catch(() => ({ error: "Unknown error" }));
+    throw new APIError(error.error || `HTTP ${response.status}`, response.status, endpoint);
   }
 
   return response.json();
@@ -121,23 +116,24 @@ async function apiRequest<T>(
 // Storefront API functions
 export const storefrontAPI = {
   // Get all products (public)
-  getProducts: () =>
-    apiRequest<Product[]>(`/api/storefront/${ORG_PREFIX}/products`),
+  getProducts: () => apiRequest<Product[]>(`/api/storefront/${ORG_PREFIX}/products`),
 
   // Get single product (public)
-  getProduct: (id: number) =>
-    apiRequest<Product>(`/api/storefront/${ORG_PREFIX}/products/${id}`),
+  getProduct: (id: number) => apiRequest<Product>(`/api/storefront/${ORG_PREFIX}/products/${id}`),
 
   // Get member store (requires auth)
   getMemberStore: (authToken?: string) =>
-    apiRequest<{ products: Product[]; user_info: Record<string, unknown>; organization: Record<string, unknown> }>(
-      `/api/storefront/${ORG_PREFIX}/members/store`,
-      authToken ? { authToken } : {}
-    ),
+    apiRequest<{
+      products: Product[];
+      user_info: Record<string, unknown>;
+      organization: Record<string, unknown>;
+    }>(`/api/storefront/${ORG_PREFIX}/members/store`, authToken ? { authToken } : {}),
 
   // Get user's orders (requires auth)
   getOrders: (userEmail: string, authToken: string) =>
-    apiRequest<Order[]>(`/api/storefront/${ORG_PREFIX}/orders/${encodeURIComponent(userEmail)}`, { authToken }),
+    apiRequest<Order[]>(`/api/storefront/${ORG_PREFIX}/orders/${encodeURIComponent(userEmail)}`, {
+      authToken,
+    }),
 
   // Create order (requires auth) - using Clerk auth
   createOrder: (
@@ -150,7 +146,7 @@ export const storefrontAPI = {
     apiRequest<{ message: string; id: number; points_deducted: number; order: Order }>(
       `/api/storefront/${ORG_PREFIX}/checkout`,
       {
-        method: 'POST',
+        method: "POST",
         body: JSON.stringify(orderData),
         authToken,
       }
@@ -165,24 +161,18 @@ export const pointsAPI = {
       email: string;
       total_points: number;
       points_breakdown: PointsRecord[];
-    }>(`/api/storefront/${ORG_PREFIX}/wallet/${encodeURIComponent(userEmail)}`, { 
-      method: 'GET',
-      authToken 
+    }>(`/api/storefront/${ORG_PREFIX}/wallet/${encodeURIComponent(userEmail)}`, {
+      method: "GET",
+      authToken,
     }),
 
   // Member login (creates or links account)
-  memberLogin: (userData: {
-    name: string;
-    email?: string;
-    username?: string;
-    asu_id?: string;
-  }) =>
+  memberLogin: (userData: { name: string; email?: string; username?: string; asu_id?: string }) =>
     apiRequest<{ message: string; user: User; organization: unknown }>(
       `/api/points/${ORG_PREFIX}/member_login`,
       {
-        method: 'POST',
+        method: "POST",
         body: JSON.stringify(userData),
       }
     ),
 };
-

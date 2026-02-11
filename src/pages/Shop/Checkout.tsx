@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
-import { CheckCircle, AlertCircle } from 'lucide-react';
-import { useUser, useAuth } from '@clerk/clerk-react';
-import { useCart } from '../../lib/CartContext';
-import { storefrontAPI, pointsAPI, APIError, ERROR_MESSAGES } from '../../lib/api';
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { CheckCircle, AlertCircle } from "lucide-react";
+import { useUser, useAuth } from "@clerk/clerk-react";
+import { useCart } from "../../lib/CartContext";
+import { storefrontAPI, pointsAPI, APIError, ERROR_MESSAGES } from "../../lib/api";
 
 const Checkout: React.FC = () => {
   const navigate = useNavigate();
@@ -17,18 +17,19 @@ const Checkout: React.FC = () => {
   const { isSignedIn, user, isLoaded } = useUser();
   const { getToken } = useAuth();
   const redirectTimeoutRef = useRef<number | null>(null);
-  const primaryEmail = user?.primaryEmailAddress?.emailAddress || user?.emailAddresses?.[0]?.emailAddress;
+  const primaryEmail =
+    user?.primaryEmailAddress?.emailAddress || user?.emailAddresses?.[0]?.emailAddress;
 
   useEffect(() => {
     if (!isLoaded) return;
-    
+
     if (!isSignedIn) {
-      navigate('/shop/account');
+      navigate("/shop/account");
       return;
     }
 
     if (!success && cart.length === 0) {
-      navigate('/shop/cart');
+      navigate("/shop/cart");
       return;
     }
   }, [cart.length, navigate, isSignedIn, isLoaded, success]);
@@ -46,13 +47,13 @@ const Checkout: React.FC = () => {
 
         // Treat missing email or token as an explicit error state
         if (!email) {
-          setError('Unable to determine your account email. Please sign out and sign back in.');
+          setError("Unable to determine your account email. Please sign out and sign back in.");
           setUserPoints(0);
           return;
         }
 
         if (!token) {
-          setError('Unable to verify your session. Please refresh the page or sign in again.');
+          setError("Unable to verify your session. Please refresh the page or sign in again.");
           setUserPoints(0);
           return;
         }
@@ -61,13 +62,13 @@ const Checkout: React.FC = () => {
         setUserPoints(data.total_points || 0);
         setError(null);
       } catch (err) {
-        console.error('Failed to fetch user points:', err);
-        
+        console.error("Failed to fetch user points:", err);
+
         // Check if it's a 404 or user not found error
         if (err instanceof APIError && err.status === 404) {
           setError(ERROR_MESSAGES.NO_POINTS_RECORD);
         } else {
-          setError('Failed to load your points balance. Please try again or contact support.');
+          setError("Failed to load your points balance. Please try again or contact support.");
         }
         setUserPoints(0);
       }
@@ -128,8 +129,8 @@ const Checkout: React.FC = () => {
 
       // Get Clerk auth token
       const token = await getToken();
-      if (!token || token.trim() === '') {
-        setError('Authentication failed. Please sign in again.');
+      if (!token || token.trim() === "") {
+        setError("Authentication failed. Please sign in again.");
         setLoading(false);
         return;
       }
@@ -147,7 +148,7 @@ const Checkout: React.FC = () => {
       }
 
       redirectTimeoutRef.current = window.setTimeout(() => {
-        navigate('/shop/account');
+        navigate("/shop/account");
       }, 2000);
     } catch (err) {
       // Check if it's an APIError with specific status code
@@ -155,12 +156,12 @@ const Checkout: React.FC = () => {
         if (err.status === 404) {
           setError(ERROR_MESSAGES.NO_POINTS_RECORD);
         } else if (err.status === 409) {
-          setError('Order could not be processed. This might be a duplicate order.');
+          setError("Order could not be processed. This might be a duplicate order.");
         } else {
-          setError(err.message || 'Failed to place order');
+          setError(err.message || "Failed to place order");
         }
       } else {
-        setError(err instanceof Error ? err.message : 'Failed to place order');
+        setError(err instanceof Error ? err.message : "Failed to place order");
       }
     } finally {
       setLoading(false);
@@ -188,9 +189,9 @@ const Checkout: React.FC = () => {
   const hasEnoughPoints = userPoints >= total;
 
   const getButtonText = () => {
-    if (loading) return 'Processing...';
-    if (!hasEnoughPoints) return 'Insufficient Points';
-    return 'Place Order';
+    if (loading) return "Processing...";
+    if (!hasEnoughPoints) return "Insufficient Points";
+    return "Place Order";
   };
 
   return (
@@ -201,22 +202,14 @@ const Checkout: React.FC = () => {
       <div className="min-h-screen bg-black text-white pt-24 relative overflow-hidden">
         {/* Teddy image in bottom left background */}
         <div className="fixed bottom-0 left-0 w-48 md:w-64 lg:w-80 opacity-15 pointer-events-none z-0">
-          <img 
-            src="/teddy-laptop.webp" 
-            alt="Teddy bear decoration" 
-            className="w-full h-auto"
-          />
+          <img src="/teddy-laptop.webp" alt="Teddy bear decoration" className="w-full h-auto" />
         </div>
-        
+
         {/* Soda can image in bottom right background */}
         <div className="fixed bottom-0 right-0 w-48 md:w-64 lg:w-80 opacity-15 pointer-events-none z-0">
-          <img 
-            src="/soda-can.webp" 
-            alt="Soda can decoration" 
-            className="w-full h-auto"
-          />
+          <img src="/soda-can.webp" alt="Soda can decoration" className="w-full h-auto" />
         </div>
-        
+
         <div className="container mx-auto px-4 py-8 max-w-2xl relative z-10">
           <h1 className="text-4xl font-bold mb-8">Checkout</h1>
 
@@ -255,7 +248,9 @@ const Checkout: React.FC = () => {
             </div>
             <div className="flex justify-between items-center mt-2">
               <span className="text-gray-300">After Purchase:</span>
-              <span className={`text-xl font-bold ${hasEnoughPoints ? 'text-green-400' : 'text-red-400'}`}>
+              <span
+                className={`text-xl font-bold ${hasEnoughPoints ? "text-green-400" : "text-red-400"}`}
+              >
                 {hasEnoughPoints ? userPoints - total : 0} pts
               </span>
             </div>

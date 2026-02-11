@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { CartItem, Product } from './api';
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { CartItem, Product } from "./api";
 
 interface CartContextType {
   cart: CartItem[];
@@ -16,7 +16,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const useCart = () => {
   const context = useContext(CartContext);
   if (!context) {
-    throw new Error('useCart must be used within CartProvider');
+    throw new Error("useCart must be used within CartProvider");
   }
   return context;
 };
@@ -24,7 +24,7 @@ export const useCart = () => {
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [cart, setCart] = useState<CartItem[]>(() => {
     try {
-      const savedCart = localStorage.getItem('shop_cart');
+      const savedCart = localStorage.getItem("shop_cart");
       if (!savedCart) {
         return [];
       }
@@ -32,7 +32,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       return Array.isArray(parsed) ? parsed : [];
     } catch {
       try {
-        localStorage.removeItem('shop_cart');
+        localStorage.removeItem("shop_cart");
       } catch {
         // ignore storage errors
       }
@@ -41,7 +41,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   });
 
   useEffect(() => {
-    localStorage.setItem('shop_cart', JSON.stringify(cart));
+    localStorage.setItem("shop_cart", JSON.stringify(cart));
   }, [cart]);
 
   const addToCart = (product: Product, quantity = 1) => {

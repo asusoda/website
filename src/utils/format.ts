@@ -1,7 +1,7 @@
 // Number and currency formatting utilities
 
 export const formatPoints = (points: number): string => {
-  return points.toLocaleString('en-US');
+  return points.toLocaleString("en-US");
 };
 
 export const formatPrice = (price: number): string => {

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Product } from '../../../lib/api';
-import { FALLBACK_IMAGES } from '../../../constants/shop';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Product } from "../../../lib/api";
+import { FALLBACK_IMAGES } from "../../../constants/shop";
 
 interface ProductCardProps {
   product: Product;
@@ -20,7 +20,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               src={product.image_url}
               alt={product.name}
               className={`w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ${
-                product.stock === 0 ? 'grayscale' : ''
+                product.stock === 0 ? "grayscale" : ""
               }`}
               onError={() => {
                 setHasImageError(true);
@@ -28,11 +28,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center">
-              <img 
+              <img
                 src={FALLBACK_IMAGES.product}
                 alt={product.name}
                 className={`w-full h-full object-cover opacity-60 ${
-                  product.stock === 0 ? 'grayscale' : ''
+                  product.stock === 0 ? "grayscale" : ""
                 }`}
               />
             </div>
@@ -44,10 +44,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 Coming Soon
               </span>
             </div>
-          ) : product.stock < 10 && (
-            <div className="absolute top-2 right-2 md:top-3 md:right-3 bg-red-500 text-white text-xs px-2 py-0.5 md:px-3 md:py-1 rounded-full font-semibold shadow-lg">
-              Only {product.stock} left
-            </div>
+          ) : (
+            product.stock < 10 && (
+              <div className="absolute top-2 right-2 md:top-3 md:right-3 bg-red-500 text-white text-xs px-2 py-0.5 md:px-3 md:py-1 rounded-full font-semibold shadow-lg">
+                Only {product.stock} left
+              </div>
+            )
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </div>
@@ -57,9 +59,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             {product.name}
           </h3>
           <div className="flex items-baseline space-x-1.5 md:space-x-2">
-            <span className="text-2xl md:text-3xl font-bold text-blue-400">
-              {product.price}
-            </span>
+            <span className="text-2xl md:text-3xl font-bold text-blue-400">{product.price}</span>
             <span className="text-gray-500 text-xs md:text-sm">points</span>
           </div>
         </div>

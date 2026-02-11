@@ -188,14 +188,11 @@ function SponsorsMarquee() {
   }, []);
 
   return (
-    <section
-      id="sponsors"
-      className="flex w-full flex-col items-center gap-8 px-0 text-center"
-    >
+    <section id="sponsors" className="flex w-full flex-col items-center gap-8 px-0 text-center">
       <h2 className="section-header-text">Sponsors</h2>
       <p className="max-w-2xl text-sm text-gray-400 md:text-base">
-        We&apos;re grateful for the partners who support our members with
-        mentorship, workshops, and recruiting opportunities.
+        We&apos;re grateful for the partners who support our members with mentorship, workshops, and
+        recruiting opportunities.
       </p>
       <div
         ref={containerRef}
@@ -220,15 +217,9 @@ function SponsorsMarquee() {
               className="flex h-full min-h-[120px] w-44 items-center justify-center px-8 py-6 opacity-70 transition-opacity duration-300 hover:opacity-100 focus-visible:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-soda-blue md:min-h-[160px] md:w-56"
             >
               {Icon ? (
-                <Icon
-                  className="h-16 w-16 text-soda-white md:h-20 md:w-20"
-                />
+                <Icon className="h-16 w-16 text-soda-white md:h-20 md:w-20" />
               ) : (
-                <img
-                  src={src}
-                  alt={label}
-                  className="h-16 w-auto object-contain md:h-20"
-                />
+                <img src={src} alt={label} className="h-16 w-auto object-contain md:h-20" />
               )}
             </a>
           ))}

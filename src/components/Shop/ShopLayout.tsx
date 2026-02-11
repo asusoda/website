@@ -1,13 +1,13 @@
-import React from 'react';
-import { ClerkProvider, useUser, useClerk } from '@clerk/clerk-react';
-import { Outlet } from 'react-router-dom';
-import { AlertCircle } from 'lucide-react';
-import { motion } from 'framer-motion';
-import ShopNavbar from './ShopNavbar';
-import LoadingSpinner from '../LoadingSpinner';
+import React from "react";
+import { ClerkProvider, useUser, useClerk } from "@clerk/clerk-react";
+import { Outlet } from "react-router-dom";
+import { AlertCircle } from "lucide-react";
+import { motion } from "framer-motion";
+import ShopNavbar from "./ShopNavbar";
+import LoadingSpinner from "../LoadingSpinner";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
-const ALLOWED_EMAIL_DOMAIN = '@asu.edu';
+const ALLOWED_EMAIL_DOMAIN = "@asu.edu";
 
 /**
  * EmailDomainGuard checks if the signed-in user has an @asu.edu email.
@@ -20,7 +20,7 @@ const EmailDomainGuard: React.FC<{ children: React.ReactNode }> = ({ children })
   // Still loading user data
   if (!isLoaded) {
     return (
-      <motion.div 
+      <motion.div
         className="min-h-screen bg-black text-white flex items-center justify-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -44,17 +44,18 @@ const EmailDomainGuard: React.FC<{ children: React.ReactNode }> = ({ children })
             <AlertCircle size={64} className="mx-auto mb-6 text-red-400" />
             <h1 className="text-3xl font-bold mb-4">Access Restricted</h1>
             <p className="text-gray-300 mb-4">
-              The SoDA Shop is only available to ASU students and members with a valid ASURITE email.
+              The SoDA Shop is only available to ASU students and members with a valid ASURITE
+              email.
             </p>
             <p className="text-sm text-gray-400 mb-6">
               We could not determine a primary email address for your account. Please ensure your
-              account has an <span className="text-blue-400 font-mono">@asu.edu</span> email associated
-              as the primary email and try again.
+              account has an <span className="text-blue-400 font-mono">@asu.edu</span> email
+              associated as the primary email and try again.
             </p>
             <button
               type="button"
               onClick={() => {
-                void signOut({ redirectUrl: '/shop' });
+                void signOut({ redirectUrl: "/shop" });
               }}
               className="bg-red-500/10 backdrop-blur-xl border border-red-400/20 hover:bg-red-500/20 hover:border-red-400/40 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300"
             >
@@ -75,12 +76,8 @@ const EmailDomainGuard: React.FC<{ children: React.ReactNode }> = ({ children })
               The SoDA Shop is only available to ASU students and members.
             </p>
             <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4 mb-6">
-              <p className="text-sm text-gray-400 mb-2">
-                You are currently signed in with:
-              </p>
-              <p className="text-white font-mono text-sm break-all">
-                {primaryEmail.toLowerCase()}
-              </p>
+              <p className="text-sm text-gray-400 mb-2">You are currently signed in with:</p>
+              <p className="text-white font-mono text-sm break-all">{primaryEmail.toLowerCase()}</p>
             </div>
             <p className="text-yellow-400 font-semibold mb-2">
               Please sign up with your ASURITE email
@@ -91,7 +88,7 @@ const EmailDomainGuard: React.FC<{ children: React.ReactNode }> = ({ children })
             <button
               type="button"
               onClick={() => {
-                void signOut({ redirectUrl: '/shop' });
+                void signOut({ redirectUrl: "/shop" });
               }}
               className="mt-6 bg-red-500/10 backdrop-blur-xl border border-red-400/20 hover:bg-red-500/20 hover:border-red-400/40 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300"
             >

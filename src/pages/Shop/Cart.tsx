@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
-import { Trash2, Plus, Minus, ShoppingBag, ArrowRight } from 'lucide-react';
-import { useCart } from '../../lib/CartContext';
-import { motion } from 'framer-motion';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { Trash2, Plus, Minus, ShoppingBag, ArrowRight } from "lucide-react";
+import { useCart } from "../../lib/CartContext";
+import { motion } from "framer-motion";
 
 const Cart: React.FC = () => {
   const navigate = useNavigate();
@@ -18,14 +18,10 @@ const Cart: React.FC = () => {
         <div className="min-h-screen bg-black text-white flex items-center justify-center pt-32 relative overflow-hidden">
           {/* Soda can image in bottom right background */}
           <div className="fixed bottom-0 right-0 w-48 md:w-64 lg:w-80 opacity-20 pointer-events-none z-0">
-            <img 
-              src="/soda-can.webp" 
-              alt="Soda can decoration" 
-              className="w-full h-auto"
-            />
+            <img src="/soda-can.webp" alt="Soda can decoration" className="w-full h-auto" />
           </div>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             className="text-center max-w-md relative z-10"
@@ -59,13 +55,9 @@ const Cart: React.FC = () => {
       <div className="min-h-screen bg-black text-white pt-32 relative overflow-hidden">
         {/* Soda can image in bottom right background */}
         <div className="fixed bottom-0 right-0 w-48 md:w-64 lg:w-80 opacity-20 pointer-events-none z-0">
-          <img 
-            src="/soda-can.webp" 
-            alt="Soda can decoration" 
-            className="w-full h-auto"
-          />
+          <img src="/soda-can.webp" alt="Soda can decoration" className="w-full h-auto" />
         </div>
-        
+
         <div className="container mx-auto px-4 py-8 max-w-7xl relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -75,7 +67,9 @@ const Cart: React.FC = () => {
             <h1 className="text-5xl font-bold mb-2 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
               Shopping Cart
             </h1>
-            <p className="text-gray-400">{cart.length} {cart.length === 1 ? 'item' : 'items'} in your cart</p>
+            <p className="text-gray-400">
+              {cart.length} {cart.length === 1 ? "item" : "items"} in your cart
+            </p>
           </motion.div>
 
           <div className="grid lg:grid-cols-3 gap-6">
@@ -129,7 +123,9 @@ const Cart: React.FC = () => {
 
                   <div className="text-right">
                     <p className="text-sm text-gray-500 mb-1">Subtotal</p>
-                    <p className="text-xl font-bold text-blue-400">{item.product.price * item.quantity}</p>
+                    <p className="text-xl font-bold text-blue-400">
+                      {item.product.price * item.quantity}
+                    </p>
                     <p className="text-xs text-gray-500">pts</p>
                   </div>
 
@@ -152,7 +148,7 @@ const Cart: React.FC = () => {
             </div>
 
             {/* Order Summary */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
@@ -172,7 +168,7 @@ const Cart: React.FC = () => {
                   <p className="text-xs text-gray-500 text-right">points</p>
                 </div>
                 <button
-                  onClick={() => navigate('/shop/checkout')}
+                  onClick={() => navigate("/shop/checkout")}
                   className="w-full bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-blue-500/20 hover:border-blue-400/40 text-white font-semibold py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/10 text-lg mb-4"
                 >
                   Proceed to Checkout

@@ -1,13 +1,16 @@
-name: CI
+name: Lint, Typecheck, Format & Test
 
 on:
-  pull_request:
   push:
-    branches:
-      - main
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
 
 jobs:
-  build:
+  check:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,5 +29,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Run build
-        run: pnpm run build
+      - name: Run TypeScript typecheck
+        run: pnpm run typecheck
+
+      - name: Run ESLint
+        run: pnpm run lint
+
+      - name: Check formatting with Prettier
+        run: pnpm run format:check
+
+      - name: Run tests
+        run: pnpm run test

@@ -1,18 +1,13 @@
-import { FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 import { RiInstagramFill } from "react-icons/ri";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
-import { CgWebsite } from "react-icons/cg";
-import { FaDiscord, FaX, FaXTwitter } from "react-icons/fa6";
+import { FaDiscord, FaXTwitter } from "react-icons/fa6";
 import { IoLogoFreebsdDevil } from "react-icons/io";
 
 //Edit any changes to the SoDA URLs here
 //Icons can be found at: https://react-icons.github.io/react-icons/
 const socialMediaLinks = [
-  // {
-  //   href: "https://thesoda.io/",
-  //   icon: <CgWebsite className="hover:text-soda-red" />,
-  // },
   {
     href: "https://sundevilcentral.eoss.asu.edu/feeds?type=club&type_id=35661&tab=about",
     icon: <IoLogoFreebsdDevil className="hover:text-gray-300" />,
@@ -57,7 +52,6 @@ export default function SocialMediaLinks() {
           {link.icon}
         </a>
       ))}
-      
     </section>
   );
 }

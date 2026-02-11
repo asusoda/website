@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { useAuth, useUser } from '@clerk/clerk-react';
-import { pointsAPI, APIError, ERROR_MESSAGES } from '../lib/api';
+import { useState, useEffect } from "react";
+import { useAuth, useUser } from "@clerk/clerk-react";
+import { pointsAPI, APIError, ERROR_MESSAGES } from "../lib/api";
 
 interface UserPointsData {
   total_points: number;
@@ -33,19 +33,19 @@ export const useUserPoints = () => {
       setLoading(true);
       const token = await getToken();
       if (!token) {
-        throw new Error('Authentication token not available');
+        throw new Error("Authentication token not available");
       }
 
       const data = await pointsAPI.getUserPoints(email, token);
       setUserPoints(data);
       setError(null);
     } catch (err) {
-      console.error('Failed to fetch points:', err);
-      
+      console.error("Failed to fetch points:", err);
+
       if (err instanceof APIError && err.status === 404) {
         setError(ERROR_MESSAGES.NO_POINTS_RECORD);
       } else {
-        setError(err instanceof Error ? err.message : 'Failed to load points balance');
+        setError(err instanceof Error ? err.message : "Failed to load points balance");
       }
       setUserPoints(null);
     } finally {

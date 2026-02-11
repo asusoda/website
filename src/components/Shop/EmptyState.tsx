@@ -1,6 +1,6 @@
-import React from 'react';
-import { LucideIcon } from 'lucide-react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { LucideIcon } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface EmptyStateProps {
   icon: LucideIcon;
@@ -19,12 +19,12 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
   title,
   description,
   action,
-  glowColor = 'bg-red-500/10',
+  glowColor = "bg-red-500/10",
 }) => {
-  const ActionComponent = action?.href ? 'a' : 'button';
-  
+  const ActionComponent = action?.href ? "a" : "button";
+
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}

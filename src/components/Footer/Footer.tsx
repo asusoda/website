@@ -1,7 +1,6 @@
 import HorizontalLine from "../ui/HorizontalLine";
 import { LeftFooterGrid } from "./LeftFooterGrid";
 import RightFooterGrid from "./RightFooterGrid";
-import { AllRightsReserved } from "./CopyrightsNotice";
 
 export default function Footer() {
   return (

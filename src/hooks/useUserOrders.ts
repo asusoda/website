@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { useAuth, useUser } from '@clerk/clerk-react';
-import { storefrontAPI, Order } from '../lib/api';
+import { useState, useEffect } from "react";
+import { useAuth, useUser } from "@clerk/clerk-react";
+import { storefrontAPI, Order } from "../lib/api";
 
 export const useUserOrders = () => {
   const { user, isSignedIn } = useUser();
@@ -23,15 +23,15 @@ export const useUserOrders = () => {
       setLoading(true);
       const token = await getToken();
       if (!token) {
-        throw new Error('Authentication token not available');
+        throw new Error("Authentication token not available");
       }
 
       const data = await storefrontAPI.getOrders(email, token);
       setOrders(data);
       setError(null);
     } catch (err) {
-      console.error('Failed to fetch orders:', err);
-      setError(err instanceof Error ? err.message : 'Failed to load orders');
+      console.error("Failed to fetch orders:", err);
+      setError(err instanceof Error ? err.message : "Failed to load orders");
     } finally {
       setLoading(false);
     }

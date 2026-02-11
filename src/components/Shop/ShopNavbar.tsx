@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ShoppingCart, User, LogOut } from 'lucide-react';
-import { useUser, useClerk, SignInButton } from '@clerk/clerk-react';
-import { useCart } from '../../lib/CartContext';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ShoppingCart, User, LogOut } from "lucide-react";
+import { useUser, useClerk, SignInButton } from "@clerk/clerk-react";
+import { useCart } from "../../lib/CartContext";
+import { motion } from "framer-motion";
 
 const ShopNavbar: React.FC = () => {
   const { getCartItemCount } = useCart();
@@ -13,7 +13,7 @@ const ShopNavbar: React.FC = () => {
   const itemCount = getCartItemCount();
 
   const handleLogout = () => {
-    signOut({ redirectUrl: '/shop' });
+    signOut({ redirectUrl: "/shop" });
   };
 
   useEffect(() => {
@@ -26,30 +26,32 @@ const ShopNavbar: React.FC = () => {
 
   return (
     <nav className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
-      <motion.div 
-        initial={{ 
-          width: "60px", 
+      <motion.div
+        initial={{
+          width: "60px",
         }}
-        animate={{ 
+        animate={{
           width: isExpanded ? "min(calc(100vw - 2rem), 80rem)" : "60px",
           minWidth: isExpanded ? "320px" : "60px",
         }}
-        transition={{ 
+        transition={{
           width: {
             duration: 1.5,
-            ease: [0.1, 0.8, 0.2, 1]
-          }
+            ease: [0.1, 0.8, 0.2, 1],
+          },
         }}
         className="relative w-full max-w-7xl bg-gradient-to-br from-zinc-900/40 via-zinc-800/30 to-zinc-900/40 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl shadow-black/50 px-4 md:px-6 py-3 overflow-hidden"
         style={{
-          background: 'linear-gradient(135deg, rgba(24, 24, 27, 0.4) 0%, rgba(39, 39, 42, 0.3) 50%, rgba(24, 24, 27, 0.4) 100%)',
-          boxShadow: '0 0 20px rgba(239, 68, 68, 0.08), 0 0 40px rgba(239, 68, 68, 0.05), 0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+          background:
+            "linear-gradient(135deg, rgba(24, 24, 27, 0.4) 0%, rgba(39, 39, 42, 0.3) 50%, rgba(24, 24, 27, 0.4) 100%)",
+          boxShadow:
+            "0 0 20px rgba(239, 68, 68, 0.08), 0 0 40px rgba(239, 68, 68, 0.05), 0 25px 50px -12px rgba(0, 0, 0, 0.5)",
         }}
       >
         {/* Glossy overlay effect */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent rounded-2xl pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-tl from-white/5 via-transparent to-transparent rounded-2xl pointer-events-none" />
-        <motion.div 
+        <motion.div
           className="flex items-center justify-between relative z-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: isExpanded ? 1 : 0 }}
@@ -58,13 +60,16 @@ const ShopNavbar: React.FC = () => {
           {/* Logo */}
           <div className="flex items-center space-x-2 md:space-x-3 flex-shrink-0">
             <Link to="/" className="hover:opacity-80 transition-opacity">
-              <img 
-                src="/logo/Soda_Logo_Dark_Mode.svg" 
-                alt="SoDA Logo" 
+              <img
+                src="/logo/Soda_Logo_Dark_Mode.svg"
+                alt="SoDA Logo"
                 className="h-6 md:h-7 w-auto"
               />
             </Link>
-            <Link to="/shop" className="text-white font-semibold text-base md:text-lg px-2 md:px-3 py-1 rounded hover:bg-white/10 transition-colors">
+            <Link
+              to="/shop"
+              className="text-white font-semibold text-base md:text-lg px-2 md:px-3 py-1 rounded hover:bg-white/10 transition-colors"
+            >
               Shop
             </Link>
           </div>

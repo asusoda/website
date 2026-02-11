@@ -1,14 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { useState, useEffect } from "react";
 import Slider from "react-infinite-logo-slider";
-import {
-  FaMeta,
-  FaApple,
-  FaAmazon,
-  FaDropbox,
-  FaSalesforce,
-  FaMicrosoft,
-} from "react-icons/fa6";
+import { FaMeta, FaApple, FaAmazon, FaDropbox, FaSalesforce, FaMicrosoft } from "react-icons/fa6";
 import { AiOutlineOpenAI } from "react-icons/ai";
 import {
   SiIntuit,
@@ -32,8 +25,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const APPLICATION_FORM_URL =
-  "https://asusoda.notion.site/ebd/2a547e64246880a78aa5d6c360a37173";
+const APPLICATION_FORM_URL = "https://asusoda.notion.site/ebd/2a547e64246880a78aa5d6c360a37173";
 
 export default function Positions() {
   const [sliderWidth, setSliderWidth] = useState("150px");
@@ -81,15 +73,10 @@ export default function Positions() {
 
       <h1>Officer Applications</h1>
 
-      <p>
-        Thank you for your interest in joining the Software Developers
-        Association!
-      </p>
+      <p>Thank you for your interest in joining the Software Developers Association!</p>
       <p>Our Officers get jobs at companies like</p>
       <p>
-        <IconContext.Provider
-          value={{ size: "4rem", style: { verticalAlign: "middle" } }}
-        >
+        <IconContext.Provider value={{ size: "4rem", style: { verticalAlign: "middle" } }}>
           <Slider
             width={sliderWidth}
             duration={sliderDuration}
@@ -160,9 +147,8 @@ export default function Positions() {
       <h2>️️Application Instructions</h2>
 
       <p>
-        Complete your officer application via the SoDA Notion form embedded at
-        the bottom of this page or open it in a new tab for a dedicated
-        experience.
+        Complete your officer application via the SoDA Notion form embedded at the bottom of this
+        page or open it in a new tab for a dedicated experience.
       </p>
 
       <p>
@@ -179,11 +165,10 @@ export default function Positions() {
 
       <h2>Application Timeline</h2>
       <p>
-        We review applications on a rolling basis, so please apply as soon as
-        you can. If your application moves forward, we'll contact you to
-        schedule a 30-minute interview. You will be asked basic questions about
-        your interest, experience, and how you work within a team. Finally, you
-        will be contacted regarding a final decision.
+        We review applications on a rolling basis, so please apply as soon as you can. If your
+        application moves forward, we'll contact you to schedule a 30-minute interview. You will be
+        asked basic questions about your interest, experience, and how you work within a team.
+        Finally, you will be contacted regarding a final decision.
       </p>
 
       <hr className="my-10 border-gray-600" />
@@ -192,7 +177,10 @@ export default function Positions() {
 
       <Accordion type="single" collapsible defaultValue="admin" className="w-full">
         <AccordionItem value="admin">
-          <AccordionTrigger className="text-3xl font-semibold no-underline hover:no-underline py-4" showStar>
+          <AccordionTrigger
+            className="text-3xl font-semibold no-underline hover:no-underline py-4"
+            showStar
+          >
             Finance
           </AccordionTrigger>
           <AccordionContent className="prose lg:prose-xl prose-invert">
@@ -204,139 +192,115 @@ export default function Positions() {
             </ul>
           </AccordionContent>
         </AccordionItem>
-        
+
         <AccordionItem value="marketing">
-          <AccordionTrigger className="text-3xl font-semibold no-underline hover:no-underline py-4" showStar>
+          <AccordionTrigger
+            className="text-3xl font-semibold no-underline hover:no-underline py-4"
+            showStar
+          >
             Marketing
           </AccordionTrigger>
           <AccordionContent className="prose lg:prose-xl prose-invert">
             <h3>Photographer</h3>
             <ul className="mb-0">
+              <li>Attend all of SoDA's events to capture high-quality photos</li>
+              <li>Process and edit photos for clarity, lighting, and aesthetics</li>
               <li>
-                Attend all of SoDA's events to capture high-quality photos
-              </li>
-              <li>
-                Process and edit photos for clarity, lighting, and aesthetics
-              </li>
-              <li>
-                Work with the graphic designers and other marketing officers to
-                provide images that complement design elements
+                Work with the graphic designers and other marketing officers to provide images that
+                complement design elements
               </li>
             </ul>
             <h3>Video Editor</h3>
             <ul className="mb-0">
-              <li>
-                Edit raw footage into polished, engaging videos for social media
-              </li>
-              <li>
-                Add special effects, transitions, and graphics to enhance video
-                quality
-              </li>
-              <li>
-                Work with the marketing team to ensure videos align with SoDA
-                branding
-              </li>
+              <li>Edit raw footage into polished, engaging videos for social media</li>
+              <li>Add special effects, transitions, and graphics to enhance video quality</li>
+              <li>Work with the marketing team to ensure videos align with SoDA branding</li>
             </ul>
             <h3>Graphic Designer</h3>
             <ul className="mb-0">
               <li>
-                Develop and create visual content incorporating SoDA's brand
-                identity, including posters, flyers, and digital graphics
+                Develop and create visual content incorporating SoDA's brand identity, including
+                posters, flyers, and digital graphics
               </li>
               <li>
-                Work closely with the Marketing Director to provide creative
-                input and translate business requirements into compelling visual
-                designs
+                Work closely with the Marketing Director to provide creative input and translate
+                business requirements into compelling visual designs
               </li>
               <li>
-                Reinforce and develop SoDA's brand identity, reviewing and
-                updating design templates as necessary to keep the brand fresh
-                and consistent
+                Reinforce and develop SoDA's brand identity, reviewing and updating design templates
+                as necessary to keep the brand fresh and consistent
               </li>
             </ul>
           </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="industry-relations">
-          <AccordionTrigger className="text-3xl font-semibold no-underline hover:no-underline py-4" showStar>
+          <AccordionTrigger
+            className="text-3xl font-semibold no-underline hover:no-underline py-4"
+            showStar
+          >
             Industry Relations
           </AccordionTrigger>
           <AccordionContent className="prose lg:prose-xl prose-invert mt-[-2rem]">
             <ul className="mb-0">
-              <li>
-                Establish new corporate sponsorships and strategic partnerships
-              </li>
+              <li>Establish new corporate sponsorships and strategic partnerships</li>
               <li>Maintain relations with existing sponsors and partners</li>
-              <li>
-                Arrange for sponsored and partner events, workshops, and other
-                activities
-              </li>
+              <li>Arrange for sponsored and partner events, workshops, and other activities</li>
             </ul>
           </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="community">
-          <AccordionTrigger className="text-3xl font-semibold no-underline hover:no-underline py-4" showStar>
+          <AccordionTrigger
+            className="text-3xl font-semibold no-underline hover:no-underline py-4"
+            showStar
+          >
             Community
           </AccordionTrigger>
           <AccordionContent className="prose lg:prose-xl prose-invert mt-[-2rem]">
             <ul className="mb-0">
               <li>
-                Organize and facilitate events designed to boost community
-                engagement and provide valuable networking opportunities.
+                Organize and facilitate events designed to boost community engagement and provide
+                valuable networking opportunities.
               </li>
               <li>
-                Plan and execute social gatherings for both current and
-                potential members, fostering a welcoming and inclusive
-                atmosphere within the organization.
+                Plan and execute social gatherings for both current and potential members, fostering
+                a welcoming and inclusive atmosphere within the organization.
               </li>
             </ul>
           </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="technology">
-          <AccordionTrigger className="text-3xl font-semibold no-underline hover:no-underline py-4" showStar>
+          <AccordionTrigger
+            className="text-3xl font-semibold no-underline hover:no-underline py-4"
+            showStar
+          >
             Technology
           </AccordionTrigger>
           <AccordionContent className="prose lg:prose-xl prose-invert">
             <h3>Software Team</h3>
             <ul className="mb-0">
-              <li>
-                Internal software, tools, and automations
-              </li>
-              <li>
-                Web development, database management, and API integrations
-              </li>
-              <li>
-                Build and maintain systems that empower SoDA events and officer
-                operations
-              </li>
+              <li>Internal software, tools, and automations</li>
+              <li>Web development, database management, and API integrations</li>
+              <li>Build and maintain systems that empower SoDA events and officer operations</li>
             </ul>
             <h3>Events Team</h3>
             <ul className="mb-0">
               <li>
-                Create comprehensive workshop content, including slides,
-                handouts, and coding exercises
+                Create comprehensive workshop content, including slides, handouts, and coding
+                exercises
               </li>
               <li>
-                Present and instruct workshops, ensuring participant engagement
-                and understanding
+                Present and instruct workshops, ensuring participant engagement and understanding
               </li>
               <li>
-                Continuously update and improve workshop materials based on
-                feedback and advancements in the field
+                Continuously update and improve workshop materials based on feedback and
+                advancements in the field
               </li>
-              <li>
-                Hackathon problem statement selection and judging panel
-                coordination
-              </li>
-              <li>
-                Competitive programming contest organization and problem design
-              </li>
-              <li>
-                Bootcamp organization, instructional design, and speaker
-                coordination
-              </li>
+              <li>Hackathon problem statement selection and judging panel coordination</li>
+              <li>Competitive programming contest organization and problem design</li>
+              <li>Bootcamp organization, instructional design, and speaker coordination</li>
             </ul>
           </AccordionContent>
         </AccordionItem>
@@ -348,8 +312,8 @@ export default function Positions() {
       <div id="apply-form" className="my-10 space-y-4">
         <h2>Apply Right Away</h2>
         <p>
-          You can submit your officer application without leaving this page
-          using the embedded form below.
+          You can submit your officer application without leaving this page using the embedded form
+          below.
         </p>
         <iframe
           src={APPLICATION_FORM_URL}

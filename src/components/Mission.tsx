@@ -25,31 +25,28 @@ const perks = [
 export default function Mission() {
   return (
     <>
-    <main
-      className="flex flex-col justify-center items-center"
-      id="mission"
-    >
-      <h1 className="section-header-text">Mission</h1>
-      <section className="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {perks.map((perk) => (
-          <div key={perk.header} className="bg-neutral-900  p-4 border-gray-600 rounded-2xl justify-center flex flex-col min-h-[300px] max-w-[300px] w-full">
-            <img
-              src={perk.imgURL}
-              className="rounded-t-xl object-cover w-full h-48"
-              alt={perk.alt}
-            />
-            <div className="text-white px-4 py-3 space-y-3 text-left flex-1">
-              <h4 className="font-semibold text-xl max-md:text-lg">
-                {perk.header}
-              </h4>
-              {/* <hr className="border-soda-gray opacity-75 my-2 w-[60%]" /> */}
-              <p className="text-[14px] max-md:text-sm ">{perk.description}</p>
+      <main className="flex flex-col justify-center items-center" id="mission">
+        <h1 className="section-header-text">Mission</h1>
+        <section className="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {perks.map((perk) => (
+            <div
+              key={perk.header}
+              className="bg-neutral-900  p-4 border-gray-600 rounded-2xl justify-center flex flex-col min-h-[300px] max-w-[300px] w-full"
+            >
+              <img
+                src={perk.imgURL}
+                className="rounded-t-xl object-cover w-full h-48"
+                alt={perk.alt}
+              />
+              <div className="text-white px-4 py-3 space-y-3 text-left flex-1">
+                <h4 className="font-semibold text-xl max-md:text-lg">{perk.header}</h4>
+                {/* <hr className="border-soda-gray opacity-75 my-2 w-[60%]" /> */}
+                <p className="text-[14px] max-md:text-sm ">{perk.description}</p>
+              </div>
             </div>
-          </div>
-        ))}
-      </section>
-    </main>
-  
+          ))}
+        </section>
+      </main>
     </>
   );
 }

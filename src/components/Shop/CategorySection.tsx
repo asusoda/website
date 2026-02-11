@@ -1,28 +1,27 @@
-import React, { useRef, useState } from 'react';
-import { Maximize2 } from 'lucide-react';
-import { motion, useInView } from 'framer-motion';
-import { ProductCard } from './ProductCard';
-import { Product } from '../../lib/api';
+import React, { useRef, useState } from "react";
+import { Maximize2 } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { ProductCard } from "./ProductCard";
+import { Product } from "../../lib/api";
 
 interface CategorySectionProps {
   title: string;
   description: string;
   color: string;
   products: Product[];
-  orientation?: 'horizontal' | 'vertical';
-  animationDirection?: 'left-to-right' | 'right-to-left' | 'bottom-to-top';
+  orientation?: "horizontal" | "vertical";
+  animationDirection?: "left-to-right" | "right-to-left" | "bottom-to-top";
   minHeight?: string;
   onExpand: () => void;
 }
 
 export const CategorySection: React.FC<CategorySectionProps> = ({
   title,
-  description,
   color,
   products,
-  orientation = 'horizontal',
-  animationDirection = 'right-to-left',
-  minHeight = '250px',
+  orientation = "horizontal",
+  animationDirection = "right-to-left",
+  minHeight = "250px",
   onExpand,
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -34,71 +33,69 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
 
   const getScrollClass = () => {
     switch (animationDirection) {
-      case 'left-to-right':
-        return 'scroll-horizontal-reverse';
-      case 'bottom-to-top':
-        return 'scroll-vertical';
+      case "left-to-right":
+        return "scroll-horizontal-reverse";
+      case "bottom-to-top":
+        return "scroll-vertical";
       default:
-        return 'scroll-horizontal';
+        return "scroll-horizontal";
     }
   };
 
   const getTextClass = () => {
-    return orientation === 'vertical' 
-      ? 'text-[18rem] font-black text-white uppercase [writing-mode:vertical-lr] rotate-180'
-      : 'text-[24rem] font-black text-white px-8 italic uppercase';
+    return orientation === "vertical"
+      ? "text-[18rem] font-black text-white uppercase [writing-mode:vertical-lr] rotate-180"
+      : "text-[24rem] font-black text-white px-8 italic uppercase";
   };
 
   const getAnimationVariants = () => {
-    if (orientation === 'vertical') {
+    if (orientation === "vertical") {
       return {
         hidden: { scaleY: 0, originY: 0 },
-        visible: { 
+        visible: {
           scaleY: 1,
           originY: 0,
-          transition: { 
-            duration: 0.6, 
-            ease: [0.25, 0.1, 0.25, 1]
-          }
-        }
+          transition: {
+            duration: 0.6,
+            ease: [0.25, 0.1, 0.25, 1],
+          },
+        },
       };
     } else {
       return {
         hidden: { scaleX: 0, originX: 0 },
-        visible: { 
+        visible: {
           scaleX: 1,
           originX: 0,
-          transition: { 
-            duration: 0.6, 
-            ease: [0.25, 0.1, 0.25, 1]
-          }
-        }
+          transition: {
+            duration: 0.6,
+            ease: [0.25, 0.1, 0.25, 1],
+          },
+        },
       };
     }
   };
 
   const getShadowColor = () => {
-    return color.includes('blue') 
-      ? 'rgba(59, 130, 246, 0.6)' 
-      : 'rgba(239, 68, 68, 0.6)';
+    return color.includes("blue") ? "rgba(59, 130, 246, 0.6)" : "rgba(239, 68, 68, 0.6)";
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === 'Enter' || event.key === ' ') {
+    if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       onExpand();
     }
   };
 
   return (
-    <motion.div 
+    <motion.div
       ref={ref}
-      className="relative group overflow-hidden rounded-[2rem] md:rounded-[3rem] cursor-pointer" 
-      style={{ 
-        minHeight: orientation === 'vertical' ? minHeight : '470px',
-        maxHeight: orientation === 'vertical' ? minHeight : '470px',
-        height: orientation === 'vertical' ? minHeight : '470px',
-        boxShadow: `0 0 25px 6px ${getShadowColor()}, 0 0 40px 10px ${getShadowColor().replace('0.6', '0.15')}`
+      className="relative group overflow-hidden rounded-[2rem] md:rounded-[3rem] cursor-pointer"
+      style={{
+        minHeight: orientation === "vertical" ? minHeight : "470px",
+        maxHeight: orientation === "vertical" ? minHeight : "470px",
+        height: orientation === "vertical" ? minHeight : "470px",
+        boxShadow: `0 0 25px 6px ${getShadowColor()}, 0 0 40px 10px ${getShadowColor().replace("0.6", "0.15")}`,
       }}
       onClick={onExpand}
       onKeyDown={handleKeyDown}
@@ -112,35 +109,41 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
       onMouseLeave={() => setIsHovering(false)}
     >
       {/* Background Blob */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${color} transition-all duration-300 ease-in-out group-hover:brightness-110 will-change-[filter]`}></div>
-      
+      <div
+        className={`absolute inset-0 bg-gradient-to-br ${color} transition-all duration-300 ease-in-out group-hover:brightness-110 will-change-[filter]`}
+      ></div>
+
       {/* Background Title - Only render animation when in view */}
       {isInView && (
-        <motion.div 
+        <motion.div
           ref={scrollRef}
-          className={`absolute inset-0 flex ${orientation === 'vertical' ? 'flex-col justify-center' : 'items-center'} overflow-hidden pointer-events-none group-hover:opacity-10 transition-opacity duration-300 ease-in-out will-change-[opacity]`}
+          className={`absolute inset-0 flex ${orientation === "vertical" ? "flex-col justify-center" : "items-center"} overflow-hidden pointer-events-none group-hover:opacity-10 transition-opacity duration-300 ease-in-out will-change-[opacity]`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.3 }}
           exit={{ opacity: 0 }}
           transition={{ delay: 0.6, duration: 0.5 }}
-          style={{
-            '--scroll-duration': isHovering ? '80s' : '40s',
-            transform: 'translateZ(0)',
-            backfaceVisibility: 'hidden' as const,
-          } as React.CSSProperties}
+          style={
+            {
+              "--scroll-duration": isHovering ? "80s" : "40s",
+              transform: "translateZ(0)",
+              backfaceVisibility: "hidden" as const,
+            } as React.CSSProperties
+          }
         >
-          <div 
-            className={`${getScrollClass()} whitespace-nowrap flex ${orientation === 'vertical' ? 'flex-col' : ''}`}
+          <div
+            className={`${getScrollClass()} whitespace-nowrap flex ${orientation === "vertical" ? "flex-col" : ""}`}
             style={{
-              transform: 'translateZ(0)',
-              willChange: 'transform',
+              transform: "translateZ(0)",
+              willChange: "transform",
             }}
           >
             <h2 className={getTextClass()}>
-              {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} 
+              {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()}{" "}
+              {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()}
             </h2>
             <h2 className={getTextClass()}>
-              {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} 
+              {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()}{" "}
+              {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()}
             </h2>
           </div>
         </motion.div>
@@ -160,12 +163,12 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
 
       {/* Product Cards - Always visible on mobile, hover on desktop */}
       <div className="relative z-10 p-3 md:p-4 lg:p-6 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 ease-in-out md:pointer-events-none md:group-hover:pointer-events-auto h-full will-change-[opacity]">
-        <div className={`grid gap-2 md:gap-3 lg:gap-4 pt-4 md:pt-6 lg:pt-8 ${
-          orientation === 'vertical' 
-            ? 'grid-cols-1' 
-            : 'grid-cols-2 lg:grid-cols-3'
-        }`}>
-          {products.slice(0, orientation === 'vertical' ? 3 : 6).map((product) => (
+        <div
+          className={`grid gap-2 md:gap-3 lg:gap-4 pt-4 md:pt-6 lg:pt-8 ${
+            orientation === "vertical" ? "grid-cols-1" : "grid-cols-2 lg:grid-cols-3"
+          }`}
+        >
+          {products.slice(0, orientation === "vertical" ? 3 : 6).map((product) => (
             <div key={product.id} className="md:scale-90" onClick={(e) => e.stopPropagation()}>
               <ProductCard product={product} />
             </div>

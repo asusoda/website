@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { storefrontAPI, Product } from '../lib/api';
+import { useState, useEffect } from "react";
+import { storefrontAPI, Product } from "../lib/api";
 
 export const useProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -13,8 +13,8 @@ export const useProducts = () => {
       setProducts(data);
       setError(null);
     } catch (err) {
-      console.error('Failed to fetch products:', err);
-      setError(err instanceof Error ? err.message : 'Failed to load products');
+      console.error("Failed to fetch products:", err);
+      setError(err instanceof Error ? err.message : "Failed to load products");
     } finally {
       setLoading(false);
     }

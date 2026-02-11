@@ -1,7 +1,16 @@
 import { useEffect, useState } from "react";
-import { Calendar, ChevronLeft, ChevronRight, Clock, MapPin, X } from "lucide-react";
+import { Calendar, ChevronLeft, ChevronRight } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { format, addMonths, subMonths, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, parseISO } from "date-fns";
+import {
+  format,
+  addMonths,
+  subMonths,
+  startOfMonth,
+  endOfMonth,
+  eachDayOfInterval,
+  isSameDay,
+  parseISO,
+} from "date-fns";
 
 interface CalendarEvent {
   id: string;
@@ -13,39 +22,11 @@ interface CalendarEvent {
   url?: string;
 }
 
-const generateDummyEvents = (baseDate: Date): CalendarEvent[] => {
-  const monthStart = startOfMonth(baseDate);
-  const monthEnd = endOfMonth(baseDate);
-  const daysInMonth = eachDayOfInterval({ start: monthStart, end: monthEnd });
-  
-  const dummyEvents: CalendarEvent[] = [];
-  
-  // Create 1-3 events for random days in the month
-  for (let i = 0; i < 8; i++) {
-    const eventDay = daysInMonth[Math.floor(Math.random() * daysInMonth.length)];
-    const eventHour = 8 + Math.floor(Math.random() * 12); // Events between 8am and 8pm
-    
-    const startDate = new Date(eventDay);
-    startDate.setHours(eventHour, 0, 0);
-    
-    const endDate = new Date(startDate);
-    endDate.setHours(eventHour + 1 + Math.floor(Math.random() * 2), 30, 0);
-    
-    dummyEvents.push({
-      name: `Demo Event ${i + 1}`,
-      location: `Location ${i % 3 === 0 ? 'A' : i % 3 === 1 ? 'B' : 'C'}`,
-      description: `This is a placeholder event description for demo purposes. This would contain details about the event, its agenda, and other relevant information.`,
-      start: startDate.toISOString(),
-      end: endDate.toISOString(),
-      id: ""
-    });
-  }
-  
-  return dummyEvents;
-};
-function EventsPhotoCarousel({setSelectedEvent}: { setSelectedEvent: (event: CalendarEvent | null) => void}) {
-
-  
+function EventsPhotoCarousel({
+  setSelectedEvent,
+}: {
+  setSelectedEvent: (event: CalendarEvent | null) => void;
+}) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -61,15 +42,25 @@ function EventsPhotoCarousel({setSelectedEvent}: { setSelectedEvent: (event: Cal
       const data = await response.json();
 
       if (data?.status === "success" && Array.isArray(data.events)) {
-        const formattedEvents = data.events.map((event: any) => ({
-          id: event.id,
-          name: event.title,
-          location: event.location || "No location provided",
-          description: event.description || "No description available",
-          start: event.start,
-          end: event.end,
-          url: event.url,
-        }));
+        const formattedEvents = data.events.map(
+          (event: {
+            id: string;
+            title: string;
+            location?: string;
+            description?: string;
+            start: string;
+            end: string;
+            url?: string;
+          }) => ({
+            id: event.id,
+            name: event.title,
+            location: event.location || "No location provided",
+            description: event.description || "No description available",
+            start: event.start,
+            end: event.end,
+            url: event.url,
+          })
+        );
         setEvents(formattedEvents);
       } else {
         console.log("No events found, using dummy data");
@@ -77,8 +68,7 @@ function EventsPhotoCarousel({setSelectedEvent}: { setSelectedEvent: (event: Cal
     } catch (error) {
       console.error("Failed to fetch events:", error);
     } finally {
-        setIsLoading(false);
-      
+      setIsLoading(false);
     }
   };
 
@@ -86,8 +76,8 @@ function EventsPhotoCarousel({setSelectedEvent}: { setSelectedEvent: (event: Cal
   const handleNextMonth = () => setCurrentDate(addMonths(currentDate, 1));
   const goToToday = () => setCurrentDate(new Date());
 
-  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  const currentMonthStr = format(currentDate, 'MMMM yyyy');
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const currentMonthStr = format(currentDate, "MMMM yyyy");
 
   const monthStart = startOfMonth(currentDate);
   const monthEnd = endOfMonth(currentDate);
@@ -103,7 +93,7 @@ function EventsPhotoCarousel({setSelectedEvent}: { setSelectedEvent: (event: Cal
 
   const getEventsForDay = (day: Date | null) => {
     if (!day) return [];
-    return events.filter(event => isSameDay(parseISO(event.start), day));
+    return events.filter((event) => isSameDay(parseISO(event.start), day));
   };
 
   const isCurrentDay = (day: Date | null) => {
@@ -137,7 +127,7 @@ function EventsPhotoCarousel({setSelectedEvent}: { setSelectedEvent: (event: Cal
           </div>
         ) : (
           <>
-            {days.map(day => (
+            {days.map((day) => (
               <div key={day} className="p-2 text-sm text-gray-500">
                 {day}
               </div>
@@ -155,19 +145,16 @@ function EventsPhotoCarousel({setSelectedEvent}: { setSelectedEvent: (event: Cal
                   <div
                     key={index}
                     className={`w-full h-[70px] p-2 relative rounded-sm ${
-                      isCurrentDay(day) ? 'ring-1 ring-red-500 ring-offset-0' : ''
-                    } ${hasEvents ? 'bg-soda-blue hover:bg-blue-900 transition-all cursor-pointer' : ''}`}
+                      isCurrentDay(day) ? "ring-1 ring-red-500 ring-offset-0" : ""
+                    } ${hasEvents ? "bg-soda-blue hover:bg-blue-900 transition-all cursor-pointer" : ""}`}
                     onClick={() => (hasEvents ? setSelectedEvent(dayEvents[0]) : null)}
                   >
                     {day && (
                       <>
-                        <span className="text-sm fade-in">{format(day, 'd')}</span>
+                        <span className="text-sm fade-in">{format(day, "d")}</span>
                         <div className="overflow-y-auto">
                           {dayEvents.map((evt, eventIndex) => (
-                            <div
-                              key={eventIndex}
-                              className="mt-1 fade-in rounded p-1 text-xs "
-                            >
+                            <div key={eventIndex} className="mt-1 fade-in rounded p-1 text-xs ">
                               <div className="flex fade-in items-center gap-1 truncate">
                                 <span className="truncate md:flex hidden">{evt.name}</span>
                               </div>
@@ -186,7 +173,12 @@ function EventsPhotoCarousel({setSelectedEvent}: { setSelectedEvent: (event: Cal
 
       <button
         className="absolute bottom-4 right-4 bg-[#ffffff0f] hover:bg-[#373737] text-sm text-white px-4 py-2 rounded-lg shadow-md flex items-center gap-2 transition-all"
-        onClick={() => window.open('https://calendar.google.com/calendar/embed?src=c_9d4bb8cc4eb0a947ef07bb5d2a2133404bbd2a186814274013f02d2709f213af%40group.calendar.google.com&ctz=America%2FPhoenix', '_blank')}
+        onClick={() =>
+          window.open(
+            "https://calendar.google.com/calendar/embed?src=c_9d4bb8cc4eb0a947ef07bb5d2a2133404bbd2a186814274013f02d2709f213af%40group.calendar.google.com&ctz=America%2FPhoenix",
+            "_blank"
+          )
+        }
       >
         <Calendar size={16} />
         Add to Calendar

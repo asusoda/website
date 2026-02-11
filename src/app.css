@@ -6,110 +6,113 @@
 
 /* Glitch Text Effect */
 @keyframes glitch {
-  0%, 100% { 
-    transform: translate(0); 
+  0%,
+  100% {
+    transform: translate(0);
   }
-  2% { 
-    transform: translate(-2px, 2px); 
+  2% {
+    transform: translate(-2px, 2px);
   }
-  4% { 
-    transform: translate(-2px, -2px); 
+  4% {
+    transform: translate(-2px, -2px);
   }
-  6% { 
-    transform: translate(2px, 2px); 
+  6% {
+    transform: translate(2px, 2px);
   }
-  8% { 
-    transform: translate(2px, -2px); 
+  8% {
+    transform: translate(2px, -2px);
   }
-  10% { 
-    transform: translate(-2px, 2px); 
+  10% {
+    transform: translate(-2px, 2px);
   }
-  12% { 
-    transform: translate(-2px, -2px); 
+  12% {
+    transform: translate(-2px, -2px);
   }
-  14% { 
-    transform: translate(2px, 2px); 
+  14% {
+    transform: translate(2px, 2px);
   }
-  16% { 
-    transform: translate(0); 
+  16% {
+    transform: translate(0);
   }
 }
 
 @keyframes glitch-blue {
-  0%, 100% { 
-    transform: translate(0); 
-    opacity: 0; 
+  0%,
+  100% {
+    transform: translate(0);
+    opacity: 0;
   }
-  2% { 
-    transform: translate(-4px, 0); 
-    opacity: 0.7; 
+  2% {
+    transform: translate(-4px, 0);
+    opacity: 0.7;
   }
-  4% { 
-    transform: translate(-2px, 0); 
-    opacity: 0.7; 
+  4% {
+    transform: translate(-2px, 0);
+    opacity: 0.7;
   }
-  6% { 
-    transform: translate(4px, 0); 
-    opacity: 0.7; 
+  6% {
+    transform: translate(4px, 0);
+    opacity: 0.7;
   }
-  8% { 
-    transform: translate(-4px, 0); 
-    opacity: 0.7; 
+  8% {
+    transform: translate(-4px, 0);
+    opacity: 0.7;
   }
-  10% { 
-    transform: translate(3px, 0); 
-    opacity: 0.7; 
+  10% {
+    transform: translate(3px, 0);
+    opacity: 0.7;
   }
-  12% { 
-    transform: translate(-3px, 0); 
-    opacity: 0.7; 
+  12% {
+    transform: translate(-3px, 0);
+    opacity: 0.7;
   }
-  14% { 
-    transform: translate(2px, 0); 
-    opacity: 0.7; 
+  14% {
+    transform: translate(2px, 0);
+    opacity: 0.7;
   }
-  16% { 
-    transform: translate(0); 
-    opacity: 0; 
+  16% {
+    transform: translate(0);
+    opacity: 0;
   }
 }
 
 @keyframes glitch-red {
-  0%, 100% { 
-    transform: translate(0); 
-    opacity: 0; 
+  0%,
+  100% {
+    transform: translate(0);
+    opacity: 0;
   }
-  2% { 
-    transform: translate(4px, 0); 
-    opacity: 0.7; 
+  2% {
+    transform: translate(4px, 0);
+    opacity: 0.7;
   }
-  4% { 
-    transform: translate(2px, 0); 
-    opacity: 0.7; 
+  4% {
+    transform: translate(2px, 0);
+    opacity: 0.7;
   }
-  6% { 
-    transform: translate(-4px, 0); 
-    opacity: 0.7; 
+  6% {
+    transform: translate(-4px, 0);
+    opacity: 0.7;
   }
-  8% { 
-    transform: translate(4px, 0); 
-    opacity: 0.7; 
+  8% {
+    transform: translate(4px, 0);
+    opacity: 0.7;
   }
-  10% { 
-    transform: translate(-3px, 0); 
-    opacity: 0.7; 
+  10% {
+    transform: translate(-3px, 0);
+    opacity: 0.7;
   }
-  12% { 
-    transform: translate(3px, 0); 
-    opacity: 0.7; 
+  12% {
+    transform: translate(3px, 0);
+    opacity: 0.7;
   }
-  14% { 
-    transform: translate(-2px, 0); 
-    opacity: 0.7; 
+  14% {
+    transform: translate(-2px, 0);
+    opacity: 0.7;
   }
-  16% { 
-    transform: translate(0); 
-    opacity: 0; 
+  16% {
+    transform: translate(0);
+    opacity: 0;
   }
 }
 
@@ -194,7 +197,8 @@
     opacity: 1;
     filter: brightness(1.5);
   }
-  40%, 100% {
+  40%,
+  100% {
     opacity: 1;
     filter: brightness(1);
   }
@@ -205,31 +209,30 @@
 }
 
 .gaming-border::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
   padding: 3px;
-  background: 
-    repeating-linear-gradient(
-      0deg,
-      #3b82f6 0px,
-      #3b82f6 6px,
-      #6366f1 6px,
-      #6366f1 12px,
-      #a855f7 12px,
-      #a855f7 18px,
-      #ec4899 18px,
-      #ec4899 24px,
-      #ef4444 24px,
-      #ef4444 30px
-    );
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
+  background: repeating-linear-gradient(
+    0deg,
+    #3b82f6 0px,
+    #3b82f6 6px,
+    #6366f1 6px,
+    #6366f1 12px,
+    #a855f7 12px,
+    #a855f7 18px,
+    #ec4899 18px,
+    #ec4899 24px,
+    #ef4444 24px,
+    #ef4444 30px
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
-  mask: 
-    linear-gradient(#fff 0 0) content-box, 
+  mask:
+    linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   mask-composite: exclude;
   pointer-events: none;
@@ -240,29 +243,28 @@
 }
 
 .gaming-border-animated::before {
-  background: 
-    repeating-linear-gradient(
-      0deg,
-      #3b82f6 0px,
-      #3b82f6 8px,
-      #6366f1 8px,
-      #6366f1 16px,
-      #a855f7 16px,
-      #a855f7 24px,
-      #ec4899 24px,
-      #ec4899 32px,
-      #ef4444 32px,
-      #ef4444 40px
-    );
+  background: repeating-linear-gradient(
+    0deg,
+    #3b82f6 0px,
+    #3b82f6 8px,
+    #6366f1 8px,
+    #6366f1 16px,
+    #a855f7 16px,
+    #a855f7 24px,
+    #ec4899 24px,
+    #ec4899 32px,
+    #ef4444 32px,
+    #ef4444 40px
+  );
   animation: gaming-border-pulse 2s ease-in-out infinite;
 }
 
 @theme {
   /* Basic colors */
-  --color-soda-red: #CA2352;
-  --color-soda-blue: #3A64E4;
-  --color-soda-gray: #B5BABA;
-  --color-soda-white: #E7E7E5;
+  --color-soda-red: #ca2352;
+  --color-soda-blue: #3a64e4;
+  --color-soda-gray: #b5baba;
+  --color-soda-white: #e7e7e5;
   --color-soda-black: #080909;
 
   /* Soda Blue Scale */
@@ -347,13 +349,21 @@
 
   /* Define keyframes for the animations */
   @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
   }
 
   @keyframes marquee2 {
-    0% { transform: translateX(50%); }
-    100% { transform: translateX(0); }
+    0% {
+      transform: translateX(50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
   }
 }
 
@@ -584,8 +594,8 @@ body {
 -- End BackGround Animation 
 */
 
-.soda-bars{
-  background-image: linear-gradient(to right, #CA2352, #3A64E4);
+.soda-bars {
+  background-image: linear-gradient(to right, #ca2352, #3a64e4);
 }
 
 .section-header-text {
@@ -597,9 +607,10 @@ body {
 }
 
 .cal-shadow {
-  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.5), 
-              0px 0px 20px 10px rgba(0, 0, 0, 0.4), 
-              0px 0px 30px 15px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    0px 0px 10px 5px rgba(0, 0, 0, 0.5),
+    0px 0px 20px 10px rgba(0, 0, 0, 0.4),
+    0px 0px 30px 15px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
 }
 
@@ -650,8 +661,6 @@ body {
 .sponsors-marquee:hover .sponsors-track {
   animation-play-state: paused;
 }
-
-
 
 @keyframes sponsors-scroll {
   0% {
@@ -714,9 +723,9 @@ body {
 
 .home {
   @apply min-h-screen w-full mx-auto  justify-center items-center;
-  position: relative; 
-  padding-left: 0; 
-  padding-right: -10px; 
+  position: relative;
+  padding-left: 0;
+  padding-right: -10px;
 }
 
 /* --------- FOOTER --------- */
@@ -825,15 +834,15 @@ body {
 
 /* Accordion Star Pseudo-element */
 .accordion-content-with-star::before {
-content: '';
-display: inline-block;
-width: 3rem; /* Corresponds to w-12 */
-height: 3rem; /* Corresponds to h-12 */
-margin-right: 1rem; /* Corresponds to gap-4 */
-flex-shrink: 0; /* Prevent shrinking */
-background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23FFF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 4 Q 11.5 12 12.2 19.8 M 6 8.5 Q 12 12 18 15.5 M 18 8.5 Q 12 12 6.5 16.2' /%3E%3C/svg%3E"); /* Changed stroke to white (#FFF) */
-background-repeat: no-repeat;
-background-size: contain;
-background-position: center;
-/* vertical-align: middle; Removed */
+  content: "";
+  display: inline-block;
+  width: 3rem; /* Corresponds to w-12 */
+  height: 3rem; /* Corresponds to h-12 */
+  margin-right: 1rem; /* Corresponds to gap-4 */
+  flex-shrink: 0; /* Prevent shrinking */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23FFF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 4 Q 11.5 12 12.2 19.8 M 6 8.5 Q 12 12 18 15.5 M 18 8.5 Q 12 12 6.5 16.2' /%3E%3C/svg%3E"); /* Changed stroke to white (#FFF) */
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  /* vertical-align: middle; Removed */
 }

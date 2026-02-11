@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
-import { ShoppingCart } from 'lucide-react';
-import { storefrontAPI, Product } from '../../lib/api';
-import { useCart } from '../../lib/CartContext';
-import LoadingSpinner from '../../components/LoadingSpinner';
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { ShoppingCart } from "lucide-react";
+import { storefrontAPI, Product } from "../../lib/api";
+import { useCart } from "../../lib/CartContext";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -26,7 +26,7 @@ const ProductDetail: React.FC = () => {
       // Validate route param before calling the API
       if (!id) {
         setProduct(null);
-        setError('Product not found');
+        setError("Product not found");
         setLoading(false);
         return;
       }
@@ -34,7 +34,7 @@ const ProductDetail: React.FC = () => {
       const numericId = Number(id);
       if (!Number.isInteger(numericId) || numericId <= 0) {
         setProduct(null);
-        setError('Product not found');
+        setError("Product not found");
         setLoading(false);
         return;
       }
@@ -45,7 +45,7 @@ const ProductDetail: React.FC = () => {
         setProduct(data);
         setError(null);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load product');
+        setError(err instanceof Error ? err.message : "Failed to load product");
       } finally {
         setLoading(false);
       }
@@ -57,7 +57,7 @@ const ProductDetail: React.FC = () => {
   const handleAddToCart = () => {
     if (product) {
       addToCart(product, quantity);
-      navigate('/shop/cart');
+      navigate("/shop/cart");
     }
   };
 
@@ -76,8 +76,11 @@ const ProductDetail: React.FC = () => {
       <>
         <div className="min-h-screen bg-black text-white flex items-center justify-center">
           <div className="text-center">
-            <p className="text-red-400 mb-4">{error || 'Product not found'}</p>
-            <button onClick={() => navigate('/shop')} className="bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-blue-500/20 hover:border-blue-400/40 text-white font-semibold px-10 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/10 text-lg">
+            <p className="text-red-400 mb-4">{error || "Product not found"}</p>
+            <button
+              onClick={() => navigate("/shop")}
+              className="bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-blue-500/20 hover:border-blue-400/40 text-white font-semibold px-10 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/10 text-lg"
+            >
               Back to Shop
             </button>
           </div>
@@ -96,23 +99,21 @@ const ProductDetail: React.FC = () => {
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-zinc-900 rounded-lg overflow-hidden aspect-square relative">
               {product.image_url && !hasImageError ? (
-                <img 
-                  src={product.image_url} 
-                  alt={product.name} 
-                  className={`w-full h-full object-cover ${
-                    product.stock === 0 ? 'grayscale' : ''
-                  }`}
+                <img
+                  src={product.image_url}
+                  alt={product.name}
+                  className={`w-full h-full object-cover ${product.stock === 0 ? "grayscale" : ""}`}
                   onError={() => {
                     setHasImageError(true);
                   }}
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center">
-                  <img 
-                    src="/teddy-laptop.webp" 
+                  <img
+                    src="/teddy-laptop.webp"
                     alt={product.name}
                     className={`w-full h-full object-cover opacity-60 ${
-                      product.stock === 0 ? 'grayscale' : ''
+                      product.stock === 0 ? "grayscale" : ""
                     }`}
                   />
                 </div>
@@ -132,7 +133,8 @@ const ProductDetail: React.FC = () => {
               <p className="text-3xl font-bold text-blue-400 mb-6">{product.price} points</p>
               <p className="text-gray-300 mb-6">{product.description}</p>
               <p className="text-sm text-gray-400 mb-6">
-                Stock: <span className={product.stock < 10 ? 'text-red-400' : 'text-green-400'}>
+                Stock:{" "}
+                <span className={product.stock < 10 ? "text-red-400" : "text-green-400"}>
                   {product.stock} available
                 </span>
               </p>
@@ -146,7 +148,9 @@ const ProductDetail: React.FC = () => {
                     max={product.stock}
                     value={quantity}
                     onChange={(e) =>
-                      setQuantity(Math.max(1, Math.min(product.stock, parseInt(e.target.value) || 1)))
+                      setQuantity(
+                        Math.max(1, Math.min(product.stock, parseInt(e.target.value) || 1))
+                      )
                     }
                     className="bg-zinc-800 text-white px-4 py-2 rounded w-20"
                   />
@@ -159,7 +163,7 @@ const ProductDetail: React.FC = () => {
                 className="bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-blue-500/20 hover:border-blue-400/40 disabled:bg-gray-600/10 disabled:border-gray-500/20 disabled:cursor-not-allowed disabled:hover:scale-100 text-white font-semibold px-10 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/10 text-lg flex items-center justify-center space-x-2"
               >
                 <ShoppingCart size={24} />
-                <span>{product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}</span>
+                <span>{product.stock > 0 ? "Add to Cart" : "Out of Stock"}</span>
               </button>
             </div>
           </div>

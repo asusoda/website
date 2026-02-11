@@ -1,14 +1,14 @@
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
-import { Package, Wallet, User as UserIcon, ShoppingBag, TrendingUp, Calendar } from 'lucide-react';
-import { useUser } from '@clerk/clerk-react';
-import { Link } from 'react-router-dom';
-import { OrderCard } from '../../components/Shop/OrderCard';
+import React from "react";
+import { Helmet } from "react-helmet-async";
+import { Package, Wallet, User as UserIcon, ShoppingBag, TrendingUp, Calendar } from "lucide-react";
+import { useUser } from "@clerk/clerk-react";
+import { Link } from "react-router-dom";
+import { OrderCard } from "../../components/Shop/OrderCard";
 
-import { useUserPoints } from '../../hooks/useUserPoints';
-import { useUserOrders } from '../../hooks/useUserOrders';
-import { motion } from 'framer-motion';
-import LoadingSpinner from '../../components/LoadingSpinner';
+import { useUserPoints } from "../../hooks/useUserPoints";
+import { useUserOrders } from "../../hooks/useUserOrders";
+import { motion } from "framer-motion";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const Account: React.FC = () => {
   const { isSignedIn, user, isLoaded } = useUser();
@@ -42,7 +42,8 @@ const Account: React.FC = () => {
     );
   }
 
-  const primaryEmail = user.primaryEmailAddress?.emailAddress || user.emailAddresses[0]?.emailAddress;
+  const primaryEmail =
+    user.primaryEmailAddress?.emailAddress || user.emailAddresses[0]?.emailAddress;
   const pointsBreakdown = userPoints?.points_breakdown ?? [];
   const hasPoints = pointsBreakdown.length > 0;
 
@@ -54,16 +55,12 @@ const Account: React.FC = () => {
       <div className="min-h-screen bg-black text-white pt-32 relative overflow-hidden">
         {/* Teddy image in bottom right background */}
         <div className="fixed bottom-0 right-0 w-64 md:w-80 lg:w-96 opacity-20 pointer-events-none z-0">
-          <img 
-            src="/teddy-laptop.webp" 
-            alt="Teddy bear decoration" 
-            className="w-full h-auto"
-          />
+          <img src="/teddy-laptop.webp" alt="Teddy bear decoration" className="w-full h-auto" />
         </div>
-        
+
         <div className="container mx-auto px-4 py-8 max-w-7xl relative z-10">
           {/* Header Section */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -76,7 +73,7 @@ const Account: React.FC = () => {
           </motion.div>
 
           {error && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               className="bg-red-500/10 backdrop-blur-sm border border-red-500/30 rounded-xl p-4 mb-8"
@@ -87,7 +84,7 @@ const Account: React.FC = () => {
 
           <div className="grid lg:grid-cols-3 gap-6">
             {/* Left Sidebar - User Info & Points */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 }}
@@ -100,9 +97,7 @@ const Account: React.FC = () => {
                     <UserIcon size={28} className="text-white" />
                   </div>
                   <div className="flex-1">
-                    <h2 className="text-xl font-bold">
-                      {user.firstName || 'Member'}
-                    </h2>
+                    <h2 className="text-xl font-bold">{user.firstName || "Member"}</h2>
                     <p className="text-gray-400 text-sm truncate">{primaryEmail}</p>
                   </div>
                 </div>
@@ -113,7 +108,7 @@ const Account: React.FC = () => {
                 {/* Decorative elements */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl"></div>
                 <div className="absolute bottom-0 left-0 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl"></div>
-                
+
                 <div className="relative z-10">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center space-x-2">
@@ -122,34 +117,41 @@ const Account: React.FC = () => {
                     </div>
                     <TrendingUp className="text-green-400" size={18} />
                   </div>
-                  
+
                   <div className="mb-6">
                     <div className="text-5xl font-bold bg-gradient-to-r from-blue-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
                       {userPoints?.total_points || 0}
                     </div>
                     <p className="text-gray-500 text-sm mt-1">points available</p>
                   </div>
-                  
+
                   {hasPoints && (
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
-                        <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider">Recent Activity</p>
+                        <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider">
+                          Recent Activity
+                        </p>
                         <Calendar size={14} className="text-gray-600" />
                       </div>
                       <div className="space-y-2 max-h-56 overflow-y-auto pr-2 custom-scrollbar">
                         {pointsBreakdown.slice(0, 8).map((item, index) => (
-                          <motion.div 
+                          <motion.div
                             key={item.id}
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: index * 0.05 }}
                             className="flex justify-between items-center bg-black/30 rounded-lg p-3 border border-white/5 hover:border-white/10 transition-colors"
                           >
-                            <span className="text-gray-300 text-sm truncate flex-1 mr-2">{item.event}</span>
-                            <span className={`font-semibold text-sm whitespace-nowrap ${
-                              item.points > 0 ? 'text-green-400' : 'text-red-400'
-                            }`}>
-                              {item.points > 0 ? '+' : ''}{item.points}
+                            <span className="text-gray-300 text-sm truncate flex-1 mr-2">
+                              {item.event}
+                            </span>
+                            <span
+                              className={`font-semibold text-sm whitespace-nowrap ${
+                                item.points > 0 ? "text-green-400" : "text-red-400"
+                              }`}
+                            >
+                              {item.points > 0 ? "+" : ""}
+                              {item.points}
                             </span>
                           </motion.div>
                         ))}
@@ -161,7 +163,7 @@ const Account: React.FC = () => {
             </motion.div>
 
             {/* Right Content - Order History */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
@@ -190,7 +192,7 @@ const Account: React.FC = () => {
                     <p className="text-gray-500 mb-6">
                       Start shopping to see your order history here
                     </p>
-                    <Link 
+                    <Link
                       to="/shop"
                       className="inline-block bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-blue-500/20 hover:border-blue-400/40 text-white font-semibold px-10 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/10 text-lg"
                     >

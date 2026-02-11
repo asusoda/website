@@ -1,20 +1,20 @@
 import { ReactNode } from "react";
 
-type ContentItemTypes = {
+interface ContentItemTypes {
   id: number;
   title: string;
-  content: ReactNode;
+  content: ReactNode[];
   button: string;
-};
+}
 
-const content = [
+const content: ContentItemTypes[] = [
   {
     id: 1,
     title: "How To Join SoDA",
     content: [
       <p key="p1">
-        Want to join SoDA? Just go to one of our meetings! Everyone who attends
-        our meetings is a SoDA member.
+        Want to join SoDA? Just go to one of our meetings! Everyone who attends our meetings is a
+        SoDA member.
       </p>,
     ],
     button: "Join our SunDevilSync",
@@ -24,9 +24,8 @@ const content = [
     title: "Professional Development",
     content: [
       <p key="p2">
-        We want students to become familiar with industry by helping them
-        prepare for technical interviews, and showing them how and when to
-        apply.
+        We want students to become familiar with industry by helping them prepare for technical
+        interviews, and showing them how and when to apply.
       </p>,
     ],
     button: "Learn more",
@@ -36,8 +35,8 @@ const content = [
     title: "Technical Workshops",
     content: [
       <p key="p3">
-        Want to join SoDA? Just go to one of our meetings! Everyone who attends
-        our meetings is a SoDA member.
+        Want to join SoDA? Just go to one of our meetings! Everyone who attends our meetings is a
+        SoDA member.
       </p>,
     ],
     button: "Learn more",
@@ -47,8 +46,8 @@ const content = [
     title: "SoDA Code Challenge X",
     content: [
       <p key="p4">
-        Want to join SoDA? Just go to one of our meetings! Everyone who attends
-        our meetings is a SoDA member.
+        Want to join SoDA? Just go to one of our meetings! Everyone who attends our meetings is a
+        SoDA member.
       </p>,
     ],
     button: "Sign up now",
@@ -58,8 +57,8 @@ const content = [
     title: "Community",
     content: [
       <p key="p5">
-        Want to join SoDA? Just go to one of our meetings! Everyone who attends
-        our meetings is a SoDA member.
+        Want to join SoDA? Just go to one of our meetings! Everyone who attends our meetings is a
+        SoDA member.
       </p>,
     ],
     button: "Join our SunDevilSync",
