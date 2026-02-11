@@ -130,7 +130,7 @@ export const storefrontAPI = {
 
   // Get member store (requires auth)
   getMemberStore: (authToken?: string) =>
-    apiRequest<{ products: Product[]; user_info: any; organization: any }>(
+    apiRequest<{ products: Product[]; user_info: Record<string, unknown>; organization: Record<string, unknown> }>(
       `/api/storefront/${ORG_PREFIX}/members/store`,
       authToken ? { authToken } : {}
     ),
@@ -177,7 +177,7 @@ export const pointsAPI = {
     username?: string;
     asu_id?: string;
   }) =>
-    apiRequest<{ message: string; user: User; organization: any }>(
+    apiRequest<{ message: string; user: User; organization: unknown }>(
       `/api/points/${ORG_PREFIX}/member_login`,
       {
         method: 'POST',

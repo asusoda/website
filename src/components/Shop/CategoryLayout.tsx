@@ -61,8 +61,8 @@ export const CategoryLayout: React.FC<CategoryLayoutProps> = ({ products }) => {
       const isInverted = groupIndex % 2 === 1;
       
       // Assign orientation and animation
-      let orientation: 'horizontal' | 'vertical' = 'horizontal';
-      let animationDirection: 'left-to-right' | 'right-to-left' | 'bottom-to-top' = 'right-to-left';
+      let orientation: 'horizontal' | 'vertical';
+      let animationDirection: 'left-to-right' | 'right-to-left' | 'bottom-to-top';
       
       if (positionInGroup === 2) {
         // Third item in group is vertical
@@ -112,7 +112,7 @@ export const CategoryLayout: React.FC<CategoryLayoutProps> = ({ products }) => {
 
   // Group categories into groups of 3 for layout
   const categoryGroups = useMemo(() => {
-    const groups: typeof categoriesWithLayout[][] = [];
+    const groups: typeof categoriesWithLayout[] = [];
     for (let i = 0; i < categoriesWithLayout.length; i += 3) {
       groups.push(categoriesWithLayout.slice(i, i + 3));
     }

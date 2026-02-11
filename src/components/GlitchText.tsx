@@ -17,7 +17,7 @@ export const GlitchText: React.FC<GlitchTextProps> = ({ text, className = '', tr
       }, 800); // Duration of glitch animation
       return () => clearTimeout(timer);
     }
-  }, [trigger]);
+  }, [trigger, isGlitching]);
 
   return (
     <span className={`relative inline-block ${className}`}>
