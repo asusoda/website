@@ -46,8 +46,8 @@ export const OrderCard: React.FC<OrderCardProps> = ({ order, index = 0 }) => {
       
       {order.items && order.items.length > 0 && (
         <div className="mt-4 pt-4 border-t border-white/5 space-y-2">
-          {order.items.map((item: OrderItem, itemIdx: number) => (
-            <div key={itemIdx} className="flex justify-between items-center text-sm">
+          {order.items.map((item: OrderItem) => (
+            <div key={item.id} className="flex justify-between items-center text-sm">
               <div className="flex items-center space-x-2 flex-1">
                 <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
                 <span className="text-gray-300">{item.product_name || item.product?.name || 'Product'}</span>
