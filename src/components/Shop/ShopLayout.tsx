@@ -1,5 +1,5 @@
 import React from 'react';
-import { ClerkProvider, useUser } from '@clerk/clerk-react';
+import { ClerkProvider, useUser, useClerk } from '@clerk/clerk-react';
 import { Outlet } from 'react-router-dom';
 import { AlertCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -15,6 +15,7 @@ const ALLOWED_EMAIL_DOMAIN = '@asu.edu';
  */
 const EmailDomainGuard: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isSignedIn, user, isLoaded } = useUser();
+  const { signOut } = useClerk();
 
   // Still loading user data
   if (!isLoaded) {
@@ -50,6 +51,15 @@ const EmailDomainGuard: React.FC<{ children: React.ReactNode }> = ({ children })
               account has an <span className="text-blue-400 font-mono">@asu.edu</span> email associated
               as the primary email and try again.
             </p>
+            <button
+              type="button"
+              onClick={() => {
+                void signOut({ redirectUrl: '/shop' });
+              }}
+              className="bg-red-500/10 backdrop-blur-xl border border-red-400/20 hover:bg-red-500/20 hover:border-red-400/40 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300"
+            >
+              Sign Out and Switch Account
+            </button>
           </div>
         </div>
       );
@@ -78,6 +88,15 @@ const EmailDomainGuard: React.FC<{ children: React.ReactNode }> = ({ children })
             <p className="text-sm text-gray-500">
               Your ASURITE email ends with <span className="text-blue-400 font-mono">@asu.edu</span>
             </p>
+            <button
+              type="button"
+              onClick={() => {
+                void signOut({ redirectUrl: '/shop' });
+              }}
+              className="mt-6 bg-red-500/10 backdrop-blur-xl border border-red-400/20 hover:bg-red-500/20 hover:border-red-400/40 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300"
+            >
+              Sign Out and Switch Account
+            </button>
           </div>
         </div>
       );

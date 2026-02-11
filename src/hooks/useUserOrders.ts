@@ -10,7 +10,9 @@ export const useUserOrders = () => {
   const [error, setError] = useState<string | null>(null);
 
   const fetchOrders = async () => {
-    if (!isSignedIn || !user?.emailAddresses?.[0]?.emailAddress) {
+    const email = user?.primaryEmailAddress?.emailAddress;
+
+    if (!isSignedIn || !email) {
       setOrders([]);
       setError(null);
       setLoading(false);
@@ -24,7 +26,6 @@ export const useUserOrders = () => {
         throw new Error('Authentication token not available');
       }
 
-      const email = user.emailAddresses[0].emailAddress;
       const data = await storefrontAPI.getOrders(email, token);
       setOrders(data);
       setError(null);

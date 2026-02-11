@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Package, Wallet, User as UserIcon, ShoppingBag, TrendingUp, Calendar } from 'lucide-react';
 import { useUser } from '@clerk/clerk-react';
+import { Link } from 'react-router-dom';
 import { OrderCard } from '../../components/Shop/OrderCard';
 
 import { useUserPoints } from '../../hooks/useUserPoints';
@@ -41,6 +42,7 @@ const Account: React.FC = () => {
     );
   }
 
+  const primaryEmail = user.primaryEmailAddress?.emailAddress || user.emailAddresses[0]?.emailAddress;
   const hasPoints = userPoints && userPoints.points_breakdown.length > 0;
 
   return (
@@ -100,7 +102,7 @@ const Account: React.FC = () => {
                     <h2 className="text-xl font-bold">
                       {user.firstName || 'Member'}
                     </h2>
-                    <p className="text-gray-400 text-sm truncate">{user.emailAddresses[0]?.emailAddress}</p>
+                    <p className="text-gray-400 text-sm truncate">{primaryEmail}</p>
                   </div>
                 </div>
               </div>
@@ -187,12 +189,12 @@ const Account: React.FC = () => {
                     <p className="text-gray-500 mb-6">
                       Start shopping to see your order history here
                     </p>
-                    <a 
-                      href="/shop"
+                    <Link 
+                      to="/shop"
                       className="inline-block bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-blue-500/20 hover:border-blue-400/40 text-white font-semibold px-10 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/10 text-lg"
                     >
                       Browse Products
-                    </a>
+                    </Link>
                   </div>
                 ) : (
                   <div className="space-y-3 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">

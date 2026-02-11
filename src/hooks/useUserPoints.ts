@@ -20,7 +20,9 @@ export const useUserPoints = () => {
   const [error, setError] = useState<string | null>(null);
 
   const fetchPoints = async () => {
-    if (!isSignedIn || !user?.emailAddresses?.[0]?.emailAddress) {
+    const email = user?.primaryEmailAddress?.emailAddress;
+
+    if (!isSignedIn || !email) {
       setLoading(false);
       setUserPoints(null);
       setError(null);
@@ -34,7 +36,6 @@ export const useUserPoints = () => {
         throw new Error('Authentication token not available');
       }
 
-      const email = user.emailAddresses[0].emailAddress;
       const data = await pointsAPI.getUserPoints(email, token);
       setUserPoints(data);
       setError(null);

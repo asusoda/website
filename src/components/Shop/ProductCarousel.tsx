@@ -17,10 +17,11 @@ interface ProductCarouselProps {
 const ProductCarousel: React.FC<ProductCarouselProps> = ({
   slides,
   autoplayDelay = 5000,
-  videoUrl = 'https://framerusercontent.com/assets/sRXQsZpCuTpukMUfotGcRUuvg.mp4', // Default video
+  videoUrl = '/shop-hero.mp4',
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoError, setVideoError] = useState(false);
 
   useEffect(() => {
     if (slides.length <= 1) return;
@@ -40,17 +41,20 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
     <>
       {/* Video Background - extends behind navbar and through header */}
       <div className="fixed top-0 left-0 right-0 h-[100vh] md:h-[90vw] pointer-events-none z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-          onLoadedData={() => setVideoLoaded(true)}
-          style={{ opacity: videoLoaded ? 0.4 : 0, transition: 'opacity 0.3s ease-in' }}
-        >
-          <source src={videoUrl} type="video/mp4" />
-        </video>
+        {!videoError && (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+            onLoadedData={() => setVideoLoaded(true)}
+            onError={() => setVideoError(true)}
+            style={{ opacity: videoLoaded ? 0.4 : 0, transition: 'opacity 0.3s ease-in' }}
+          >
+            <source src={videoUrl} type="video/mp4" />
+          </video>
+        )}
         {/* Colored overlay - red and blue gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600/60 via-purple-500/30 to-red-600/60" />
         {/* Dark overlay for better text readability */}
