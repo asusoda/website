@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useId } from 'react';
 import { X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ProductCard } from './ProductCard';
@@ -21,6 +21,25 @@ export const CategoryPopup: React.FC<CategoryPopupProps> = ({
   color,
   products,
 }) => {
+  const titleId = useId();
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -42,6 +61,9 @@ export const CategoryPopup: React.FC<CategoryPopupProps> = ({
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="fixed inset-x-4 top-20 bottom-4 sm:inset-x-6 sm:top-24 sm:bottom-6 md:inset-x-8 md:top-24 md:bottom-8 lg:inset-x-16 lg:top-28 lg:bottom-12 xl:inset-x-20 xl:top-28 xl:bottom-16 z-50 overflow-hidden rounded-2xl md:rounded-3xl lg:rounded-[3rem]"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={titleId}
           >
             <div className={`absolute inset-0 bg-gradient-to-br ${color}`}></div>
             
@@ -49,7 +71,7 @@ export const CategoryPopup: React.FC<CategoryPopupProps> = ({
               {/* Header */}
               <div className="flex items-start justify-between p-4 md:p-6 lg:p-8 border-b border-white/20">
                 <div className="text-left flex-1 pr-2">
-                  <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-1 md:mb-2">{name}</h2>
+                  <h2 id={titleId} className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-1 md:mb-2">{name}</h2>
                   <p className="text-white/80 text-sm md:text-base lg:text-lg max-w-2xl">{description}</p>
                 </div>
                 <button

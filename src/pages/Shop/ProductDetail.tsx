@@ -17,6 +17,11 @@ const ProductDetail: React.FC = () => {
   const { addToCart } = useCart();
 
   useEffect(() => {
+    setQuantity(1);
+    setHasImageError(false);
+  }, [id]);
+
+  useEffect(() => {
     const fetchProduct = async () => {
       // Validate route param before calling the API
       if (!id) {

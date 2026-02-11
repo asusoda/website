@@ -108,6 +108,8 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
       variants={getAnimationVariants()}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
     >
       {/* Background Blob */}
       <div className={`absolute inset-0 bg-gradient-to-br ${color} transition-all duration-300 ease-in-out group-hover:brightness-110 will-change-[filter]`}></div>
@@ -126,8 +128,6 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
             transform: 'translateZ(0)',
             backfaceVisibility: 'hidden' as const,
           } as React.CSSProperties}
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
         >
           <div 
             className={`${getScrollClass()} whitespace-nowrap flex ${orientation === 'vertical' ? 'flex-col' : ''}`}
