@@ -177,7 +177,7 @@ export const pointsAPI = {
     username?: string;
     asu_id?: string;
   }) =>
-    apiRequest<{ message: string; user: User; organization: any }>(
+    apiRequest<{ message: string; user: User; organization: unknown }>(
       `/api/points/${ORG_PREFIX}/member_login`,
       {
         method: 'POST',
