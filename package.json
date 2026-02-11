@@ -38,7 +38,7 @@
     "date-fns": "^4.1.0",
     "embla-carousel-autoplay": "^8.5.2",
     "embla-carousel-react": "^8.5.2",
-    "framer-motion": "^12.6.2",
+    "framer-motion": "^12.34.0",
     "gh-pages": "^6.3.0",
     "i": "^0.3.7",
     "lucide-react": "^0.486.0",
