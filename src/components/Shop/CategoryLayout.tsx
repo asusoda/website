@@ -112,7 +112,7 @@ export const CategoryLayout: React.FC<CategoryLayoutProps> = ({ products }) => {
 
   // Group categories into groups of 3 for layout
   const categoryGroups = useMemo(() => {
-    const groups: typeof categoriesWithLayout[][] = [];
+    const groups: typeof categoriesWithLayout[] = [];
     for (let i = 0; i < categoriesWithLayout.length; i += 3) {
       groups.push(categoriesWithLayout.slice(i, i + 3));
     }
