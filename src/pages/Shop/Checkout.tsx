@@ -25,6 +25,10 @@ const Checkout: React.FC = () => {
       return;
     }
 
+    if (success) {
+      return;
+    }
+
     if (cart.length === 0) {
       navigate('/shop/cart');
       return;
@@ -65,7 +69,7 @@ const Checkout: React.FC = () => {
     };
 
     fetchUserPoints();
-  }, [cart, navigate, isSignedIn, isLoaded, user, getToken]);
+  }, [cart, navigate, isSignedIn, isLoaded, user, getToken, success]);
 
   // Render-time guard: prevent rendering checkout UI before auth check
   if (!isLoaded) {

@@ -10,6 +10,7 @@ const ShopNavbar: React.FC = () => {
   const { isSignedIn, user } = useUser();
   const { signOut } = useClerk();
   const [isExpanded, setIsExpanded] = useState(false);
+  const itemCount = getCartItemCount();
 
   const handleLogout = () => {
     signOut();
@@ -92,12 +93,12 @@ const ShopNavbar: React.FC = () => {
             <Link
               to="/shop/cart"
               className="relative p-1.5 md:p-2 rounded hover:bg-white/10 transition-colors inline-block"
-              aria-label={`Cart (${getCartItemCount()} items)`}
+              aria-label={`Cart (${itemCount} items)`}
             >
               <ShoppingCart size={20} className="text-white md:w-[22px] md:h-[22px]" />
-              {getCartItemCount() > 0 && (
+              {itemCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium">
-                  {getCartItemCount()}
+                  {itemCount}
                 </span>
               )}
             </Link>
@@ -118,6 +119,7 @@ const ShopNavbar: React.FC = () => {
                   onClick={handleLogout}
                   className="p-1.5 md:p-2 rounded hover:bg-white/10 transition-colors"
                   title="Logout"
+                  aria-label="Logout"
                 >
                   <LogOut size={16} className="text-white md:w-[18px] md:h-[18px]" />
                 </button>

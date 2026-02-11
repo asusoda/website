@@ -136,7 +136,7 @@ const Account: React.FC = () => {
                       <div className="space-y-2 max-h-56 overflow-y-auto pr-2 custom-scrollbar">
                         {userPoints.points_breakdown.slice(0, 8).map((item, index) => (
                           <motion.div 
-                            key={index}
+                            key={item.id}
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: index * 0.05 }}
