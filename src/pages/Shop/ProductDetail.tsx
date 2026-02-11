@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, ArrowLeft } from "lucide-react";
 import { storefrontAPI, Product } from "../../lib/api";
 import { useCart } from "../../lib/CartContext";
 import LoadingSpinner from "../../components/LoadingSpinner";
@@ -96,6 +96,13 @@ const ProductDetail: React.FC = () => {
       </Helmet>
       <div className="min-h-screen bg-black text-white pt-32">
         <div className="container mx-auto px-4 py-8">
+          <Link
+            to="/shop"
+            className="inline-flex items-center text-gray-400 hover:text-white transition-colors mb-6"
+          >
+            <ArrowLeft size={20} className="mr-2" />
+            Back to Shop
+          </Link>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-zinc-900 rounded-lg overflow-hidden aspect-square relative">
               {product.image_url && !hasImageError ? (
