@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { CheckCircle, AlertCircle } from 'lucide-react';
@@ -16,6 +16,8 @@ const Checkout: React.FC = () => {
   const [orderTotal, setOrderTotal] = useState<number>(0);
   const { isSignedIn, user, isLoaded } = useUser();
   const { getToken } = useAuth();
+  const redirectTimeoutRef = useRef<number | null>(null);
+  const primaryEmail = user?.primaryEmailAddress?.emailAddress || user?.emailAddresses?.[0]?.emailAddress;
 
   useEffect(() => {
     if (!isLoaded) return;
@@ -37,7 +39,7 @@ const Checkout: React.FC = () => {
     // Fetch user points
     const fetchUserPoints = async () => {
       try {
-        const email = user?.emailAddresses?.[0]?.emailAddress;
+        const email = primaryEmail;
         const token = await getToken();
 
         // Treat missing email or token as an explicit error state
@@ -55,6 +57,7 @@ const Checkout: React.FC = () => {
 
         const data = await pointsAPI.getUserPoints(email, token);
         setUserPoints(data.total_points || 0);
+        setError(null);
       } catch (err) {
         console.error('Failed to fetch user points:', err);
         
@@ -69,7 +72,15 @@ const Checkout: React.FC = () => {
     };
 
     fetchUserPoints();
-  }, [cart, navigate, isSignedIn, isLoaded, user, getToken, success]);
+  }, [cart, navigate, isSignedIn, isLoaded, primaryEmail, getToken, success]);
+
+  useEffect(() => {
+    return () => {
+      if (redirectTimeoutRef.current !== null) {
+        window.clearTimeout(redirectTimeoutRef.current);
+      }
+    };
+  }, []);
 
   // Render-time guard: prevent rendering checkout UI before auth check
   if (!isLoaded) {
@@ -83,7 +94,7 @@ const Checkout: React.FC = () => {
     );
   }
 
-  if (!isSignedIn || cart.length === 0) {
+  if (!isSignedIn || (cart.length === 0 && !success)) {
     return null; // Will redirect via useEffect
   }
 
@@ -129,7 +140,11 @@ const Checkout: React.FC = () => {
       clearCart();
 
       // Redirect to account page after 2 seconds
-      setTimeout(() => {
+      if (redirectTimeoutRef.current !== null) {
+        window.clearTimeout(redirectTimeoutRef.current);
+      }
+
+      redirectTimeoutRef.current = window.setTimeout(() => {
         navigate('/shop/account');
       }, 2000);
     } catch (err) {
@@ -206,8 +221,8 @@ const Checkout: React.FC = () => {
           {/* User Info */}
           <div className="bg-zinc-900 rounded-lg p-6 mb-6 border border-zinc-800">
             <h2 className="text-xl font-semibold mb-4">Account Information</h2>
-            <p className="text-gray-300">{user?.firstName || user?.emailAddresses?.[0]?.emailAddress}</p>
-            <p className="text-gray-400">Email: {user?.emailAddresses?.[0]?.emailAddress}</p>
+            <p className="text-gray-300">{user?.firstName || primaryEmail}</p>
+            <p className="text-gray-400">Email: {primaryEmail}</p>
           </div>
 
           {/* Order Summary */}

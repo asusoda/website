@@ -81,6 +81,13 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
       : 'rgba(239, 68, 68, 0.6)';
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      onExpand();
+    }
+  };
+
   return (
     <motion.div 
       ref={ref}
@@ -90,6 +97,10 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
         boxShadow: `0 0 25px 6px ${getShadowColor()}, 0 0 40px 10px ${getShadowColor().replace('0.6', '0.15')}`
       }}
       onClick={onExpand}
+      onKeyDown={handleKeyDown}
+      role="button"
+      tabIndex={0}
+      aria-label={`Open ${title} category`}
       variants={getAnimationVariants()}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
