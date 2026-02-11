@@ -94,7 +94,6 @@ const ShopIndex: React.FC = () => {
                 <GlitchText 
                   text="SoDA Shop" 
                   className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent"
-                  trigger={isInView}
                 />
               </h1>
               <p className="text-gray-400 text-sm md:text-lg">Browse our collection of exclusive merchandise</p>

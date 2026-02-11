@@ -9,7 +9,7 @@
 }
 
 .scroll-horizontal {
-  animation: scroll-horizontal 40s linear infinite;
+  animation: scroll-horizontal var(--scroll-duration, 40s) linear infinite;
 }
 
 /* Horizontal scrolling text animation - reversed */
@@ -23,7 +23,7 @@
 }
 
 .scroll-horizontal-reverse {
-  animation: scroll-horizontal-reverse 40s linear infinite;
+  animation: scroll-horizontal-reverse var(--scroll-duration, 40s) linear infinite;
 }
 
 /* Vertical scrolling text animation */
@@ -37,5 +37,5 @@
 }
 
 .scroll-vertical {
-  animation: scroll-vertical 40s linear infinite;
+  animation: scroll-vertical var(--scroll-duration, 40s) linear infinite;
 }

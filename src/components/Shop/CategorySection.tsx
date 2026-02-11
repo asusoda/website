@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Maximize2 } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
 import { ProductCard } from './ProductCard';
@@ -27,6 +27,8 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const [isHovering, setIsHovering] = useState(false);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
 
   if (products.length === 0) return null;
 
@@ -93,7 +95,9 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
       ref={ref}
       className="relative group overflow-hidden rounded-[2rem] md:rounded-[3rem] cursor-pointer" 
       style={{ 
-        minHeight: orientation === 'vertical' ? minHeight : '140px',
+        minHeight: orientation === 'vertical' ? minHeight : '470px',
+        maxHeight: orientation === 'vertical' ? minHeight : '470px',
+        height: orientation === 'vertical' ? minHeight : '470px',
         boxShadow: `0 0 25px 6px ${getShadowColor()}, 0 0 40px 10px ${getShadowColor().replace('0.6', '0.15')}`
       }}
       onClick={onExpand}
@@ -110,10 +114,16 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
       
       {/* Background Title - Fades in after section expands */}
       <motion.div 
+        ref={scrollRef}
         className={`absolute inset-0 flex ${orientation === 'vertical' ? 'flex-col justify-center' : 'items-center'} overflow-hidden pointer-events-none opacity-30 group-hover:opacity-10 transition-opacity duration-500 ease-in-out`}
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 0.3 } : { opacity: 0 }}
         transition={{ delay: 0.6, duration: 0.5 }}
+        style={{
+          '--scroll-duration': isHovering ? '80s' : '40s'
+        } as React.CSSProperties}
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
       >
         <div className={`${getScrollClass()} whitespace-nowrap flex ${orientation === 'vertical' ? 'flex-col' : ''}`}>
           <h2 className={getTextClass()}>
@@ -138,7 +148,7 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
       </button>
 
       {/* Product Cards - Always visible on mobile, hover on desktop */}
-      <div className="relative z-10 p-3 md:p-4 lg:p-6 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 ease-in-out md:pointer-events-none md:group-hover:pointer-events-auto">
+      <div className="relative z-10 p-3 md:p-4 lg:p-6 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 ease-in-out md:pointer-events-none md:group-hover:pointer-events-auto h-full ">
         <div className={`grid gap-2 md:gap-3 lg:gap-4 pt-4 md:pt-6 lg:pt-8 ${
           orientation === 'vertical' 
             ? 'grid-cols-1' 
