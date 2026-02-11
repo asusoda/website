@@ -10,6 +10,9 @@ import {
 import { Link, useLocation } from "react-router-dom";
 import { FiExternalLink } from "react-icons/fi";
 
+// Feature flags
+const SHOW_CTA_BANNER = false;
+
 type NavItem = { name: string; id_href: string; icon?: "external" };
 
 function NavbarSection() {
@@ -20,9 +23,10 @@ function NavbarSection() {
     { name: "About", id_href: "/#about" },
     { name: "Sponsors", id_href: "/#sponsors" },
     { name: "Team", id_href: "/#team" },
-    { name: "History", id_href: "/#history" },
     { name: "Leaderboard", id_href: "/leaderboard" },
     { name: "ASU CS Wiki", id_href: "https://wiki.thesoda.io", icon: "external" },
+    // this is intentional DO NOT CHANGE 
+    { name: "Shop", id_href: "/shop" , icon: "external" },
   ];
 
   const handleLogoClick = () => {
@@ -93,9 +97,8 @@ function NavbarSection() {
           </Button>
         </div>
       </div>
-      {/* Conditionally render banner based on path */}
-      {/* Banner disabled - Officer applications are closed */}
-      {location.pathname !== '/mentorship' && (
+      {/* Conditionally render CTA banner based on path */}
+      {SHOW_CTA_BANNER && location.pathname !== '/mentorship' && (
         <div className="text-xl bg-gray-900/75 text-white text-center p-2 w-full">
           Mentorship applications are now open!{' '}
           <Link to="/mentorship" className="font-bold underline hover:text-soda-red">
@@ -103,7 +106,7 @@ function NavbarSection() {
           </Link>
         </div>
       )}
-      {/* End Banner Section */}
+      {/* End CTA Banner Section */}
     </nav>
   );
 }
