@@ -138,7 +138,7 @@ export const CategoryLayout: React.FC<CategoryLayoutProps> = ({ products }) => {
               key={groupIndex}
               className={`${
                 shouldShowVerticalColumn 
-                  ? 'flex flex-col lg:flex-row gap-10 md:gap-12 lg:gap-14' 
+                  ? 'flex flex-col lg:flex-row gap-10 md:gap-12 lg:gap-14 justify-between' 
                   : 'w-full'
               }`}
             >
@@ -164,7 +164,7 @@ export const CategoryLayout: React.FC<CategoryLayoutProps> = ({ products }) => {
               )}
 
               {/* Horizontal categories */}
-              <div className={`${shouldShowVerticalColumn ? 'flex-1' : 'w-full'} space-y-10 md:space-y-12 lg:space-y-14`}>
+              <div className={`${shouldShowVerticalColumn ? 'flex flex-col space-y-12 md:justify-between' : 'w-full space-y-12 '} `}>
                 {horizontalCategories.map((category) => (
                   <CategorySection
                     key={category.id}

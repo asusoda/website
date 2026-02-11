@@ -81,7 +81,7 @@ const ShopIndex: React.FC = () => {
 
         {/* Products Section - Full Screen Snap */}
         <div className="snap-section bg-black relative z-20 overflow-y-auto">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-20 md:pt-32 pb-8" ref={productsRef}>
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 md:pt-16 pb-8" ref={productsRef}>
             {/* Header */}
             <motion.div 
               id="products" 
