@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth, useUser } from '@clerk/clerk-react';
-import { storefrontAPI, Order, APIError } from '../lib/api';
+import { storefrontAPI, Order } from '../lib/api';
 
 export const useUserOrders = () => {
   const { user, isSignedIn } = useUser();
