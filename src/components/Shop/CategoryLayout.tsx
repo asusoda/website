@@ -62,7 +62,7 @@ export const CategoryLayout: React.FC<CategoryLayoutProps> = ({ products }) => {
       
       // Assign orientation and animation
       let orientation: 'horizontal' | 'vertical';
-      let animationDirection: 'left-to-right' | 'right-to-left' | 'bottom-to-top' = 'right-to-left';
+      let animationDirection: 'left-to-right' | 'right-to-left' | 'bottom-to-top';
       
       if (positionInGroup === 2) {
         // Third item in group is vertical
