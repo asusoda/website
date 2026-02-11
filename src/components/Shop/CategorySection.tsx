@@ -26,7 +26,7 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
   onExpand,
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: false, amount: 0.1, margin: "100px" });
   const [isHovering, setIsHovering] = useState(false);
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
@@ -110,30 +110,41 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
       animate={isInView ? "visible" : "hidden"}
     >
       {/* Background Blob */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${color} transition-all duration-500 ease-in-out group-hover:brightness-110`}></div>
+      <div className={`absolute inset-0 bg-gradient-to-br ${color} transition-all duration-300 ease-in-out group-hover:brightness-110 will-change-[filter]`}></div>
       
-      {/* Background Title - Fades in after section expands */}
-      <motion.div 
-        ref={scrollRef}
-        className={`absolute inset-0 flex ${orientation === 'vertical' ? 'flex-col justify-center' : 'items-center'} overflow-hidden pointer-events-none opacity-30 group-hover:opacity-10 transition-opacity duration-500 ease-in-out`}
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 0.3 } : { opacity: 0 }}
-        transition={{ delay: 0.6, duration: 0.5 }}
-        style={{
-          '--scroll-duration': isHovering ? '80s' : '40s'
-        } as React.CSSProperties}
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
-      >
-        <div className={`${getScrollClass()} whitespace-nowrap flex ${orientation === 'vertical' ? 'flex-col' : ''}`}>
-          <h2 className={getTextClass()}>
-            {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} 
-          </h2>
-          <h2 className={getTextClass()}>
-            {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} 
-          </h2>
-        </div>
-      </motion.div>
+      {/* Background Title - Only render animation when in view */}
+      {isInView && (
+        <motion.div 
+          ref={scrollRef}
+          className={`absolute inset-0 flex ${orientation === 'vertical' ? 'flex-col justify-center' : 'items-center'} overflow-hidden pointer-events-none group-hover:opacity-10 transition-opacity duration-300 ease-in-out will-change-[opacity]`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.3 }}
+          exit={{ opacity: 0 }}
+          transition={{ delay: 0.6, duration: 0.5 }}
+          style={{
+            '--scroll-duration': isHovering ? '80s' : '40s',
+            transform: 'translateZ(0)',
+            backfaceVisibility: 'hidden' as const,
+          } as React.CSSProperties}
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
+        >
+          <div 
+            className={`${getScrollClass()} whitespace-nowrap flex ${orientation === 'vertical' ? 'flex-col' : ''}`}
+            style={{
+              transform: 'translateZ(0)',
+              willChange: 'transform',
+            }}
+          >
+            <h2 className={getTextClass()}>
+              {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} 
+            </h2>
+            <h2 className={getTextClass()}>
+              {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} {title.toUpperCase()} 
+            </h2>
+          </div>
+        </motion.div>
+      )}
 
       {/* Expand Button - Visible on mobile, hover on desktop */}
       <button
@@ -148,7 +159,7 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
       </button>
 
       {/* Product Cards - Always visible on mobile, hover on desktop */}
-      <div className="relative z-10 p-3 md:p-4 lg:p-6 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 ease-in-out md:pointer-events-none md:group-hover:pointer-events-auto h-full ">
+      <div className="relative z-10 p-3 md:p-4 lg:p-6 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 ease-in-out md:pointer-events-none md:group-hover:pointer-events-auto h-full will-change-[opacity]">
         <div className={`grid gap-2 md:gap-3 lg:gap-4 pt-4 md:pt-6 lg:pt-8 ${
           orientation === 'vertical' 
             ? 'grid-cols-1' 

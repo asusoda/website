@@ -1,41 +1,50 @@
 /* Horizontal scrolling text animation */
 @keyframes scroll-horizontal {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 .scroll-horizontal {
   animation: scroll-horizontal var(--scroll-duration, 40s) linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 /* Horizontal scrolling text animation - reversed */
 @keyframes scroll-horizontal-reverse {
   0% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
   100% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 .scroll-horizontal-reverse {
   animation: scroll-horizontal-reverse var(--scroll-duration, 40s) linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 /* Vertical scrolling text animation */
 @keyframes scroll-vertical {
   0% {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateY(-50%);
+    transform: translate3d(0, -50%, 0);
   }
 }
 
 .scroll-vertical {
   animation: scroll-vertical var(--scroll-duration, 40s) linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
