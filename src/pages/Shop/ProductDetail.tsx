@@ -89,12 +89,14 @@ const ProductDetail: React.FC = () => {
       <div className="min-h-screen bg-black text-white pt-32">
         <div className="container mx-auto px-4 py-8">
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-zinc-900 rounded-lg overflow-hidden aspect-square">
+            <div className="bg-zinc-900 rounded-lg overflow-hidden aspect-square relative">
               {product.image_url && !hasImageError ? (
                 <img 
                   src={product.image_url} 
                   alt={product.name} 
-                  className="w-full h-full object-cover"
+                  className={`w-full h-full object-cover ${
+                    product.stock === 0 ? 'grayscale' : ''
+                  }`}
                   onError={() => {
                     setHasImageError(true);
                   }}
@@ -104,8 +106,18 @@ const ProductDetail: React.FC = () => {
                   <img 
                     src="/teddy-laptop.webp" 
                     alt={product.name}
-                    className="w-full h-full object-cover opacity-60"
+                    className={`w-full h-full object-cover opacity-60 ${
+                      product.stock === 0 ? 'grayscale' : ''
+                    }`}
                   />
+                </div>
+              )}
+              {product.stock === 0 && (
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="absolute inset-0 bg-black/40"></div>
+                  <span className="relative text-white font-bold text-3xl md:text-4xl lg:text-5xl uppercase tracking-wider transform -rotate-[25deg] px-8 py-3 shadow-2xl text-center">
+                    Coming Soon
+                  </span>
                 </div>
               )}
             </div>

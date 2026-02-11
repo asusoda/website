@@ -19,7 +19,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <img
               src={product.image_url}
               alt={product.name}
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              className={`w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ${
+                product.stock === 0 ? 'grayscale' : ''
+              }`}
               onError={() => {
                 setHasImageError(true);
               }}
@@ -29,11 +31,20 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               <img 
                 src={FALLBACK_IMAGES.product}
                 alt={product.name}
-                className="w-full h-full object-cover opacity-60"
+                className={`w-full h-full object-cover opacity-60 ${
+                  product.stock === 0 ? 'grayscale' : ''
+                }`}
               />
             </div>
           )}
-          {product.stock < 10 && (
+          {product.stock === 0 ? (
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="absolute inset-0 bg-black/40"></div>
+              <span className="relative text-white font-bold text-2xl md:text-3xl lg:text-4xl uppercase tracking-wider transform -rotate-[25deg] px-8 py-3 shadow-2xl text-center">
+                Coming Soon
+              </span>
+            </div>
+          ) : product.stock < 10 && (
             <div className="absolute top-2 right-2 md:top-3 md:right-3 bg-red-500 text-white text-xs px-2 py-0.5 md:px-3 md:py-1 rounded-full font-semibold shadow-lg">
               Only {product.stock} left
             </div>
