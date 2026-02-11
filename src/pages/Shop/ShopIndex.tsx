@@ -102,9 +102,14 @@ const ShopIndex: React.FC = () => {
 
             {/* Products Grid */}
             {loading ? (
-              <div className="flex items-center justify-center py-20">
+              <motion.div 
+                className="flex items-center justify-center py-20"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
+              >
                 <LoadingSpinner />
-              </div>
+              </motion.div>
             ) : products.length === 0 ? (
               <EmptyState
                 icon={Package}

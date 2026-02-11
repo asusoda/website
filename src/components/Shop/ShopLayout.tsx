@@ -2,6 +2,7 @@ import React from 'react';
 import { ClerkProvider, useUser } from '@clerk/clerk-react';
 import { Outlet } from 'react-router-dom';
 import { AlertCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
 import ShopNavbar from './ShopNavbar';
 import LoadingSpinner from '../LoadingSpinner';
 
@@ -18,9 +19,14 @@ const EmailDomainGuard: React.FC<{ children: React.ReactNode }> = ({ children })
   // Still loading user data
   if (!isLoaded) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+      <motion.div 
+        className="min-h-screen bg-black text-white flex items-center justify-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+      >
         <LoadingSpinner />
-      </div>
+      </motion.div>
     );
   }
 

@@ -8,41 +8,41 @@ interface CategoryLayoutProps {
 }
 
 interface CategoryConfig {
+  id: string;
   name: string;
   description: string;
   color: string;
-  keywords: string[];
   orientation?: 'horizontal' | 'vertical';
   animationDirection?: 'left-to-right' | 'right-to-left' | 'bottom-to-top';
 }
 
 const categories: CategoryConfig[] = [
   {
+    id: 'hoodies',
     name: 'Hoodies',
     description: 'Stay warm and stylish with our premium SoDA hoodies. Perfect for coding sessions and casual wear.',
     color: 'from-red-600/60 via-red-700/50 to-red-800/40',
-    keywords: ['hoodie', 'hoodies'],
     animationDirection: 'right-to-left',
   },
   {
+    id: 't-shirts',
     name: 'T-Shirts',
     description: 'Express your love for coding with our comfortable and stylish SoDA t-shirts.',
     color: 'from-blue-600/80 via-blue-700/70 to-blue-800/60',
-    keywords: ['tshirt', 't-shirt', 'shirt'],
     animationDirection: 'left-to-right',
   },
   {
+    id: 'stickers',
     name: 'Stickers',
     description: 'Customize your laptop, notebook, or water bottle with our fun SoDA sticker packs.',
     color: 'from-red-500/60 via-red-600/50 to-red-700/40',
-    keywords: ['sticker', 'decal'],
     animationDirection: 'right-to-left',
   },
   {
+    id: 'water-bottles',
     name: 'Water Bottles',
     description: 'Stay hydrated in style with our durable SoDA water bottles and flasks.',
     color: 'from-blue-500/80 via-blue-600/70 to-blue-700/60',
-    keywords: ['bottle', 'flask', 'hydro'],
     orientation: 'vertical',
     animationDirection: 'bottom-to-top',
   },
@@ -56,20 +56,10 @@ export const CategoryLayout: React.FC<CategoryLayoutProps> = ({ products }) => {
     products: Product[];
   } | null>(null);
 
-  // Filter products by category
+  // Filter products by category field
   const categorizedProducts = categories.map(category => ({
     ...category,
-    products: products.filter(p => {
-      const productNameLower = p.name.toLowerCase();
-      return category.keywords.some(keyword => {
-        const keywordLower = keyword.toLowerCase();
-        // Escape special regex characters to avoid unexpected behavior
-        const escapedKeyword = keywordLower.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        // Use word boundaries to avoid false positives
-        const regex = new RegExp(`\\b${escapedKeyword}\\b`, 'i');
-        return regex.test(productNameLower);
-      });
-    }),
+    products: products.filter(p => p.category === category.id),
   }));
 
   // Separate vertical and horizontal categories
