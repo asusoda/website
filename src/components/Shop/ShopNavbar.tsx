@@ -13,7 +13,7 @@ const ShopNavbar: React.FC = () => {
   const itemCount = getCartItemCount();
 
   const handleLogout = () => {
-    signOut();
+    signOut({ redirectUrl: '/shop' });
   };
 
   useEffect(() => {
