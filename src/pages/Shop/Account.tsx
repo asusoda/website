@@ -43,7 +43,8 @@ const Account: React.FC = () => {
   }
 
   const primaryEmail = user.primaryEmailAddress?.emailAddress || user.emailAddresses[0]?.emailAddress;
-  const hasPoints = userPoints && userPoints.points_breakdown.length > 0;
+  const pointsBreakdown = userPoints?.points_breakdown ?? [];
+  const hasPoints = pointsBreakdown.length > 0;
 
   return (
     <>
@@ -136,7 +137,7 @@ const Account: React.FC = () => {
                         <Calendar size={14} className="text-gray-600" />
                       </div>
                       <div className="space-y-2 max-h-56 overflow-y-auto pr-2 custom-scrollbar">
-                        {userPoints.points_breakdown.slice(0, 8).map((item, index) => (
+                        {pointsBreakdown.slice(0, 8).map((item, index) => (
                           <motion.div 
                             key={item.id}
                             initial={{ opacity: 0, x: -10 }}

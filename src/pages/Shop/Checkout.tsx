@@ -27,16 +27,18 @@ const Checkout: React.FC = () => {
       return;
     }
 
-    if (success) {
-      return;
-    }
-
-    if (cart.length === 0) {
+    if (!success && cart.length === 0) {
       navigate('/shop/cart');
       return;
     }
+  }, [cart.length, navigate, isSignedIn, isLoaded, success]);
 
-    // Fetch user points
+  useEffect(() => {
+    if (!isLoaded || !isSignedIn || success) {
+      return;
+    }
+
+    // Fetch user points independently from cart mutations to avoid unnecessary refetches.
     const fetchUserPoints = async () => {
       try {
         const email = primaryEmail;
@@ -72,7 +74,7 @@ const Checkout: React.FC = () => {
     };
 
     fetchUserPoints();
-  }, [cart, navigate, isSignedIn, isLoaded, primaryEmail, getToken, success]);
+  }, [primaryEmail, getToken, isLoaded, isSignedIn, success]);
 
   useEffect(() => {
     return () => {
