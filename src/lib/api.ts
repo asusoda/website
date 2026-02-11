@@ -130,7 +130,7 @@ export const storefrontAPI = {
 
   // Get member store (requires auth)
   getMemberStore: (authToken?: string) =>
-    apiRequest<{ products: Product[]; user_info: any; organization: any }>(
+    apiRequest<{ products: Product[]; user_info: Record<string, unknown>; organization: Record<string, unknown> }>(
       `/api/storefront/${ORG_PREFIX}/members/store`,
       authToken ? { authToken } : {}
     ),
