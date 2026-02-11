@@ -61,7 +61,7 @@ export const CategoryLayout: React.FC<CategoryLayoutProps> = ({ products }) => {
       const isInverted = groupIndex % 2 === 1;
       
       // Assign orientation and animation
-      let orientation: 'horizontal' | 'vertical' = 'horizontal';
+      let orientation: 'horizontal' | 'vertical';
       let animationDirection: 'left-to-right' | 'right-to-left' | 'bottom-to-top' = 'right-to-left';
       
       if (positionInGroup === 2) {
