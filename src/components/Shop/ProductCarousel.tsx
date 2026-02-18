@@ -18,7 +18,7 @@ interface ProductCarouselProps {
 const ProductCarousel: React.FC<ProductCarouselProps> = ({
   slides,
   autoplayDelay = 5000,
-  videoUrl = "https://framerusercontent.com/assets/sRXQsZpCuTpukMUfotGcRUuvg.mp4",
+  videoUrl = "/SoDA.mp4",
   rightPanel,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
