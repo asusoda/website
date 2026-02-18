@@ -111,10 +111,8 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
       ></div>
 
       {/* Static Section Title at top */}
-      <div className="absolute top-0 left-0 right-0 z-10 px-5 pt-4 pointer-events-none">
-        <span className="text-white/90 text-2xl font-bold uppercase tracking-widest">
-          {title}
-        </span>
+      <div className="absolute top-0 left-0 right-0 z-30 px-5 pt-4 pointer-events-none">
+        <span className="text-white/90 text-2xl font-bold uppercase tracking-widest">{title}</span>
       </div>
 
       {/* Background Title - Only render animation when in view */}
@@ -164,8 +162,8 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
         <Maximize2 className="w-4 h-4 md:w-5 md:h-5 text-white" />
       </button>
 
-      {/* Product Cards - Always visible on all devices */}
-      <div className="relative z-10 p-3 md:p-4 lg:p-6 h-full">
+      {/* Product Cards - Always visible on mobile, hover on desktop */}
+      <div className="relative z-10 p-3 md:p-4 lg:p-6 h-full pt-14 md:pt-14 lg:pt-16">
         <div
           className={`grid gap-2 md:gap-3 lg:gap-4 pt-4 md:pt-6 lg:pt-8 ${
             orientation === "vertical" ? "grid-cols-1" : "grid-cols-2 lg:grid-cols-3"
