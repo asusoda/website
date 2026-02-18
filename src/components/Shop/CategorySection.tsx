@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { Maximize2 } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { ProductCard } from "./ProductCard";
@@ -26,7 +26,6 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(ref, { once: false, amount: 0.1, margin: "100px" });
-  const [isHovering, setIsHovering] = useState(false);
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
   if (products.length === 0) return null;
@@ -44,8 +43,8 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
 
   const getTextClass = () => {
     return orientation === "vertical"
-      ? "text-[18rem] font-black text-white uppercase [writing-mode:vertical-lr] rotate-180"
-      : "text-[24rem] font-black text-white px-8 italic uppercase";
+      ? "text-[12rem] font-black text-white uppercase [writing-mode:vertical-lr] rotate-180"
+      : "text-[16rem] font-black text-white px-8 italic uppercase";
   };
 
   const getAnimationVariants = () => {
@@ -105,13 +104,18 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
       variants={getAnimationVariants()}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
     >
       {/* Background Blob */}
       <div
         className={`absolute inset-0 bg-gradient-to-br ${color} transition-all duration-300 ease-in-out group-hover:brightness-110 will-change-[filter]`}
       ></div>
+
+      {/* Static Section Title at top */}
+      <div className="absolute top-0 left-0 right-0 z-10 px-5 pt-4 pointer-events-none">
+        <span className="text-white/90 text-2xl font-bold uppercase tracking-widest">
+          {title}
+        </span>
+      </div>
 
       {/* Background Title - Only render animation when in view */}
       {isInView && (
@@ -124,7 +128,6 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
           transition={{ delay: 0.6, duration: 0.5 }}
           style={
             {
-              "--scroll-duration": isHovering ? "80s" : "40s",
               transform: "translateZ(0)",
               backfaceVisibility: "hidden" as const,
             } as React.CSSProperties
@@ -162,7 +165,7 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
       </button>
 
       {/* Product Cards - Always visible on mobile, hover on desktop */}
-      <div className="relative z-10 p-3 md:p-4 lg:p-6 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 ease-in-out md:pointer-events-none md:group-hover:pointer-events-auto h-full will-change-[opacity]">
+      <div className="relative z-10 p-3 md:p-4 lg:p-6 h-full">
         <div
           className={`grid gap-2 md:gap-3 lg:gap-4 pt-4 md:pt-6 lg:pt-8 ${
             orientation === "vertical" ? "grid-cols-1" : "grid-cols-2 lg:grid-cols-3"
