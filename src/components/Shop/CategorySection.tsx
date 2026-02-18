@@ -164,7 +164,7 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
         <Maximize2 className="w-4 h-4 md:w-5 md:h-5 text-white" />
       </button>
 
-      {/* Product Cards - Always visible on mobile, hover on desktop */}
+      {/* Product Cards - Always visible on all devices */}
       <div className="relative z-10 p-3 md:p-4 lg:p-6 h-full">
         <div
           className={`grid gap-2 md:gap-3 lg:gap-4 pt-4 md:pt-6 lg:pt-8 ${
