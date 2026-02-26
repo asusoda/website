@@ -40,7 +40,6 @@ const categories: PointCategory[] = [
 const PointsBreakdownTable: React.FC = () => {
   return (
     <div className="bg-black/40 backdrop-blur-xl shadow-2xl text-gray-300 w-full rounded-xl overflow-hidden border border-white/10">
-      {/* 2-D Table */}
       <table className="w-full text-sm border-collapse">
         <thead>
           <tr className="bg-white/[0.06]">
@@ -60,9 +59,8 @@ const PointsBreakdownTable: React.FC = () => {
             cat.rows.map((row, ri) => (
               <tr
                 key={`${ci}-${ri}`}
-                className="border-b border-white/[0.05] last:border-0 hover:bg-white/[0.04] transition-colors"
+                className="border-b border-white/[0.05] last:border-0 hover:bg-white/[0.04]"
               >
-                {/* Category cell – only on first row of each category */}
                 {ri === 0 ? (
                   <td
                     rowSpan={cat.rows.length}
@@ -72,7 +70,6 @@ const PointsBreakdownTable: React.FC = () => {
                   </td>
                 ) : null}
 
-                {/* Activity */}
                 <td className="px-3 py-3 border-r border-white/10 text-gray-200 leading-snug">
                   {row.activity}
                   {row.note && (
@@ -80,7 +77,6 @@ const PointsBreakdownTable: React.FC = () => {
                   )}
                 </td>
 
-                {/* Points badge */}
                 <td className="px-3 py-3 text-center">
                   <span className="inline-block bg-blue-500/20 border border-blue-400/30 text-blue-300 font-bold text-xs px-2 py-1 rounded-md tabular-nums whitespace-nowrap">
                     {row.points}
