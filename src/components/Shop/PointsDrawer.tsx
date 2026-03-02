@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PointsBreakdownTable from "./PointsBreakdownTable";
+import { ArrowLeft } from "lucide-react";
 
 /**
  * Floating drawer that keeps the points table accessible across all shop pages.
@@ -22,7 +23,7 @@ const PointsDrawer: React.FC = () => {
         onMouseLeave={closeDrawer}
       >
         <div
-          className="bg-blue-500/20 backdrop-blur-md text-white w-4 sm:w-5 px-0.5 py-3 border border-white/15 shadow-lg shadow-blue-500/10 text-[10px] font-semibold tracking-[0.25em] uppercase h-[60vh] flex items-center justify-center cursor-pointer select-none"
+          className="bg-blue-500/20 backdrop-blur-md text-white w-4 sm:w-5 px-0.5 py-3 border border-white/15 shadow-lg shadow-blue-500/10 text-[10px] font-semibold tracking-[0.25em] uppercase h-[23vh] flex items-center justify-between cursor-pointer select-none"
           style={{ writingMode: "vertical-rl" }}
           role="button"
           tabIndex={0}
@@ -34,7 +35,7 @@ const PointsDrawer: React.FC = () => {
             }
           }}
         >
-          Points
+          <ArrowLeft size={20} color="grey" /> Points Breakdown <ArrowLeft size={20} color="grey" />
         </div>
         <div className="w-[340px] max-h-[80vh] overflow-y-auto border border-white/10 rounded-l-none rounded-r-xl">
           <PointsBreakdownTable />

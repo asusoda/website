@@ -25,18 +25,14 @@ Members can earn points through various activities such as attending meetings, p
 
 ## Point System Breakdown
 
-Earn points through different activities to unlock rewards. Here’s a breakdown:
+Earn points through different event types. Here’s the updated breakdown:
 
-| **Activity Category**     | **Specific Activity**                                                                 | **Points Awarded** | **Notes**                                                                                   |
-|---------------------------|----------------------------------------------------------------------------------------|--------------------|---------------------------------------------------------------------------------------------|
-| **Meetings**              | Attend in-person meeting                                                              | 10                 | Higher points for in-person attendance                                                      |
-|                           | Attend online meeting                                                                 | Approx. 5          | Encourages participation regardless of location                                             |
-|                           | Attend Lounge hours                                                                   | 5                  |                                                                                             |
-| **Active Participation**  | Asking questions or contributing to meetings by interacting with workshops/presenters | 1 each time        | Promotes lively discussions and engagement                                                  |
-|                           | Bonus points for participation                                                        | 5                  |                                                                                             |
-| **Discord Engagement**    | Engaging with the Discord in general and asking questions (not answering questions)    | 2 per month        | Maximum of 10 points per semester; subject to director's discretion                         |
-|                           | Helpful post or solving a query                                                       | 5 per instance     | Encourages peer support (cap of 15 points per semester)                                     |
-| **Workshop Contribution** | Submit a workshop challenge                                                           | 20                 | Encourages taking the initiative to engage with the events                                  |
+| **Event Type** | **Value (in Points)** |
+| --- | --- |
+| GBM | 10 |
+| Collaboration (with other clubs) | 15 |
+| Hackathon/Bootcamp | 20 |
+| Lounge Hour | 15 |
 `;
 
 export default function PointsSystem() {

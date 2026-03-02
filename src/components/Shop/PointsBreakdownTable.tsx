@@ -13,26 +13,12 @@ interface PointCategory {
 
 const categories: PointCategory[] = [
   {
-    label: "Meetings",
+    label: "Events",
     rows: [
-      { activity: "Attend in-person GBM", points: "10 pts" },
-      { activity: "Attend online GBM", points: "~5 pts" },
-      { activity: "Attend lounge hours", points: "5 pts" },
-    ],
-  },
-  {
-    label: "Participation",
-    rows: [
-      { activity: "Ask questions / interact", points: "1 pt", note: "per time" },
-      { activity: "Bonus participation", points: "5 pts" },
-      { activity: "Submit workshop challenge", points: "20 pts" },
-    ],
-  },
-  {
-    label: "Discord",
-    rows: [
-      { activity: "General engagement", points: "2 pts", note: "per mo · max 10/sem" },
-      { activity: "Helpful post / solve query", points: "5 pts", note: "max 15/sem" },
+      { activity: "GBM", points: "10 pts" },
+      { activity: "Collaboration (with other clubs)", points: "15 pts" },
+      { activity: "Hackathon/Bootcamp", points: "20 pts" },
+      { activity: "Lounge Hour", points: "15 pts" },
     ],
   },
 ];
