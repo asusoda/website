@@ -103,7 +103,7 @@ export default function Blog() {
           tag={["mentorship", "community development"]}
           title="Distinguished Members Program"
           summary="SoDA introduced points system designed to encourage active participation in our community. By attending meetings, events, and engaging in various activities, members can earn points that contribute to their standing within the organization. These points can be redeemed for exclusive rewards, recognition, and opportunities, fostering a vibrant and involved community."
-          link="/distinguished Members"
+          link="/distinguishedMembers"
           alt="Distinguished Members Program"
           width={5510}
           height={2904}
