@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-const markdownContent = `# Distinguished Members Program Program 
+const markdownContent = `# Distinguished Members Program
 
 The **Distinguished Members Program Program** is designed to incentivize active involvement through a structured framework of rewards and recognitions. This program aims to enhance the overall club experience while offering tangible benefits to our members.
 
