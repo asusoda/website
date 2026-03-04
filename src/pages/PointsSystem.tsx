@@ -4,7 +4,7 @@ import remarkGfm from "remark-gfm";
 
 const markdownContent = `# Distinguished Members Program
 
-The **Distinguished Members Program Program** is designed to incentivize active involvement through a structured framework of rewards and recognitions. This program aims to enhance the overall club experience while offering tangible benefits to our members.
+The **Distinguished Members Program** is designed to incentivize active involvement through a structured framework of rewards and recognitions. This program aims to enhance the overall club experience while offering tangible benefits to our members.
 
 # Objectives
 
