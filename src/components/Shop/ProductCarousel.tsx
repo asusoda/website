@@ -77,7 +77,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
           <div className="container mx-auto px-4 md:px-8 lg:px-16 w-full">
             <div className="flex flex-col items-center gap-8 lg:flex-row lg:justify-center lg:gap-24 xl:gap-48">
               {/* Left: animated text */}
-              <div className="w-full lg:w-72 xl:w-102 lg:shrink-0">
+              <div className="w-full lg:w-72 xl:w-[408px] lg:shrink-0">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentSlide.id}
