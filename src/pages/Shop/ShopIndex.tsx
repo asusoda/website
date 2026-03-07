@@ -66,7 +66,7 @@ const ShopIndex: React.FC = () => {
         <div className="snap-section relative overflow-y-auto lg:overflow-hidden flex flex-col">
           <div className="flex-1 flex flex-col justify-center">
             <ProductCarousel
-              videoUrl="../../../public/Soda.mp4"
+              videoUrl="/Soda.mp4"
               slides={carouselSlides}
               autoplayDelay={5000}
             />
