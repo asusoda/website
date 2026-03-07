@@ -27,18 +27,25 @@ const PointsBreakdownTable: React.FC = () => {
   return (
     <div className="bg-black/40 backdrop-blur-xl shadow-2xl text-gray-300 w-full rounded-xl overflow-hidden border border-white/10">
       <table className="w-full text-sm border-collapse">
-        <caption className="sr-only">
-          Points breakdown for SoDA activities
-        </caption>
+        <caption className="sr-only">Points breakdown for SoDA activities</caption>
         <thead>
           <tr className="bg-white/[0.06]">
-            <th className="text-left px-3 py-2.5 text-gray-400 font-semibold uppercase tracking-widest text-[10px] border-b border-r border-white/10 w-[24%]">
+            <th
+              scope="col"
+              className="text-left px-3 py-2.5 text-gray-400 font-semibold uppercase tracking-widest text-[10px] border-b border-r border-white/10 w-[24%]"
+            >
               Category
             </th>
-            <th className="text-left px-3 py-2.5 text-gray-400 font-semibold uppercase tracking-widest text-[10px] border-b border-r border-white/10">
+            <th
+              scope="col"
+              className="text-left px-3 py-2.5 text-gray-400 font-semibold uppercase tracking-widest text-[10px] border-b border-r border-white/10"
+            >
               Activity
             </th>
-            <th className="text-center px-3 py-2.5 text-gray-400 font-semibold uppercase tracking-widest text-[10px] border-b border-white/10 w-[20%]">
+            <th
+              scope="col"
+              className="text-center px-3 py-2.5 text-gray-400 font-semibold uppercase tracking-widest text-[10px] border-b border-white/10 w-[20%]"
+            >
               Pts
             </th>
           </tr>
