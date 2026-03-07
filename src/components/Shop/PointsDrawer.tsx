@@ -1,33 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import PointsBreakdownTable from "./PointsBreakdownTable";
 import { ArrowLeft, X } from "lucide-react";
 
 /**
  * Floating drawer that keeps the points table accessible across all shop pages.
- * Shows a vertical "Points" tab; hovering or focusing the drawer reveals the table.
+ * - Hover to preview, click to pin open, Escape or blur to close.
  */
 const PointsDrawer: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isPinned, setIsPinned] = useState(false);
+  const drawerRef = useRef<HTMLDivElement>(null);
 
-  const toggleOpen = () => setIsOpen((prev) => !prev);
   const openDrawer = () => setIsOpen(true);
-  const closeDrawer = () => setIsOpen(false);
+
+  const closeDrawer = () => {
+    setIsOpen(false);
+    setIsPinned(false);
+  };
+
+  const handleMouseEnter = () => setIsOpen(true);
+  const handleMouseLeave = () => {
+    if (!isPinned) setIsOpen(false);
+  };
+
+  const handleTogglePin = () => {
+    setIsPinned((prev) => {
+      const next = !prev;
+      setIsOpen(next);
+      return next;
+    });
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Escape") closeDrawer();
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+    if (drawerRef.current && !drawerRef.current.contains(e.relatedTarget as Node)) {
+      if (!isPinned) setIsOpen(false);
+    }
+  };
 
   const translateClass = isOpen ? "translate-x-0" : "translate-x-[calc(100%-2rem)]";
 
   return (
     <>
-      <div className="fixed top-1/2 right-[-6px] -translate-y-1/2 z-40 group/drawer hidden md:block">
+      <div
+        ref={drawerRef}
+        className="fixed top-1/2 right-[-6px] -translate-y-1/2 z-40 group/drawer hidden md:block"
+        onKeyDown={handleKeyDown}
+        onBlur={handleBlur}
+      >
         <div
           className={`flex items-center transition-transform duration-300 ease-out ${translateClass}`}
-          onMouseEnter={openDrawer}
-          onMouseLeave={closeDrawer}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           <button
             type="button"
             className="bg-blue-500/20 backdrop-blur-md text-white w-4 sm:w-5 px-0.5 py-3 border border-white/15 shadow-lg shadow-blue-500/10 text-[10px] font-semibold tracking-[0.25em] uppercase h-[23vh] flex items-center justify-between cursor-pointer select-none"
             style={{ writingMode: "vertical-rl" }}
-            onClick={toggleOpen}
+            onClick={handleTogglePin}
             onFocus={openDrawer}
             aria-expanded={isOpen}
             aria-controls="points-breakdown-desktop-panel"
