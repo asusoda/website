@@ -8,6 +8,7 @@ import { CategoryLayout } from "../../components/Shop/CategoryLayout";
 import { useProducts } from "../../hooks/useProducts";
 import { motion, useInView } from "framer-motion";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import PointsBreakdownTable from "../../components/Shop/PointsBreakdownTable";
 import "./styles/scrolling-text.css";
 
 const ShopIndex: React.FC = () => {
