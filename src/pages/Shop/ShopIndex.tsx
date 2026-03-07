@@ -8,7 +8,6 @@ import { CategoryLayout } from "../../components/Shop/CategoryLayout";
 import { useProducts } from "../../hooks/useProducts";
 import { motion, useInView } from "framer-motion";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import PointsBreakdownTable from "../../components/Shop/PointsBreakdownTable";
 import "./styles/scrolling-text.css";
 
 const ShopIndex: React.FC = () => {
@@ -63,13 +62,9 @@ const ShopIndex: React.FC = () => {
       </Helmet>
       <div className="min-h-screen bg-black text-white h-screen overflow-y-scroll snap-y snap-mandatory snap-container">
         {/* Hero Carousel Section - Full Screen Snap */}
-        <div className="snap-section relative lg:overflow-hidden flex flex-col">
+        <div className="snap-section relative overflow-y-auto lg:overflow-hidden flex flex-col">
           <div className="flex-1 flex flex-col justify-center">
-            <ProductCarousel
-              slides={carouselSlides}
-              autoplayDelay={5000}
-              rightPanel={<PointsBreakdownTable />}
-            />
+            <ProductCarousel videoUrl="/Soda.mp4" slides={carouselSlides} autoplayDelay={5000} />
           </div>
 
           {/* Scroll indicator */}

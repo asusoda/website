@@ -5,6 +5,7 @@ import { AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import ShopNavbar from "./ShopNavbar";
 import LoadingSpinner from "../LoadingSpinner";
+import PointsDrawer from "./PointsDrawer";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 const ALLOWED_EMAIL_DOMAIN = "@asu.edu";
@@ -130,6 +131,7 @@ const ShopLayout: React.FC = () => {
     <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
       <EmailDomainGuard>
         <ShopNavbar />
+        <PointsDrawer />
         <Outlet />
       </EmailDomainGuard>
     </ClerkProvider>

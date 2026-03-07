@@ -120,7 +120,7 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
         <motion.div
           ref={scrollRef}
           className={`absolute inset-0 flex ${orientation === "vertical" ? "flex-col justify-center" : "items-center"} overflow-hidden pointer-events-none group-hover:opacity-10 transition-opacity duration-300 ease-in-out will-change-[opacity]`}
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 0.3 }}
           animate={{ opacity: 0.3 }}
           exit={{ opacity: 0 }}
           transition={{ delay: 0.6, duration: 0.5 }}
