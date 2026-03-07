@@ -18,7 +18,7 @@ interface ProductCarouselProps {
 const ProductCarousel: React.FC<ProductCarouselProps> = ({
   slides,
   autoplayDelay = 5000,
-  videoUrl = "/public/Soda.mp4",
+  videoUrl = "/Soda.mp4",
   rightPanel,
 }) => {
   const hasRightPanel = !!rightPanel;
