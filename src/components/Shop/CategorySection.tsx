@@ -111,10 +111,8 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
       ></div>
 
       {/* Static Section Title at top */}
-      <div className="absolute top-0 left-0 right-0 z-10 px-5 pt-4 pointer-events-none">
-        <span className="text-white/90 text-2xl font-bold uppercase tracking-widest">
-          {title}
-        </span>
+      <div className="absolute top-0 left-0 right-0 z-30 px-5 pt-4 pointer-events-none">
+        <span className="text-white/90 text-2xl font-bold uppercase tracking-widest">{title}</span>
       </div>
 
       {/* Background Title - Only render animation when in view */}
@@ -122,7 +120,7 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
         <motion.div
           ref={scrollRef}
           className={`absolute inset-0 flex ${orientation === "vertical" ? "flex-col justify-center" : "items-center"} overflow-hidden pointer-events-none group-hover:opacity-10 transition-opacity duration-300 ease-in-out will-change-[opacity]`}
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 0.3 }}
           animate={{ opacity: 0.3 }}
           exit={{ opacity: 0 }}
           transition={{ delay: 0.6, duration: 0.5 }}
@@ -165,7 +163,7 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
       </button>
 
       {/* Product Cards - Always visible on mobile, hover on desktop */}
-      <div className="relative z-10 p-3 md:p-4 lg:p-6 h-full">
+      <div className="relative z-10 p-3 md:p-4 lg:p-6 h-full pt-14 md:pt-14 lg:pt-16">
         <div
           className={`grid gap-2 md:gap-3 lg:gap-4 pt-4 md:pt-6 lg:pt-8 ${
             orientation === "vertical" ? "grid-cols-1" : "grid-cols-2 lg:grid-cols-3"

@@ -12,16 +12,26 @@ interface ProductCarouselProps {
   slides: CarouselSlide[];
   autoplayDelay?: number;
   videoUrl?: string;
+  rightPanel?: React.ReactNode;
 }
 
 const ProductCarousel: React.FC<ProductCarouselProps> = ({
   slides,
   autoplayDelay = 5000,
-  videoUrl = "https://framerusercontent.com/assets/sRXQsZpCuTpukMUfotGcRUuvg.mp4",
+  videoUrl = "/Soda.mp4",
+  rightPanel,
 }) => {
+  const hasRightPanel = !!rightPanel;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 1024);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     if (slides.length <= 1) return;
@@ -63,57 +73,81 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
       </div>
 
       {/* Carousel Content */}
-      <div className="relative w-full h-[350px] md:h-[450px] lg:h-[500px] z-10 pt-24 md:pt-32">
-        {/* Animated Text Content */}
+      <div className="relative w-full h-auto lg:h-[500px] z-10 pt-20 pb-8 lg:pt-32 lg:pb-0">
         <div className="relative z-10 h-full flex items-center">
-          <div className="container mx-auto px-4 md:px-8 lg:px-16">
-            <div className="max-w-3xl">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentSlide.id}
-                  initial={{ opacity: 0, x: -60, scale: 0.95 }}
-                  animate={{ opacity: 1, x: 0, scale: 1 }}
-                  exit={{ opacity: 0, x: 60, scale: 0.95 }}
-                  transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  {currentSlide.subtitle && (
-                    <motion.p
-                      className="text-blue-400 font-semibold text-xs md:text-sm lg:text-base uppercase tracking-wider mb-2 md:mb-3"
-                      initial={{ opacity: 0, x: -40 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
-                    >
-                      {currentSlide.subtitle}
-                    </motion.p>
-                  )}
-                  <motion.h2
-                    className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-bold text-white mb-2 md:mb-3 leading-tight"
-                    initial={{ opacity: 0, x: -50, rotateX: -15 }}
-                    animate={{ opacity: 1, x: 0, rotateX: 0 }}
-                    transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    {currentSlide.title}
-                  </motion.h2>
-                  {currentSlide.description && (
-                    <motion.p
-                      className="text-gray-300 text-sm md:text-lg lg:text-2xl mb-6 md:mb-10 max-w-2xl"
-                      initial={{ opacity: 0, x: -40 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
-                    >
-                      {currentSlide.description}
-                    </motion.p>
-                  )}
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Static CTA Button */}
-              <a
-                href="#products"
-                className="inline-block bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-blue-500/20 hover:border-blue-400/40 text-white font-semibold px-6 py-3 md:px-10 md:py-4 rounded-lg md:rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/10 text-sm md:text-base lg:text-lg"
+          <div className="container mx-auto px-4 md:px-8 lg:px-16 w-full">
+            <div
+              className={`flex flex-col items-center gap-8 lg:flex-row lg:justify-center ${
+                hasRightPanel ? "lg:gap-24 xl:gap-48" : "lg:gap-12 xl:gap-16"
+              }`}
+            >
+              {/* Left: animated text */}
+              <div
+                className={`w-full flex flex-col ${
+                  hasRightPanel
+                    ? "lg:w-[360px] xl:w-[420px] lg:shrink-0"
+                    : "lg:w-[960px] xl:w-[1100px] items-center text-center"
+                }`}
               >
-                Shop Now
-              </a>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentSlide.id}
+                    initial={{ opacity: 0, x: isMobile ? 0 : -60, scale: 0.95 }}
+                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                    exit={{ opacity: 0, x: isMobile ? 0 : 60, scale: 0.95 }}
+                    transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    {currentSlide.subtitle && (
+                      <motion.p
+                        className="text-blue-400 font-semibold text-xs md:text-sm uppercase tracking-wider mb-2"
+                        initial={{ opacity: 0, x: isMobile ? 0 : -40 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
+                      >
+                        {currentSlide.subtitle}
+                      </motion.p>
+                    )}
+                    <motion.h2
+                      className={`text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 leading-tight ${
+                        hasRightPanel ? "" : "text-center w-full"
+                      }`}
+                      initial={{ opacity: 0, x: isMobile ? 0 : -50, rotateX: -15 }}
+                      animate={{ opacity: 1, x: 0, rotateX: 0 }}
+                      transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      {currentSlide.title}
+                    </motion.h2>
+                    {currentSlide.description && (
+                      <motion.p
+                        className={`text-gray-300 ${hasRightPanel ? "text-sm md:text-base max-w-sm" : "text-lg md:text-xl lg:text-2xl max-w-3xl"} mb-6 md:mb-8 ${
+                          hasRightPanel ? "" : "text-center"
+                        }`}
+                        initial={{ opacity: 0, x: 0 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
+                      >
+                        {currentSlide.description}
+                      </motion.p>
+                    )}
+                  </motion.div>
+                </AnimatePresence>
+
+                <div className={hasRightPanel ? "" : "flex justify-center w-full"}>
+                  <a
+                    href="#products"
+                    className="inline-block bg-blue-500/10 backdrop-blur-xl border border-blue-400/20 hover:bg-blue-500/20 hover:border-blue-400/40 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/10 text-sm md:text-base"
+                  >
+                    Shop Now
+                  </a>
+                </div>
+              </div>
+
+              {/* Right: optional panel (e.g. points table) */}
+              {rightPanel && (
+                <div className="w-full max-h-[45vh] overflow-y-auto lg:max-h-none lg:overflow-visible lg:w-[440px] lg:shrink-0">
+                  {rightPanel}
+                </div>
+              )}
             </div>
           </div>
         </div>

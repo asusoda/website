@@ -62,9 +62,9 @@ const ShopIndex: React.FC = () => {
       </Helmet>
       <div className="min-h-screen bg-black text-white h-screen overflow-y-scroll snap-y snap-mandatory snap-container">
         {/* Hero Carousel Section - Full Screen Snap */}
-        <div className="snap-section relative overflow-hidden flex flex-col">
+        <div className="snap-section relative overflow-y-auto lg:overflow-hidden flex flex-col">
           <div className="flex-1 flex flex-col justify-center">
-            <ProductCarousel slides={carouselSlides} autoplayDelay={5000} />
+            <ProductCarousel videoUrl="/Soda.mp4" slides={carouselSlides} autoplayDelay={5000} />
           </div>
 
           {/* Scroll indicator */}
