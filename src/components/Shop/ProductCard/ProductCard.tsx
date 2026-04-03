@@ -14,7 +14,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <div className="bg-zinc-900/90 backdrop-blur-xl rounded-lg md:rounded-xl overflow-hidden transition-all duration-300 shadow-xl hover:shadow-red-500/20 group cursor-pointer border border-zinc-800">
       <Link to={`/shop/product/${product.id}`} className="block">
-        <div className="aspect-square bg-zinc-800/50 relative overflow-hidden">
+        <div className="aspect-[4/3] bg-zinc-800/50 relative overflow-hidden">
           {hasValidImage ? (
             <img
               src={product.image_url}

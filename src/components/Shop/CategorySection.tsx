@@ -91,9 +91,9 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
       ref={ref}
       className="relative group overflow-hidden rounded-[2rem] md:rounded-[3rem] cursor-pointer"
       style={{
-        minHeight: orientation === "vertical" ? minHeight : "550px",
-        maxHeight: orientation === "vertical" ? minHeight : "550px",
-        height: orientation === "vertical" ? minHeight : "550px",
+        minHeight: orientation === "vertical" ? minHeight : "470px",
+        maxHeight: orientation === "vertical" ? minHeight : "470px",
+        height: orientation === "vertical" ? minHeight : "470px",
         boxShadow: `0 0 25px 6px ${getShadowColor()}, 0 0 40px 10px ${getShadowColor().replace("0.6", "0.15")}`,
       }}
       onClick={onExpand}
@@ -169,7 +169,7 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
             orientation === "vertical" ? "grid-cols-1" : "grid-cols-2 lg:grid-cols-3"
           }`}
         >
-          {products.slice(0, orientation === "vertical" ? 3 : 6).map((product) => (
+          {products.slice(0, 3).map((product) => (
             <div key={product.id} className="md:scale-90" onClick={(e) => e.stopPropagation()}>
               <ProductCard product={product} />
             </div>
