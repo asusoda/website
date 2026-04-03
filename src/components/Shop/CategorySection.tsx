@@ -91,9 +91,9 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
       ref={ref}
       className="relative group overflow-hidden rounded-[2rem] md:rounded-[3rem] cursor-pointer"
       style={{
-        minHeight: orientation === "vertical" ? minHeight : "470px",
-        maxHeight: orientation === "vertical" ? minHeight : "470px",
-        height: orientation === "vertical" ? minHeight : "470px",
+        minHeight: orientation === "vertical" ? minHeight : "550px",
+        maxHeight: orientation === "vertical" ? minHeight : "550px",
+        height: orientation === "vertical" ? minHeight : "550px",
         boxShadow: `0 0 25px 6px ${getShadowColor()}, 0 0 40px 10px ${getShadowColor().replace("0.6", "0.15")}`,
       }}
       onClick={onExpand}

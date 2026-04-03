@@ -170,7 +170,7 @@ export const CategoryLayout: React.FC<CategoryLayoutProps> = ({ products }) => {
 
               {/* Horizontal categories */}
               <div
-                className={`${shouldShowVerticalColumn ? "flex flex-col md:space-y-0 space-y-12 md:justify-between" : "w-full space-y-12 "} `}
+                className={`${shouldShowVerticalColumn ? "flex flex-col gap-10 md:gap-12" : "w-full space-y-12"} `}
               >
                 {horizontalCategories.map((category) => (
                   <CategorySection
