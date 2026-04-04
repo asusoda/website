@@ -60,9 +60,9 @@ const ShopIndex: React.FC = () => {
         <title>SoDA Shop - Products</title>
         <meta name="description" content="Browse and purchase SoDA merchandise" />
       </Helmet>
-      <div className="min-h-screen bg-black text-white h-screen overflow-y-scroll snap-y snap-mandatory snap-container">
-        {/* Hero Carousel Section - Full Screen Snap */}
-        <div className="snap-section relative overflow-y-auto lg:overflow-hidden flex flex-col">
+      <div className="min-h-screen bg-black text-white">
+        {/* Hero Carousel Section - Full Screen */}
+        <div className="h-screen relative overflow-hidden flex flex-col">
           <div className="flex-1 flex flex-col justify-center">
             <ProductCarousel videoUrl="/Soda.mp4" slides={carouselSlides} autoplayDelay={5000} />
           </div>
@@ -87,8 +87,8 @@ const ShopIndex: React.FC = () => {
           </div>
         </div>
 
-        {/* Products Section - Full Screen Snap */}
-        <div className="snap-section bg-black relative z-20 overflow-y-auto">
+        {/* Products Section */}
+        <div className="bg-black relative z-20">
           <div
             className="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 md:pt-16 pb-8"
             ref={productsRef}

@@ -169,7 +169,7 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
             orientation === "vertical" ? "grid-cols-1" : "grid-cols-2 lg:grid-cols-3"
           }`}
         >
-          {products.slice(0, orientation === "vertical" ? 3 : 6).map((product) => (
+          {products.slice(0, 3).map((product) => (
             <div key={product.id} className="md:scale-90" onClick={(e) => e.stopPropagation()}>
               <ProductCard product={product} />
             </div>
