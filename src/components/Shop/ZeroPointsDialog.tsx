@@ -49,7 +49,6 @@ const ZeroPointsDialog: React.FC = () => {
           transition={{ duration: 0.2, ease: "easeOut" }}
           className="fixed bottom-6 right-6 z-50 w-72 bg-zinc-900 border border-white/10 rounded-xl shadow-2xl p-4"
         >
-          {/* Header */}
           <div className="flex items-start justify-between gap-2 mb-3">
             <div className="flex items-center gap-2">
               <Info size={15} className="text-blue-400 shrink-0 mt-0.5" />
@@ -67,13 +66,11 @@ const ZeroPointsDialog: React.FC = () => {
             </button>
           </div>
 
-          {/* Current email */}
           <div className="bg-zinc-800 rounded-lg px-3 py-2 mb-3 border border-white/5">
             <p className="text-gray-500 text-[10px] mb-0.5">Signed in as</p>
             <p className="text-white font-mono text-xs break-all">{email}</p>
           </div>
 
-          {/* Instruction */}
           <p className="text-gray-400 text-xs leading-relaxed mb-3">
             If you signed in with an alias email, try using your ASURITE email{" "}
             <span className="text-blue-400 font-mono">{"<asurite>"}@asu.edu</span>.
