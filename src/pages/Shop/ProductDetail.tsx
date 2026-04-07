@@ -5,6 +5,7 @@ import { ShoppingCart, ArrowLeft } from "lucide-react";
 import { storefrontAPI, Product } from "../../lib/api";
 import { useCart } from "../../lib/CartContext";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import { getDisplayProductName } from "../../utils/shopProductName";
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -89,10 +90,12 @@ const ProductDetail: React.FC = () => {
     );
   }
 
+  const displayName = getDisplayProductName(product.name);
+
   return (
     <>
       <Helmet>
-        <title>{product.name} - SoDA Shop</title>
+        <title>{displayName} - SoDA Shop</title>
       </Helmet>
       <div className="min-h-screen bg-black text-white pt-32">
         <div className="container mx-auto px-4 py-8">
@@ -108,7 +111,7 @@ const ProductDetail: React.FC = () => {
               {product.image_url && !hasImageError ? (
                 <img
                   src={product.image_url}
-                  alt={product.name}
+                  alt={displayName}
                   className={`w-full h-full object-cover ${product.stock === 0 ? "grayscale" : ""}`}
                   onError={() => {
                     setHasImageError(true);
@@ -118,7 +121,7 @@ const ProductDetail: React.FC = () => {
                 <div className="w-full h-full flex items-center justify-center">
                   <img
                     src="/teddy-laptop.webp"
-                    alt={product.name}
+                    alt={displayName}
                     className={`w-full h-full object-cover opacity-60 ${
                       product.stock === 0 ? "grayscale" : ""
                     }`}
@@ -136,7 +139,7 @@ const ProductDetail: React.FC = () => {
             </div>
 
             <div>
-              <h1 className="text-4xl font-bold mb-4">{product.name}</h1>
+              <h1 className="text-4xl font-bold mb-4">{displayName}</h1>
               <p className="text-3xl font-bold text-blue-400 mb-6">{product.price} points</p>
               <p className="text-gray-300 mb-6">{product.description}</p>
               <p className="text-sm text-gray-400 mb-6">

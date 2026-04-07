@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Product } from "../../../lib/api";
 import { FALLBACK_IMAGES } from "../../../constants/shop";
+import { getDisplayProductName } from "../../../utils/shopProductName";
 
 interface ProductCardProps {
   product: Product;
@@ -10,6 +11,7 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [hasImageError, setHasImageError] = useState(false);
   const hasValidImage = !!product.image_url && !hasImageError;
+  const displayName = getDisplayProductName(product.name);
 
   return (
     <div className="bg-zinc-900/90 backdrop-blur-xl rounded-lg md:rounded-xl overflow-hidden transition-all duration-300 shadow-xl hover:shadow-red-500/20 group cursor-pointer border border-zinc-800">
@@ -18,7 +20,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           {hasValidImage ? (
             <img
               src={product.image_url}
-              alt={product.name}
+              alt={displayName}
               className={`w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ${
                 product.stock === 0 ? "grayscale" : ""
               }`}
@@ -30,7 +32,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <div className="w-full h-full flex items-center justify-center">
               <img
                 src={FALLBACK_IMAGES.product}
-                alt={product.name}
+                alt={displayName}
                 className={`w-full h-full object-cover opacity-60 ${
                   product.stock === 0 ? "grayscale" : ""
                 }`}
@@ -56,7 +58,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
         <div className="p-3 md:p-4 lg:p-5">
           <h3 className="text-base md:text-lg lg:text-xl font-bold mb-2 md:mb-3 transition-colors line-clamp-1">
-            {product.name}
+            {displayName}
           </h3>
           <div className="flex items-baseline space-x-1.5 md:space-x-2">
             <span className="text-2xl md:text-3xl font-bold text-blue-400">{product.price}</span>
