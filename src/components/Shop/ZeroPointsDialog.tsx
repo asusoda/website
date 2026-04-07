@@ -16,7 +16,7 @@ import { ERROR_MESSAGES } from "../../lib/api";
 const ZeroPointsDialog: React.FC = () => {
   const { user, isSignedIn } = useUser();
   const { userPoints, loading, error } = useUserPoints();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const email = user?.primaryEmailAddress?.emailAddress ?? "";
 
