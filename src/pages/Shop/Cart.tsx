@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { Trash2, Plus, Minus, ShoppingBag, ArrowRight } from "lucide-react";
 import { useCart } from "../../lib/CartContext";
 import { motion } from "framer-motion";
+import { getDisplayProductName } from "../../utils/shopProductName";
 
 const Cart: React.FC = () => {
   const navigate = useNavigate();
@@ -81,61 +82,79 @@ const Cart: React.FC = () => {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.05 }}
-                  className="bg-zinc-900/90 backdrop-blur-xl rounded-xl p-5 flex items-center space-x-4 border border-white/10 transition-all shadow-xl"
+                  className="bg-zinc-900/90 backdrop-blur-xl rounded-xl p-4 border border-white/10 transition-all shadow-xl"
                 >
-                  <div className="w-24 h-24 bg-zinc-800/50 rounded-lg flex-shrink-0 overflow-hidden">
-                    {item.product.image_url ? (
-                      <img
-                        src={item.product.image_url}
-                        alt={item.product.name}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <ShoppingBag size={32} className="text-gray-600" />
-                      </div>
-                    )}
-                  </div>
+                  {(() => {
+                    const displayName = getDisplayProductName(item.product.name);
 
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-bold mb-1 truncate">{item.product.name}</h3>
-                    <p className="text-blue-400 font-semibold">{item.product.price} pts each</p>
-                  </div>
+                    return (
+                      <>
+                        {/* Top row: image + name + remove */}
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className="w-16 h-16 sm:w-20 sm:h-20 bg-zinc-800/50 rounded-lg flex-shrink-0 overflow-hidden">
+                            {item.product.image_url ? (
+                              <img
+                                src={item.product.image_url}
+                                alt={displayName}
+                                className="w-full h-full object-cover"
+                              />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center">
+                                <ShoppingBag size={28} className="text-gray-600" />
+                              </div>
+                            )}
+                          </div>
 
-                  <div className="flex items-center space-x-2 bg-black/30 rounded-lg p-2">
-                    <button
-                      onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
-                      className="bg-white/5 hover:bg-white/10 p-2 rounded transition-colors"
-                      aria-label={`Decrease quantity of ${item.product.name}`}
-                    >
-                      <Minus size={16} />
-                    </button>
-                    <span className="w-10 text-center font-semibold">{item.quantity}</span>
-                    <button
-                      onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
-                      disabled={item.quantity >= item.product.stock}
-                      className="bg-white/5 hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed p-2 rounded transition-colors"
-                      aria-label={`Increase quantity of ${item.product.name}`}
-                    >
-                      <Plus size={16} />
-                    </button>
-                  </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-base font-bold mb-1 truncate">{displayName}</h3>
+                            <p className="text-blue-400 font-semibold text-sm">
+                              {item.product.price} pts each
+                            </p>
+                          </div>
 
-                  <div className="text-right">
-                    <p className="text-sm text-gray-500 mb-1">Subtotal</p>
-                    <p className="text-xl font-bold text-blue-400">
-                      {item.product.price * item.quantity}
-                    </p>
-                    <p className="text-xs text-gray-500">pts</p>
-                  </div>
+                          <button
+                            onClick={() => removeFromCart(item.product.id)}
+                            className="text-red-400 hover:text-red-500 hover:bg-red-400/10 p-2 rounded-lg transition-all flex-shrink-0"
+                            aria-label={`Remove ${displayName} from cart`}
+                          >
+                            <Trash2 size={18} />
+                          </button>
+                        </div>
 
-                  <button
-                    onClick={() => removeFromCart(item.product.id)}
-                    className="text-red-400 hover:text-red-500 hover:bg-red-400/10 p-2 rounded-lg transition-all"
-                    aria-label={`Remove ${item.product.name} from cart`}
-                  >
-                    <Trash2 size={20} />
-                  </button>
+                        {/* Bottom row: qty controls + subtotal */}
+                        <div className="flex items-center justify-between gap-2">
+                          <div className="flex items-center space-x-2 bg-black/30 rounded-lg p-1.5">
+                            <button
+                              onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
+                              className="bg-white/5 hover:bg-white/10 p-1.5 rounded transition-colors"
+                              aria-label={`Decrease quantity of ${displayName}`}
+                            >
+                              <Minus size={14} />
+                            </button>
+                            <span className="w-8 text-center font-semibold text-sm">
+                              {item.quantity}
+                            </span>
+                            <button
+                              onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
+                              disabled={item.quantity >= item.product.stock}
+                              className="bg-white/5 hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed p-1.5 rounded transition-colors"
+                              aria-label={`Increase quantity of ${displayName}`}
+                            >
+                              <Plus size={14} />
+                            </button>
+                          </div>
+
+                          <div className="text-right">
+                            <p className="text-xs text-gray-500 mb-0.5">Subtotal</p>
+                            <p className="text-lg font-bold text-blue-400">
+                              {item.product.price * item.quantity}{" "}
+                              <span className="text-xs text-gray-500 font-normal">pts</span>
+                            </p>
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })()}
                 </motion.div>
               ))}
 

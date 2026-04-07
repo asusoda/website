@@ -2,6 +2,7 @@ import React, { useState, useMemo } from "react";
 import { CategorySection } from "./CategorySection";
 import { CategoryPopup } from "./CategoryPopup";
 import { Product } from "../../lib/api";
+import { getDisplayCategoryName } from "../../utils/shopProductName";
 
 interface CategoryLayoutProps {
   products: Product[];
@@ -90,10 +91,11 @@ export const CategoryLayout: React.FC<CategoryLayoutProps> = ({ products }) => {
       }
 
       // Format category name (capitalize and format)
-      const name = cat.id
+      const rawName = cat.id
         .split("-")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ");
+      const name = getDisplayCategoryName(rawName);
 
       // Generate description dynamically
       const description = `Explore our collection of ${name.toLowerCase()}.`;

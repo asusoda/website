@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import ShopNavbar from "./ShopNavbar";
 import LoadingSpinner from "../LoadingSpinner";
 import PointsDrawer from "./PointsDrawer";
+import ZeroPointsDialog from "./ZeroPointsDialog";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 const ALLOWED_EMAIL_DOMAIN = "@asu.edu";
@@ -132,6 +133,7 @@ const ShopLayout: React.FC = () => {
       <EmailDomainGuard>
         <ShopNavbar />
         <PointsDrawer />
+        <ZeroPointsDialog />
         <Outlet />
       </EmailDomainGuard>
     </ClerkProvider>
