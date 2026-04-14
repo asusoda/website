@@ -27,8 +27,7 @@ const timelineVariants = cva("flex flex-col relative", {
  * @extends {VariantProps<typeof timelineVariants>}
  */
 interface TimelineProps
-  extends React.HTMLAttributes<HTMLOListElement>,
-    VariantProps<typeof timelineVariants> {
+  extends React.HTMLAttributes<HTMLOListElement>, VariantProps<typeof timelineVariants> {
   /** Size of the timeline icons */
   iconsize?: "sm" | "md" | "lg";
 }
