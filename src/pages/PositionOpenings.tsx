@@ -25,7 +25,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const APPLICATION_FORM_URL = "https://asusoda.notion.site/ebd/2a547e64246880a78aa5d6c360a37173";
+const APPLICATION_FORM_URL = "https://asusoda.notion.site/ebd//6ea47e64246883abbe6401b7d54d833f";
 
 export default function Positions() {
   const [sliderWidth, setSliderWidth] = useState("150px");
@@ -147,8 +147,9 @@ export default function Positions() {
       <h2>️️Application Instructions</h2>
 
       <p>
-        Complete your officer application via the SoDA Notion form embedded at the bottom of this
-        page or open it in a new tab for a dedicated experience.
+        Complete your officer application via the SoDA Notion form embedded{" "}
+        <a href="#apply">at the bottom of this page</a> or open it in a new tab for a dedicated
+        experience.
       </p>
 
       <p>
@@ -167,8 +168,8 @@ export default function Positions() {
       <p>
         We review applications on a rolling basis, so please apply as soon as you can. If your
         application moves forward, we'll contact you to schedule a 30-minute interview. You will be
-        asked basic questions about your interest, experience, and how you work within a team.
-        Finally, you will be contacted regarding a final decision.
+        asked questions about your interest, experience, and how you work within a team. Finally,
+        you will be contacted regarding a final decision.
       </p>
 
       <hr className="my-10 border-gray-600" />
@@ -181,10 +182,51 @@ export default function Positions() {
             className="text-3xl font-semibold no-underline hover:no-underline py-4"
             showStar
           >
-            Finance
+            Admin
           </AccordionTrigger>
           <AccordionContent className="prose lg:prose-xl prose-invert">
-            <h3>Treasurer</h3>
+            <h3>Event Coordinator</h3>
+            <p>
+              The Event Coordinator is an officer role responsible for maintaining communication
+              between teams and ensuring events run smoothly and on schedule. This position plays a
+              key role in planning and executing both community-focused and technical events.
+            </p>
+            <p className="italic mb-2">Responsibilities:</p>
+            <ul className="mb-0">
+              <li>Coordinating staffing for events</li>
+              <li>Speaking with other organizations</li>
+              <li>Creating schedules for large events</li>
+              <li>Booking rooms and organizing materials</li>
+              <li>Distributing prizes</li>
+              <li>
+                Working closely with the Vice President of Operations and other directors to meet
+                deadlines and support event logistics
+              </li>
+              <li>Serving as a reliable point of contact for both officers and general members</li>
+              <li>Leading and collaborating with multiple teams within SoDA</li>
+            </ul>
+            <p className="italic mb-2">Qualifications:</p>
+            <ul className="mb-0">
+              <li>Strong organizational and communication skills</li>
+              <li>
+                Proactive attitude with a willingness to dedicate extra time during major events
+              </li>
+              <li>
+                Ability to lead and collaborate with multiple teams, including working alongside a
+                team of event coordinators to keep work manageable
+              </li>
+            </ul>
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem value="finance">
+          <AccordionTrigger
+            className="text-3xl font-semibold no-underline hover:no-underline py-4"
+            showStar
+          >
+            Finance
+          </AccordionTrigger>
+          <AccordionContent className="prose lg:prose-xl prose-invert mt-[-2rem]">
             <ul className="mb-0">
               <li>Conduct fiscal operations based on planning established by VP of Finance</li>
               <li>Oversee admin officers in carrying out budget/purchase requests</li>
@@ -201,35 +243,93 @@ export default function Positions() {
             Marketing
           </AccordionTrigger>
           <AccordionContent className="prose lg:prose-xl prose-invert">
-            <h3>Photographer</h3>
-            <ul className="mb-0">
-              <li>Attend all of SoDA's events to capture high-quality photos</li>
-              <li>Process and edit photos for clarity, lighting, and aesthetics</li>
-              <li>
-                Work with the graphic designers and other marketing officers to provide images that
-                complement design elements
-              </li>
-            </ul>
-            <h3>Video Editor</h3>
-            <ul className="mb-0">
-              <li>Edit raw footage into polished, engaging videos for social media</li>
-              <li>Add special effects, transitions, and graphics to enhance video quality</li>
-              <li>Work with the marketing team to ensure videos align with SoDA branding</li>
-            </ul>
             <h3>Graphic Designer</h3>
+            <p className="italic mb-2">Responsibilities:</p>
             <ul className="mb-0">
               <li>
-                Develop and create visual content incorporating SoDA's brand identity, including
-                posters, flyers, and digital graphics
+                Serve as a graphic designer for key SoDA events, workshops, and social gatherings
               </li>
               <li>
-                Work closely with the Marketing Director to provide creative input and translate
-                business requirements into compelling visual designs
+                Design and create high-quality digital and print assets optimized for social media
+                (Instagram, LinkedIn), emails, and announcements
               </li>
               <li>
-                Reinforce and develop SoDA's brand identity, reviewing and updating design templates
-                as necessary to keep the brand fresh and consistent
+                Collaborate closely with the Content Team Lead and Marketing Team to plan visual
+                campaigns and brainstorm creative concepts
               </li>
+              <li>
+                Create compelling and engaging promotional materials that align with SoDA's brand
+                and overall marketing strategy
+              </li>
+              <li>
+                Incorporate strong visual elements such as typography, composition, color schemes,
+                and illustrations
+              </li>
+              <li>
+                Research and apply trending design formats and visual styles relevant to our target
+                audience (ASU students)
+              </li>
+              <li>Manage and organize all design assets, brand kits, and project files</li>
+            </ul>
+            <p className="italic mb-2">Qualifications:</p>
+            <ul className="mb-0">
+              <li>A current ASU student</li>
+              <li>
+                Demonstrable experience in marketing or graphic design (a portfolio or sample of
+                work is highly encouraged)
+              </li>
+              <li>
+                Proficiency with graphic design software (e.g., Canva, Adobe Express, Figma, or
+                Adobe Creative Cloud)
+              </li>
+              <li>
+                A strong understanding of social media platforms, particularly Instagram, including
+                their visual formats and post trends
+              </li>
+              <li>
+                A "good eye" for social media presence design and aesthetics, understanding
+                composition, and visual storytelling
+              </li>
+              <li>Ability to work collaboratively in a team environment and meet deadlines</li>
+            </ul>
+            <h3>Communication Officer</h3>
+            <p className="italic mb-2">Responsibilities:</p>
+            <ul className="mb-0">
+              <li>
+                Manage and execute daily digital communications, including drafting emails, posting
+                on social media, and making Discord announcements
+              </li>
+              <li>
+                Collaborate closely with the Content Team Lead to brainstorm creative and engaging
+                promotional concepts
+              </li>
+              <li>
+                Represent the SoDA brand in a professional, enthusiastic, and approachable manner at
+                all times
+              </li>
+              <li>
+                Attend key SoDA meetings, workshops, and social events to establish yourself as a
+                recognizable and welcoming figure for both new and existing members
+              </li>
+              <li>
+                Ensure all written communication is clear, engaging, and consistently aligned with
+                SoDA's brand voice
+              </li>
+            </ul>
+            <p className="italic mb-2">Qualifications:</p>
+            <ul className="mb-0">
+              <li>
+                A current ASU student and active member of the Software Developers Association
+              </li>
+              <li>
+                Excellent written and verbal communication skills; able to craft clear announcements
+                and make others feel comfortable and engaged in person
+              </li>
+              <li>Exceptional charisma, energy, and confidence</li>
+              <li>
+                Strong organizational skills to manage communication schedules and meet deadlines
+              </li>
+              <li>A great attitude and a willingness to learn are the most important qualities</li>
             </ul>
           </AccordionContent>
         </AccordionItem>
@@ -257,16 +357,24 @@ export default function Positions() {
           >
             Community
           </AccordionTrigger>
-          <AccordionContent className="prose lg:prose-xl prose-invert mt-[-2rem]">
+          <AccordionContent className="prose lg:prose-xl prose-invert">
+            <p>
+              We are looking for officers who truly care about community interaction within SoDA.
+              Many of your responsibilities will include planning events, coordinating with others,
+              and working with your fellow officers to make sure those events are executed. Members
+              of the Community team must be responsible and consistently check Discord for tasks
+              they can complete.
+            </p>
+            <p>
+              As a Community officer you will help with the execution of SoDA's lounge hour events,
+              which will be changing this coming semester.
+            </p>
+            <p className="italic mb-2">Lounge hour responsibilities:</p>
             <ul className="mb-0">
-              <li>
-                Organize and facilitate events designed to boost community engagement and provide
-                valuable networking opportunities.
-              </li>
-              <li>
-                Plan and execute social gatherings for both current and potential members, fostering
-                a welcoming and inclusive atmosphere within the organization.
-              </li>
+              <li>Picking up items for events</li>
+              <li>Helping with setup and cleanup</li>
+              <li>Planning rooms for events to take place</li>
+              <li>Coordinating with other divisions within SoDA to make sure events happen</li>
             </ul>
           </AccordionContent>
         </AccordionItem>
@@ -278,29 +386,20 @@ export default function Positions() {
           >
             Technology
           </AccordionTrigger>
-          <AccordionContent className="prose lg:prose-xl prose-invert">
-            <h3>Software Team</h3>
-            <ul className="mb-0">
-              <li>Internal software, tools, and automations</li>
-              <li>Web development, database management, and API integrations</li>
-              <li>Build and maintain systems that empower SoDA events and officer operations</li>
-            </ul>
-            <h3>Events Team</h3>
+          <AccordionContent className="prose lg:prose-xl prose-invert mt-[-2rem]">
             <ul className="mb-0">
               <li>
-                Create comprehensive workshop content, including slides, handouts, and coding
-                exercises
+                Create and present interactive workshops, continuously improving materials based on
+                community feedback and industry advancements
               </li>
               <li>
-                Present and instruct workshops, ensuring participant engagement and understanding
+                Develop content for Flagship Events---hackathons, competitive programming
+                competitions, and bootcamps
               </li>
               <li>
-                Continuously update and improve workshop materials based on feedback and
-                advancements in the field
+                Build and maintain systems that empower SoDA events and officer operations,
+                including webdev, internal tooling, and automation
               </li>
-              <li>Hackathon problem statement selection and judging panel coordination</li>
-              <li>Competitive programming contest organization and problem design</li>
-              <li>Bootcamp organization, instructional design, and speaker coordination</li>
             </ul>
           </AccordionContent>
         </AccordionItem>
@@ -310,7 +409,7 @@ export default function Positions() {
       <hr className="my-10 border-gray-600" />
 
       <div id="apply-form" className="my-10 space-y-4">
-        <h2>Apply Right Away</h2>
+        <h2 id="apply">Apply</h2>
         <p>
           You can submit your officer application without leaving this page using the embedded form
           below.
