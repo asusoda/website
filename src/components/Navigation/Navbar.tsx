@@ -113,7 +113,7 @@ function NavbarSection() {
         </div>
       </div>
       {/* Conditionally render CTA banner based on path */}
-      {SHOW_CTA_BANNER && location.pathname !== "/apply" && (
+      {SHOW_CTA_BANNER && location.pathname !== "/apply" && location.pathname !== "/quiz" && (
         <div className="text-xl bg-gray-900/75 text-white text-center p-2 w-full">
           Officer applications are now open!{" "}
           <Link to="/apply" className="font-bold underline hover:text-soda-red">
