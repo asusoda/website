@@ -63,7 +63,7 @@ export default function OfficerQuiz() {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [reaction, setReaction] = useState<string>("");
   const [result, setResult] = useState<OfficerType[] | null>(null);
-  const [isBreakdownOpen, setIsBreakdownOpen] = useState(false);
+  const isBreakdownOpen = true;
 
   const progress = (currentQuestion / QUESTIONS_PER_ROUND) * 100;
 
@@ -397,13 +397,6 @@ export default function OfficerQuiz() {
           transition={{ delay: 0.5 }}
           className="w-full max-w-lg mb-8 text-left"
         >
-          <button
-            onClick={() => setIsBreakdownOpen(!isBreakdownOpen)}
-            className="text-gray-500 text-sm cursor-pointer hover:text-gray-300 transition-colors text-center mb-3 select-none w-full py-2"
-          >
-            {isBreakdownOpen ? "😑" : "👀"}{" "}
-            {isBreakdownOpen ? "Close Scores Breakdown" : "Show Scores Breakdown"}
-          </button>
           <AnimatePresence>
             {isBreakdownOpen && (
               <motion.div
@@ -475,7 +468,7 @@ export default function OfficerQuiz() {
   );
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col">
+    <div className="min-h-screen text-white flex flex-col">
       <Helmet>
         <title>Find Your Officer Role — SoDA</title>
         <meta

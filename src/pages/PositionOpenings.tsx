@@ -145,7 +145,7 @@ export default function Positions() {
         </IconContext.Provider>
       </p>
 
-      <h2>️️Application Instructions</h2>
+      <h2>️️Instructions</h2>
 
       <p>
         Complete your officer application via the SoDA Notion form embedded{" "}
@@ -165,13 +165,15 @@ export default function Positions() {
         <a href="mailto:asu@thesoda.io">asu@thesoda.io</a>.
       </p>
 
-      <h2>Application Timeline</h2>
+      <h2>Timeline</h2>
       <p>
         We review applications on a rolling basis, so please apply as soon as you can. If your
         application moves forward, we'll contact you to schedule a 30-minute interview. You will be
         asked questions about your interest, experience, and how you work within a team. Finally,
         you will be contacted regarding a final decision.
       </p>
+
+      <h2>Which SoDA Officer Are You?</h2>
 
       <p className="mb-6">
         Not sure which role fits you?{" "}
