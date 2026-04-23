@@ -10,7 +10,7 @@ import Positions from "./pages/PositionOpenings";
 import OfficerQuiz from "./pages/OfficerQuiz";
 import NotFound from "./pages/NotFound";
 import Resources from "./pages/Forms";
-import TravelReimbursment from "./pages/TravelReimbursment";
+import TravelReimbursement from "./pages/TravelReimbursement";
 import ScrollToTop from "./components/ScrollToTop";
 import { CartProvider } from "./lib/CartContext";
 
@@ -57,7 +57,7 @@ function App() {
             <Route path="/apply" element={<Positions />} />
             <Route path="/quiz" element={<OfficerQuiz />} />
             <Route path="/resources" element={<Resources />} />
-            <Route path="/resources/travel-reimbursment" element={<TravelReimbursment />} />
+            <Route path="/resources/travel-reimbursment" element={<TravelReimbursement />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
