@@ -7,6 +7,7 @@ import Mentorship from "./pages/Mentorship";
 import PointsSystem from "./pages/PointsSystem";
 import Leaderboard from "./pages/LeaderBoard";
 import Positions from "./pages/PositionOpenings";
+import OfficerQuiz from "./pages/OfficerQuiz";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 import { CartProvider } from "./lib/CartContext";
@@ -52,6 +53,7 @@ function App() {
             <Route path="/distinguishedMembers" element={<PointsSystem />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/apply" element={<Positions />} />
+            <Route path="/quiz" element={<OfficerQuiz />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

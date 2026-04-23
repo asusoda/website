@@ -2,6 +2,7 @@ import React, { useState, useMemo } from "react";
 import { CategorySection } from "./CategorySection";
 import { CategoryPopup } from "./CategoryPopup";
 import { Product } from "../../lib/api";
+import { getDisplayCategoryName } from "../../utils/shopProductName";
 
 interface CategoryLayoutProps {
   products: Product[];
@@ -90,10 +91,11 @@ export const CategoryLayout: React.FC<CategoryLayoutProps> = ({ products }) => {
       }
 
       // Format category name (capitalize and format)
-      const name = cat.id
+      const rawName = cat.id
         .split("-")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ");
+      const name = getDisplayCategoryName(rawName);
 
       // Generate description dynamically
       const description = `Explore our collection of ${name.toLowerCase()}.`;
@@ -170,7 +172,7 @@ export const CategoryLayout: React.FC<CategoryLayoutProps> = ({ products }) => {
 
               {/* Horizontal categories */}
               <div
-                className={`${shouldShowVerticalColumn ? "flex flex-col md:space-y-0 space-y-12 md:justify-between" : "w-full space-y-12 "} `}
+                className={`${shouldShowVerticalColumn ? "flex flex-col gap-10 md:gap-12" : "w-full space-y-12"} `}
               >
                 {horizontalCategories.map((category) => (
                   <CategorySection
