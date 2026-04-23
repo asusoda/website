@@ -118,6 +118,16 @@ export default function Blog() {
           width={5184}
           height={3456}
         />
+        <IndividualBlog
+          imageURL="/events/amazon-table.webp"
+          tag={["resources", "operations"]}
+          title="Travel Reimbursement"
+          summary="Traveling for SoDA events or activities? Submit your reimbursement request through our official travel reimbursement form in Resources."
+          link="/resources/travel-reimbursment"
+          alt="Travel reimbursement form"
+          width={5184}
+          height={3456}
+        />
       </div>
     </section>
   );
