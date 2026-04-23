@@ -118,17 +118,33 @@ export default function Blog() {
           width={5184}
           height={3456}
         />
-        <IndividualBlog
-          imageURL="/events/amazon-table.webp"
-          tag={["resources", "operations"]}
-          title="Travel Reimbursement"
-          summary="Traveling for SoDA events or activities? Submit your reimbursement request through our official travel reimbursement form in Resources."
-          link="/resources/travel-reimbursment"
-          alt="Travel reimbursement form"
-          width={5184}
-          height={3456}
-        />
       </div>
+
+      <Link
+        to="/resources/travel-reimbursment"
+        className="group mt-6 w-full max-w-[1116px] block bg-neutral-900 border-gray-600 rounded-lg p-4 md:p-6 text-white overflow-hidden"
+      >
+        <div className="flex flex-col md:flex-row gap-5 md:gap-6 items-start md:items-center">
+          <img
+            src="/events/travel-reimbursement.png"
+            alt="Travel reimbursement form"
+            width={5184}
+            height={3456}
+            className="w-full md:w-80 h-44 object-cover rounded-lg"
+          />
+          <div className="flex flex-col justify-center flex-1 min-w-0">
+            <h2 className="text-2xl font-bold mb-2">Travel Reimbursement</h2>
+            <p className="text-gray-200 text-sm md:text-base max-w-3xl">
+              Traveling for SoDA events or activities? Submit your reimbursement request through our
+              official travel reimbursement form in Resources.
+            </p>
+            <div className="mt-4 flex items-center text-blue-400 group-hover:text-blue-300 self-start">
+              <span>Learn more</span>
+              <ArrowRight className="ml-1 h-4 w-4" />
+            </div>
+          </div>
+        </div>
+      </Link>
     </section>
   );
 }
