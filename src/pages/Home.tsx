@@ -7,7 +7,9 @@ import Blog from "../components/Blog";
 import HistoryTimeline from "../components/HistoryTimeline"; // Import the new component
 import { useEffect, useState } from "react";
 import { format, parseISO } from "date-fns";
-import { Clock, MapPin, X } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Clock, MapPin, X, FileText, ArrowRight } from "lucide-react";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface CalendarEvent {
   id: string;
@@ -122,6 +124,27 @@ function Home() {
       </section>
       <section className="section">
         <Blog />
+      </section>
+      <section className="section px-6 md:px-12 lg:px-24">
+        <div className="w-full max-w-5xl mx-auto">
+          <Link to="/resources/travel-reimbursment" className="block group">
+            <Card className="bg-zinc-900/80 border-zinc-800 hover:border-blue-400/40 hover:bg-zinc-900 transition-all duration-300 rounded-2xl overflow-hidden">
+              <CardHeader>
+                <CardTitle className="text-2xl md:text-3xl flex items-center justify-between gap-3 text-white">
+                  <span className="flex items-center gap-3">
+                    <FileText className="text-blue-400" size={26} />
+                    Apply for Travel Reimbursement
+                  </span>
+                  <ArrowRight className="text-blue-400 group-hover:translate-x-1 transition-transform shrink-0" />
+                </CardTitle>
+                <CardDescription className="text-gray-400 text-base">
+                  Officers and members can submit travel reimbursement requests using our official
+                  form.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </Link>
+        </div>
       </section>
       <section className="section">
         <SponsorsMarquee />
