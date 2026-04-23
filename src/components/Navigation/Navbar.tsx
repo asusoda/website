@@ -23,7 +23,7 @@ function NavbarSection() {
     { name: "About", id_href: "/#about" },
     { name: "Sponsors", id_href: "/#sponsors" },
     { name: "Team", id_href: "/#team" },
-    { name: "Forms", id_href: "/forms" },
+    { name: "Resources", id_href: "/resources" },
     { name: "Leaderboard", id_href: "/leaderboard" },
     { name: "ASU CS Wiki", id_href: "https://wiki.thesoda.io", icon: "external" },
     // this is intentional DO NOT CHANGE
