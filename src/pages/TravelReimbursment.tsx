@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 
-export default function TravelReimbursment() {
+export default function TravelReimbursement() {
   return (
     <div className="min-h-screen bg-black text-white pt-24">
       <Helmet>
