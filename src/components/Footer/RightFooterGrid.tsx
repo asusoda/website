@@ -9,6 +9,7 @@ const resources: ResourceLink[] = [
   { name: "Distinguished Members Program", source: "/distinguishedMembers" },
   { name: "Officer Applications", source: "/apply" },
   { name: "Leaderboard", source: "/leaderboard" },
+  { name: "Donate & Sponsor", source: "/donate" },
   {
     name: "Constitution",
     source: "https://docs.google.com/document/d/1VZmeN7BdD3D1mjQtc5td02BwbOCKrsivLQeMkF-y_1g/edit",

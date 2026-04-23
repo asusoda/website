@@ -11,6 +11,7 @@ import OfficerQuiz from "./pages/OfficerQuiz";
 import NotFound from "./pages/NotFound";
 import Resources from "./pages/Forms";
 import TravelReimbursement from "./pages/TravelReimbursement";
+import Donate from "./pages/Donate";
 import ScrollToTop from "./components/ScrollToTop";
 import { CartProvider } from "./lib/CartContext";
 
@@ -58,6 +59,8 @@ function App() {
             <Route path="/quiz" element={<OfficerQuiz />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/resources/travel-reimbursment" element={<TravelReimbursement />} />
+            <Route path="/donate" element={<Donate />} />
+            <Route path="/sponsor" element={<Donate />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
