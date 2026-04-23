@@ -9,6 +9,8 @@ import Leaderboard from "./pages/LeaderBoard";
 import Positions from "./pages/PositionOpenings";
 import OfficerQuiz from "./pages/OfficerQuiz";
 import NotFound from "./pages/NotFound";
+import Resources from "./pages/Forms";
+import TravelReimbursement from "./pages/TravelReimbursement";
 import ScrollToTop from "./components/ScrollToTop";
 import { CartProvider } from "./lib/CartContext";
 
@@ -54,6 +56,8 @@ function App() {
             <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/apply" element={<Positions />} />
             <Route path="/quiz" element={<OfficerQuiz />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/resources/travel-reimbursment" element={<TravelReimbursement />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
