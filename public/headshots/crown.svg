@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 210" width="520" height="210">
+  <defs>
+    <linearGradient id="goldBand" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#FFE55C"/>
+      <stop offset="50%" stop-color="#FFC107"/>
+      <stop offset="100%" stop-color="#B8860B"/>
+    </linearGradient>
+    <linearGradient id="goldPoints" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#FFF3A3"/>
+      <stop offset="60%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#B8860B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Crown points (5 spikes) -->
+  <path d="M 30 150 L 90 40 L 150 130 L 210 20 L 260 130 L 310 20 L 370 130 L 430 40 L 490 150 Z"
+        fill="url(#goldPoints)" stroke="#8B6508" stroke-width="4" stroke-linejoin="round"/>
+
+  <!-- Base band -->
+  <rect x="20" y="140" width="480" height="60" rx="6" ry="6"
+        fill="url(#goldBand)" stroke="#8B6508" stroke-width="4"/>
+
+  <!-- Band decorative line -->
+  <line x1="30" y1="200" x2="490" y2="200" stroke="#8B6508" stroke-width="3"/>
+
+  <!-- Tip jewels -->
+  <circle cx="90" cy="40" r="11" fill="#DC143C" stroke="#700000" stroke-width="2"/>
+  <circle cx="210" cy="22" r="11" fill="#4169E1" stroke="#0A1F5C" stroke-width="2"/>
+  <circle cx="310" cy="22" r="11" fill="#4169E1" stroke="#0A1F5C" stroke-width="2"/>
+  <circle cx="430" cy="40" r="11" fill="#DC143C" stroke="#700000" stroke-width="2"/>
+
+  <!-- Band jewels -->
+  <circle cx="110" cy="170" r="16" fill="#DC143C" stroke="#700000" stroke-width="3"/>
+  <circle cx="110" cy="166" r="5" fill="#FF6B7A" opacity="0.8"/>
+
+  <circle cx="260" cy="170" r="20" fill="#50C878" stroke="#0F5D2A" stroke-width="3"/>
+  <circle cx="260" cy="165" r="6" fill="#8EE8B0" opacity="0.8"/>
+
+  <circle cx="410" cy="170" r="16" fill="#4169E1" stroke="#0A1F5C" stroke-width="3"/>
+  <circle cx="410" cy="166" r="5" fill="#7A9CF0" opacity="0.8"/>
+
+  <!-- Small pearls between jewels -->
+  <circle cx="60" cy="170" r="5" fill="#FFFAF0" stroke="#8B6508" stroke-width="1"/>
+  <circle cx="185" cy="170" r="5" fill="#FFFAF0" stroke="#8B6508" stroke-width="1"/>
+  <circle cx="335" cy="170" r="5" fill="#FFFAF0" stroke="#8B6508" stroke-width="1"/>
+  <circle cx="460" cy="170" r="5" fill="#FFFAF0" stroke="#8B6508" stroke-width="1"/>
+</svg>
