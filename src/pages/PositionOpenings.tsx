@@ -303,7 +303,7 @@ export default function Positions() {
               </li>
               <li>Ability to work collaboratively in a team environment and meet deadlines</li>
             </ul>
-            <h3>Communication Officer</h3>
+            <h3>Social Media Manager</h3>
             <p className="italic mb-2">Responsibilities:</p>
             <ul className="mb-0">
               <li>
