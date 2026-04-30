@@ -21,7 +21,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@clerk/clerk-react": "^5.60.0",
+    "@clerk/clerk-react": "^5.61.3",
     "@fontsource/space-grotesk": "^5.2.6",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
