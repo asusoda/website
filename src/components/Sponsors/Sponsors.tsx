@@ -1,7 +1,6 @@
 import { type CSSProperties, useEffect, useRef, useState } from "react";
 import type { IconType } from "react-icons";
 import {
-  SiAmazon,
   SiAmericanexpress,
   SiGeneralmotors,
   SiGodaddy,
@@ -10,6 +9,7 @@ import {
   SiPaypal,
   SiStarbucks,
 } from "react-icons/si";
+import { FaAmazon } from "react-icons/fa";
 import sponsors from "./sponsors.json";
 import amazon from "./logo/amazon.webp";
 import statefarm from "./logo/statefarm.webp";
@@ -46,6 +46,7 @@ type SponsorEntry = {
   url: string;
   label: string;
   Icon?: IconType;
+  color?: string;
 };
 
 function SponsorsMarquee() {
@@ -83,7 +84,7 @@ function SponsorsMarquee() {
   };
 
   const iconMap: Partial<Record<SponsorLogo, IconType>> = {
-    amazon: SiAmazon,
+    amazon: FaAmazon,
     goldmansachs: SiGoldmansachs,
     garmin: SiGarmin,
     starbucks: SiStarbucks,
@@ -91,6 +92,17 @@ function SponsorsMarquee() {
     godaddy: SiGodaddy,
     americanexpress: SiAmericanexpress,
     generalmotors: SiGeneralmotors,
+  };
+
+  const colorMap: Partial<Record<SponsorLogo, string>> = {
+    amazon: "#FF9900",
+    americanexpress: "#2E77BB",
+    generalmotors: "#005DAA",
+    godaddy: "#1BDBDB",
+    goldmansachs: "#7399C6",
+    garmin: "#007CC3",
+    paypal: "#0070BA",
+    starbucks: "#00704A",
   };
 
   const urlMap: Record<SponsorLogo, string> = {
@@ -131,6 +143,7 @@ function SponsorsMarquee() {
     const Icon = iconMap[name];
     const url = urlMap[name];
     const label = labelMap[name];
+    const color = colorMap[name];
 
     if (!src || !url || !label) {
       return acc;
@@ -142,6 +155,7 @@ function SponsorsMarquee() {
       url,
       label,
       Icon,
+      color,
     });
     return acc;
   }, []);
@@ -204,7 +218,7 @@ function SponsorsMarquee() {
         }
       >
         <div className="sponsors-track">
-          {duplicatedSponsors.map(({ src, Icon, name, url, label }, index) => (
+          {duplicatedSponsors.map(({ src, Icon, name, url, label, color }, index) => (
             <a
               key={`${name}-${index}`}
               ref={(el) => {
@@ -217,9 +231,21 @@ function SponsorsMarquee() {
               className="flex h-full min-h-[120px] w-44 items-center justify-center px-8 py-6 opacity-70 transition-opacity duration-300 hover:opacity-100 focus-visible:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-soda-blue md:min-h-[160px] md:w-56"
             >
               {Icon ? (
-                <Icon className="h-16 w-16 text-soda-white md:h-20 md:w-20" />
+                <Icon
+                  className="h-16 w-16 md:h-20 md:w-20"
+                  style={color ? { color } : undefined}
+                />
               ) : (
-                <img src={src} alt={label} className="h-16 w-auto object-contain md:h-20" />
+                <img
+                  src={src}
+                  alt={label}
+                  className="h-16 w-auto object-contain md:h-20"
+                  style={
+                    name === "axosoft"
+                      ? { filter: "invert(1) hue-rotate(180deg)" }
+                      : undefined
+                  }
+                />
               )}
             </a>
           ))}
