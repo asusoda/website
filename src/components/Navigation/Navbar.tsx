@@ -21,6 +21,7 @@ function NavbarSection() {
   const location = useLocation();
   const menuItems: NavItem[] = [
     { name: "About", id_href: "/#about" },
+    { name: "History", id_href: "/history" },
     { name: "Sponsors", id_href: "/#sponsors" },
     { name: "Team", id_href: "/#team" },
     { name: "Resources", id_href: "/resources" },
@@ -101,7 +102,7 @@ function NavbarSection() {
             />
           </Link>
         </div>
-        <div className="hidden sm:flex items-center gap-6">{menuItems.map(renderNavLink)}</div>
+        <div className="hidden sm:flex items-center gap-5">{menuItems.map(renderNavLink)}</div>
         <div>
           <Button asChild className="text-white bg-soda-red">
             <a

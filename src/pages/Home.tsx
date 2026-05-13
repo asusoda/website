@@ -4,7 +4,6 @@ import Hero from "../components/Hero";
 import SponsorsMarquee from "../components/Sponsors/Sponsors";
 import Mission from "../components/Mission";
 import Blog from "../components/Blog";
-import HistoryTimeline from "../components/HistoryTimeline"; // Import the new component
 import { useEffect, useState } from "react";
 import { format, parseISO } from "date-fns";
 import { Clock, MapPin, X } from "lucide-react";
@@ -128,9 +127,6 @@ function Home() {
       </section>
       <section className="section">
         <MemberCards />
-      </section>
-      <section id="history" className="section">
-        <HistoryTimeline />
       </section>
     </>
   );

@@ -21,7 +21,9 @@ export interface TimelineElement {
   size?: TimelineSize;
   loading?: boolean;
   error?: string;
-  url?: string; // Added optional URL property
+  url?: string;
+  image?: string;
+  imageAlt?: string;
 }
 
 export interface TimelineProps {
