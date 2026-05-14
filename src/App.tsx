@@ -12,6 +12,7 @@ import NotFound from "./pages/NotFound";
 import Resources from "./pages/Forms";
 import TravelReimbursement from "./pages/TravelReimbursement";
 import Donate from "./pages/Donate";
+import History from "./pages/History";
 import ScrollToTop from "./components/ScrollToTop";
 import { CartProvider } from "./lib/CartContext";
 
@@ -52,6 +53,7 @@ function App() {
           {/* Main site routes - wrapped with navbar/footer via MainLayout */}
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
+            <Route path="/history" element={<History />} />
             <Route path="/mentorship" element={<Mentorship />} />
             <Route path="/distinguishedMembers" element={<PointsSystem />} />
             <Route path="/leaderboard" element={<Leaderboard />} />

@@ -104,6 +104,8 @@ interface TimelineItemProps extends Omit<HTMLMotionProps<"li">, "ref"> {
   /** Error message */
   error?: string;
   url?: string; // Add url prop
+  image?: string;
+  imageAlt?: string;
 }
 
 const TimelineItem = React.forwardRef<HTMLLIElement, TimelineItemProps>(
@@ -121,6 +123,8 @@ const TimelineItem = React.forwardRef<HTMLLIElement, TimelineItemProps>(
       loading,
       error,
       url, // Destructure url
+      image,
+      imageAlt,
       // Omit unused Framer Motion props
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       initial,
@@ -253,6 +257,14 @@ const TimelineItem = React.forwardRef<HTMLLIElement, TimelineItemProps>(
             </TimelineTitle>
           </TimelineHeader>
           <TimelineDescription>{description}</TimelineDescription>
+          {image && (
+            <img
+              src={image}
+              alt={imageAlt || title || ""}
+              loading="lazy"
+              className="mt-2 h-32 sm:h-40 w-full max-w-xs rounded-md object-cover border border-neutral-800"
+            />
+          )}
         </TimelineContent>
       </div>
     );

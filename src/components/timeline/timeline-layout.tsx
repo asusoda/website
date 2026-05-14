@@ -41,7 +41,9 @@ export const TimelineLayout = ({
             date={item.date}
             title={item.title}
             description={item.description}
-            url={item.url} // Pass the url prop
+            url={item.url}
+            image={item.image}
+            imageAlt={item.imageAlt}
             icon={typeof item.icon === "function" ? item.icon() : item.icon || customIcon}
             iconColor={item.color || iconColor}
             connectorColor={item.color || connectorColor}
