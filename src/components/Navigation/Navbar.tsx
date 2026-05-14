@@ -7,18 +7,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 // Import useLocation hook
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FiExternalLink } from "react-icons/fi";
-
-// Feature flags
-const SHOW_CTA_BANNER = true;
 
 type NavItem = { name: string; id_href: string; icon?: "external" };
 
 function NavbarSection() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  // Get current location
-  const location = useLocation();
   const menuItems: NavItem[] = [
     { name: "About", id_href: "/#about" },
     { name: "History", id_href: "/history" },
@@ -115,16 +110,6 @@ function NavbarSection() {
           </Button>
         </div>
       </div>
-      {/* Conditionally render CTA banner based on path */}
-      {SHOW_CTA_BANNER && location.pathname !== "/apply" && location.pathname !== "/quiz" && (
-        <div className="text-xl bg-gray-900/75 text-white text-center p-2 w-full">
-          Officer applications are now open!{" "}
-          <Link to="/apply" className="font-bold underline hover:text-soda-red">
-            Apply now.
-          </Link>
-        </div>
-      )}
-      {/* End CTA Banner Section */}
     </nav>
   );
 }
