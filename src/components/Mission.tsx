@@ -36,7 +36,7 @@ export default function Mission() {
           {perks.map((perk) => (
             <div
               key={perk.header}
-              className="group bg-neutral-900  p-4 border-gray-600 rounded-2xl justify-center flex flex-col min-h-[300px] max-w-[300px] w-full"
+              className="group bg-neutral-900  p-4 border-gray-600 rounded-2xl overflow-hidden justify-center flex flex-col min-h-[300px] max-w-[300px] w-full"
             >
               <HoverPlayMedia
                 videoSrc={perk.videoURL}

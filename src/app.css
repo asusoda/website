@@ -138,6 +138,46 @@
   }
 }
 
+/* Ken Burns-style hover pan/zoom — used by HoverPlayMedia tiles so the
+   poster image visibly moves on hover even when no looping video has been
+   wired up yet. The wrapping element should carry Tailwind's `group` class
+   so the animation triggers from anywhere on the card. */
+@keyframes hover-pan-zoom {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+    transform-origin: 50% 50%;
+  }
+  50% {
+    transform: scale(1.08) translate3d(-2%, -1.5%, 0);
+    transform-origin: 30% 40%;
+  }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0);
+    transform-origin: 50% 50%;
+  }
+}
+
+.hover-pan-zoom {
+  transition: transform 0.45s ease-out;
+  will-change: transform;
+}
+
+.group:hover .hover-pan-zoom,
+.group:focus-within .hover-pan-zoom,
+.hover-pan-zoom:hover,
+.hover-pan-zoom:focus-visible {
+  animation: hover-pan-zoom 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .group:hover .hover-pan-zoom,
+  .group:focus-within .hover-pan-zoom,
+  .hover-pan-zoom:hover,
+  .hover-pan-zoom:focus-visible {
+    animation: none;
+  }
+}
+
 .animate-spin-slow {
   animation: spin-slow 3s linear infinite;
 }

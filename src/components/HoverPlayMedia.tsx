@@ -26,8 +26,13 @@ interface HoverPlayMediaProps {
  *   muted, looping video.
  * - On leave/blur, pauses and resets the video to the first frame so the
  *   next hover starts cleanly.
- * - Respects `prefers-reduced-motion`: if the user prefers reduced motion
- *   the video never auto-plays — only the poster shows.
+ * - Adds a `hover-pan-zoom` class so a Ken Burns pan/zoom animation runs
+ *   on hover. This makes the tile feel alive even before per-card video
+ *   files exist, and stays in place once they do (CSS transform stacks on
+ *   the playing video element fine).
+ * - Respects `prefers-reduced-motion`: when the user prefers reduced motion
+ *   the video never auto-plays and the pan/zoom animation is disabled
+ *   (only the static poster shows).
  * - Falls back gracefully to the poster image when no `videoSrc` is provided
  *   (useful while video assets are still being produced).
  */
@@ -51,9 +56,14 @@ export default function HoverPlayMedia({
     return () => mq.removeEventListener("change", handler);
   }, []);
 
+  // Compose the hover animation class with whatever positioning/sizing
+  // classes the caller passes in. We always include `hover-pan-zoom` so the
+  // image moves on hover — the CSS rule itself bows out for reduced-motion.
+  const mediaClass = `${className} hover-pan-zoom`.trim();
+
   // If we have no video source or the user prefers reduced motion, just show
-  // the still poster — keeps the markup simple and avoids loading bytes we
-  // won't ever play.
+  // the still poster (the pan-zoom animation still runs unless reduced motion
+  // is set, in which case the CSS rule disables it for us).
   if (!videoSrc || reducedMotion) {
     return (
       <img
@@ -61,7 +71,7 @@ export default function HoverPlayMedia({
         alt={alt}
         width={width}
         height={height}
-        className={className}
+        className={mediaClass}
         loading="lazy"
       />
     );
@@ -70,8 +80,9 @@ export default function HoverPlayMedia({
   const play = () => {
     const v = videoRef.current;
     if (!v) return;
-    // play() returns a Promise that rejects if the browser blocks autoplay.
-    // Swallow the rejection — we just stay on the poster frame in that case.
+    // play() returns a Promise that rejects if the browser blocks autoplay
+    // or the source 404s. Swallow it — we just stay on the poster frame, and
+    // the CSS pan/zoom keeps the tile feeling alive.
     void v.play().catch(() => {});
   };
 
@@ -116,7 +127,7 @@ export default function HoverPlayMedia({
       aria-label={alt}
       width={width}
       height={height}
-      className={className}
+      className={mediaClass}
       onMouseEnter={play}
       onMouseLeave={pause}
       onFocus={play}
