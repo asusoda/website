@@ -48,6 +48,9 @@ export default function HoverPlayMedia({
   const videoRef = useRef<HTMLVideoElement>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
 
+  // Track the user's reduced-motion preference. Declared up here, before any
+  // conditional return below, so the hook order stays stable across renders
+  // (React Hooks rule #1).
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReducedMotion(mq.matches);
@@ -56,15 +59,52 @@ export default function HoverPlayMedia({
     return () => mq.removeEventListener("change", handler);
   }, []);
 
+  // If we have no video source, or the user prefers reduced motion, we'll
+  // render the still poster instead of the <video>. Compute the flag first
+  // so the effect below can use it as a dep and bail out when not needed.
+  const showFallback = !videoSrc || reducedMotion;
+
+  // The `group-hover:` / `group-focus:` pseudo-class equivalents can't be
+  // expressed declaratively for a `play()` call, so we attach listeners on
+  // the nearest `.group` ancestor at mount time when `playOnGroupHover` is
+  // on. We always declare the hook, but it's a no-op when we're falling
+  // back to the still image (no video to play).
+  useEffect(() => {
+    if (showFallback || !playOnGroupHover) return;
+    const v = videoRef.current;
+    if (!v) return;
+    const group = v.closest(".group") as HTMLElement | null;
+    if (!group) return;
+
+    const play = () => {
+      // play() returns a Promise that rejects if the browser blocks
+      // autoplay or the source 404s. Swallow it — we just stay on the
+      // poster frame, and the CSS pan/zoom keeps the tile feeling alive.
+      void v.play().catch(() => {});
+    };
+    const pause = () => {
+      v.pause();
+      v.currentTime = 0;
+    };
+
+    group.addEventListener("mouseenter", play);
+    group.addEventListener("mouseleave", pause);
+    group.addEventListener("focusin", play);
+    group.addEventListener("focusout", pause);
+    return () => {
+      group.removeEventListener("mouseenter", play);
+      group.removeEventListener("mouseleave", pause);
+      group.removeEventListener("focusin", play);
+      group.removeEventListener("focusout", pause);
+    };
+  }, [showFallback, playOnGroupHover]);
+
   // Compose the hover animation class with whatever positioning/sizing
   // classes the caller passes in. We always include `hover-pan-zoom` so the
   // image moves on hover — the CSS rule itself bows out for reduced-motion.
   const mediaClass = `${className} hover-pan-zoom`.trim();
 
-  // If we have no video source or the user prefers reduced motion, just show
-  // the still poster (the pan-zoom animation still runs unless reduced motion
-  // is set, in which case the CSS rule disables it for us).
-  if (!videoSrc || reducedMotion) {
+  if (showFallback) {
     return (
       <img
         src={posterSrc}
@@ -77,43 +117,21 @@ export default function HoverPlayMedia({
     );
   }
 
-  const play = () => {
+  // Direct-on-element handlers as a backup to the group-level listeners,
+  // so a hover that only crosses the media element (not the whole card)
+  // still plays. The closures intentionally read videoRef.current each
+  // call so they don't need to be in the effect's dep array.
+  const playOnElement = () => {
     const v = videoRef.current;
     if (!v) return;
-    // play() returns a Promise that rejects if the browser blocks autoplay
-    // or the source 404s. Swallow it — we just stay on the poster frame, and
-    // the CSS pan/zoom keeps the tile feeling alive.
     void v.play().catch(() => {});
   };
-
-  const pause = () => {
+  const pauseOnElement = () => {
     const v = videoRef.current;
     if (!v) return;
     v.pause();
     v.currentTime = 0;
   };
-
-  // The `group-hover:` / `group-focus:` pseudo-class equivalents can't be
-  // expressed declaratively for a `play()` call, so we attach listeners on
-  // the nearest `.group` ancestor at mount time when `playOnGroupHover` is on.
-  useEffect(() => {
-    if (!playOnGroupHover) return;
-    const v = videoRef.current;
-    if (!v) return;
-    const group = v.closest(".group") as HTMLElement | null;
-    if (!group) return;
-    group.addEventListener("mouseenter", play);
-    group.addEventListener("mouseleave", pause);
-    group.addEventListener("focusin", play);
-    group.addEventListener("focusout", pause);
-    return () => {
-      group.removeEventListener("mouseenter", play);
-      group.removeEventListener("mouseleave", pause);
-      group.removeEventListener("focusin", play);
-      group.removeEventListener("focusout", pause);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [playOnGroupHover, videoSrc]);
 
   return (
     <video
@@ -128,10 +146,10 @@ export default function HoverPlayMedia({
       width={width}
       height={height}
       className={mediaClass}
-      onMouseEnter={play}
-      onMouseLeave={pause}
-      onFocus={play}
-      onBlur={pause}
+      onMouseEnter={playOnElement}
+      onMouseLeave={pauseOnElement}
+      onFocus={playOnElement}
+      onBlur={pauseOnElement}
     />
   );
 }
