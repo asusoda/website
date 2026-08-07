@@ -9,7 +9,7 @@ const ASU_FOUNDATION_URL =
 
 const PAYPAL_URL: string = "https://www.paypal.com/paypalme/SoDAASU";
 
-const SPONSOR_PACKET_URL = "/SoDA_Sponsorship_Package_2025-2026.pdf";
+const SPONSOR_PACKET_URL = "/SoDA_Sponsorship_Packet_2026-2027.pdf";
 const CONTACT_EMAIL = "asu@thesoda.io";
 
 type Tier = {
