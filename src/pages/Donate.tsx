@@ -106,13 +106,72 @@ export default function Donate() {
               className="text-gray-400 text-lg md:text-xl max-w-3xl"
               style={{ textWrap: "pretty" } as React.CSSProperties}
             >
-              SoDA is the largest software developer club at ASU, with 2,500+ members, a 4.2k social
-              reach, and regular meetings drawing 60 to 400+ attendees. Your contribution funds
-              hackathons, code challenges, the mentorship program, alumni events, and everything in
+              Your contribution helps us run our free
+              hackathons, competitive programming competitions, mentorship program, alumni events, and everything in
               between.
             </p>
           </motion.div>
 
+          <motion.h2
+            custom={3}
+            initial="hidden"
+            animate="show"
+            variants={staggerFade}
+            className="text-2xl md:text-3xl font-semibold mb-2"
+            style={{ textWrap: "balance" } as React.CSSProperties}
+          >
+            Corporate sponsorship
+          </motion.h2>
+          <motion.p
+            custom={4}
+            initial="hidden"
+            animate="show"
+            variants={staggerFade}
+            className="text-gray-400 mb-6 max-w-3xl"
+            style={{ textWrap: "pretty" } as React.CSSProperties}
+          >
+            Engage with up-and-coming software developers, increase brand visibility across ASU, and
+            recruit from a pool of thousands of students actively seeking internships and full-time roles.
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            custom={9}
+            initial="hidden"
+            animate="show"
+            variants={staggerFade}
+            className="grid sm:grid-cols-2 gap-4 mb-16"
+          >
+            <Button
+              asChild
+              className="h-auto min-h-[56px] py-4 px-4 !bg-zinc-900/80 hover:!bg-zinc-800/80 text-white border border-zinc-800 hover:!border-blue-400/50 justify-start rounded-2xl active:scale-[0.96] !transition-[transform,border-color,background-color] duration-150 ease-[cubic-bezier(0.2,0,0,1)]"
+            >
+              <a href={SPONSOR_PACKET_URL} target="_blank" rel="noopener noreferrer">
+                <FileText className="text-blue-400 mr-3" size={22} />
+                <span className="flex flex-col items-start">
+                  <span className="text-base font-semibold text-white">
+                    Full sponsorship packet
+                  </span>
+                  <span className="text-sm text-gray-400">
+                    PDF with benefits, tiers, and donation form
+                  </span>
+                </span>
+              </a>
+            </Button>
+            <Button
+              asChild
+              className="h-auto min-h-[56px] py-4 px-4 !bg-zinc-900/80 hover:!bg-zinc-800/80 text-white border border-zinc-800 hover:!border-blue-400/50 justify-start rounded-2xl active:scale-[0.96] !transition-[transform,border-color,background-color] duration-150 ease-[cubic-bezier(0.2,0,0,1)]"
+            >
+              <a href={`mailto:${CONTACT_EMAIL}?subject=SoDA%20Sponsorship%20Inquiry`}>
+                <Mail className="mr-3" size={22} />
+                <span className="flex flex-col items-start">
+                  <span className="text-base font-semibold">Talk to our sponsorship team</span>
+                  <span className="text-sm opacity-90">{CONTACT_EMAIL}</span>
+                </span>
+              </a>
+            </Button>
+          </motion.div>
+        </div>
           {/* Donation Channels */}
           <motion.h2
             custom={1}
@@ -201,9 +260,6 @@ export default function Donate() {
               <CardHeader>
                 <div className="flex items-center gap-3 mb-2">
                   <Building2 className="text-soda-red" size={28} />
-                  <span className="text-xs uppercase tracking-wider text-soda-red font-semibold">
-                    Alternative
-                  </span>
                 </div>
                 <CardTitle
                   className="text-2xl md:text-3xl text-white"
@@ -251,134 +307,6 @@ export default function Donate() {
             </Card>
           </motion.div>
 
-          {/* Sponsorship Tiers */}
-          <motion.h2
-            custom={3}
-            initial="hidden"
-            animate="show"
-            variants={staggerFade}
-            className="text-2xl md:text-3xl font-semibold mb-2"
-            style={{ textWrap: "balance" } as React.CSSProperties}
-          >
-            Corporate sponsorship
-          </motion.h2>
-          <motion.p
-            custom={4}
-            initial="hidden"
-            animate="show"
-            variants={staggerFade}
-            className="text-gray-400 mb-6 max-w-3xl"
-            style={{ textWrap: "pretty" } as React.CSSProperties}
-          >
-            Engage with up-and-coming software developers, increase brand visibility across ASU, and
-            recruit from a pool of 2,500+ students actively seeking internships and full-time roles.
-          </motion.p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            {tiers.map((tier, i) => (
-              <motion.div
-                key={tier.name}
-                custom={5 + i}
-                initial="hidden"
-                animate="show"
-                variants={staggerFade}
-                className="h-full"
-              >
-                <Card
-                  className={`rounded-3xl flex flex-col h-full shadow-[0_1px_0_0_rgba(255,255,255,0.04)_inset,0_10px_30px_-12px_rgba(0,0,0,0.6)] ${
-                    tier.highlight
-                      ? "bg-soda-red/10 border-soda-red/50"
-                      : "bg-zinc-900/80 border-zinc-800"
-                  }`}
-                >
-                  <CardHeader>
-                    {tier.highlight && (
-                      <span className="text-xs uppercase tracking-wider text-soda-red font-semibold mb-1">
-                        Most popular
-                      </span>
-                    )}
-                    <CardTitle
-                      className="text-xl text-white"
-                      style={{ textWrap: "balance" } as React.CSSProperties}
-                    >
-                      {tier.name}
-                    </CardTitle>
-                    <CardDescription
-                      className="text-white/90 text-lg font-semibold"
-                      style={{ fontVariantNumeric: "tabular-nums" }}
-                    >
-                      {tier.price}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex-1">
-                    <ul className="text-gray-300 text-sm space-y-2">
-                      {tier.benefits.map((b) => (
-                        <li key={b} className="flex gap-2">
-                          <Check
-                            size={14}
-                            className={`shrink-0 mt-1 ${
-                              tier.highlight ? "text-soda-red" : "text-blue-400"
-                            }`}
-                          />
-                          <span style={{ textWrap: "pretty" } as React.CSSProperties}>{b}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* CTAs */}
-          <motion.div
-            custom={9}
-            initial="hidden"
-            animate="show"
-            variants={staggerFade}
-            className="grid sm:grid-cols-2 gap-4 mb-16"
-          >
-            <Button
-              asChild
-              className="h-auto min-h-[56px] py-4 px-4 !bg-zinc-900/80 hover:!bg-zinc-800/80 text-white border border-zinc-800 hover:!border-blue-400/50 justify-start rounded-2xl active:scale-[0.96] !transition-[transform,border-color,background-color] duration-150 ease-[cubic-bezier(0.2,0,0,1)]"
-            >
-              <a href={SPONSOR_PACKET_URL} target="_blank" rel="noopener noreferrer">
-                <FileText className="text-blue-400 mr-3" size={22} />
-                <span className="flex flex-col items-start">
-                  <span className="text-base font-semibold text-white">
-                    Full sponsorship packet
-                  </span>
-                  <span className="text-sm text-gray-400">
-                    PDF with benefits, tiers, and donation form
-                  </span>
-                </span>
-              </a>
-            </Button>
-            <Button
-              asChild
-              className="h-auto min-h-[56px] py-4 px-4 !bg-soda-red hover:!bg-soda-red/90 text-white justify-start rounded-2xl active:scale-[0.96] !transition-[transform,background-color] duration-150 ease-[cubic-bezier(0.2,0,0,1)]"
-            >
-              <a href={`mailto:${CONTACT_EMAIL}?subject=SoDA%20Sponsorship%20Inquiry`}>
-                <Mail className="mr-3" size={22} />
-                <span className="flex flex-col items-start">
-                  <span className="text-base font-semibold">Talk to our sponsorship team</span>
-                  <span className="text-sm opacity-90">{CONTACT_EMAIL}</span>
-                </span>
-              </a>
-            </Button>
-          </motion.div>
-
-          {/* Fine print */}
-          <div
-            className="text-xs text-gray-500 border-t border-zinc-800 pt-6"
-            style={{ textWrap: "pretty" } as React.CSSProperties}
-          >
-            Gifts to the ASU Foundation for A New American University, a nonprofit organization that
-            exists to support Arizona State University, are subject to Foundation policies and fees.
-            Donors may restrict 95% of any gift for specific purposes; 5% of each gift received is
-            unrestricted for the University's use. Please consult your tax advisor regarding the
-            deductibility of charitable contributions.
-          </div>
-        </div>
       </section>
     </div>
   );
