@@ -1,2 +1,4 @@
 # Auto detect text files and perform LF normalization
-* text=auto
+# eol=lf forces LF on checkout too, so local Prettier/ESLint runs match
+# CI (Linux) regardless of a contributor's core.autocrlf setting.
+* text=auto eol=lf
