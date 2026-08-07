@@ -24,3 +24,11 @@ dist-ssr
 *.sln
 *.sw?
 .aider*
+
+# Local session notes (never commit)
+PROMPT.md
+CLAUDE.md
+.claude/
+
+# npm lockfile — project standardizes on pnpm-lock.yaml
+package-lock.json

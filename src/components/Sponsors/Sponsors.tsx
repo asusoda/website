@@ -231,19 +231,14 @@ function SponsorsMarquee() {
               className="flex h-full min-h-[120px] w-44 items-center justify-center px-8 py-6 opacity-70 transition-opacity duration-300 hover:opacity-100 focus-visible:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-soda-blue md:min-h-[160px] md:w-56"
             >
               {Icon ? (
-                <Icon
-                  className="h-16 w-16 md:h-20 md:w-20"
-                  style={color ? { color } : undefined}
-                />
+                <Icon className="h-16 w-16 md:h-20 md:w-20" style={color ? { color } : undefined} />
               ) : (
                 <img
                   src={src}
                   alt={label}
                   className="h-16 w-auto object-contain md:h-20"
                   style={
-                    name === "axosoft"
-                      ? { filter: "invert(1) hue-rotate(180deg)" }
-                      : undefined
+                    name === "axosoft" ? { filter: "invert(1) hue-rotate(180deg)" } : undefined
                   }
                 />
               )}
