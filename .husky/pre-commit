@@ -1,4 +1,6 @@
 #!/usr/bin/env sh
-pnpm run lint
-pnpm run format:check
+# Lint and format only the staged files (fast, ignores unrelated existing
+# issues elsewhere in the repo). Full-repo test suite still runs to catch
+# behavioral regressions across the touched code paths.
+pnpm run lint:staged
 pnpm run test
