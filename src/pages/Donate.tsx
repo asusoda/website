@@ -12,60 +12,6 @@ const PAYPAL_URL: string = "https://www.paypal.com/paypalme/SoDAASU";
 const SPONSOR_PACKET_URL = "/SoDA_Sponsorship_Packet_2026-2027.pdf";
 const CONTACT_EMAIL = "asu@thesoda.io";
 
-type Tier = {
-  name: string;
-  price: string;
-  highlight?: boolean;
-  benefits: string[];
-};
-
-const tiers: Tier[] = [
-  {
-    name: "Silver",
-    price: "$1,750/yr",
-    benefits: [
-      "Present at 2 SoDA meetings per year",
-      "Booth at Fall Hackathon and Spring Code Challenge",
-      "Logo on annual SoDA t-shirts",
-      "Sponsor shout-out on social and newsletter",
-      "Access to event resume drop and curated resume book",
-    ],
-  },
-  {
-    name: "Gold",
-    price: "$2,750/yr",
-    highlight: true,
-    benefits: [
-      "Everything in Silver",
-      "Present at 3 SoDA meetings per year",
-      "Priority pick for meeting dates and hosted off-cycle meetings",
-      "Dedicated social media posts",
-      "Personalized recap packet with event photos",
-      "Promote capstone projects to ASU coordination office",
-      "10% discount on renewal",
-    ],
-  },
-  {
-    name: "Platinum",
-    price: "$3,750/yr",
-    benefits: [
-      "Everything in Gold",
-      "Present at 4 SoDA meetings per year",
-      "Premium booth at Fall Hackathon and Spring Code Challenge",
-      "Host or influence special events (judges, problem statements, custom challenges)",
-      "Sponsor-specific recruitment events",
-    ],
-  },
-  {
-    name: "Single Event",
-    price: "$550",
-    benefits: [
-      "Sponsor one event à la carte",
-      "Technical workshops, panels, AMAs, info sessions, lounge hours",
-    ],
-  },
-];
-
 const staggerFade = {
   hidden: { opacity: 0, y: 12 },
   show: (i: number) => ({
@@ -113,7 +59,7 @@ export default function Donate() {
           </motion.div>
 
           <motion.h2
-            custom={3}
+            custom={1}
             initial="hidden"
             animate="show"
             variants={staggerFade}
@@ -123,7 +69,7 @@ export default function Donate() {
             Corporate sponsorship
           </motion.h2>
           <motion.p
-            custom={4}
+            custom={2}
             initial="hidden"
             animate="show"
             variants={staggerFade}
@@ -136,7 +82,7 @@ export default function Donate() {
 
           {/* CTAs */}
           <motion.div
-            custom={9}
+            custom={3}
             initial="hidden"
             animate="show"
             variants={staggerFade}
@@ -174,7 +120,7 @@ export default function Donate() {
         </div>
           {/* Donation Channels */}
           <motion.h2
-            custom={1}
+            custom={4}
             initial="hidden"
             animate="show"
             variants={staggerFade}
@@ -185,7 +131,7 @@ export default function Donate() {
           </motion.h2>
 
           <motion.div
-            custom={2}
+            custom={5}
             initial="hidden"
             animate="show"
             variants={staggerFade}
