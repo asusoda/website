@@ -8,10 +8,8 @@ export default function Mission() {
       <main className="flex flex-col justify-center items-center" id="mission">
         <h1 className="section-header-text">Mission</h1>
         <p className="hero-small-text max-w-3xl text-center mb-8 px-6">
-          SoDA exists to make Arizona State University a place where every computer science student
-          can build real skills, find their community, and launch their career. We do that by
-          putting professional development, mentorship, and hands-on learning within reach of every
-          member, free of charge.
+          SoDA’s mission is to provide an accessible, professional, and fun community for students
+          interested in building software.
         </p>
         <section className="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {pillars.map((pillar) => (
