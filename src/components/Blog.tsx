@@ -2,9 +2,13 @@ import React from "react";
 import Markdown from "markdown-to-jsx";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react"; // Import the icon
+import HoverPlayMedia from "./HoverPlayMedia";
 
 interface IndividualBlogProps {
   imageURL: string;
+  /** Optional path to a hover-play video. Falls back to the static image
+   *  when absent or unsupported. */
+  videoURL?: string;
   tag: string[];
   title: string;
   summary: string;
@@ -16,6 +20,7 @@ interface IndividualBlogProps {
 
 const IndividualBlog: React.FC<IndividualBlogProps> = ({
   imageURL,
+  videoURL,
   title,
   summary,
   link,
@@ -35,8 +40,9 @@ const IndividualBlog: React.FC<IndividualBlogProps> = ({
 
   const cardContent = (
     <div className={`${cardBaseClasses} ${cardLinkClasses}`}>
-      <img
-        src={imageURL}
+      <HoverPlayMedia
+        videoSrc={videoURL}
+        posterSrc={imageURL}
         alt={alt}
         width={width}
         height={height}
@@ -73,9 +79,10 @@ const IndividualBlog: React.FC<IndividualBlogProps> = ({
           {cardContent}
         </Link>
       ) : (
-        <div className="block h-full">
+        <div className="group block h-full">
           {" "}
-          {/* No group class needed here */}
+          {/* `group` so HoverPlayMedia can attach hover listeners; no
+              group-hover: styles target this branch */}
           {cardContent}
         </div>
       )}
@@ -90,6 +97,7 @@ export default function Blog() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <IndividualBlog
           imageURL="/pizza.webp"
+          videoURL="/pizza.mp4"
           tag={["community", "learning", "networking"]}
           title="Weekly General Body Meetings"
           summary="Join SoDA every week for our General Body Meetings on Tuesdays! We host workshops, tech talks, networking events, and more. It's a great way to learn, connect with fellow students, and get involved in the largest engineering organization at ASU. Free pizza included ;)"
@@ -100,6 +108,7 @@ export default function Blog() {
         />
         <IndividualBlog
           imageURL="/winner-winner-chicken-dinner.webp"
+          videoURL="/winner-winner-chicken-dinner.mp4"
           tag={["mentorship", "community development"]}
           title="Distinguished Members Program"
           summary="SoDA introduced points system designed to encourage active participation in our community. By attending meetings, events, and engaging in various activities, members can earn points that contribute to their standing within the organization. These points can be redeemed for exclusive rewards, recognition, and opportunities, fostering a vibrant and involved community."
@@ -110,6 +119,7 @@ export default function Blog() {
         />
         <IndividualBlog
           imageURL="/events/microsoft.webp"
+          videoURL="/events/microsoft.mp4"
           tag={["mentorship", "community development"]}
           title="Mentorship Program"
           summary="SoDA offers a comprehensive mentorship program designed to support those in need. Our program connects experienced mentors with mentees, providing guidance, and support to help them navigate their academic and professional journeys. "
@@ -125,8 +135,9 @@ export default function Blog() {
         className="group mt-6 w-full max-w-[1116px] block bg-neutral-900 border-gray-600 rounded-lg p-4 md:p-6 text-white overflow-hidden"
       >
         <div className="flex flex-col md:flex-row gap-5 md:gap-6 items-start md:items-center">
-          <img
-            src="/events/travel-reimbursement.png"
+          <HoverPlayMedia
+            videoSrc="/events/travel-reimbursement.mp4"
+            posterSrc="/events/travel-reimbursement.png"
             alt="Travel reimbursement form"
             width={5184}
             height={3456}

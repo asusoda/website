@@ -24,3 +24,6 @@ dist-ssr
 *.sln
 *.sw?
 .aider*
+
+# Local Claude Code state (worktrees, launch.json, session data)
+.claude/
