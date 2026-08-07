@@ -604,6 +604,32 @@ body {
 
 .section {
   @apply py-8 md:py-16 flex flex-col justify-center items-center;
+  position: relative;
+}
+
+/* Subtle zebra-striping so consecutive sections read as distinct blocks,
+   on top of the gradient divider line below. */
+.section:nth-of-type(even) {
+  background-color: rgba(255, 255, 255, 0.025);
+}
+
+/* Soft horizontal divider above every section after the first, giving
+   each homepage section visual separation without heavy hard lines. */
+.section + .section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(80rem, 92%);
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(231, 231, 229, 0.35) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
 }
 
 .cal-shadow {

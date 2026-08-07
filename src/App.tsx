@@ -13,6 +13,7 @@ import Resources from "./pages/Forms";
 import TravelReimbursement from "./pages/TravelReimbursement";
 import Donate from "./pages/Donate";
 import History from "./pages/History";
+import PillarDetail from "./pages/PillarDetail";
 import ScrollToTop from "./components/ScrollToTop";
 import { CartProvider } from "./lib/CartContext";
 
@@ -54,6 +55,7 @@ function App() {
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/history" element={<History />} />
+            <Route path="/pillars/:slug" element={<PillarDetail />} />
             <Route path="/mentorship" element={<Mentorship />} />
             <Route path="/distinguishedMembers" element={<PointsSystem />} />
             <Route path="/leaderboard" element={<Leaderboard />} />

@@ -1,49 +1,34 @@
-const perks = [
-  {
-    header: "Professional Development",
-    description:
-      "SoDA offers boundless opportunities to advance your career. From technical workshops hosted by industry leaders to career fairs and networking events, you’ll gain invaluable experience and connections to kickstart your journey as a software developer.",
-    imgURL: "/events/amazon-table.webp",
-    alt: "Amazon table at a SoDA event",
-  },
-  {
-    header: "Community and Support",
-    description:
-      "SoDA provides a supportive network of fellow computer science students, offering collaboration, encouragement, and a sense of belonging through regular meetings and events with free food.",
-    imgURL: "/events/microsoft-resume-review.webp",
-    alt: "Microsoft resume review at a SoDA event",
-  },
-  {
-    header: "Learning",
-    description:
-      "Enhance your skills through a variety of learning opportunities, including coding workshops, bootcamps, and talks from industry professionals. SoDA is committed to your personal and professional growth, ensuring you stay ahead in the fast-paced tech world.",
-    imgURL: "/events/what-is-soda.webp",
-    alt: "SoDA members at a meeting",
-  },
-];
+import { Link } from "react-router-dom";
+import HoverPlayMedia from "./ui/HoverPlayMedia";
+import { pillars } from "../data/pillars";
 
 export default function Mission() {
   return (
     <>
       <main className="flex flex-col justify-center items-center" id="mission">
         <h1 className="section-header-text">Mission</h1>
+        <p className="hero-small-text max-w-3xl text-center mb-8 px-6">
+          SoDA’s mission is to provide an accessible, professional, and fun community for students
+          interested in building software.
+        </p>
         <section className="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {perks.map((perk) => (
-            <div
-              key={perk.header}
-              className="bg-neutral-900  p-4 border-gray-600 rounded-2xl justify-center flex flex-col min-h-[300px] max-w-[300px] w-full"
+          {pillars.map((pillar) => (
+            <Link
+              key={pillar.slug}
+              to={`/pillars/${pillar.slug}`}
+              className="bg-neutral-900 p-4 border-gray-600 rounded-2xl justify-center flex flex-col min-h-[300px] max-w-[300px] w-full transition-colors hover:bg-neutral-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-soda-blue"
             >
-              <img
-                src={perk.imgURL}
+              <HoverPlayMedia
+                src={pillar.imgURL}
+                videoSrc={pillar.videoURL}
+                alt={pillar.alt}
                 className="rounded-t-xl object-cover w-full h-48"
-                alt={perk.alt}
               />
               <div className="text-white px-4 py-3 space-y-3 text-left flex-1">
-                <h4 className="font-semibold text-xl max-md:text-lg">{perk.header}</h4>
-                {/* <hr className="border-soda-gray opacity-75 my-2 w-[60%]" /> */}
-                <p className="text-[14px] max-md:text-sm ">{perk.description}</p>
+                <h4 className="font-semibold text-xl max-md:text-lg">{pillar.header}</h4>
+                <p className="text-[14px] max-md:text-sm ">{pillar.description}</p>
               </div>
-            </div>
+            </Link>
           ))}
         </section>
       </main>
