@@ -14,7 +14,8 @@ const statistics = [
     // value: 22500,  // last updated 2020-01-16 (https://github.com/asusoda/asu-soda-oldsite/commit/0813ac24a21dcc190ecfc44b0829825c27d85718)
     // last known value + semesters since * estimated = 22500 + 10 * 3500 = 57500  // last updated 2025-03-29
     //Added the number for Spring 2025 updated 2025-08-25: 61276
-    value: 61276,
+    // Updated 2026-08-25: 63857.20
+    value: 63857.2,
     steps: 3000,
     formatter: (x: number) => <>{dollarFormatter.format(x)}</>,
   },
