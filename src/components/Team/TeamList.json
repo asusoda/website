@@ -1,18 +1,24 @@
 {
   "Leadership": [
     {
-      "name": "Nishant Dhongadi",
-      "role": "President",
-      "email": "ndhongad@asu.edu",
-      "image": "/headshots/nishant.webp"
-    }
-  ],
-  "Strategy": [
-    {
       "name": "Elizabeth Pardhe",
       "role": "Vice President,\nStrategy",
       "email": "epardhe@asu.edu",
       "image": "/headshots/elizabeth.webp"
+    },
+    {
+      "name": "Harshit Kumar",
+      "role": "Vice President, \nOperations",
+      "email": "hkumar43@asu.edu",
+      "image": "/headshots/harshit.webp"
+    }
+  ],
+  "Strategy": [
+    {
+      "name": "Johnny Chau",
+      "role": "Event Coordinator",
+      "email": "vchau3@asu.edu",
+      "image": "/headshots/johnny.webp"
     }
   ],
   "Finance": [
@@ -23,18 +29,6 @@
       "image": "/headshots/shreya.webp"
     },
     {
-      "name": "Shiv Patel",
-      "role": "Treasurer,\nCore",
-      "email": "spate310@asu.edu",
-      "image": "/headshots/shiv.webp"
-    },
-    {
-      "name": "Tejas Balemarthy",
-      "role": "Treasurer",
-      "email": "pbalemar@asu.edu",
-      "image": "/headshots/placeholder.png"
-    },
-    {
       "name": "Ruby Gonzalez Alvarado",
       "role": "Treasurer",
       "email": "rgonz143@asu.edu",
@@ -43,62 +37,44 @@
   ],
   "Operations": [
     {
-      "name": "Harshit Kumar",
-      "role": "Vice President, \nOperations",
-      "email": "hkumar43@asu.edu",
-      "image": "/headshots/harshit.webp"
-    },
-    {
       "name": "Johnnessa Barroquillo",
-      "role": "Event Coordinator,\nFlagship Events",
+      "role": "Vice President,\nOperations",
       "email": "jbarroqu@asu.edu",
       "image": "/headshots/johnnessa.webp"
+    }
+  ],
+  "Industry Relations": [
+    {
+      "name": "Ben Juntilla",
+      "role": "Director,\nIndustry",
+      "email": "cjuntill@asu.edu",
+      "image": "/headshots/ben.webp"
     },
     {
-      "name": "Johnny Chau",
-      "role": "Event Coordinator",
-      "email": "vchau3@asu.edu",
-      "image": "/headshots/johnny.webp"
+      "name": "Helena Gezahegn",
+      "role": "Industry Relations Officer",
+      "email": "hgezaheg@asu.edu",
+      "image": "/headshots/helena.jpg"
     },
     {
       "name": "Avishek Lodh",
-      "role": "Event Coordinator",
+      "role": "Industry Relations Officer",
       "email": "alodh2@asu.edu",
       "image": "/headshots/avishek.jpg"
-    },
+    }
+  ],
+  "Technology": [
     {
       "name": "Shruthi Mejari",
       "role": "Event Coordinator",
       "email": "smejari@asu.edu",
       "image": "/headshots/shruthi.jpg"
-    }
-  ],
-  "Industry Relations": [
-    {
-      "name": "Alex Ward Stratman",
-      "role": "Director",
-      "email": "awardstr@asu.edu",
-      "image": "/headshots/alex.webp"
-    }
-  ],
-  "Technology": [
-    {
-      "name": "Ben Juntilla",
-      "role": "Director,\nTechnology",
-      "email": "cjuntill@asu.edu",
-      "image": "/headshots/ben.webp"
     },
     {
       "name": "Ash Srivastava",
-      "role": "Software Lead",
+      "role": "Software Developer",
       "email": "asriv132@asu.edu",
       "image": "/headshots/ash.webp"
-    },
-    {
-      "name": "Naing Lynn Kyaw",
-      "role": "Events Lead",
-      "email": "nkyaw@asu.edu",
-      "image": "/headshots/nainglynn.png"
     },
     {
       "name": "Justin Lee",
@@ -119,86 +95,62 @@
       "image": "/headshots/pouya.JPG"
     },
     {
+      "name": "Shruthi Mejari",
+      "role": "Software Developer",
+      "email": "smejari@asu.edu",
+      "image": "/headshots/shruthi.jpg"
+    },
+    {
       "name": "Bhavana Kannan",
-      "role": "Events Developer",
+      "role": "Co-Director,\nTechnology",
       "email": "bkannan8@asu.edu",
       "image": "/headshots/bhavana.jpeg"
     },
     {
-      "name": "Aryan Keluskar",
-      "role": "Events Developer",
-      "email": "akeluska@asu.edu",
-      "image": "/headshots/aryan.webp"
-    },
-    {
-      "name": "Son Nguyen",
-      "role": "Events Developer",
-      "email": "snguye88@asu.edu",
-      "image": "/headshots/sonNguyen.jpg"
-    },
-    {
       "name": "Nathan Narrik",
-      "role": "Events Developer",
+      "role": "Co-Director,\nTechnology",
       "email": "nnarrik@asu.edu",
+      "image": "/headshots/placeholder.png"
+    },
+    {
+      "name": "Aayan Mapara",
+      "role": "Events Developer",
+      "email": "ampara@asu.edu",
       "image": "/headshots/placeholder.png"
     }
   ],
   "Community": [
     {
-      "name": "Harini Mahendran",
+      "name": "Naing Lynn Kyaw",
       "role": "Director,\nCommunity",
-      "email": "hmahend4@asu.edu",
-      "image": "/headshots/harini.webp"
-    },
-    {
-      "name": "Helena Gezahegn",
-      "role": "Community Officer",
-      "email": "hgezaheg@asu.edu",
-      "image": "/headshots/helena.jpg"
-    },
+      "email": "nkyaw@asu.edu",
+      "image": "/headshots/nainglynn.png"
+    },    
     {
       "name": "Mumtahina Hasan Jummi",
       "role": "Community Officer",
       "email": "mjummi@asu.edu",
       "image": "/headshots/mumtahina.jpg"
-    },
+    },    
     {
       "name": "Ethan Nguyen",
       "role": "Community Officer",
       "email": "etnguy11@asu.edu",
       "image": "/headshots/ethan.jpg"
-    },
-    {
-      "name": "Ryan Groholski",
-      "role": "Community Officer",
-      "email": "rgrohols@asu.edu",
-      "image": "/headshots/placeholder.png"
     }
   ],
   "Marketing": [
     {
-      "name": "Rachel Yonan",
-      "role": "Director,\nMarketing",
-      "email": "riyonan@asu.edu",
-      "image": "/headshots/rachel.webp"
-    },
-    {
       "name": "Puneet Kumar Bokka",
-      "role": "Marketing Officer",
+      "role": "Photographer",
       "email": "pbokka@asu.edu",
       "image": "/headshots/puneet.jpg"
     },
     {
       "name": "Sowmya Mejari",
-      "role": "Marketing Officer",
+      "role": "Video Editor",
       "email": "smejari1@asu.edu",
       "image": "/headshots/sowmya.jpg"
-    },
-    {
-      "name": "Lizet Esquivel",
-      "role": "Video Editor",
-      "email": "lesquive@asu.edu",
-      "image": "/headshots/lizet.png"
     },
     {
       "name": "Ishanshika Arora",
@@ -207,14 +159,8 @@
       "image": "/headshots/ishanshika.png"
     },
     {
-      "name": "Sai Rithwik Kukunuri",
-      "role": "Graphic Designer",
-      "email": "skukunu1@asu.edu",
-      "image": "/headshots/sai.webp"
-    },
-    {
       "name": "Daniel Ortiz Figueroa",
-      "role": "Photographer",
+      "role": "Director,\nMarketing",
       "email": "dortizfi@asu.edu",
       "image": "/headshots/danielortiz.jpg"
     }
