@@ -2,24 +2,19 @@
   "Leadership": [
     {
       "name": "Elizabeth Pardhe",
-      "role": "Vice President,\nStrategy",
+      "role": "Co-President",
       "email": "epardhe@asu.edu",
       "image": "/headshots/elizabeth.webp"
     },
     {
       "name": "Harshit Kumar",
-      "role": "Vice President, \nOperations",
+      "role": "Co-President",
       "email": "hkumar43@asu.edu",
       "image": "/headshots/harshit.webp"
     }
   ],
   "Strategy": [
-    {
-      "name": "Johnny Chau",
-      "role": "Event Coordinator",
-      "email": "vchau3@asu.edu",
-      "image": "/headshots/johnny.webp"
-    }
+
   ],
   "Finance": [
     {
@@ -28,6 +23,12 @@
       "email": "sbhand24@asu.edu",
       "image": "/headshots/shreya.webp"
     },
+    {
+      "name": "Mumtahina Hasan Jummi",
+      "role": "Finance Officer",
+      "email": "mjummi@asu.edu",
+      "image": "/headshots/mumtahina.jpg"
+    },    
     {
       "name": "Ruby Gonzalez Alvarado",
       "role": "Treasurer",
@@ -41,7 +42,25 @@
       "role": "Vice President,\nOperations",
       "email": "jbarroqu@asu.edu",
       "image": "/headshots/johnnessa.webp"
-    }
+    },
+    {
+      "name": "Johnny Chau",
+      "role": "Event Coordinator",
+      "email": "vchau3@asu.edu",
+      "image": "/headshots/johnny.webp"
+    },
+    {
+      "name": "Rachit Miharia",
+      "role": "Event Coordinator",
+      "email": "rmiharia@asu.edu",
+      "image": "/headshots/placeholder.png"
+    },
+    {
+      "name": "Hrishita Nangunoori",
+      "role": "Event Coordinator",
+      "email": "hnanguno@asu.edu",
+      "image": "/headshots/placeholder.png"
+    }  
   ],
   "Industry Relations": [
     {
@@ -50,6 +69,18 @@
       "email": "cjuntill@asu.edu",
       "image": "/headshots/ben.webp"
     },
+    {
+      "name": "Rids Sharma",
+      "role": "Industry Relations Officer",
+      "email": "rshar167@asu.edu",
+      "image": "/headshots/placeholder.png"
+    },
+    {
+      "name": "Nidhi Konanur",
+      "role": "Industry Relations Officer",
+      "email": "nkonanur@asu.edu",
+      "image": "/headshots/placeholder.png"
+    },        
     {
       "name": "Helena Gezahegn",
       "role": "Industry Relations Officer",
@@ -127,11 +158,23 @@
       "image": "/headshots/nainglynn.png"
     },
     {
-      "name": "Mumtahina Hasan Jummi",
+      "name": "Chelsea Lianne Gomez",
       "role": "Community Officer",
-      "email": "mjummi@asu.edu",
-      "image": "/headshots/mumtahina.jpg"
+      "email": "ctgomez@asu.edu",
+      "image": "/headshots/placeholder.png"
     },
+    {
+      "name": "Billy Burdon",
+      "role": "Community Officer",
+      "email": "wtburdon@asu.edu",
+      "image": "/headshots/placeholder.png"      
+    },
+    {
+      "name": "Nelson Supriyasilp",
+      "role": "Community Officer",
+      "email": "nsupriya@asu.edu",
+      "image": "/headshots/placeholder.png"
+    },    
     {
       "name": "Ethan Nguyen",
       "role": "Community Officer",
