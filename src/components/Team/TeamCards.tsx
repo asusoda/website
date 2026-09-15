@@ -39,16 +39,28 @@ function MemberCards() {
   return (
     <div className="team flex flex-col items-center max-w-7xl mx-auto" id="team">
       <h1 className="section-header-text">Team</h1>
-      {Object.keys(teams).map((team: string, i) => (
-        <React.Fragment key={i}>
-          <div className="flex flex-col my-6 md:my-12 text-center text-2xl md:text-4xl font-semibold">
-            {team}
-          </div>
-          <div className="flex flex-row flex-wrap px-6 items-center gap-4 w-full justify-center mb-8 md:items-start md:gap-x-12 md:gap-y-8 md:max-w-[70vw] mx-auto">
-            {teams[team].map((member: TeamMember, j: number) => renderMemberCard(member, j))}
-          </div>
-        </React.Fragment>
-      ))}
+      {Object.keys(teams).map((team: string, i) => {
+        const directors = teams[team].filter((member) => /\bdirector\b/i.test(member.role));
+        const members = teams[team].filter((member) => !/\bdirector\b/i.test(member.role));
+
+        return (
+          <React.Fragment key={i}>
+            <div className="flex flex-col my-6 md:my-12 text-center text-2xl md:text-4xl font-semibold">
+              {team}
+            </div>
+            {[directors, members]
+              .filter((group) => group.length > 0)
+              .map((group, groupIndex) => (
+                <div
+                  key={groupIndex}
+                  className="flex flex-row flex-wrap px-6 items-center gap-4 w-full justify-center mb-8 md:items-start md:gap-x-12 md:gap-y-8 md:max-w-[70vw] mx-auto"
+                >
+                  {group.map(renderMemberCard)}
+                </div>
+              ))}
+          </React.Fragment>
+        );
+      })}
     </div>
   );
 }
