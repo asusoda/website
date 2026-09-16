@@ -1,0 +1,286 @@
+{
+  "centsible": [
+    {
+      "image": "/mentorship/centsible/slide-1.webp",
+      "text": "By Sowmya (Mentee) & Adithya \n(Mentor)\nBack Next\nCentsible 💵💰"
+    },
+    {
+      "image": "/mentorship/centsible/slide-2.webp",
+      "text": "Background\n- A personal finance app with multiple \nfeatures \n- Expense Tracking\n- Streak Save\n- Split Bill\n- Mystery Item\n- Currency Convertor\nNext"
+    },
+    {
+      "image": "/mentorship/centsible/slide-3.webp",
+      "text": "Inspiration\nProblem:\n- Help people understand and track how much they spend.\n- Make it easier to manage and organize expenses.\nTarget Users:\n- College students gaining financial independence.\n- People who regularly spend money on shared activities (e.g., \nfriends going out together).\nSolution:\n- Show users their transactions clearly.\n- Help them split and manage shared expenses easily.\nNext"
+    },
+    {
+      "image": "/mentorship/centsible/slide-4.webp",
+      "text": "Languages Used\n- JavaScript: Used to make the app interactive and respond to \nuser actions.\n- HTML & CSS: Used to design and style the app’s appearance, \nsuch as layouts, colors, and buttons.\n- Python: Used for the backend, which processes data and \nhandles tasks like saving transactions or splitting expenses.\n- SQL: Used to manage and store data in a database, such as \nuser information and spending history."
+    },
+    {
+      "image": "/mentorship/centsible/slide-5.webp",
+      "text": "Libraries\n- React: Helps build the user interface quickly using \nreusable components.\n- Firebase: Provides secure login features and stores \nuser data safely in the cloud.\n- Express: Helps manage server requests and connects \nthe app to the database smoothly."
+    },
+    {
+      "image": "/mentorship/centsible/slide-6.webp",
+      "text": ""
+    },
+    {
+      "image": "/mentorship/centsible/slide-7.webp",
+      "text": ""
+    },
+    {
+      "image": "/mentorship/centsible/slide-8.webp",
+      "text": "Mentorship Program Takeaways\n- Met with my mentor on Zoom once a week — it was nice \nhaving that regular check-in to stay on track.\n- I could always email questions in between meetings.\n-  Gave great feedback on my app and helped me think about \nhow to organize my code better.\n-  They shared helpful resources like The Odin Project to \nstrengthen my JavaScript skills.\n- Helped me understand tricky coding concepts by breaking \nthem down step by step."
+    },
+    {
+      "image": "/mentorship/centsible/slide-9.webp",
+      "text": "Future Plans for Centsible\n- Add a receipt upload feature\n- Create weekly and monthly spending trackers\n- Add more features/components like charts or reminders\n- Improve design and usability\n- Keep learning and refining the app"
+    },
+    {
+      "image": "/mentorship/centsible/slide-10.webp",
+      "text": "Thanks for Listening!"
+    }
+  ],
+  "waste-classifier": [
+    {
+      "image": "/mentorship/waste-classifier/slide-1.webp",
+      "text": "Waste Classifier\nApp\nSODA Mentorship Program\nSargun Bhatia"
+    },
+    {
+      "image": "/mentorship/waste-classifier/slide-2.webp",
+      "text": "2\n01\n02\n03\n04\n05\nBackground & Inspiration\nWaste Classifier App Demo\nUser interface\nMethodology\nFuture Plans\nPresentation 3\n4\n5\n7\n9\n06 Mentor Experience 10"
+    },
+    {
+      "image": "/mentorship/waste-classifier/slide-3.webp",
+      "text": "3\nBackground and Inspiration\n● Problem: Lack of awareness and transparency around \nwhere waste goes after you dispose of it, leading many to \nunintentionally increase excess waste sent to landﬁlls\n● Inspired by Arizona State University’s OSCAR waste \nsorting systems around campus, I designed the Waste \nClassiﬁer App to help ASU students and faculty properly \ndispose of their waste \n● Advantage: Easier to use and available all the time and \neverywhere, as compared to limited locations of ASU’s \nOSCAR model\n● Aligns with ASU’s goals of making more sustainable and \nenvironmentally-friendly choices\nASU’s OSCAR Sort"
+    },
+    {
+      "image": "/mentorship/waste-classifier/slide-4.webp",
+      "text": "4\nWaste Classifier App\nWeb Application where users can upload a picture of their waste and be informed of how to properly dispose of \nit, including locations on ASU’s campus."
+    },
+    {
+      "image": "/mentorship/waste-classifier/slide-5.webp",
+      "text": "5\nWaste Classifier App\nWeb Application where users can upload a picture of their waste and be informed of how to \nproperly dispose of it, including locations on ASU’s campus.\nSTEP 1 STEP 2 STEP 3\nTake a picture of the \nwaste item and \nupload it to the web \napplication.\nMachine Learning \nmodel will classify the \nwaste item into 1 of 8 \ncategories and inform \nthe user about proper \ndisposal practices and \nthe possible harm on \nenvironment if not done \ncorrectly.\nWaste Classiﬁer App \nwill inform users where \nthey can dispose of the \nwaste on ASU’s campus, \nincluding links to \nspeciﬁc locations such \nas E-Waste drop-off \nsites and compost bins."
+    },
+    {
+      "image": "/mentorship/waste-classifier/slide-6.webp",
+      "text": "6\nWaste Classifier App DEMO:\nYouTube Link: https://www.youtube.com/watch?v=FUwiNg0dyfE \nYouTube Link: https://youtu.be/DIGd3IWfba8v"
+    },
+    {
+      "image": "/mentorship/waste-classifier/slide-7.webp",
+      "text": "7\nStep 1: Machine Learning Classification Model\n● Gathered “New Trash Classiﬁcation” Dataset from Kaggle\n● Split Data into 8 Categories: Paper, Plastic, Glass, Cardboard, Metal, Organic, E-Waste, \nTextile, Landﬁll \n● Used Google’s Teachable Machine interface to create a Machine Learning model based on \nConvolutional Neural Network architecture\n● Keras library used for deep-learning framework in the ML model due to its easy-to-use \ninterface for training neural networks and support of sequential models for stacked layers\n● Set Model’s parameter values for optimal accuracy after experimentation\n- Epoch: 50 \n- Batch size: 16\n- Learning rate: 0.001\n● Trained and tested AI model for highest accuracy and efﬁciency\nMethodology"
+    },
+    {
+      "image": "/mentorship/waste-classifier/slide-8.webp",
+      "text": "8\nStep 2: Web Application with User Interface\nMethodology\n● Create web application using Streamlit\n- Streamlit chosen as it allowed for an efﬁcient open-source Python framework to \ncreate an interactive data application for the machine learning model\n● Python programming language\n● Libraries \n- Tensorﬂow: chosen because it can run the AI/ML models on CPU efﬁciently for creating \nthe web application\n- Numpy: chosen because it allows for efﬁcient implementation of multi-dimensional \narrays of images and for mathematical operations in model’s classiﬁcation predictions\n- Pillow: chosen because of ease to work with pictures in many formats, including \ntransforming and resizing the test and train images for the model"
+    },
+    {
+      "image": "/mentorship/waste-classifier/slide-9.webp",
+      "text": "9\nFuture Plans\nIn the future, I would like to turn the Waste \nClassiﬁer App from a web application to a mobile \napplication to increase ease of use for students and \nfaculty. Through the mobile application, users can \ndirectly take a photo from the app and get instant \ninformation regarding proper disposal methods and \nlocations at ASU, without the extra step of having \nto upload the photos.\nA feature I would add to the Waste Classiﬁer \nmobile application is that ability for the program to \noutput the closet disposal (recycle, trash, compost, \netc) bins available to a person via access to the \nperson’s location.\n Mobile App \nWaste Classiﬁer\nDesign\nWaste Classiﬁer"
+    },
+    {
+      "image": "/mentorship/waste-classifier/slide-10.webp",
+      "text": "10\nMentorship Program\nMy experience with mentor Aaditya Jindal:\n● Kept me on track to complete the project with weekly meetings where we discussed what had \nbeen accomplished and what was left to do.\n● Provided guidance on the Artiﬁcial Intelligence and Machine Learning components of the \nproject, including providing a step-by-step process of how machine learning models are \ncreated and guiding me through each step week by week.\n● Explained his past work with machine learning models as examples of the process I should \nfollow, including how to prepare the dataset, create model layers, set components such as \nbatch size and learning rate, and train the model. \n● Highlighted different resources and research papers where I could get additional information \nfor my project.\nMentor: Aaditya Jindal\nMentee: Sargun Bhatia"
+    },
+    {
+      "image": "/mentorship/waste-classifier/slide-11.webp",
+      "text": "11\nThank You!"
+    }
+  ],
+  "ecopulse": [
+    {
+      "image": "/mentorship/ecopulse/slide-1.webp",
+      "text": "EcoPulse\nBy: Nelson Supriyasilp\nMentor: Utkarsh Byahut\nWaste Management Tracker"
+    },
+    {
+      "image": "/mentorship/ecopulse/slide-2.webp",
+      "text": "Problem Statement \nSmall Cafes across the US are losing \nmoney to avoidable waste."
+    },
+    {
+      "image": "/mentorship/ecopulse/slide-3.webp",
+      "text": "ASU Cafes\nThe Roast in Durham Hall and the \nStarbucks in the MU.\nOpportunity to save \nmoney\nEven small reductions in waste can \nsave money and improve \nsustainability\nTempe\nUrban Boba and The Alley.\nWhat \ninspired me?"
+    },
+    {
+      "image": "/mentorship/ecopulse/slide-4.webp",
+      "text": "What did I use?\nPlotly\nHelped me generate \nsmooth dynamic graphs, \ntrends, and data.\nStreamlit\nCreates the interactive \nweb interface for logging \nand viewing the data.\nPython\nMainly coded in python. \nUsed it for all the logic \nand calculations.\nPandas\nHandles, cleans, and \naggregates the waste CSV \nﬁle."
+    },
+    {
+      "image": "/mentorship/ecopulse/slide-5.webp",
+      "text": "Highlights your top \nitems\nCreates visual Data\nOwners can enter in the cost associated \nwith the waste item.\nLogs daily waste by item\nOrganic, Paper , Glass, Metal\nDisplay the cost of wasted \nitems\nCreates a waste over time and cost over \ntime charts and a category bar chart\nGet reorder \nrecommendations\nUses the data inputted in the waste log \nto make smart recommendations.\nDisplays the top 3 wasted items weekly.\nReset Waste log\nOwners can reset the waste log.\nWhat it does?"
+    },
+    {
+      "image": "/mentorship/ecopulse/slide-6.webp",
+      "text": "Data Model\n● Item Name\n● Item Category (Plastic, \nPaper , Metal, Glass, \nOrganic, Other)\n● Quantity Wasted (kg)\n● Reason\n● Date\n● Cost ($)\n● Location"
+    },
+    {
+      "image": "/mentorship/ecopulse/slide-7.webp",
+      "text": "Insight Visuals"
+    },
+    {
+      "image": "/mentorship/ecopulse/slide-8.webp",
+      "text": "Insight Visuals"
+    },
+    {
+      "image": "/mentorship/ecopulse/slide-9.webp",
+      "text": "Insight Visuals"
+    },
+    {
+      "image": "/mentorship/ecopulse/slide-10.webp",
+      "text": "It would display the items to \norder 20% less of.\nHigh Waste \nShare\nTop 3 waste for 2 \nconsecutive weeks\nIt would recommend to check \nthe vendor/date rotation\nRecommendation Logic"
+    },
+    {
+      "image": "/mentorship/ecopulse/slide-11.webp",
+      "text": "Results from mock data\n● T otal Waste: \n304.5 kg\n● Waste log of \nover 30 items \nwhen from \nOctober 1st to \nNovember 2nd."
+    },
+    {
+      "image": "/mentorship/ecopulse/slide-12.webp",
+      "text": "Expanding the \nvendor/date rotation by \nimplement weekly emails \nto the business owner so \nthey are reminded.\nExpand Export\nAdding a feature to \nexport the CSV ﬁle so it \nis saved for business \nowners for accounting \npurposes and for \nowners to do there own \nexternal analysis.\nWhat’s next?"
+    },
+    {
+      "image": "/mentorship/ecopulse/slide-13.webp",
+      "text": "Thank \nyou\nGithub: https://github.com/Nelly444/Mentorship-Project\nLinkedin: \nhttps://www.linkedin.com/in/nelson-supriyasilp-1b9484322/"
+    }
+  ],
+  "culture-bites": [
+    {
+      "image": "/mentorship/culture-bites/slide-1.webp",
+      "text": "CUL TUREBITES\nSODA PROJECTPITCH\nBY VISHAL LAKSHMI NARAY ANAN"
+    },
+    {
+      "image": "/mentorship/culture-bites/slide-2.webp",
+      "text": "PROBLEM\nPeople feel more “connected” \ndigitally but lonelier in real life.\nImmigrants and locals rarely \ninteract beyond surface-level \nspaces.\nFood ,our most natural way to \nconnect, has become impersonal.\nThere’s no space where people can \nmeet, share, and belong again.\nCULTURE BITES"
+    },
+    {
+      "image": "/mentorship/culture-bites/slide-3.webp",
+      "text": "Culture Bites is a cultural \nexchange platform that uses \nfood as the vehicle for \ncommunity engagement.\nUsers can sign up for intimate \ngroup dining experiences, \nbonding with new friends over \nhome cooked meals.\nABOUT CULTURE BITES"
+    },
+    {
+      "image": "/mentorship/culture-bites/slide-4.webp",
+      "text": "● Culture Bites envisions a world where technology doesn’t just connect screens, \nbut connects people again  face to face, through food.\n● Our goal is to turn every shared meal into a micro-community  powered by \ntransparent systems, local empowerment, and scalable tech infrastructure.\n● The platform isn’t just about dining; it’s about engineering empathy at scale.\nVISION & OBJECTIVE\nCULTURE BITES"
+    },
+    {
+      "image": "/mentorship/culture-bites/slide-5.webp",
+      "text": "THE ECOSYSTEM\nGUESTS\nDiscover authentic food events near \nthem.Join shared tables, \nexperience cultures ﬁrsthand, and \nleave with more than a meal ,a story.\nHOSTS\nOpen their homes or spaces for \ngatherings.\nCreate a safe, welcoming \nenvironment where stories, ﬂavors, \nand friendships grow.\nCOOKS\nShare their culture through \nhome-cooked dishes.\nTurn recipes into stories that build \nempathy and celebrate identity.\nCULTURE BITES"
+    },
+    {
+      "image": "/mentorship/culture-bites/slide-6.webp",
+      "text": "● Guests book and attend dining \nevents near them\n● Filter by cuisine, date, price, dietary \npreferences\n● Guests pay a fee that includes a \nservice fee and portion of the \ningredient cost\nGuests gain good food, and exposure to new people and experiences! \nGuests Gain Good Food"
+    },
+    {
+      "image": "/mentorship/culture-bites/slide-7.webp",
+      "text": "● Hosts offer their space to cooks for \nevents\n● Builds trust, hospitality, and \ncommunity identity through shared \nspaces\n● Churches, community centers, \nclubhouses can get more use out of \ntheir space\n● Hosts receive a 25% commission \nper guest\n Not everyone can cook, but they can still participate and beneﬁt\nHosts Turn Homes Into Hubs"
+    },
+    {
+      "image": "/mentorship/culture-bites/slide-8.webp",
+      "text": "● Anyone with cooking skills can \nshare their authentic cultural \nknowledge\n● Set menus, prices, and schedule \nevents\n● Partner with hosts or use their own \nspace\n● Cooks receive a 60% commission \nper guest \nGives underrepresented communities a way to make a living off their lived experiences!\nCooks share Culture"
+    },
+    {
+      "image": "/mentorship/culture-bites/slide-9.webp",
+      "text": "Features and Functionalities\nEvent Management System\nComprehensive event lifecycle management:\nEvent Properties:\n● Title, cuisine type, description\n● Date, start/end time, location\n● Seat capacity and availability\n● Host and Cook assignments\n● Rich media (multiple images)\nGuest Interaction:\n● Seat request submission\n● Dietary restrictions/notes\n● Request status: Pending → \nApproved/Waitlist/Declined\n● Real-time availability updates\nCollaboration Request System\nTwo-way marketplace enabling Cooks and Hosts to \npartner:\nRequest Type | Flow | Status Tracking\nCook → Host | Cook proposes dishes for Host's space | \nPending → Accepted/Declined\nHost → Cook | Host invites Cook for speciﬁc event | \nPending → Accepted/Declined\nFeatures:\n● Proposed dish lists\n● Custom messages\n● Request history tracking\n● Real-time status updates\nMulti-Step Proﬁle Wizards\nGuided proﬁle creation with validation:\nHost Proﬁle Wizard:\n1. Space title and description\n2. Location and capacity\n3. Venue photos (upload or Pexels search)\n4. Review and submit\nCook Proﬁle Wizard:\n1. Name and origin country\n2. Specialties and cuisine types\n3. Personal story\n4. Cuisine images\n5. Review and submit"
+    },
+    {
+      "image": "/mentorship/culture-bites/slide-10.webp",
+      "text": "Hosts page setting up an event"
+    },
+    {
+      "image": "/mentorship/culture-bites/slide-11.webp",
+      "text": "Cook proﬁle set up page"
+    },
+    {
+      "image": "/mentorship/culture-bites/slide-12.webp",
+      "text": "Guest page for events"
+    },
+    {
+      "image": "/mentorship/culture-bites/slide-13.webp",
+      "text": "T ech Stack Used\nNext Js framework for \nentire website ﬂow  \nTailwind css for UI \ndesigns \nReact for rendering \ncomponents\nGit for codebase \nmanagement\nSupabase to manage all \ndatabases\nVercel for deployment"
+    },
+    {
+      "image": "/mentorship/culture-bites/slide-14.webp",
+      "text": "Future Implementations\n● Payment Integration: Stripe for event ticketing and Cook/Host payouts\n● Messaging System: In-app chat between Guests, Hosts, and Cooks\n● Review & Ratings: Post-event feedback and reputation system\n● Calendar Sync: iCal/Google Calendar integration\n● Social Sharing: Share events on social media"
+    },
+    {
+      "image": "/mentorship/culture-bites/slide-15.webp",
+      "text": "Github Repo\nCheck out my Project !\nWebsite"
+    },
+    {
+      "image": "/mentorship/culture-bites/slide-16.webp",
+      "text": "THANKS TO MY MENTOR SACHIN VENUGOP AL NAIR FOR GUIDING ME THROUGHOUT THE PROJECT   AND SODA FOR THIS AMAZING OPPORTUNITY"
+    }
+  ],
+  "clarityread": [
+    {
+      "image": "/mentorship/clarityread/slide-1.webp",
+      "text": "ClarityRead\nAI-assisted learning of academic papers."
+    },
+    {
+      "image": "/mentorship/clarityread/slide-2.webp",
+      "text": "ClarityRead was inspired by the challenges college students face \nwhen navigating complex academic research. Academic papers \noften use dense terminology and complicated language, making \ncomprehension difﬁcult. Students also lack a way to ask \nquestions and get immediate, clarifying responses from the \nauthors. ClarityRead aims to bridge that gap.\nProject Inspiration:"
+    },
+    {
+      "image": "/mentorship/clarityread/slide-3.webp",
+      "text": "ClarityRead empowers students to navigate academic papers \nwith ease. It uses AI to summarize papers, explain complex \nterminology, and answer questions about the content in real time. \nThese features simplify the research process and make academic \nwriting more accessible.\nThe Solution:"
+    },
+    {
+      "image": "/mentorship/clarityread/slide-4.webp",
+      "text": "Here is a demonstration of how the website can be used in its \ncurrent state:"
+    },
+    {
+      "image": "/mentorship/clarityread/slide-5.webp",
+      "text": "Backend: Django and MongoDB provide a flexible and easy-to-integrate foundation.Frontend: ReactJS with Tailwind CSS enables clean, responsive UI components and consistent styling.AI Integration: Currently uses the free tier of Gemini for simplicity in early deployment.Technology Choices: Selected to streamline development and accelerate project progress.\nThe Tech Stack:"
+    },
+    {
+      "image": "/mentorship/clarityread/slide-6.webp",
+      "text": "Frontend Guidance: Built conﬁdence in ReactJS and Tailwind \nCSS despite limited prior interest in frontend development.\nBackend Experience: First time working with MongoDB and \nconnecting it to the backend.\nAI Integration: Gained hands-on experience incorporating AI \ntools into a full-stack application.\nMentor Support: Helped understand ReactJS syntax nuances \nand guided informed design decisions.\nWhat I’ve Learned:"
+    },
+    {
+      "image": "/mentorship/clarityread/slide-7.webp",
+      "text": "Expand Content: Increase the number of academic domains, \nsubdomains, and total papers available.\nEnhance UI: Make the interface more engaging, intuitive, and visually \nconsistent.\nImprove AI Experience: Ensure AI tools feel seamless, helpful, and \nenhance comprehension throughout the research process.\nAdd and Improve Features: I have plans to add more paper suggestion \nsystems, along with engagement systems for interacting with other \nusers, expressing opinions on papers, and more.\nFuture Plans:"
+    },
+    {
+      "image": "/mentorship/clarityread/slide-8.webp",
+      "text": "ClarityRead simpliﬁes academic research by making papers \neasier to understand through AI-powered summaries and \nexplanations. The project strengthened my full-stack \ndevelopment skills, including ReactJS, Tailwind CSS, Django, \nMongoDB, and AI integration. Overall, ClarityRead demonstrates \nhow AI can enhance learning and support students in navigating \ncomplex academic literature.\nSummary:"
+    }
+  ],
+  "aegischeck": [
+    {
+      "image": "/mentorship/aegischeck/slide-1.webp",
+      "text": "AegisCheck\nUniﬁed AI-Powered Device Security Advisor"
+    },
+    {
+      "image": "/mentorship/aegischeck/slide-2.webp",
+      "text": "The Problem\nToo many separate \ntools.\nPasswords, \nsettings, and \npermissions not \nchecked together .\nTools can’t properly \nforecast future \nrisks.\nFragmentation Blind Spots No Prediction"
+    },
+    {
+      "image": "/mentorship/aegischeck/slide-3.webp",
+      "text": "● All-in-one security analysis, no \njuggling multiple tools\n● Integrated AI risk analyzer (onboard \nneural network + Grok API)\n● Predictive insights for future \nvulnerabilities\n● Simple, clean interface\nThe Solution"
+    },
+    {
+      "image": "/mentorship/aegischeck/slide-4.webp",
+      "text": "● OS Security Scan – checks updates, \nsecurity settings, and system integrity\n● Password Audit – scans saved \npasswords for breaches, Wi-Fi proﬁles, \nand risky reuse\n● Permissions & Autostart Audit – reviews \napp permissions and startup programs\n● Predictive AI – onboard neural network + \nGrok API anticipate future vulnerabilities\n● Uniﬁed Dashboard – simple interface; \nplatform-speciﬁc details hidden unless \nexpanded\nHow it Works"
+    },
+    {
+      "image": "/mentorship/aegischeck/slide-5.webp",
+      "text": "AI Integration\n● Onboard Neural Network + \nGrok API integration\n● Predicts potential future \nvulnerabilities\n● Generates actionable insights \nfor OS, passwords, and \npermissions\n● Summarizes risk in a simple \nscore & grade"
+    },
+    {
+      "image": "/mentorship/aegischeck/slide-6.webp",
+      "text": "DEMO"
+    },
+    {
+      "image": "/mentorship/aegischeck/slide-7.webp",
+      "text": ""
+    },
+    {
+      "image": "/mentorship/aegischeck/slide-8.webp",
+      "text": "● Uniﬁed device security , predictive AI, \nactionable insights\n● Continuously learns from your device \nhistory\n● Future expandability: new checks, \nintegrations, multi-device support\n● Scalable framework for evolving security \nchallenges\nConclusion & Future"
+    },
+    {
+      "image": "/mentorship/aegischeck/slide-9.webp",
+      "text": "Mentorship Takeaways\n● Gained hands-on experience integrating AI with system \nsecurity checks\n● Learned to design a project with real-world impact and \nmeasurable outcomes\n● Understood the importance of structuring code for scalability \nand maintainability\n● Improved problem-solving and debugging skills through mentor \nguidance"
+    },
+    {
+      "image": "/mentorship/aegischeck/slide-10.webp",
+      "text": "THANK YOU\nMentor: Utkarsh Byahut\nSoDA Officers"
+    }
+  ]
+}

@@ -19,6 +19,7 @@ function NavbarSection() {
     { name: "History", id_href: "/history" },
     { name: "Sponsors", id_href: "/#sponsors" },
     { name: "Team", id_href: "/#team" },
+    { name: "Mentorship", id_href: "/mentorship" },
     { name: "Resources", id_href: "/resources" },
     { name: "Leaderboard", id_href: "/leaderboard" },
     { name: "Donate", id_href: "/donate" },
@@ -67,10 +68,15 @@ function NavbarSection() {
     <nav className="sticky top-0 bg-black bg-opacity-85 backdrop-blur-md z-20 dark flex flex-col">
       <div className="flex items-center justify-between p-4 w-full">
         <div className="flex items-center gap-4">
-          <div className="sm:hidden relative">
+          <div className="xl:hidden relative">
             <DropdownMenu open={isMenuOpen} onOpenChange={setIsMenuOpen} modal={false}>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="z-50">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="z-50"
+                  aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+                >
                   {isMenuOpen ? "✕" : "☰"}
                 </Button>
               </DropdownMenuTrigger>
@@ -97,7 +103,9 @@ function NavbarSection() {
             />
           </Link>
         </div>
-        <div className="hidden sm:flex items-center gap-5">{menuItems.map(renderNavLink)}</div>
+        <div className="hidden xl:flex items-center gap-4 text-lg">
+          {menuItems.map(renderNavLink)}
+        </div>
         <div>
           <Button asChild className="text-white bg-soda-red">
             <a
