@@ -283,7 +283,7 @@ export default function Mentorship() {
               role="tab"
               id={`tab-${item}`}
               aria-selected={role === item}
-              aria-controls={`panel-${item}`}
+              aria-controls={role === item ? `panel-${item}` : undefined}
               tabIndex={role === item ? 0 : -1}
               onClick={() => setRole(item)}
               onKeyDown={(event) => {
