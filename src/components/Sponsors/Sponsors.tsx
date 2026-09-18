@@ -24,6 +24,7 @@ import americanexpressLogo from "./logo/americanexpress.webp";
 import axosoft from "./logo/axosoft.webp";
 import workiva from "./logo/workiva.webp";
 import generalmotorsLogo from "./logo/generalmotors.webp";
+import reliaquestLogo from "./logo/reliaquest.svg";
 
 type SponsorLogo =
   | "amazon"
@@ -38,7 +39,8 @@ type SponsorLogo =
   | "americanexpress"
   | "axosoft"
   | "workiva"
-  | "generalmotors";
+  | "generalmotors"
+  | "reliaquest";
 
 type SponsorEntry = {
   name: SponsorLogo;
@@ -81,6 +83,7 @@ function SponsorsMarquee() {
     axosoft,
     workiva,
     generalmotors: generalmotorsLogo,
+    reliaquest: reliaquestLogo,
   };
 
   const iconMap: Partial<Record<SponsorLogo, IconType>> = {
@@ -119,6 +122,7 @@ function SponsorsMarquee() {
     axosoft: "https://www.axosoft.com/",
     workiva: "https://www.workiva.com/",
     generalmotors: "https://www.gm.com/",
+    reliaquest: "https://reliaquest.com/",
   };
 
   const labelMap: Record<SponsorLogo, string> = {
@@ -135,6 +139,7 @@ function SponsorsMarquee() {
     axosoft: "Axosoft",
     workiva: "Workiva",
     generalmotors: "General Motors",
+    reliaquest: "ReliaQuest",
   };
 
   const sponsorEntries = sponsors.reduce<SponsorEntry[]>((acc, entry) => {
