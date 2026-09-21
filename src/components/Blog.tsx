@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react"; // Import the icon
 
 interface IndividualBlogProps {
-  imageURL: string;
+  imageURL?: string;
   tag: string[];
   title: string;
   summary: string;
@@ -35,14 +35,25 @@ const IndividualBlog: React.FC<IndividualBlogProps> = ({
 
   const cardContent = (
     <div className={`${cardBaseClasses} ${cardLinkClasses}`}>
-      <img
-        src={imageURL}
-        alt={alt}
-        width={width}
-        height={height}
-        className="w-full h-48 object-cover rounded-t-lg mb-4"
-      />{" "}
-      {/* Added mb-4 for spacing */}
+      {imageURL ? (
+        <img
+          src={imageURL}
+          alt={alt}
+          width={width}
+          height={height}
+          className="w-full h-48 object-cover rounded-t-lg mb-4"
+        />
+      ) : (
+        <div
+          className="w-full h-48 rounded-lg mb-4 bg-gradient-to-br from-slate-800 via-slate-900 to-neutral-950 border border-slate-700 flex items-end p-4"
+          aria-label={alt}
+          role="img"
+        >
+          <span className="text-xs font-medium uppercase tracking-[0.16em] text-slate-300">
+            {alt}
+          </span>
+        </div>
+      )}
       {/* Tag rendering commented out */}
       <h2 className="text-2xl font-bold my-3">{title}</h2>
       <Markdown className="text-gray-200 mt-2 text-sm flex-grow">{summary}</Markdown>
@@ -117,6 +128,33 @@ export default function Blog() {
           alt="Mentorship Program"
           width={5184}
           height={3456}
+        />
+        <IndividualBlog
+          tag={["competition", "coding"]}
+          title="Code Challenge"
+          summary="Put your problem-solving skills to the test in a welcoming, fast-paced coding competition. Work through engaging challenges, learn from other builders, and compete for prizes."
+          link="/code-challenge"
+          alt="Code Challenge photo coming soon"
+          width={1600}
+          height={900}
+        />
+        <IndividualBlog
+          tag={["competition", "building"]}
+          title="Hackathons"
+          summary="Turn a big idea into something real. SoDA hackathons bring students together to build, experiment, get mentorship, and share their projects with the community."
+          link="/hackathons"
+          alt="Hackathon photo coming soon"
+          width={1600}
+          height={900}
+        />
+        <IndividualBlog
+          tag={["community", "chill"]}
+          title="Lounge Hours"
+          summary="Drop by, study alongside fellow members, ask a question, or take a breather between classes. Everyone is welcome."
+          link="/lounge-hours"
+          alt="Lounge Hours photo coming soon"
+          width={1600}
+          height={900}
         />
       </div>
 
