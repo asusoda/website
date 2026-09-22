@@ -1,9 +1,9 @@
-import CompetitionProgram, {
-  type CompetitionProgramContent,
-} from "../components/Programs/CompetitionProgram";
+import HackathonProgram, {
+  type HackathonProgramContent,
+} from "../components/Programs/HackathonProgram";
 import "./Programs.css";
 
-const content: CompetitionProgramContent = {
+const content: HackathonProgramContent = {
   name: "Hackathons",
   eyebrow: "SODA HACKATHONS",
   headline: "One weekend.",
@@ -34,5 +34,5 @@ const content: CompetitionProgramContent = {
 };
 
 export default function Hackathons() {
-  return <CompetitionProgram content={content} />;
+  return <HackathonProgram content={content} />;
 }

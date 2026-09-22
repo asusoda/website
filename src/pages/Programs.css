@@ -106,6 +106,16 @@
   font-size: 9px;
   letter-spacing: 0.13em;
 }
+.program-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.program-hero-photo {
+  min-height: 300px;
+  border-radius: 12px;
+}
 .program-overview {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
@@ -183,6 +193,10 @@
   border-bottom: 1px solid #293442;
   border-radius: 0;
 }
+.program-winner-card .program-photo {
+  height: 200px;
+  border-bottom: 1px solid #293442;
+}
 .program-winner-card > div:last-child {
   padding: 19px;
 }
@@ -214,10 +228,20 @@
   gap: 16px;
   margin-top: 28px;
 }
+.code-challenge-gallery > div {
+  grid-template-columns: 0.85fr 1.3fr 0.85fr;
+}
 .program-gallery .program-photo-placeholder {
   min-height: 200px;
 }
 .program-gallery .program-photo-placeholder:first-child {
+  min-height: 280px;
+}
+.program-gallery .program-photo {
+  min-height: 200px;
+  border-radius: 12px;
+}
+.program-gallery .program-photo:first-child {
   min-height: 280px;
 }
 .program-faq {
@@ -321,6 +345,9 @@
   .program-photo-placeholder {
     min-height: 250px;
   }
+  .program-hero-photo {
+    min-height: 250px;
+  }
   .program-section-heading {
     align-items: flex-start;
     flex-direction: column;
@@ -333,6 +360,9 @@
     grid-template-columns: 1fr 1fr;
   }
   .program-gallery .program-photo-placeholder:first-child {
+    grid-column: span 2;
+  }
+  .program-gallery .program-photo:first-child {
     grid-column: span 2;
   }
 }
@@ -356,7 +386,13 @@
   .program-gallery .program-photo-placeholder:first-child {
     grid-column: auto;
   }
+  .program-gallery .program-photo:first-child {
+    grid-column: auto;
+  }
   .program-photo-placeholder {
+    min-height: 190px;
+  }
+  .program-hero-photo {
     min-height: 190px;
   }
 }

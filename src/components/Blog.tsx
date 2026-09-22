@@ -130,13 +130,14 @@ export default function Blog() {
           height={3456}
         />
         <IndividualBlog
+          imageURL="/codechallenge/people/hero.jpg"
           tag={["competition", "coding"]}
           title="Code Challenge"
           summary="Put your problem-solving skills to the test in a welcoming, fast-paced coding competition. Work through engaging challenges, learn from other builders, and compete for prizes."
           link="/code-challenge"
-          alt="Code Challenge photo coming soon"
-          width={1600}
-          height={900}
+          alt="Code Challenge participants standing in front of the event presentation"
+          width={5343}
+          height={2852}
         />
         <IndividualBlog
           tag={["competition", "building"]}
