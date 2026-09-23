@@ -231,6 +231,13 @@
 .code-challenge-gallery > div {
   grid-template-columns: 0.85fr 1.3fr 0.85fr;
 }
+.lounge-gallery > div {
+  grid-template-columns: 1.08fr 0.96fr 0.96fr;
+}
+.lounge-gallery .program-photo:nth-child(n + 4) {
+  min-height: 0;
+  aspect-ratio: 3 / 2;
+}
 .program-gallery .program-photo-placeholder {
   min-height: 200px;
 }
@@ -288,54 +295,13 @@
   line-height: 1.8;
   margin: 15px 25px 0 0;
 }
-.lounge-details {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 70px;
-  padding-block: 58px 6px;
-  border-top: 1px solid #282d36;
-}
-.lounge-details > div > p:last-child {
-  color: #aab3c2;
-  font-size: 14px;
-  line-height: 1.85;
-}
-.lounge-facts {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-}
-.lounge-facts div {
-  min-height: 170px;
-  background: #101318;
-  border: 1px solid #293442;
-  border-radius: 11px;
-  padding: 23px;
-  display: flex;
-  flex-direction: column;
-}
-.lounge-facts svg {
-  color: var(--program-blue);
-}
-.lounge-facts strong {
-  margin-top: auto;
-  font-size: 16px;
-  font-weight: 500;
-}
-.lounge-facts span {
-  margin-top: 7px;
-  color: #9fa9b9;
-  font-size: 12px;
-  line-height: 1.5;
-}
 @media (max-width: 800px) {
   .program-container {
     width: calc(100% - 48px);
   }
   .program-hero,
   .program-overview,
-  .program-faq,
-  .lounge-details {
+  .program-faq {
     grid-template-columns: 1fr;
     gap: 35px;
   }
@@ -365,6 +331,9 @@
   .program-gallery .program-photo:first-child {
     grid-column: span 2;
   }
+  .lounge-gallery .program-photo:nth-child(4) {
+    grid-column: span 2;
+  }
 }
 @media (max-width: 520px) {
   .program-page {
@@ -379,14 +348,16 @@
   .program-intro {
     font-size: 14px;
   }
-  .program-gallery > div,
-  .lounge-facts {
+  .program-gallery > div {
     grid-template-columns: 1fr;
   }
   .program-gallery .program-photo-placeholder:first-child {
     grid-column: auto;
   }
   .program-gallery .program-photo:first-child {
+    grid-column: auto;
+  }
+  .lounge-gallery .program-photo:nth-child(4) {
     grid-column: auto;
   }
   .program-photo-placeholder {

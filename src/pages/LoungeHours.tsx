@@ -1,6 +1,4 @@
 import { Helmet } from "react-helmet-async";
-import { Code2, Users } from "lucide-react";
-import ProgramPhotoPlaceholder from "../components/Programs/ProgramPhotoPlaceholder";
 import "./Programs.css";
 
 export default function LoungeHours() {
@@ -10,7 +8,7 @@ export default function LoungeHours() {
         <title>Lounge Hours - SoDA</title>
         <meta
           name="description"
-          content="Drop by SoDA Lounge Hours to study, connect, and recharge with the community."
+          content="Drop by to hang out with members, eat dinner, and play games."
         />
       </Helmet>
       <section className="program-hero program-container" aria-labelledby="lounge-title">
@@ -19,46 +17,70 @@ export default function LoungeHours() {
             <span /> SODA LOUNGE HOURS
           </p>
           <h1 id="lounge-title">
-            A place to work.
+            Chill with friends.
             <br />
-            <em>A reason to stay.</em>
+            <em>Grab a bite.</em>
           </h1>
           <p className="program-intro">
-            Drop in to study, meet fellow members, get unstuck, or simply take a breather between
-            classes.
+            Pull up to lounge hours to meet new members, relax, and have some dinner.
           </p>
         </div>
-        <ProgramPhotoPlaceholder label="Lounge Hours" />
+        <img
+          className="program-photo program-hero-photo"
+          src="/loungehours/3.jpg"
+          alt="SoDA members serving food together during Lounge Hours"
+          fetchPriority="high"
+        />
       </section>
-      <section className="lounge-details program-container" aria-labelledby="lounge-details-title">
+      <section
+        className="program-gallery lounge-gallery program-container"
+        aria-labelledby="lounge-gallery-title"
+      >
+        <p className="program-eyebrow">FALL 2025 BBQ</p>
+        <h2 id="lounge-gallery-title">Enjoy the evening.</h2>
         <div>
-          <p className="program-eyebrow">YOUR CAMPUS CORNER</p>
-          <h2 id="lounge-details-title">Come as you are.</h2>
-          <p>
-            Lounge Hours are an easy, low-key way to spend time with the SoDA community. Bring
-            homework, a side project, or just yourself.
-          </p>
-        </div>
-        <div className="lounge-facts">
-          <div>
-            <Users size={20} aria-hidden="true" />
-            <strong>Community</strong>
-            <span>Meet and collaborate with fellow members.</span>
-          </div>
-          <div>
-            <Code2 size={20} aria-hidden="true" />
-            <strong>Work time</strong>
-            <span>Study, build, or ask for a second set of eyes.</span>
-          </div>
-        </div>
-      </section>
-      <section className="program-gallery program-container" aria-labelledby="lounge-gallery-title">
-        <p className="program-eyebrow">LIFE AT THE LOUNGE</p>
-        <h2 id="lounge-gallery-title">Photos coming soon.</h2>
-        <div>
-          <ProgramPhotoPlaceholder label="Lounge photo" />
-          <ProgramPhotoPlaceholder label="Study session" />
-          <ProgramPhotoPlaceholder label="Community moment" />
+          <img
+            className="program-photo"
+            src="/loungehours/1.jpg"
+            alt="SoDA members hanging out over food during Lounge Hours"
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            className="program-photo"
+            src="/loungehours/7.JPG"
+            alt="Two SoDA members hanging out at Lounge Hours"
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            className="program-photo"
+            src="/loungehours/6.JPG"
+            alt="Friends posing together at Lounge Hours"
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            className="program-photo"
+            src="/loungehours/8.jpg"
+            alt="SoDA members enjoying Lounge Hours together"
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            className="program-photo"
+            src="/loungehours/4.jpg"
+            alt="SoDA members spending the evening at Lounge Hours"
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            className="program-photo"
+            src="/loungehours/9.JPG"
+            alt="Friends posing together during Lounge Hours"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </section>
     </main>

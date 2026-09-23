@@ -149,13 +149,14 @@ export default function Blog() {
           height={900}
         />
         <IndividualBlog
+          imageURL="/loungehours/3.jpg"
           tag={["community", "chill"]}
           title="Lounge Hours"
-          summary="Drop by, study alongside fellow members, ask a question, or take a breather between classes. Everyone is welcome."
+          summary="Drop by to hang out, grab a bite, and have fun with other members. Everyone is welcome."
           link="/lounge-hours"
-          alt="Lounge Hours photo coming soon"
-          width={1600}
-          height={900}
+          alt="SoDA members serving food together during Lounge Hours"
+          width={6000}
+          height={4000}
         />
       </div>
 
