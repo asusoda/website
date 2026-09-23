@@ -310,6 +310,7 @@
     flex-direction: column;
   }
   .program-perk-grid,
+  .program-challenge-grid,
   .program-winner-grid {
     grid-template-columns: 1fr;
   }
