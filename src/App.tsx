@@ -1,4 +1,6 @@
 import "@fontsource/space-grotesk";
+import "@fontsource/space-grotesk/500.css";
+import "@fontsource/space-grotesk/600.css";
 import "@fontsource/space-grotesk/700.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
@@ -13,6 +15,9 @@ import Resources from "./pages/Forms";
 import TravelReimbursement from "./pages/TravelReimbursement";
 import Donate from "./pages/Donate";
 import History from "./pages/History";
+import CodeChallenge from "./pages/CodeChallenge";
+import Hackathons from "./pages/Hackathons";
+import LoungeHours from "./pages/LoungeHours";
 import ScrollToTop from "./components/ScrollToTop";
 import { CartProvider } from "./lib/CartContext";
 
@@ -55,6 +60,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/history" element={<History />} />
             <Route path="/mentorship" element={<Mentorship />} />
+            <Route path="/code-challenge" element={<CodeChallenge />} />
+            <Route path="/hackathons" element={<Hackathons />} />
+            <Route path="/lounge-hours" element={<LoungeHours />} />
             <Route path="/distinguishedMembers" element={<PointsSystem />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/apply" element={<Positions />} />

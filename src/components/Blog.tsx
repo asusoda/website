@@ -40,9 +40,10 @@ const IndividualBlog: React.FC<IndividualBlogProps> = ({
         alt={alt}
         width={width}
         height={height}
+        loading="lazy"
+        decoding="async"
         className="w-full h-48 object-cover rounded-t-lg mb-4"
-      />{" "}
-      {/* Added mb-4 for spacing */}
+      />
       {/* Tag rendering commented out */}
       <h2 className="text-2xl font-bold my-3">{title}</h2>
       <Markdown className="text-gray-200 mt-2 text-sm flex-grow">{summary}</Markdown>
@@ -117,6 +118,36 @@ export default function Blog() {
           alt="Mentorship Program"
           width={5184}
           height={3456}
+        />
+        <IndividualBlog
+          imageURL="/codechallenge/people/hero.webp"
+          tag={["competition", "coding"]}
+          title="Code Challenge"
+          summary="Put your problem-solving skills to the test in a welcoming, fast-paced coding competition. Work through engaging challenges, learn from other builders, and compete for prizes."
+          link="/code-challenge"
+          alt="Code Challenge participants standing in front of the event presentation"
+          width={5343}
+          height={2852}
+        />
+        <IndividualBlog
+          imageURL="/hackathons/innovationhacks26/people/crowd1.webp"
+          tag={["competition", "building"]}
+          title="Hackathons"
+          summary="Turn a big idea into something real. SoDA hackathons bring students together to build, experiment, get mentorship, and share their projects with the community."
+          link="/hackathons"
+          alt="Audience attending an Innovation Hacks presentation"
+          width={4898}
+          height={3265}
+        />
+        <IndividualBlog
+          imageURL="/loungehours/3.webp"
+          tag={["community", "chill"]}
+          title="Lounge Hours"
+          summary="Drop by to hang out, grab a bite, and have fun with other members. Everyone is welcome."
+          link="/lounge-hours"
+          alt="SoDA members serving food together during Lounge Hours"
+          width={6000}
+          height={4000}
         />
       </div>
 
