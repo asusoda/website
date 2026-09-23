@@ -14,7 +14,7 @@ export interface CodeChallengeProgramContent {
   intro: string;
   description: string;
   heroImage: CodeChallengeImage;
-  winnerImages: readonly CodeChallengeImage[];
+  challengeImages: readonly CodeChallengeImage[];
   galleryImages: readonly CodeChallengeImage[];
   faqs: readonly (readonly [string, string])[];
 }
@@ -69,16 +69,16 @@ export default function CodeChallengeProgram({ content }: CodeChallengeProgramPr
         <p>{content.description}</p>
       </section>
 
-      <section className="program-winners program-container" aria-labelledby="winners-title">
+      <section className="program-challenges program-container" aria-labelledby="challenges-title">
         <div className="program-section-heading">
           <div>
             <p className="program-eyebrow">PREVIOUS CHALLENGES</p>
-            <h2 id="winners-title">Past challenges.</h2>
+            <h2 id="challenges-title">Past challenges.</h2>
           </div>
         </div>
-        <div className="program-winner-grid">
-          {content.winnerImages.map((image) => (
-            <article key={image.src} className="program-winner-card">
+        <div className="program-challenge-grid">
+          {content.challengeImages.map((image) => (
+            <article key={image.src} className="program-challenge-card">
               <img
                 className="program-photo"
                 src={image.src}

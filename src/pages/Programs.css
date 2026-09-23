@@ -111,6 +111,7 @@
 }
 .program-perks,
 .program-winners,
+.program-challenges,
 .program-gallery {
   padding-top: 84px;
 }
@@ -128,6 +129,7 @@
   margin-bottom: 11px;
 }
 .program-perk-grid,
+.program-challenge-grid,
 .program-winner-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -167,19 +169,23 @@
   line-height: 1.7;
   margin: 9px 0 0;
 }
+.program-challenge-card,
 .program-winner-card {
   overflow: hidden;
   border: 1px solid #293442;
   border-radius: 11px;
   background: #101318;
 }
+.program-challenge-card .program-photo,
 .program-winner-card .program-photo {
   height: 200px;
   border-bottom: 1px solid #293442;
 }
+.program-challenge-card > div:last-child,
 .program-winner-card > div:last-child {
   padding: 10px 19px;
 }
+.program-challenge-card > div:last-child > p,
 .program-winner-card > div:last-child > p {
   color: #90a0ba;
   font-size: 18px;
@@ -188,6 +194,7 @@
   line-height: 1.4;
   margin: 0;
 }
+.program-challenge-card p,
 .program-winner-card p {
   margin: 0;
   color: #9fa9b9;

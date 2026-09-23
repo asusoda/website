@@ -16,7 +16,7 @@ const content: CodeChallengeProgramContent = {
     src: "/codechallenge/people/hero.webp",
     alt: "Code Challenge participants standing in front of the event presentation",
   },
-  winnerImages: [
+  challengeImages: [
     {
       src: "/codechallenge/winners/winners1.webp",
       alt: "Past Code Challenge winners standing together after the event",
