@@ -1,6 +1,10 @@
 import { Helmet } from "react-helmet-async";
-import { ArrowDown, ChevronDown, Gift, Trophy } from "lucide-react";
-import ProgramPhotoPlaceholder from "./ProgramPhotoPlaceholder";
+import { ArrowDown, ChevronDown } from "lucide-react";
+
+interface HackathonImage {
+  src: string;
+  alt: string;
+}
 
 export interface HackathonProgramContent {
   name: string;
@@ -10,12 +14,22 @@ export interface HackathonProgramContent {
   intro: string;
   description: string;
   perks: readonly string[];
+  heroImage: HackathonImage;
+  prizeImages: readonly HackathonImage[];
+  winnerImages: readonly HackathonImage[];
+  galleryImages: readonly HackathonImage[];
   faqs: readonly (readonly [string, string])[];
 }
 
 interface HackathonProgramProps {
   content: HackathonProgramContent;
 }
+
+const pastWinners = [
+  { track: "Amazon: Sustainability", team: "Mochi" },
+  { track: "State Farm: Financial Wellness", team: "Redreemer" },
+  { track: "Google: The Agentic Frontier", team: "DevLog" },
+];
 
 export default function HackathonProgram({ content }: HackathonProgramProps) {
   return (
@@ -39,7 +53,12 @@ export default function HackathonProgram({ content }: HackathonProgramProps) {
             Explore the program <ArrowDown size={17} aria-hidden="true" />
           </a>
         </div>
-        <ProgramPhotoPlaceholder label={content.name} />
+        <img
+          className="program-photo program-hero-photo"
+          src={content.heroImage.src}
+          alt={content.heroImage.alt}
+          fetchPriority="high"
+        />
       </section>
 
       <section
@@ -50,70 +69,88 @@ export default function HackathonProgram({ content }: HackathonProgramProps) {
         <div>
           <p className="program-eyebrow">WHAT TO EXPECT</p>
           <h2 id="overview-title">
-            Show up curious.
+            Show up with an idea.
             <br />
-            Leave with more.
+            Leave with a real app.
           </h2>
         </div>
         <p>{content.description}</p>
-      </section>
-
-      <section className="program-perks program-container" aria-labelledby="perks-title">
-        <div className="program-section-heading">
-          <div>
-            <p className="program-eyebrow">PERKS & REWARDS</p>
-            <h2 id="perks-title">More than a leaderboard.</h2>
-          </div>
-          <p>Prizes and event details vary, but there’s always something worth showing up for.</p>
-        </div>
-        <div className="program-perk-grid">
-          {content.perks.map((perk, index) => (
-            <article key={perk}>
-              <Gift size={21} aria-hidden="true" />
-              <span>0{index + 1}</span>
-              <p>{perk}</p>
-            </article>
-          ))}
-        </div>
       </section>
 
       <section className="program-winners program-container" aria-labelledby="winners-title">
         <div className="program-section-heading">
           <div>
             <p className="program-eyebrow">PAST WINNERS</p>
-            <h2 id="winners-title">The next one could be yours.</h2>
+            <h2 id="winners-title">Our previous winners.</h2>
           </div>
-          <p>We’ll add past team names, projects, and winning photos here as they’re collected.</p>
         </div>
         <div className="program-winner-grid">
-          {["Winner spotlight", "Winner spotlight", "Winner spotlight"].map((label, index) => (
-            <article key={`${label}-${index}`} className="program-winner-card">
-              <ProgramPhotoPlaceholder label={label} />
+          {pastWinners.map(({ track, team }, index) => (
+            <article key={team} className="program-winner-card">
+              <img
+                className="program-photo"
+                src={content.winnerImages[index].src}
+                alt={content.winnerImages[index].alt}
+                loading="lazy"
+                decoding="async"
+              />
               <div>
-                <Trophy size={17} aria-hidden="true" />
-                <span>PAST CHALLENGE · COMING SOON</span>
-                <h3>Team name & project name</h3>
-                <p>Winner details and a project photo will appear here.</p>
+                <p>
+                  {track} - {team}
+                </p>
               </div>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="program-gallery program-container" aria-labelledby="gallery-title">
-        <p className="program-eyebrow">FROM THE FLOOR</p>
-        <h2 id="gallery-title">The work, the people, the moments.</h2>
+      <section className="program-perks program-container" aria-labelledby="perks-title">
+        <div className="program-section-heading">
+          <div>
+            <p className="program-eyebrow">REWARDS</p>
+            <h2 id="perks-title">Win sweet prizes.</h2>
+          </div>
+          <p>Prizes and event details vary, but there’s always something worth showing up for.</p>
+        </div>
+        <div className="program-perk-grid">
+          {content.prizeImages.map((image) => (
+            <article key={image.src} className="program-prize-card">
+              <img
+                className="program-prize-photo"
+                src={image.src}
+                alt={image.alt}
+                loading="lazy"
+                decoding="async"
+              />
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="program-gallery hackathon-gallery program-container"
+        aria-labelledby="gallery-title"
+      >
+        <p className="program-eyebrow">Innovation Hacks 2.0</p>
+        <h2 id="gallery-title">Research, build, and pitch.</h2>
         <div>
-          <ProgramPhotoPlaceholder label="Event photo" />
-          <ProgramPhotoPlaceholder label="Team photo" />
-          <ProgramPhotoPlaceholder label="Project showcase" />
+          {content.galleryImages.map((image) => (
+            <img
+              key={image.src}
+              className="program-photo"
+              src={image.src}
+              alt={image.alt}
+              loading="lazy"
+              decoding="async"
+            />
+          ))}
         </div>
       </section>
 
       <section className="program-faq program-container" aria-labelledby="faq-title">
         <div>
           <p className="program-eyebrow">A FEW MORE THINGS</p>
-          <h2 id="faq-title">Good questions.</h2>
+          <h2 id="faq-title">FAQs</h2>
           <p>We’ll share event-specific information when registration opens.</p>
         </div>
         <div>

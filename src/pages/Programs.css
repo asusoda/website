@@ -167,6 +167,17 @@
   display: flex;
   flex-direction: column;
 }
+.program-prize-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #101318;
+}
+.program-prize-card {
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  padding: 0 !important;
+}
 .program-perk-grid svg {
   color: var(--program-blue);
 }
@@ -188,7 +199,8 @@
   background: #101318;
 }
 .program-winner-card .program-photo-placeholder {
-  min-height: 160px;
+  height: 200px;
+  min-height: 0;
   border: 0;
   border-bottom: 1px solid #293442;
   border-radius: 0;
@@ -198,23 +210,15 @@
   border-bottom: 1px solid #293442;
 }
 .program-winner-card > div:last-child {
-  padding: 19px;
+  padding: 10px 19px;
 }
-.program-winner-card > div:last-child > svg {
-  color: var(--program-blue);
-  vertical-align: middle;
-  margin-right: 7px;
-}
-.program-winner-card > div:last-child > span {
+.program-winner-card > div:last-child > p {
   color: #90a0ba;
-  font-size: 9px;
-  letter-spacing: 0.09em;
-}
-.program-winner-card h3 {
   font-size: 18px;
   font-weight: 500;
-  letter-spacing: -0.03em;
-  margin: 13px 0 8px;
+  letter-spacing: 0;
+  line-height: 1.4;
+  margin: 0;
 }
 .program-winner-card p {
   margin: 0;
@@ -233,6 +237,27 @@
 }
 .lounge-gallery > div {
   grid-template-columns: 1.08fr 0.96fr 0.96fr;
+}
+.hackathon-gallery > div {
+  grid-template-columns: 3fr 2fr 3fr;
+}
+.hackathon-gallery .program-photo,
+.hackathon-gallery .program-photo:first-child {
+  min-height: 0;
+  object-fit: cover;
+}
+.hackathon-gallery .program-photo:nth-child(1),
+.hackathon-gallery .program-photo:nth-child(3),
+.hackathon-gallery .program-photo:nth-child(5) {
+  aspect-ratio: 3 / 2;
+}
+.hackathon-gallery .program-photo:nth-child(2),
+.hackathon-gallery .program-photo:nth-child(4),
+.hackathon-gallery .program-photo:nth-child(6) {
+  aspect-ratio: 1;
+}
+.hackathon-gallery .program-photo:nth-child(6) {
+  object-position: 75% center;
 }
 .lounge-gallery .program-photo:nth-child(n + 4) {
   min-height: 0;

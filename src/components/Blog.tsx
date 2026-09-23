@@ -140,13 +140,14 @@ export default function Blog() {
           height={2852}
         />
         <IndividualBlog
+          imageURL="/hackathons/innovationhacks26/people/crowd1.jpg"
           tag={["competition", "building"]}
           title="Hackathons"
           summary="Turn a big idea into something real. SoDA hackathons bring students together to build, experiment, get mentorship, and share their projects with the community."
           link="/hackathons"
-          alt="Hackathon photo coming soon"
-          width={1600}
-          height={900}
+          alt="Audience attending an Innovation Hacks presentation"
+          width={4898}
+          height={3265}
         />
         <IndividualBlog
           imageURL="/loungehours/3.jpg"
