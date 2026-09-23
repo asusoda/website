@@ -16,7 +16,9 @@ const content: CodeChallengeProgramContent = {
     src: "/codechallenge/people/hero.webp",
     alt: "Code Challenge participants standing in front of the event presentation",
   },
-  challengeImages: [
+  highlightEyebrow: "PAST EVENTS",
+  highlightTitle: "Challenge highlights.",
+  highlightImages: [
     {
       src: "/codechallenge/winners/winners1.webp",
       alt: "Past Code Challenge winners standing together after the event",
@@ -30,6 +32,8 @@ const content: CodeChallengeProgramContent = {
       alt: "Past Code Challenge winners posing after the challenge",
     },
   ],
+  galleryEyebrow: "FROM THE FLOOR",
+  galleryTitle: "Problem solving in action.",
   galleryImages: [
     {
       src: "/codechallenge/people/people5.webp",

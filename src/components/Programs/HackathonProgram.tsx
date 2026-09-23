@@ -21,6 +21,8 @@ export interface HackathonProgramContent {
   heroImage: HackathonImage;
   prizeImages: readonly HackathonImage[];
   winnerImages: readonly HackathonWinner[];
+  galleryEyebrow: string;
+  galleryTitle: string;
   galleryImages: readonly HackathonImage[];
   faqs: readonly (readonly [string, string])[];
 }
@@ -123,8 +125,8 @@ export default function HackathonProgram({ content }: HackathonProgramProps) {
         className="program-gallery hackathon-gallery program-container"
         aria-labelledby="gallery-title"
       >
-        <p className="program-eyebrow">Innovation Hacks 2.0</p>
-        <h2 id="gallery-title">Research, build, and pitch.</h2>
+        <p className="program-eyebrow">{content.galleryEyebrow}</p>
+        <h2 id="gallery-title">{content.galleryTitle}</h2>
         <div>
           {content.galleryImages.map((image) => (
             <img

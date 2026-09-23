@@ -14,7 +14,11 @@ export interface CodeChallengeProgramContent {
   intro: string;
   description: string;
   heroImage: CodeChallengeImage;
-  challengeImages: readonly CodeChallengeImage[];
+  highlightEyebrow: string;
+  highlightTitle: string;
+  highlightImages: readonly CodeChallengeImage[];
+  galleryEyebrow: string;
+  galleryTitle: string;
   galleryImages: readonly CodeChallengeImage[];
   faqs: readonly (readonly [string, string])[];
 }
@@ -72,12 +76,12 @@ export default function CodeChallengeProgram({ content }: CodeChallengeProgramPr
       <section className="program-challenges program-container" aria-labelledby="challenges-title">
         <div className="program-section-heading">
           <div>
-            <p className="program-eyebrow">PREVIOUS CHALLENGES</p>
-            <h2 id="challenges-title">Past challenges.</h2>
+            <p className="program-eyebrow">{content.highlightEyebrow}</p>
+            <h2 id="challenges-title">{content.highlightTitle}</h2>
           </div>
         </div>
         <div className="program-challenge-grid">
-          {content.challengeImages.map((image) => (
+          {content.highlightImages.map((image) => (
             <article key={image.src} className="program-challenge-card">
               <img
                 className="program-photo"
@@ -95,8 +99,8 @@ export default function CodeChallengeProgram({ content }: CodeChallengeProgramPr
         className="program-gallery code-challenge-gallery program-container"
         aria-labelledby="gallery-title"
       >
-        <p className="program-eyebrow">FROM THE FLOOR</p>
-        <h2 id="gallery-title">Problem solving in action.</h2>
+        <p className="program-eyebrow">{content.galleryEyebrow}</p>
+        <h2 id="gallery-title">{content.galleryTitle}</h2>
         <div>
           {content.galleryImages.map((image) => (
             <img
