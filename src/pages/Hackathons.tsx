@@ -49,6 +49,8 @@ const content: HackathonProgramContent = {
       team: "DevLog",
     },
   ],
+  galleryEyebrow: "Innovation Hacks 2.0",
+  galleryTitle: "Research, build, and pitch.",
   galleryImages: [
     {
       src: "/hackathons/innovationhacks26/people/judging1.webp",
