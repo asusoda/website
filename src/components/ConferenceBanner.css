@@ -1,0 +1,173 @@
+@font-face {
+  font-family: "WTC Le Jour Serif";
+  src: url("/fonts/wtc-le-jour-serif.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.conference-banner {
+  /* Brand tokens from the WITC project's src/app/globals.css. */
+  --wtc-white: oklch(0.9851 0 0);
+  --wtc-blue: oklch(0.4992 0.2283 267.48);
+  --wtc-lilac: oklch(0.9224 0.0538 316.35);
+  --wtc-purple: oklch(0.474 0.2109 300.34);
+  color: var(--wtc-blue);
+  background: var(--wtc-lilac);
+  border-bottom: 3px solid var(--wtc-blue);
+  animation: conference-banner-drop-in 700ms cubic-bezier(0.16, 1, 0.3, 1) 120ms backwards;
+}
+
+@keyframes conference-banner-drop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.conference-banner__link {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 19px 32px;
+}
+
+.conference-banner__link:focus-visible {
+  outline: 2px solid var(--wtc-blue);
+  outline-offset: -6px;
+}
+
+.conference-banner__date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 58px;
+  height: 62px;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.conference-banner__date > span:nth-child(2) {
+  font-size: 29px;
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+}
+
+.conference-banner__event {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.conference-banner__eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.conference-banner__title {
+  font-family: "WTC Le Jour Serif", Georgia, serif;
+  font-size: 23px;
+  line-height: 1.4;
+}
+
+.conference-banner__edition {
+  color: var(--wtc-purple);
+}
+
+.conference-banner__details {
+  margin-left: auto;
+  font-size: 12px;
+}
+
+.conference-banner__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-shrink: 0;
+  padding: 8px 9px 8px 19px;
+  border-radius: 999px;
+  background: var(--wtc-blue);
+  color: var(--wtc-white);
+  font-size: 12px;
+  font-weight: 700;
+  transition: background 160ms;
+}
+
+.conference-banner__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 15%);
+}
+
+.conference-banner__link:hover .conference-banner__cta {
+  background: var(--wtc-purple);
+}
+
+@media (max-width: 1100px) {
+  .conference-banner__details {
+    display: none;
+  }
+
+  .conference-banner__cta {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .conference-banner__link {
+    display: grid;
+    grid-template-columns: 46px minmax(0, 1fr);
+    gap: 14px;
+    padding: 18px 20px;
+  }
+
+  .conference-banner__date {
+    width: 46px;
+    height: 56px;
+  }
+
+  .conference-banner__eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.04em;
+  }
+
+  .conference-banner__title {
+    font-size: 19px;
+  }
+
+  .conference-banner__cta {
+    grid-column: 2;
+    justify-self: start;
+    margin-left: 0;
+    padding: 5px 6px 5px 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .conference-banner {
+    animation: none;
+  }
+
+  .conference-banner__cta {
+    transition: none;
+  }
+}
