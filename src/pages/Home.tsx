@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import MemberCards from "../components/Team/TeamCards";
 import Hero from "../components/Hero";
+import ConferenceBanner from "../components/ConferenceBanner";
 import SponsorsMarquee from "../components/Sponsors/Sponsors";
 import Mission from "../components/Mission";
 import Blog from "../components/Blog";
@@ -90,6 +91,7 @@ function Home() {
       )}
       {/* Add effect to handle escape key */}
 
+      <ConferenceBanner />
       <Hero setSelectedEvent={setSelectedEvent} />
       <section id="about" className="section">
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 px-6 md:px-12 lg:px-24">
