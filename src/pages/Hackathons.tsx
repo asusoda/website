@@ -17,60 +17,60 @@ const content: HackathonProgramContent = {
     "Past winning teams have earned sponsor prizes, gift cards, SoDA merch, and other event rewards.",
   ],
   heroImage: {
-    src: "/hackathons/innovationhacks26/people/crowd1.jpg",
+    src: "/hackathons/innovationhacks26/people/crowd1.webp",
     alt: "A packed audience watching the Innovation Hacks mentor presentation",
   },
   prizeImages: [
     {
-      src: "/hackathons/innovationhacks26/prizes/prize1.jpg",
+      src: "/hackathons/innovationhacks26/prizes/prize1.webp",
       alt: "Innovation Hacks prize display",
     },
     {
-      src: "/hackathons/innovationhacks26/prizes/prize2.jpg",
+      src: "/hackathons/innovationhacks26/prizes/prize2.webp",
       alt: "Innovation Hacks prize display",
     },
     {
-      src: "/hackathons/innovationhacks26/prizes/prize3.jpg",
+      src: "/hackathons/innovationhacks26/prizes/prize3.webp",
       alt: "Innovation Hacks prize display",
     },
   ],
   winnerImages: [
     {
-      src: "/hackathons/innovationhacks26/winners/mochi.jpg",
+      src: "/hackathons/innovationhacks26/winners/mochi.webp",
       alt: "Mochi, the Amazon Sustainability track winners at Innovation Hacks",
     },
     {
-      src: "/hackathons/innovationhacks26/winners/redreemer.jpg",
+      src: "/hackathons/innovationhacks26/winners/redreemer.webp",
       alt: "Redreemer, the State Farm Financial Wellness track winners at Innovation Hacks",
     },
     {
-      src: "/hackathons/innovationhacks26/winners/devlog.jpg",
+      src: "/hackathons/innovationhacks26/winners/devlog.webp",
       alt: "DevLog, the Google Agentic Frontier track winners at Innovation Hacks",
     },
   ],
   galleryImages: [
     {
-      src: "/hackathons/innovationhacks26/people/judging1.jpg",
+      src: "/hackathons/innovationhacks26/people/judging1.webp",
       alt: "Innovation Hacks team collaborating around a laptop",
     },
     {
-      src: "/hackathons/innovationhacks26/people/judging2.jpg",
+      src: "/hackathons/innovationhacks26/people/judging2.webp",
       alt: "Innovation Hacks participants posing together",
     },
     {
-      src: "/hackathons/innovationhacks26/people/judging3.jpg",
+      src: "/hackathons/innovationhacks26/people/judging3.webp",
       alt: "Innovation Hacks team presenting their project",
     },
     {
-      src: "/hackathons/innovationhacks26/people/judging4.jpg",
+      src: "/hackathons/innovationhacks26/people/judging4.webp",
       alt: "Innovation Hacks participants presenting to judges",
     },
     {
-      src: "/hackathons/innovationhacks26/people/crowd2.jpg",
+      src: "/hackathons/innovationhacks26/people/crowd2.webp",
       alt: "Innovation Hacks audience listening to a presentation",
     },
     {
-      src: "/hackathons/innovationhacks26/people/judging5.jpg",
+      src: "/hackathons/innovationhacks26/people/judging5.webp",
       alt: "Innovation Hacks team sharing their project with judges",
     },
   ],

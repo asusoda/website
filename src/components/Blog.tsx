@@ -130,7 +130,7 @@ export default function Blog() {
           height={3456}
         />
         <IndividualBlog
-          imageURL="/codechallenge/people/hero.jpg"
+          imageURL="/codechallenge/people/hero.webp"
           tag={["competition", "coding"]}
           title="Code Challenge"
           summary="Put your problem-solving skills to the test in a welcoming, fast-paced coding competition. Work through engaging challenges, learn from other builders, and compete for prizes."
@@ -140,7 +140,7 @@ export default function Blog() {
           height={2852}
         />
         <IndividualBlog
-          imageURL="/hackathons/innovationhacks26/people/crowd1.jpg"
+          imageURL="/hackathons/innovationhacks26/people/crowd1.webp"
           tag={["competition", "building"]}
           title="Hackathons"
           summary="Turn a big idea into something real. SoDA hackathons bring students together to build, experiment, get mentorship, and share their projects with the community."
@@ -150,7 +150,7 @@ export default function Blog() {
           height={3265}
         />
         <IndividualBlog
-          imageURL="/loungehours/3.jpg"
+          imageURL="/loungehours/3.webp"
           tag={["community", "chill"]}
           title="Lounge Hours"
           summary="Drop by to hang out, grab a bite, and have fun with other members. Everyone is welcome."

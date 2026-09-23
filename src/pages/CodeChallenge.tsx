@@ -13,34 +13,34 @@ const content: CodeChallengeProgramContent = {
   description:
     "Code Challenge is SoDA’s space to develop your coding and problem solving skills through various programming problems. Come solo or bring a friend, work at your pace, and learn from the solutions afterward.",
   heroImage: {
-    src: "/codechallenge/people/hero.jpg",
+    src: "/codechallenge/people/hero.webp",
     alt: "Code Challenge participants standing in front of the event presentation",
   },
   winnerImages: [
     {
-      src: "/codechallenge/winners/winners1.jpg",
+      src: "/codechallenge/winners/winners1.webp",
       alt: "Past Code Challenge winners standing together after the event",
     },
     {
-      src: "/codechallenge/winners/winners2.jpg",
+      src: "/codechallenge/winners/winners2.webp",
       alt: "Past Code Challenge winner group standing in front of the presentation screen",
     },
     {
-      src: "/codechallenge/winners/winners3.jpg",
+      src: "/codechallenge/winners/winners3.webp",
       alt: "Past Code Challenge winners posing after the challenge",
     },
   ],
   galleryImages: [
     {
-      src: "/codechallenge/people/people5.jpg",
+      src: "/codechallenge/people/people5.webp",
       alt: "Student working on a Code Challenge problem on a laptop",
     },
     {
-      src: "/codechallenge/people/people3.jpg",
+      src: "/codechallenge/people/people3.webp",
       alt: "Students collaborating during a Code Challenge",
     },
     {
-      src: "/codechallenge/people/people4.jpg",
+      src: "/codechallenge/people/people4.webp",
       alt: "Student working on a Code Challenge problem on a laptop",
     },
   ],
