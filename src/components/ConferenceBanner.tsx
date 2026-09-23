@@ -13,7 +13,7 @@ export default function ConferenceBanner() {
         <span className="conference-banner__event">
           <span className="conference-banner__eyebrow">SoDA × WiCS · Women in Tech Conference</span>
           <span className="conference-banner__title">
-            Ada Lovelace Summit <span className="conference-banner__edition">III</span>
+            Ada Lovelace Summit <span className="conference-banner__edition">II</span>
           </span>
         </span>
         <span className="conference-banner__details">11 AM–5 PM · Memorial Union</span>
