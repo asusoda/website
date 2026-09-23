@@ -91,7 +91,6 @@ export default function Blog() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <IndividualBlog
           imageURLs={[
-            "/slides/rEzmRu0A.jpeg",
             "/slides/4qk14shQ.jpeg",
             "/slides/8lixNcro.jpeg",
             "/slides/GYwPlQXg.jpeg",
