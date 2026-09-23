@@ -61,9 +61,9 @@ export default function CodeChallengeProgram({ content }: CodeChallengeProgramPr
         <div>
           <p className="program-eyebrow">WHAT TO EXPECT</p>
           <h2 id="overview-title">
-            Find solutions.
-            <br />
             Challenge yourself.
+            <br />
+            Find solutions.
           </h2>
         </div>
         <p>{content.description}</p>
@@ -72,8 +72,8 @@ export default function CodeChallengeProgram({ content }: CodeChallengeProgramPr
       <section className="program-winners program-container" aria-labelledby="winners-title">
         <div className="program-section-heading">
           <div>
-            <p className="program-eyebrow">PAST WINNERS</p>
-            <h2 id="winners-title">The next one could be yours.</h2>
+            <p className="program-eyebrow">PREVIOUS CHALLENGES</p>
+            <h2 id="winners-title">Past winners.</h2>
           </div>
         </div>
         <div className="program-winner-grid">

@@ -85,7 +85,7 @@ const content: HackathonProgramContent = {
     ],
     [
       "What can I build?",
-      "Each event has its own theme and rules, but the best projects usually start with a useful, playful, or meaningful idea.",
+      "Each event has different tracks and themes. You can come into the hackathon with an idea or figure one out after seeing the tracks.",
     ],
   ],
 };
