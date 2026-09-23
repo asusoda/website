@@ -81,31 +81,6 @@
   transform: translateY(-2px);
   background: color-mix(in srgb, var(--color-soda-red) 85%, black);
 }
-.program-photo-placeholder {
-  min-height: 220px;
-  height: 100%;
-  border: 1px dashed #4b5b77;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  color: #c2cee1;
-  background:
-    radial-gradient(ellipse at 75% 15%, #3a64e433, transparent 56%),
-    radial-gradient(ellipse at 10% 90%, #ca235233, transparent 56%), #10151e;
-  text-align: center;
-}
-.program-photo-placeholder span {
-  font-size: 15px;
-  font-weight: 500;
-}
-.program-photo-placeholder small {
-  color: #8e9aad;
-  font-size: 9px;
-  letter-spacing: 0.13em;
-}
 .program-photo {
   display: block;
   width: 100%;
@@ -198,13 +173,6 @@
   border-radius: 11px;
   background: #101318;
 }
-.program-winner-card .program-photo-placeholder {
-  height: 200px;
-  min-height: 0;
-  border: 0;
-  border-bottom: 1px solid #293442;
-  border-radius: 0;
-}
 .program-winner-card .program-photo {
   height: 200px;
   border-bottom: 1px solid #293442;
@@ -262,12 +230,6 @@
 .lounge-gallery .program-photo:nth-child(n + 4) {
   min-height: 0;
   aspect-ratio: 3 / 2;
-}
-.program-gallery .program-photo-placeholder {
-  min-height: 200px;
-}
-.program-gallery .program-photo-placeholder:first-child {
-  min-height: 280px;
 }
 .program-gallery .program-photo {
   min-height: 200px;
@@ -333,9 +295,6 @@
   .program-hero {
     padding-top: 15px;
   }
-  .program-photo-placeholder {
-    min-height: 250px;
-  }
   .program-hero-photo {
     min-height: 250px;
   }
@@ -349,9 +308,6 @@
   }
   .program-gallery > div {
     grid-template-columns: 1fr 1fr;
-  }
-  .program-gallery .program-photo-placeholder:first-child {
-    grid-column: span 2;
   }
   .program-gallery .program-photo:first-child {
     grid-column: span 2;
@@ -376,17 +332,11 @@
   .program-gallery > div {
     grid-template-columns: 1fr;
   }
-  .program-gallery .program-photo-placeholder:first-child {
-    grid-column: auto;
-  }
   .program-gallery .program-photo:first-child {
     grid-column: auto;
   }
   .lounge-gallery .program-photo:nth-child(4) {
     grid-column: auto;
-  }
-  .program-photo-placeholder {
-    min-height: 190px;
   }
   .program-hero-photo {
     min-height: 190px;

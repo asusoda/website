@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react"; // Import the icon
 
 interface IndividualBlogProps {
-  imageURL?: string;
+  imageURL: string;
   tag: string[];
   title: string;
   summary: string;
@@ -35,25 +35,15 @@ const IndividualBlog: React.FC<IndividualBlogProps> = ({
 
   const cardContent = (
     <div className={`${cardBaseClasses} ${cardLinkClasses}`}>
-      {imageURL ? (
-        <img
-          src={imageURL}
-          alt={alt}
-          width={width}
-          height={height}
-          className="w-full h-48 object-cover rounded-t-lg mb-4"
-        />
-      ) : (
-        <div
-          className="w-full h-48 rounded-lg mb-4 bg-gradient-to-br from-slate-800 via-slate-900 to-neutral-950 border border-slate-700 flex items-end p-4"
-          aria-label={alt}
-          role="img"
-        >
-          <span className="text-xs font-medium uppercase tracking-[0.16em] text-slate-300">
-            {alt}
-          </span>
-        </div>
-      )}
+      <img
+        src={imageURL}
+        alt={alt}
+        width={width}
+        height={height}
+        loading="lazy"
+        decoding="async"
+        className="w-full h-48 object-cover rounded-t-lg mb-4"
+      />
       {/* Tag rendering commented out */}
       <h2 className="text-2xl font-bold my-3">{title}</h2>
       <Markdown className="text-gray-200 mt-2 text-sm flex-grow">{summary}</Markdown>

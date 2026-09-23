@@ -6,6 +6,11 @@ interface HackathonImage {
   alt: string;
 }
 
+interface HackathonWinner extends HackathonImage {
+  track: string;
+  team: string;
+}
+
 export interface HackathonProgramContent {
   name: string;
   eyebrow: string;
@@ -13,10 +18,9 @@ export interface HackathonProgramContent {
   emphasis: string;
   intro: string;
   description: string;
-  perks: readonly string[];
   heroImage: HackathonImage;
   prizeImages: readonly HackathonImage[];
-  winnerImages: readonly HackathonImage[];
+  winnerImages: readonly HackathonWinner[];
   galleryImages: readonly HackathonImage[];
   faqs: readonly (readonly [string, string])[];
 }
@@ -24,12 +28,6 @@ export interface HackathonProgramContent {
 interface HackathonProgramProps {
   content: HackathonProgramContent;
 }
-
-const pastWinners = [
-  { track: "Amazon: Sustainability", team: "Mochi" },
-  { track: "State Farm: Financial Wellness", team: "Redreemer" },
-  { track: "Google: The Agentic Frontier", team: "DevLog" },
-];
 
 export default function HackathonProgram({ content }: HackathonProgramProps) {
   return (
@@ -85,15 +83,9 @@ export default function HackathonProgram({ content }: HackathonProgramProps) {
           </div>
         </div>
         <div className="program-winner-grid">
-          {pastWinners.map(({ track, team }, index) => (
+          {content.winnerImages.map(({ src, alt, track, team }) => (
             <article key={team} className="program-winner-card">
-              <img
-                className="program-photo"
-                src={content.winnerImages[index].src}
-                alt={content.winnerImages[index].alt}
-                loading="lazy"
-                decoding="async"
-              />
+              <img className="program-photo" src={src} alt={alt} loading="lazy" decoding="async" />
               <div>
                 <p>
                   {track} - {team}

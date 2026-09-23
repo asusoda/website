@@ -11,11 +11,6 @@ const content: HackathonProgramContent = {
   intro: "Find a team, brainstorm an idea, build your project, and pitch it to the judges.",
   description:
     "SoDA hackathons bring the community together to create, experiment, and learn. You’ll have time to turn an idea into a working project, meet mentors and peers, and present your solution to real engineers.",
-  perks: [
-    "Build a portfolio project with a team and a real deadline.",
-    "Get guidance from mentors, organizers, and fellow hackers throughout the event.",
-    "Past winning teams have earned sponsor prizes, gift cards, SoDA merch, and other event rewards.",
-  ],
   heroImage: {
     src: "/hackathons/innovationhacks26/people/crowd1.webp",
     alt: "A packed audience watching the Innovation Hacks mentor presentation",
@@ -38,14 +33,20 @@ const content: HackathonProgramContent = {
     {
       src: "/hackathons/innovationhacks26/winners/mochi.webp",
       alt: "Mochi, the Amazon Sustainability track winners at Innovation Hacks",
+      track: "Amazon: Sustainability",
+      team: "Mochi",
     },
     {
       src: "/hackathons/innovationhacks26/winners/redreemer.webp",
       alt: "Redreemer, the State Farm Financial Wellness track winners at Innovation Hacks",
+      track: "State Farm: Financial Wellness",
+      team: "Redreemer",
     },
     {
       src: "/hackathons/innovationhacks26/winners/devlog.webp",
       alt: "DevLog, the Google Agentic Frontier track winners at Innovation Hacks",
+      track: "Google: The Agentic Frontier",
+      team: "DevLog",
     },
   ],
   galleryImages: [
