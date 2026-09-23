@@ -73,12 +73,12 @@ export default function CodeChallengeProgram({ content }: CodeChallengeProgramPr
         <div className="program-section-heading">
           <div>
             <p className="program-eyebrow">PREVIOUS CHALLENGES</p>
-            <h2 id="winners-title">Past winners.</h2>
+            <h2 id="winners-title">Past challenges.</h2>
           </div>
         </div>
         <div className="program-winner-grid">
-          {content.winnerImages.map((image, index) => (
-            <article key={`${image.src}-${index}`} className="program-winner-card">
+          {content.winnerImages.map((image) => (
+            <article key={image.src} className="program-winner-card">
               <img
                 className="program-photo"
                 src={image.src}
