@@ -1,4 +1,6 @@
 import "@fontsource/space-grotesk";
+import "@fontsource/space-grotesk/500.css";
+import "@fontsource/space-grotesk/600.css";
 import "@fontsource/space-grotesk/700.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
