@@ -108,10 +108,14 @@ function Home() {
             </h1>{" "}
             {/* Added w-full */}
             <p className="hero-small-text">
-              The Software Developers Association (SoDA) at Arizona State University is a
-              student-run, free organization dedicated to serving ASU’s computer science students
-              since 2008. SoDA is one of the oldest and largest communities of students on campus,
-              and is the largest engineering organization.
+              The Software Developers Association (SoDA) at Arizona State University is a free,
+              student-run organization that has been serving ASU's computer science community since
+              2008. As one of the oldest and largest student organizations on campus and the largest
+              engineering organization, SoDA is dedicated to building a welcoming community where
+              aspiring software developers can learn, collaborate, and succeed. Through hands-on
+              workshops, mentorship, networking opportunities, industry partnerships, and technical
+              projects, we empower students to develop the technical skills, professional
+              confidence, and meaningful connections needed to thrive in the technology industry.
             </p>
           </div>
         </div>
