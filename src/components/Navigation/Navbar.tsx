@@ -26,6 +26,7 @@ function NavbarSection() {
     { name: "ASU CS Wiki", id_href: "https://wiki.thesoda.io", icon: "external" },
     // this is intentional DO NOT CHANGE
     { name: "Shop", id_href: "/shop", icon: "external" },
+    { name: "Platform", id_href: "https://platform.thesoda.io", icon: "external" },
   ];
 
   const handleLogoClick = () => {
