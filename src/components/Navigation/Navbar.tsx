@@ -1,126 +1,307 @@
-import React from "react";
-import { Button } from "@/components/ui/button";
+import { useEffect, useRef, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-// Import useLocation hook
-import { Link } from "react-router-dom";
-import { FiExternalLink } from "react-icons/fi";
+  ArrowUpRight,
+  BookOpen,
+  ChevronDown,
+  Code2,
+  Coffee,
+  GraduationCap,
+  HeartHandshake,
+  History,
+  Menu,
+  Sparkles,
+  Trophy,
+  Users,
+  X,
+  type LucideIcon,
+} from "lucide-react";
+import "./Navbar.css";
 
-type NavItem = { name: string; id_href: string; icon?: "external" };
+type NavItem = { name: string; href: string; description: string; icon: LucideIcon };
+const groups = [
+  {
+    name: "About",
+    eyebrow: "MEET YOUR COMMUNITY",
+    title: "Built by students, for students.",
+    description: "Get to know the students building, learning, and growing together at ASU.",
+    items: [
+      {
+        name: "About SoDA",
+        href: "/#about",
+        description: "Our community, mission, and story.",
+        icon: Sparkles,
+      },
+      {
+        name: "History",
+        href: "/history",
+        description: "Growing together since 2008.",
+        icon: History,
+      },
+      { name: "Team", href: "/#team", description: "Meet the people behind SoDA.", icon: Users },
+      {
+        name: "Sponsors",
+        href: "/#sponsors",
+        description: "The partners making it possible.",
+        icon: HeartHandshake,
+      },
+    ],
+  },
+  {
+    name: "Programs",
+    eyebrow: "LEARN. BUILD. BELONG.",
+    title: "Your next chapter starts here.",
+    description: "Find your people, put ideas into practice, and make something you're proud of.",
+    items: [
+      {
+        name: "Mentorship",
+        href: "/mentorship",
+        description: "Build real projects with a mentor.",
+        icon: GraduationCap,
+      },
+      {
+        name: "Code Challenge",
+        href: "/code-challenge",
+        description: "Sharpen your problem-solving skills.",
+        icon: Code2,
+      },
+      {
+        name: "Hackathons",
+        href: "/hackathons",
+        description: "Team up. Try something. Ship it.",
+        icon: Trophy,
+      },
+      {
+        name: "Lounge Hours",
+        href: "/lounge-hours",
+        description: "Drop in, get help, and hang out.",
+        icon: Coffee,
+      },
+    ],
+  },
+  {
+    name: "Resources",
+    eyebrow: "A LITTLE HELP GOES A LONG WAY",
+    title: "Make the most of your time at ASU.",
+    description:
+      "Helpful links, shared knowledge, and a little friendly competition. All in one place.",
+    items: [
+      {
+        name: "Resources",
+        href: "/resources",
+        description: "Your starting point for useful tools.",
+        icon: BookOpen,
+      },
+      {
+        name: "ASU CS Wiki",
+        href: "https://wiki.thesoda.io",
+        description: "Computer science, by the community.",
+        icon: Code2,
+      },
+      {
+        name: "Platform",
+        href: "https://platform.thesoda.io",
+        description: "Access the SoDA member platform.",
+        icon: Users,
+      },
+      {
+        name: "Leaderboard",
+        href: "/leaderboard",
+        description: "See who's making their mark.",
+        icon: Trophy,
+      },
+    ],
+  },
+] as const;
+const membershipUrl =
+  "https://sundevilcentral.eoss.asu.edu/feeds?type=club&type_id=35661&tab=about";
 
-function NavbarSection() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const menuItems: NavItem[] = [
-    { name: "About", id_href: "/#about" },
-    { name: "History", id_href: "/history" },
-    { name: "Sponsors", id_href: "/#sponsors" },
-    { name: "Team", id_href: "/#team" },
-    { name: "Mentorship", id_href: "/mentorship" },
-    { name: "Resources", id_href: "/resources" },
-    { name: "Leaderboard", id_href: "/leaderboard" },
-    { name: "Donate", id_href: "/donate" },
-    { name: "ASU CS Wiki", id_href: "https://wiki.thesoda.io", icon: "external" },
-    // this is intentional DO NOT CHANGE
-    { name: "Shop", id_href: "/shop", icon: "external" },
-    { name: "Platform", id_href: "https://platform.thesoda.io", icon: "external" },
-  ];
+function NavigationLink({ item, onSelect }: { item: NavItem; onSelect: () => void }) {
+  const Icon = item.icon;
+  const content = (
+    <>
+      <span className="soda-nav-icon">
+        <Icon size={21} aria-hidden="true" />
+      </span>
+      <span>
+        <span className="soda-nav-link-title">
+          {item.name}
+          {item.href.startsWith("http") && <ArrowUpRight size={14} aria-hidden="true" />}
+        </span>
+        <span className="soda-nav-description">{item.description}</span>
+      </span>
+    </>
+  );
+  const props = { className: "soda-nav-card", onClick: onSelect, "aria-label": item.name };
+  return item.href.startsWith("http") || item.href.includes("#") ? (
+    <a
+      {...props}
+      href={item.href}
+      {...(item.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+    >
+      {content}
+    </a>
+  ) : (
+    <Link {...props} to={item.href}>
+      {content}
+    </Link>
+  );
+}
 
-  const handleLogoClick = () => {
-    window.scrollTo(0, 0);
+export default function NavbarSection() {
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
+  const mobileTrigger = useRef<HTMLButtonElement>(null);
+  const groupTriggers = useRef<Record<string, HTMLButtonElement | null>>({});
+  const location = useLocation();
+  const close = () => {
+    setOpenGroup(null);
+    setMobileOpen(false);
   };
-
-  const renderNavLink = (item: NavItem) => {
-    const handleClick = () => {
-      setIsMenuOpen(false);
+  useEffect(() => {
+    setOpenGroup(null);
+    setMobileOpen(false);
+  }, [location.key]);
+  useEffect(() => {
+    const dismiss = (event: PointerEvent) => {
+      if (event.target instanceof Node && !navRef.current?.contains(event.target)) {
+        setOpenGroup(null);
+        setMobileOpen(false);
+      }
     };
-    if (item.id_href.startsWith("/") && !item.id_href.includes("#")) {
-      return (
-        <Link
-          key={item.name}
-          to={item.id_href}
-          className="text-white w-full flex items-center gap-1 whitespace-nowrap"
-          onClick={handleClick}
-        >
-          <span>{item.name}</span>
-          {item.icon === "external" && <FiExternalLink size={12} className="shrink-0" />}
-        </Link>
-      );
-    }
-    const isExternal = item.id_href.startsWith("http");
-    return (
-      <a
-        key={item.name}
-        href={item.id_href}
-        className="text-white w-full flex items-center gap-1 whitespace-nowrap"
-        onClick={handleClick}
-        {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      >
-        <span>{item.name}</span>
-        {item.icon === "external" && <FiExternalLink size={12} className="shrink-0" />}
-      </a>
-    );
-  };
-
+    const reset = () => {
+      setOpenGroup(null);
+      setMobileOpen(false);
+    };
+    document.addEventListener("pointerdown", dismiss);
+    window.addEventListener("resize", reset);
+    return () => {
+      document.removeEventListener("pointerdown", dismiss);
+      window.removeEventListener("resize", reset);
+    };
+  }, []);
   return (
-    <nav className="sticky top-0 bg-black bg-opacity-85 backdrop-blur-md z-20 dark flex flex-col">
-      <div className="flex items-center justify-between p-4 w-full">
-        <div className="flex items-center gap-4">
-          <div className="xl:hidden relative">
-            <DropdownMenu open={isMenuOpen} onOpenChange={setIsMenuOpen} modal={false}>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="z-50"
-                  aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-                >
-                  {isMenuOpen ? "✕" : "☰"}
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                className="dark bg-black w-56 min-w-[200px] z-50 border border-gray-700"
-                align="start"
-                sideOffset={0}
+    <nav
+      ref={navRef}
+      className="soda-nav"
+      aria-label="Main navigation"
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) close();
+      }}
+      onKeyDown={(event) => {
+        if (event.key !== "Escape") return;
+        if (openGroup) {
+          groupTriggers.current[openGroup]?.focus();
+          setOpenGroup(null);
+        } else if (mobileOpen) {
+          mobileTrigger.current?.focus();
+          setMobileOpen(false);
+        }
+      }}
+    >
+      <div className="soda-nav-bar">
+        <Link
+          to="/"
+          className="soda-nav-brand"
+          aria-label="SoDA home"
+          onClick={() => {
+            close();
+            window.scrollTo(0, 0);
+          }}
+        >
+          <img src="/logo/Soda_Logo_Dark_Mode.svg" width="314" height="132" alt="SoDA" />
+        </Link>
+        <div id="soda-navigation" className={`soda-nav-links${mobileOpen ? " is-open" : ""}`}>
+          {groups.map((group) => (
+            <div className="soda-nav-group" key={group.name}>
+              <button
+                type="button"
+                className="soda-nav-trigger"
+                ref={(node) => {
+                  groupTriggers.current[group.name] = node;
+                }}
+                aria-expanded={openGroup === group.name}
+                aria-controls={`soda-panel-${group.name}`}
+                onClick={() => setOpenGroup(openGroup === group.name ? null : group.name)}
               >
-                {menuItems.map((item) => (
-                  <DropdownMenuItem key={item.name} asChild>
-                    {renderNavLink(item)}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-          <Link to="/" className="flex gap-4 items-center" onClick={handleLogoClick}>
-            <img
-              src="/logo/Soda_Logo_Dark_Mode.svg"
-              width="314"
-              height="132"
-              className="w-28"
-              alt="SoDA Logo"
-            />
+                {group.name}
+                <ChevronDown size={15} aria-hidden="true" />
+              </button>
+              <div
+                id={`soda-panel-${group.name}`}
+                className="soda-nav-panel"
+                hidden={openGroup !== group.name}
+              >
+                <div className="soda-nav-panel-inner">
+                  <div className="soda-nav-directory">
+                    <p className="soda-nav-eyebrow">EXPLORE {group.name.toUpperCase()}</p>
+                    <div className="soda-nav-card-grid">
+                      {group.items.map((item) => (
+                        <NavigationLink key={item.name} item={item} onSelect={close} />
+                      ))}
+                    </div>
+                  </div>
+                  <aside className="soda-nav-feature">
+                    <span className="soda-nav-eyebrow">{group.eyebrow}</span>
+                    <h2>{group.title}</h2>
+                    <p>{group.description}</p>
+                    <a
+                      href={membershipUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={close}
+                    >
+                      Find your place at SoDA <ArrowUpRight size={17} aria-hidden="true" />
+                    </a>
+                  </aside>
+                </div>
+                <div className="soda-nav-panel-footer">
+                  <span>Student-led. Community-powered.</span>
+                  <span>
+                    Open to every Sun Devil <span aria-hidden="true">↗</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+          {/* Shop intentionally keeps its external-link icon and internal route. */}
+          <Link className="soda-nav-direct" to="/shop" onClick={close}>
+            Shop <ArrowUpRight size={14} aria-hidden="true" />
+          </Link>
+          <Link className="soda-nav-direct" to="/donate" onClick={close}>
+            Donate
           </Link>
         </div>
-        <div className="hidden xl:flex items-center gap-4 text-lg">
-          {menuItems.map(renderNavLink)}
-        </div>
-        <div>
-          <Button asChild className="text-white bg-soda-red">
-            <a
-              href="https://sundevilcentral.eoss.asu.edu/feeds?type=club&type_id=35661&tab=about"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Become a Member
-            </a>
-          </Button>
+        <div className="soda-nav-actions">
+          <a
+            className="soda-nav-join"
+            href={membershipUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Become a Member
+          </a>
+          <button
+            ref={mobileTrigger}
+            className="soda-nav-mobile-toggle"
+            type="button"
+            aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="soda-navigation"
+            onClick={() => {
+              setMobileOpen(!mobileOpen);
+              setOpenGroup(null);
+            }}
+          >
+            {mobileOpen ? (
+              <X size={23} aria-hidden="true" />
+            ) : (
+              <Menu size={23} aria-hidden="true" />
+            )}
+          </button>
         </div>
       </div>
     </nav>
   );
 }
-
-export default NavbarSection;

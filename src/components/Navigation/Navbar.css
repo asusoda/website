@@ -1,0 +1,484 @@
+.soda-nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  color: #fff;
+  background: #000;
+  border-bottom: 1px solid #ffffff08;
+  backdrop-filter: blur(20px);
+  font-family: inherit;
+}
+.soda-nav-bar {
+  min-height: 80px;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+}
+.soda-nav-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.soda-nav-brand img {
+  width: 112px;
+  height: auto;
+}
+.soda-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+  justify-self: center;
+}
+.soda-nav-trigger,
+.soda-nav-direct {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 4px;
+  font-size: 18px;
+  font-weight: 400;
+  color: #fff;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition:
+    color 0.15s,
+    background 0.15s;
+}
+.soda-nav-trigger {
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+}
+.soda-nav-trigger:hover,
+.soda-nav-direct:hover,
+.soda-nav-trigger[aria-expanded="true"] {
+  color: white;
+  background: #ffffff0c;
+}
+.soda-nav-trigger[aria-expanded="true"] {
+  color: #fff;
+}
+.soda-nav-trigger svg {
+  transition: transform 0.2s;
+}
+.soda-nav-trigger[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+.soda-nav-actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.soda-nav-join {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: var(--color-soda-red, #ca2352);
+  color: white;
+  height: 36px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.soda-nav-join:hover {
+  background: #e13360;
+}
+.soda-nav-mobile-toggle {
+  display: none;
+}
+.soda-nav-panel[hidden] {
+  display: none;
+}
+.soda-nav-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #000;
+  border-bottom: 1px solid #ffffff25;
+  box-shadow: 0 28px 48px #0007;
+  animation: soda-nav-reveal 0.18s ease-out;
+}
+.soda-nav-panel-inner {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 48px;
+  max-width: 1280px;
+  margin: auto;
+  padding: 36px 40px;
+}
+.soda-nav-eyebrow {
+  display: block;
+  color: #969aaa;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  margin: 0 0 20px;
+}
+.soda-nav-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.soda-nav-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 12px;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+.soda-nav-card:hover {
+  background: #ffffff06;
+}
+.soda-nav-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #ffffff15;
+  border-radius: 9px;
+  color: #8da8ff;
+  background: #7797ff09;
+}
+.soda-nav-link-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 500;
+  font-size: 15px;
+  color: #f7f7fa;
+  margin: 0 0 6px;
+}
+.soda-nav-description {
+  display: block;
+  color: #9c9eab;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.soda-nav-feature {
+  border: 1px solid #ffffff10;
+  border-radius: 10px;
+  background: linear-gradient(130deg, #252031, #191f32);
+  padding: 26px;
+}
+.soda-nav-feature .soda-nav-eyebrow {
+  color: #b2bdf0;
+  font-size: 9px;
+  letter-spacing: 1.2px;
+  margin-bottom: 16px;
+}
+.soda-nav-feature h2 {
+  font-size: 24px;
+  letter-spacing: -0.6px;
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 0 0 12px;
+}
+.soda-nav-feature p {
+  color: #b1b0c0;
+  font-size: 12px;
+  line-height: 1.8;
+  margin: 0 0 20px;
+}
+.soda-nav-feature a {
+  color: #f7b0c3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.soda-nav-panel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px max(40px, calc((100vw - 1200px) / 2));
+  border-top: 1px solid #ffffff0c;
+  color: #9396a3;
+  font-size: 11px;
+}
+.soda-nav-panel-footer span span {
+  color: #ec7492;
+  margin-left: 10px;
+}
+.soda-nav :is(a, button):focus-visible {
+  outline: 2px solid #99b2ff;
+  outline-offset: 4px;
+}
+html {
+  scroll-padding-top: 110px;
+}
+@keyframes soda-nav-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 1050px) {
+  .soda-nav-bar {
+    gap: 10px;
+  }
+  .soda-nav-trigger,
+  .soda-nav-direct {
+    padding: 8px 2px;
+  }
+  .soda-nav-panel-inner {
+    gap: 20px;
+    grid-template-columns: 1fr 280px;
+    padding: 28px 24px;
+  }
+}
+@media (max-width: 900px) {
+  .soda-nav-bar {
+    display: flex;
+    min-height: 76px;
+    padding: 0 16px;
+    justify-content: space-between;
+  }
+  .soda-nav-brand img {
+    width: 86px;
+    height: auto;
+  }
+  .soda-nav-join {
+    font-size: 11px;
+    padding: 11px 12px;
+    gap: 8px;
+  }
+  .soda-nav-mobile-toggle {
+    display: grid;
+    place-items: center;
+    color: white;
+    background: transparent;
+    border: 1px solid #ffffff20;
+    border-radius: 6px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+  .soda-nav-links {
+    justify-self: stretch;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #000;
+    padding: 14px 20px 24px;
+    max-height: calc(100dvh - 76px);
+    overflow-y: auto;
+    border-bottom: 1px solid #ffffff25;
+    box-shadow: 0 24px 36px #0007;
+  }
+  .soda-nav-links.is-open {
+    display: block;
+  }
+  .soda-nav-group {
+    border-bottom: 1px solid #ffffff12;
+  }
+  .soda-nav-trigger {
+    width: 100%;
+    justify-content: space-between;
+    padding: 18px 8px;
+    font-size: 16px;
+  }
+  .soda-nav-direct {
+    padding: 16px 8px;
+    font-size: 16px;
+  }
+  .soda-nav-panel {
+    position: static;
+    border: 0;
+    box-shadow: none;
+  }
+  .soda-nav-panel-inner {
+    display: block;
+    padding: 0 0 14px;
+  }
+  .soda-nav-directory > .soda-nav-eyebrow,
+  .soda-nav-feature,
+  .soda-nav-panel-footer {
+    display: none;
+  }
+  .soda-nav-card-grid {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+  .soda-nav-card {
+    padding: 12px 8px;
+  }
+}
+@media (max-width: 360px) {
+  .soda-nav-bar {
+    padding: 0 12px;
+    gap: 8px;
+  }
+  .soda-nav-join svg {
+    display: none;
+  }
+  .soda-nav-actions {
+    gap: 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .soda-nav *,
+  .soda-nav *::before {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Version 2: SoDA's two colors add light and motion to the original navbar. */
+.soda-nav::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -1px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 8%, #ca2352 36%, #3a64e4 66%, transparent 92%);
+  opacity: 0.38;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.soda-nav:focus-within::after {
+  opacity: 0.9;
+}
+.soda-nav-trigger,
+.soda-nav-direct {
+  position: relative;
+  transition:
+    background 0.25s,
+    text-shadow 0.25s;
+}
+.soda-nav-trigger::after,
+.soda-nav-direct::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 4px;
+  right: 4px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #ed4775, #6386ff);
+  box-shadow: 0 3px 12px #6179ff65;
+  transform: scaleX(0);
+  transform-origin: center;
+  opacity: 0;
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.2s;
+}
+.soda-nav-trigger[aria-expanded="true"],
+.soda-nav-trigger:focus-visible,
+.soda-nav-direct:focus-visible {
+  background: linear-gradient(110deg, #ca235218, #3a64e41c);
+  text-shadow: 0 0 18px #9eaaff50;
+}
+.soda-nav-trigger[aria-expanded="true"]::after,
+.soda-nav-trigger:focus-visible::after,
+.soda-nav-direct:focus-visible::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+.soda-nav-panel {
+  background:
+    radial-gradient(ellipse at 15% 0%, #ca23520b, transparent 55%),
+    radial-gradient(ellipse at 85% 0%, #3a64e411, transparent 55%), #000;
+  animation: soda-nav-reveal 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.soda-nav-card {
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+.soda-nav-icon {
+  transition:
+    color 0.2s,
+    border-color 0.2s,
+    background 0.2s,
+    box-shadow 0.2s;
+}
+.soda-nav-card:focus-visible .soda-nav-icon {
+  color: #c3ceff;
+  border-color: #7797ff60;
+  box-shadow: 0 0 20px #3a64e424;
+}
+.soda-nav-join {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    background 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+.soda-nav-join::after {
+  content: "";
+  position: absolute;
+  inset: -50% auto -50% -65%;
+  width: 45%;
+  background: linear-gradient(90deg, transparent, #ffffff35, transparent);
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .soda-nav-trigger:hover,
+  .soda-nav-direct:hover {
+    background: linear-gradient(110deg, #ca235218, #3a64e41c);
+    text-shadow: 0 0 18px #9eaaff50;
+  }
+  .soda-nav-trigger:hover::after,
+  .soda-nav-direct:hover::after {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  .soda-nav-card:hover {
+    transform: translateX(3px);
+    background: #7797ff09;
+  }
+  .soda-nav-card:hover .soda-nav-icon {
+    color: #c3ceff;
+    border-color: #7797ff60;
+    background: #3a64e419;
+    box-shadow: 0 0 20px #3a64e424;
+  }
+  .soda-nav-join:hover {
+    box-shadow: 0 0 24px #ca23524d;
+    transform: translateY(-1px);
+  }
+  .soda-nav-join:hover::after {
+    animation: soda-nav-shine 0.65s ease-out;
+  }
+}
+@keyframes soda-nav-shine {
+  to {
+    left: 125%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .soda-nav::after,
+  .soda-nav *,
+  .soda-nav *::before,
+  .soda-nav *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .soda-nav-card:hover,
+  .soda-nav-join:hover {
+    transform: none;
+  }
+}
