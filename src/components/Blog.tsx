@@ -26,16 +26,33 @@ const IndividualBlog: React.FC<IndividualBlogProps> = ({
   const hasLink = link && link.trim() !== "";
 
   const [currentImage, setCurrentImage] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(true);
+  const [loadedUpTo, setLoadedUpTo] = useState(1);
+
+  // Duplicate the first image at the end so the last -> first step still slides forward.
+  const slides = imageURLs.length > 1 ? [...imageURLs, imageURLs[0]] : imageURLs;
 
   useEffect(() => {
     if (imageURLs.length <= 1) return;
 
     const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % imageURLs.length);
+      setIsAnimating(true);
+      setCurrentImage((prev) => (prev >= imageURLs.length ? 1 : prev + 1));
     }, 2000);
 
     return () => clearInterval(interval);
   }, [imageURLs]);
+
+  useEffect(() => {
+    setLoadedUpTo((loaded) => Math.max(loaded, currentImage + 1));
+  }, [currentImage]);
+
+  const handleTransitionEnd = () => {
+    if (currentImage === imageURLs.length) {
+      setIsAnimating(false);
+      setCurrentImage(0);
+    }
+  };
 
   const cardBaseClasses =
     "bg-neutral-900 border-gray-600 rounded-lg p-6 max-w-md h-full overflow-hidden text-white relative flex flex-col";
@@ -46,15 +63,31 @@ const IndividualBlog: React.FC<IndividualBlogProps> = ({
 
   const cardContent = (
     <div className={`${cardBaseClasses} ${cardLinkClasses}`}>
-      <img
-        src={imageURLs[currentImage]}
-        alt={alt}
-        width={width}
-        height={height}
-        loading="lazy"
-        decoding="async"
-        className="w-full h-48 object-cover rounded-t-lg mb-4"
-      />
+      <div className="w-full h-48 overflow-hidden rounded-t-lg mb-4">
+        <div
+          className={`flex h-full ${
+            isAnimating
+              ? "transition-transform duration-700 ease-in-out motion-reduce:transition-none"
+              : ""
+          }`}
+          style={{ transform: `translateX(-${currentImage * 100}%)` }}
+          onTransitionEnd={handleTransitionEnd}
+        >
+          {slides.map((url, index) => (
+            <img
+              key={index}
+              src={index <= loadedUpTo || index === slides.length - 1 ? url : undefined}
+              alt={index === currentImage % imageURLs.length ? alt : ""}
+              aria-hidden={index !== currentImage % imageURLs.length}
+              width={width}
+              height={height}
+              loading={index === 0 ? "lazy" : "eager"}
+              decoding="async"
+              className="w-full h-full flex-shrink-0 object-cover"
+            />
+          ))}
+        </div>
+      </div>
       <h2 className="text-2xl font-bold my-3">{title}</h2>
 
       <Markdown className="text-gray-200 mt-2 text-sm flex-grow">{summary}</Markdown>
