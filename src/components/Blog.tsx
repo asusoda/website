@@ -1,7 +1,7 @@
 import Markdown from "markdown-to-jsx";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react"; // Import the icon
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 interface IndividualBlogProps {
   imageURLs: string[];
@@ -32,12 +32,22 @@ const IndividualBlog: React.FC<IndividualBlogProps> = ({
   // Duplicate the first image at the end so the last -> first step still slides forward.
   const slides = imageURLs.length > 1 ? [...imageURLs, imageURLs[0]] : imageURLs;
 
+  const currentImageRef = useRef(currentImage);
+  currentImageRef.current = currentImage;
+
   useEffect(() => {
     if (imageURLs.length <= 1) return;
 
     const interval = setInterval(() => {
+      // transitionend can be skipped (e.g. background tabs), leaving us on the clone;
+      // snap back without animating so the track doesn't slide backward across every slide.
+      if (currentImageRef.current >= imageURLs.length) {
+        setIsAnimating(false);
+        setCurrentImage(0);
+        return;
+      }
       setIsAnimating(true);
-      setCurrentImage((prev) => (prev >= imageURLs.length ? 1 : prev + 1));
+      setCurrentImage((prev) => prev + 1);
     }, 2000);
 
     return () => clearInterval(interval);
