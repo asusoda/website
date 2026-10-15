@@ -1,7 +1,7 @@
 import Markdown from "markdown-to-jsx";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react"; // Import the icon
-import React, { useEffect, useRef, useState } from "react";
+import { ArrowRight, Pause, Play } from "lucide-react"; // Import the icon
+import React, { useEffect, useState } from "react";
 
 interface IndividualBlogProps {
   imageURLs: string[];
@@ -28,30 +28,31 @@ const IndividualBlog: React.FC<IndividualBlogProps> = ({
   const [currentImage, setCurrentImage] = useState(0);
   const [isAnimating, setIsAnimating] = useState(true);
   const [loadedUpTo, setLoadedUpTo] = useState(1);
+  // Start paused for users who prefer reduced motion; they can still press play.
+  const [paused, setPaused] = useState(
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
 
   // Duplicate the first image at the end so the last -> first step still slides forward.
   const slides = imageURLs.length > 1 ? [...imageURLs, imageURLs[0]] : imageURLs;
 
-  const currentImageRef = useRef(currentImage);
-  currentImageRef.current = currentImage;
-
   useEffect(() => {
-    if (imageURLs.length <= 1) return;
+    if (imageURLs.length <= 1 || paused) return;
 
-    const interval = setInterval(() => {
+    const timeout = setTimeout(() => {
       // transitionend can be skipped (e.g. background tabs), leaving us on the clone;
       // snap back without animating so the track doesn't slide backward across every slide.
-      if (currentImageRef.current >= imageURLs.length) {
+      if (currentImage >= imageURLs.length) {
         setIsAnimating(false);
         setCurrentImage(0);
         return;
       }
       setIsAnimating(true);
-      setCurrentImage((prev) => prev + 1);
+      setCurrentImage(currentImage + 1);
     }, 2000);
 
-    return () => clearInterval(interval);
-  }, [imageURLs]);
+    return () => clearTimeout(timeout);
+  }, [imageURLs, currentImage, paused]);
 
   useEffect(() => {
     setLoadedUpTo((loaded) => Math.max(loaded, currentImage + 1));
@@ -87,8 +88,8 @@ const IndividualBlog: React.FC<IndividualBlogProps> = ({
             <img
               key={index}
               src={index <= loadedUpTo || index === slides.length - 1 ? url : undefined}
-              alt={index === currentImage % imageURLs.length ? alt : ""}
-              aria-hidden={index !== currentImage % imageURLs.length}
+              alt={index === currentImage ? alt : ""}
+              aria-hidden={index !== currentImage}
               width={width}
               height={height}
               loading={index === 0 ? "lazy" : "eager"}
@@ -116,7 +117,7 @@ const IndividualBlog: React.FC<IndividualBlogProps> = ({
   );
 
   return (
-    <>
+    <div className="relative h-full">
       {hasLink ? (
         <Link to={link} className="group block h-full">
           {cardContent}
@@ -124,7 +125,18 @@ const IndividualBlog: React.FC<IndividualBlogProps> = ({
       ) : (
         <div className="block h-full">{cardContent}</div>
       )}
-    </>
+      {/* Kept outside the Link so the button isn't nested inside an interactive element. */}
+      {imageURLs.length > 1 && (
+        <button
+          type="button"
+          onClick={() => setPaused((p) => !p)}
+          aria-label={paused ? "Play slideshow" : "Pause slideshow"}
+          className="absolute top-8 right-8 z-10 rounded-full bg-black/60 p-1.5 text-white hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+        >
+          {paused ? <Play className="h-4 w-4" /> : <Pause className="h-4 w-4" />}
+        </button>
+      )}
+    </div>
   );
 };
 
