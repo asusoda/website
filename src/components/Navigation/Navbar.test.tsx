@@ -100,12 +100,13 @@ describe("grouped navigation", () => {
         Hackathons: "/hackathons",
         "Lounge Hours": "/lounge-hours",
       },
-      Resources: { Resources: "/resources", Leaderboard: "/leaderboard" },
+      Resources: { Leaderboard: "/leaderboard" },
     })) {
       await user.click(screen.getByRole("button", { name: group }));
       for (const [name, href] of Object.entries(links))
         expect(screen.getByRole("link", { name })).toHaveAttribute("href", href);
     }
+    expect(screen.queryByRole("link", { name: "Resources" })).toBeNull();
     expect(screen.getByRole("link", { name: "Shop" })).toHaveAttribute("href", "/shop");
     expect(screen.getByRole("link", { name: "Donate" })).toHaveAttribute("href", "/donate");
     expect(screen.getByRole("link", { name: "Become a Member" })).toHaveAttribute(
