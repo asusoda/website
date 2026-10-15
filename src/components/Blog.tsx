@@ -1,6 +1,6 @@
 import Markdown from "markdown-to-jsx";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react"; // Import the icon
+import { ArrowRight, Pause, Play } from "lucide-react"; // Import the icon
 import React, { useEffect, useState } from "react";
 
 interface IndividualBlogProps {
@@ -26,16 +26,44 @@ const IndividualBlog: React.FC<IndividualBlogProps> = ({
   const hasLink = link && link.trim() !== "";
 
   const [currentImage, setCurrentImage] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(true);
+  const [loadedUpTo, setLoadedUpTo] = useState(1);
+  // Start paused for users who prefer reduced motion; they can still press play.
+  const [paused, setPaused] = useState(
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+
+  // Duplicate the first image at the end so the last -> first step still slides forward.
+  const slides = imageURLs.length > 1 ? [...imageURLs, imageURLs[0]] : imageURLs;
 
   useEffect(() => {
-    if (imageURLs.length <= 1) return;
+    if (imageURLs.length <= 1 || paused) return;
 
-    const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % imageURLs.length);
+    const timeout = setTimeout(() => {
+      // transitionend can be skipped (e.g. background tabs), leaving us on the clone;
+      // snap back without animating so the track doesn't slide backward across every slide.
+      if (currentImage >= imageURLs.length) {
+        setIsAnimating(false);
+        setCurrentImage(0);
+        return;
+      }
+      setIsAnimating(true);
+      setCurrentImage(currentImage + 1);
     }, 2000);
 
-    return () => clearInterval(interval);
-  }, [imageURLs]);
+    return () => clearTimeout(timeout);
+  }, [imageURLs, currentImage, paused]);
+
+  useEffect(() => {
+    setLoadedUpTo((loaded) => Math.max(loaded, currentImage + 1));
+  }, [currentImage]);
+
+  const handleTransitionEnd = () => {
+    if (currentImage === imageURLs.length) {
+      setIsAnimating(false);
+      setCurrentImage(0);
+    }
+  };
 
   const cardBaseClasses =
     "bg-neutral-900 border-gray-600 rounded-lg p-6 max-w-md h-full overflow-hidden text-white relative flex flex-col";
@@ -46,15 +74,31 @@ const IndividualBlog: React.FC<IndividualBlogProps> = ({
 
   const cardContent = (
     <div className={`${cardBaseClasses} ${cardLinkClasses}`}>
-      <img
-        src={imageURLs[currentImage]}
-        alt={alt}
-        width={width}
-        height={height}
-        loading="lazy"
-        decoding="async"
-        className="w-full h-48 object-cover rounded-t-lg mb-4"
-      />
+      <div className="w-full h-48 overflow-hidden rounded-t-lg mb-4">
+        <div
+          className={`flex h-full ${
+            isAnimating
+              ? "transition-transform duration-700 ease-in-out motion-reduce:transition-none"
+              : ""
+          }`}
+          style={{ transform: `translateX(-${currentImage * 100}%)` }}
+          onTransitionEnd={handleTransitionEnd}
+        >
+          {slides.map((url, index) => (
+            <img
+              key={index}
+              src={index <= loadedUpTo || index === slides.length - 1 ? url : undefined}
+              alt={index === currentImage ? alt : ""}
+              aria-hidden={index !== currentImage}
+              width={width}
+              height={height}
+              loading={index === 0 ? "lazy" : "eager"}
+              decoding="async"
+              className="w-full h-full flex-shrink-0 object-cover"
+            />
+          ))}
+        </div>
+      </div>
       <h2 className="text-2xl font-bold my-3">{title}</h2>
 
       <Markdown className="text-gray-200 mt-2 text-sm flex-grow">{summary}</Markdown>
@@ -73,7 +117,7 @@ const IndividualBlog: React.FC<IndividualBlogProps> = ({
   );
 
   return (
-    <>
+    <div className="relative h-full">
       {hasLink ? (
         <Link to={link} className="group block h-full">
           {cardContent}
@@ -81,7 +125,18 @@ const IndividualBlog: React.FC<IndividualBlogProps> = ({
       ) : (
         <div className="block h-full">{cardContent}</div>
       )}
-    </>
+      {/* Kept outside the Link so the button isn't nested inside an interactive element. */}
+      {imageURLs.length > 1 && (
+        <button
+          type="button"
+          onClick={() => setPaused((p) => !p)}
+          aria-label={paused ? "Play slideshow" : "Pause slideshow"}
+          className="absolute top-8 right-8 z-10 rounded-full bg-black/60 p-1.5 text-white hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+        >
+          {paused ? <Play className="h-4 w-4" /> : <Pause className="h-4 w-4" />}
+        </button>
+      )}
+    </div>
   );
 };
 
@@ -170,32 +225,6 @@ export default function Blog() {
           height={4000}
         />
       </div>
-
-      <Link
-        to="/resources/travel-reimbursment"
-        className="group mt-6 w-full max-w-[1116px] block bg-neutral-900 border-gray-600 rounded-lg p-4 md:p-6 text-white overflow-hidden"
-      >
-        <div className="flex flex-col md:flex-row gap-5 md:gap-6 items-start md:items-center">
-          <img
-            src="/events/travel-reimbursement.png"
-            alt="Travel reimbursement form"
-            width={5184}
-            height={3456}
-            className="w-full md:w-80 h-44 object-cover rounded-lg"
-          />
-          <div className="flex flex-col justify-center flex-1 min-w-0">
-            <h2 className="text-2xl font-bold mb-2">Travel Reimbursement</h2>
-            <p className="text-gray-200 text-sm md:text-base max-w-3xl">
-              Traveling for SoDA events or activities? Submit your reimbursement request through our
-              official travel reimbursement form in Resources.
-            </p>
-            <div className="mt-4 flex items-center text-blue-400 group-hover:text-blue-300 self-start">
-              <span>Learn more</span>
-              <ArrowRight className="ml-1 h-4 w-4" />
-            </div>
-          </div>
-        </div>
-      </Link>
     </section>
   );
 }

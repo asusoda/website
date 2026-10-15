@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   ArrowUpRight,
-  BookOpen,
   ChevronDown,
   Code2,
   Coffee,
@@ -86,12 +85,6 @@ const groups = [
     description:
       "Helpful links, shared knowledge, and a little friendly competition. All in one place.",
     items: [
-      {
-        name: "Resources",
-        href: "/resources",
-        description: "Your starting point for useful tools.",
-        icon: BookOpen,
-      },
       {
         name: "ASU CS Wiki",
         href: "https://wiki.thesoda.io",
