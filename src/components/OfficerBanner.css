@@ -1,0 +1,138 @@
+.officer-banner {
+  border-bottom: 1px solid #ffffff14;
+  background: linear-gradient(110deg, #181218, #141721);
+  color: #fff;
+}
+.officer-banner-disclosure {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.officer-banner-toggle {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 16px;
+  cursor: pointer;
+  list-style: none;
+  font-size: 13px;
+  font-weight: 500;
+}
+.officer-banner-toggle::-webkit-details-marker {
+  display: none;
+}
+.officer-banner-toggle:hover {
+  color: #f58ca9;
+}
+.officer-banner-toggle:focus-visible {
+  outline: 2px solid #f58ca9;
+  outline-offset: -3px;
+}
+.officer-banner-dot {
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #f34c7a;
+  box-shadow: 0 0 0 4px #f34c7a14;
+}
+.officer-banner-chevron {
+  flex-shrink: 0;
+  transition: transform 150ms;
+  color: #f58ca9;
+}
+.officer-banner-disclosure[open] .officer-banner-chevron {
+  transform: rotate(180deg);
+}
+.officer-banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 18px 32px 28px;
+  border-top: 1px solid #ffffff0c;
+}
+.officer-banner-copy h2 {
+  margin: 0;
+  font-size: clamp(22px, 2.5vw, 30px);
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -0.8px;
+}
+.officer-banner-copy h2 em {
+  color: #f34c7a;
+  font-style: normal;
+}
+.officer-banner-description {
+  margin: 10px 0 0;
+  color: #a7a7b5;
+  font-size: 12px;
+}
+.officer-banner-cta {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 24px;
+  padding: 14px 18px;
+  border: 1px solid #ed4275;
+  border-radius: 7px;
+  background: #ca1c50;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+}
+.officer-banner-cta:hover {
+  background: #e12c62;
+}
+.officer-banner-cta:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 4px;
+}
+.officer-banner-copy {
+  flex: 1;
+}
+.officer-banner-art {
+  position: relative;
+  flex: 0 0 88px;
+  height: 88px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #ffffff24;
+  border-radius: 20px;
+  background: #20202b;
+  font-size: 30px;
+  font-weight: 700;
+  transform: rotate(-8deg);
+  box-shadow: 6px 6px 0 #4361ee;
+}
+.officer-banner-spark {
+  position: absolute;
+  top: -22px;
+  right: -20px;
+  color: #f34c7a;
+  font-size: 48px;
+  line-height: 1;
+}
+@media (max-width: 700px) {
+  .officer-banner-inner {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 18px 24px 24px;
+  }
+  .officer-banner-art {
+    display: none;
+  }
+  .officer-banner-copy {
+    flex-basis: 100%;
+  }
+  .officer-banner-cta {
+    padding: 11px 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .officer-banner-chevron {
+    transition: none;
+  }
+}
