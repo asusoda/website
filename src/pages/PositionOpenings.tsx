@@ -26,7 +26,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const APPLICATION_FORM_URL = "https://asusoda.notion.site/ebd/49947e64246882f9a8a80137e433be60";
+const APPLICATION_FORM_URL = "https://asusoda.notion.site/ebd/abf47e642468838388980118e32527bd";
 
 export default function Positions() {
   const [sliderWidth, setSliderWidth] = useState("150px");
