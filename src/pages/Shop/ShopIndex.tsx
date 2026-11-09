@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Helmet } from "react-helmet-async";
 import { Package } from "lucide-react";
 import ProductCarousel, { CarouselSlide } from "../../components/Shop/ProductCarousel";
@@ -6,18 +6,11 @@ import { EmptyState } from "../../components/Shop/EmptyState";
 import { GlitchText } from "../../components/GlitchText";
 import { CategoryLayout } from "../../components/Shop/CategoryLayout";
 import { useProducts } from "../../hooks/useProducts";
-import { motion, useInView } from "framer-motion";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import "./styles/scrolling-text.css";
 
 const ShopIndex: React.FC = () => {
   const { products, loading, error } = useProducts();
-  const productsRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(productsRef, {
-    once: true,
-    amount: 0.1,
-    margin: "0px 0px -100px 0px",
-  });
 
   if (error) {
     return (
@@ -89,18 +82,9 @@ const ShopIndex: React.FC = () => {
 
         {/* Products Section */}
         <div className="bg-black relative z-20">
-          <div
-            className="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 md:pt-16 pb-8"
-            ref={productsRef}
-          >
-            {/* Header */}
-            <motion.div
-              id="products"
-              className="mb-8 md:mb-12 text-center"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-            >
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 md:pt-16 pb-8">
+            {/* Header — stays right there on scroll, no slide/fade-in */}
+            <div id="products" className="mb-8 md:mb-12 text-center">
               <h1 className="text-3xl md:text-5xl font-bold mb-2 md:mb-3">
                 <GlitchText
                   text="SoDA Shop"
@@ -110,18 +94,13 @@ const ShopIndex: React.FC = () => {
               <p className="text-gray-400 text-sm md:text-lg">
                 Browse our collection of exclusive merchandise
               </p>
-            </motion.div>
+            </div>
 
             {/* Products Grid */}
             {loading ? (
-              <motion.div
-                className="flex items-center justify-center py-20"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1.2, ease: "easeOut" }}
-              >
+              <div className="flex items-center justify-center py-20">
                 <LoadingSpinner />
-              </motion.div>
+              </div>
             ) : products.length === 0 ? (
               <EmptyState
                 icon={Package}
