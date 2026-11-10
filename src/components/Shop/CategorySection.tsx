@@ -47,33 +47,11 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
       : "text-[16rem] font-black text-white px-8 italic uppercase";
   };
 
-  const getAnimationVariants = () => {
-    if (orientation === "vertical") {
-      return {
-        hidden: { scaleY: 0, originY: 0 },
-        visible: {
-          scaleY: 1,
-          originY: 0,
-          transition: {
-            duration: 0.6,
-            ease: [0.25, 0.1, 0.25, 1],
-          },
-        },
-      };
-    } else {
-      return {
-        hidden: { scaleX: 0, originX: 0 },
-        visible: {
-          scaleX: 1,
-          originX: 0,
-          transition: {
-            duration: 0.6,
-            ease: [0.25, 0.1, 0.25, 1],
-          },
-        },
-      };
-    }
-  };
+  // Sections stay exactly where they are on scroll — no scale/translate reveal.
+  const getAnimationVariants = () => ({
+    hidden: {},
+    visible: {},
+  });
 
   const getShadowColor = () => {
     return color.includes("blue") ? "rgba(59, 130, 246, 0.6)" : "rgba(239, 68, 68, 0.6)";
