@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Building2, Zap, FileText, Mail, ExternalLink, Check } from "lucide-react";
@@ -12,7 +12,7 @@ const PAYPAL_URL: string = "https://www.paypal.com/paypalme/SoDAASU";
 const SPONSOR_PACKET_URL = "/SoDA_Sponsorship_Packet_2026-2027.pdf";
 const CONTACT_EMAIL = "asu@thesoda.io";
 
-const staggerFade = {
+const staggerFade: Variants = {
   hidden: { opacity: 0, y: 12 },
   show: (i: number) => ({
     opacity: 1,
