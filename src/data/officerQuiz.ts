@@ -1,10 +1,5 @@
 export type OfficerType =
-  | "Finance"
-  | "Operations"
-  | "Industry Relations"
-  | "Technology"
-  | "Community"
-  | "Marketing";
+  "Finance" | "Operations" | "Industry Relations" | "Technology" | "Community" | "Marketing";
 
 export interface Answer {
   text: string;
